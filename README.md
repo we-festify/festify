@@ -34,7 +34,7 @@ Festify is a free and open-source framework for building fest management website
 1. Clone the repo
 
 ```bash
-git clone https://github.com/jindalujjwal0720/festify.git
+git clone https://github.com/we-festify/festify.git
 ```
 
 2. Install NPM packages

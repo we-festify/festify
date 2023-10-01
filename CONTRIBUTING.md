@@ -15,7 +15,7 @@ Click the "Fork" button at the top-right corner of this repository to create a c
 Clone your forked repository to your local development environment:
 
 ```bash
-git clone https://github.com/your-username/festify.git
+git clone https://github.com/<your-username>/festify.git
 ```
 
 ### 3. Install Dependencies
