@@ -33,6 +33,7 @@ describe("Event Service", () => {
           );
         });
       });
+
       describe("When type is missing", () => {
         it("should throw an error", async () => {
           const event = { ...testEvent };
@@ -42,6 +43,7 @@ describe("Event Service", () => {
           );
         });
       });
+
       describe("When summary is missing", () => {
         it("should throw an error", async () => {
           const event = { ...testEvent };
@@ -51,6 +53,7 @@ describe("Event Service", () => {
           );
         });
       });
+
       describe("When description is missing", () => {
         it("should throw an error", async () => {
           const event = { ...testEvent };
@@ -60,6 +63,7 @@ describe("Event Service", () => {
           );
         });
       });
+
       describe("When venue is missing", () => {
         it("should throw an error", async () => {
           const event = { ...testEvent };
@@ -69,6 +73,7 @@ describe("Event Service", () => {
           );
         });
       });
+
       describe("When timeline is missing", () => {
         it("should throw an error", async () => {
           const event = { ...testEvent };
@@ -78,6 +83,7 @@ describe("Event Service", () => {
           );
         });
       });
+
       describe("When image is missing", () => {
         it("should throw an error", async () => {
           const event = { ...testEvent };
@@ -88,6 +94,7 @@ describe("Event Service", () => {
         });
       });
     });
+
     describe("When all required fields are provided", () => {
       it("should create a new event", async () => {
         const event = testEvent;
@@ -114,6 +121,7 @@ describe("Event Service", () => {
       });
     });
   });
+
   describe("getById", () => {
     describe("When an event with the given id does not exist", () => {
       it("should throw an error", async () => {
@@ -122,6 +130,7 @@ describe("Event Service", () => {
         expect(await EventService.getById(id)).toBe(null);
       });
     });
+
     describe("When an event with the given id exists", () => {
       it("should return the event", async () => {
         const event = testEvent;
@@ -149,6 +158,7 @@ describe("Event Service", () => {
       });
     });
   });
+
   describe("getAll", () => {
     describe("When there are no events", () => {
       it("should return an empty array", async () => {
@@ -157,6 +167,7 @@ describe("Event Service", () => {
         expect(events.length).toBe(0);
       });
     });
+
     describe("When extended is false", () => {
       it("should return all events without description and timeline", async () => {
         const event = testEvent;
@@ -167,6 +178,7 @@ describe("Event Service", () => {
         expect(events[0].timeline).toBeUndefined();
       });
     });
+
     describe("When extended is true", () => {
       it("should return all events with description and timeline", async () => {
         const event = testEvent;
@@ -178,6 +190,7 @@ describe("Event Service", () => {
       });
     });
   });
+
   describe("getAllByType", () => {
     describe("When there are no events of the given type", () => {
       it("should return an empty array", async () => {
@@ -188,6 +201,7 @@ describe("Event Service", () => {
         expect(events.length).toBe(0);
       });
     });
+
     describe("When extended is false", () => {
       it("should return all events of the given type without description and timeline", async () => {
         const event = testEvent;
@@ -200,6 +214,7 @@ describe("Event Service", () => {
         expect(events[0].timeline).toBeUndefined();
       });
     });
+
     describe("When extended is true", () => {
       it("should return all events of the given type with description and timeline", async () => {
         const event = testEvent;
@@ -212,6 +227,7 @@ describe("Event Service", () => {
         expect(events[0]).toHaveProperty("timeline");
       });
     });
+
     describe("when there are multiple event of different types", () => {
       it("should return all events of the given type with description and timeline", async () => {
         const event = testEvent;
@@ -229,6 +245,7 @@ describe("Event Service", () => {
       });
     });
   });
+
   describe("updateById", () => {
     describe("When an event with the given id does not exist", () => {
       it("should throw an error", async () => {
@@ -239,6 +256,7 @@ describe("Event Service", () => {
         expect(await EventService.updateById(id, event)).toBe(null);
       });
     });
+
     describe("When an event with the given id exists", () => {
       it("should update the event", async () => {
         const event = testEvent;
@@ -287,6 +305,7 @@ describe("Event Service", () => {
         expect(newEvent).toHaveProperty("image", updatedEvent.image);
       });
     });
+
     describe("When a required field is missing", () => {
       it("should throw an error", async () => {
         const event = { ...testEvent };
@@ -298,6 +317,7 @@ describe("Event Service", () => {
       });
     });
   });
+
   describe("deleteById", () => {
     describe("When an event with the given id does not exist", () => {
       it("should throw an error", async () => {
@@ -306,6 +326,7 @@ describe("Event Service", () => {
         ).toBe(null);
       });
     });
+
     describe("deleting an event twice", () => {
       it("should throw an error", async () => {
         const event = testEvent;
@@ -316,6 +337,7 @@ describe("Event Service", () => {
         await expect(await EventService.deleteById(id)).toBe(null);
       });
     });
+
     describe("When an event with the given id exists", () => {
       it("should delete the event", async () => {
         const event = testEvent;
