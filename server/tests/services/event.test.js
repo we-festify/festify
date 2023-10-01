@@ -118,8 +118,8 @@ describe("Event Service", () => {
     describe("When an event with the given id does not exist", () => {
       it("should throw an error", async () => {
         const id = "5f8f8d4f9d9e5d1f7c9d4d9e";
-        //giving empty object
-        await expect(EventService.getById(id)).toBe();
+        //giving promice as null
+        expect(await EventService.getById(id)).toBe(null);
       });
     });
     describe("When an event with the given id exists", () => {
@@ -236,7 +236,7 @@ describe("Event Service", () => {
         const createdEvent = await EventService.create(event);
         const id = createdEvent._id;
         await EventService.deleteById(createdEvent._id);
-        await expect(EventService.updateById(id, event)).toBe(null);
+        expect(await EventService.updateById(id, event)).toBe(null);
       });
     });
     describe("When an event with the given id exists", () => {
@@ -290,21 +290,30 @@ describe("Event Service", () => {
     describe("When a required field is missing", () => {
       it("should throw an error", async () => {
         const event = { ...testEvent };
+        const createdEvent = await EventService.create(event);
         delete event.name;
-        expect(EventService.updateById(event._id, event)).rejects.toThrow(
-          "Missing fields: name"
-        );
+        expect(
+          EventService.updateById(createdEvent._id, event)
+        ).rejects.toThrow("Missing fields: name");
       });
     });
   });
   describe("deleteById", () => {
     describe("When an event with the given id does not exist", () => {
       it("should throw an error", async () => {
+        await expect(
+          await EventService.deleteById("5f9d5b9b9d9b4b1b1c9d9b9b")
+        ).toBe(null);
+      });
+    });
+    describe("deleting an event twice", () => {
+      it("should throw an error", async () => {
         const event = testEvent;
         const createdEvent = await EventService.create(event);
         const id = createdEvent._id;
         await EventService.deleteById(createdEvent._id);
-        await expect(EventService.deleteById(id)).rejects.toThrow();
+        await expect(await EventService.deleteById(id)).toBe(null);
+        await expect(await EventService.deleteById(id)).toBe(null);
       });
     });
     describe("When an event with the given id exists", () => {
@@ -313,10 +322,21 @@ describe("Event Service", () => {
         const createdEvent = await EventService.create(event);
         const id = createdEvent._id;
         const deletedEvent = await EventService.deleteById(id);
-        expect(deletedEvent).toHaveProperty("_id", id);
-        expect(deletedEvent).toHaveProperty("description");
+        expect(deletedEvent).toHaveProperty("_id", createdEvent._id);
+        expect(deletedEvent).toHaveProperty("description", event.description);
         expect(deletedEvent).toHaveProperty("timeline");
-        expect(await EventService.getById(id)).toBe(null);
+        deletedEvent.timeline.forEach((timePoint, index) => {
+          expect(timePoint).toHaveProperty("time", event.timeline[index].time);
+          expect(timePoint).toHaveProperty(
+            "venue",
+            event.timeline[index].venue
+          );
+          expect(timePoint).toHaveProperty(
+            "description",
+            event.timeline[index].description
+          );
+        });
+        await expect(await EventService.getById(id)).toBe(null);
       });
     });
   });
