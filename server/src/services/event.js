@@ -32,6 +32,7 @@ class EventService {
 
   static async getById(id) {
     try {
+      if (!id) throw new BadRequestError("Missing id");
       return await EventRepository.getById(id);
     } catch (err) {
       throw err;
@@ -48,6 +49,7 @@ class EventService {
 
   static async getAllByType(type, { extended = false }) {
     try {
+      if (!type) throw new BadRequestError("Missing type");
       return await EventRepository.getAllByType(type, { extended });
     } catch (err) {
       throw err;
@@ -56,6 +58,7 @@ class EventService {
 
   static async updateById(id, event) {
     try {
+      if (!id) throw new BadRequestError("Missing id");
       this.checkRequiredFields(event);
       return await EventRepository.updateById(id, event);
     } catch (err) {
@@ -65,6 +68,7 @@ class EventService {
 
   static async deleteById(id) {
     try {
+      if (!id) throw new BadRequestError("Missing id");
       return await EventRepository.deleteById(id);
     } catch (err) {
       throw err;
