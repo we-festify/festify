@@ -22,6 +22,7 @@ The Event Model represents the structure of an event in festify fest management 
 
 ```json
 {
+  "_id": "5349b4ddd2781d08c09890f3",
   "name": "Art Exhibition",
   "type": "EXHIBITION",
   "summary": "An exhibition showcasing contemporary art pieces.",
