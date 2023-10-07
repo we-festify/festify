@@ -70,7 +70,10 @@ const eventsSlice = createSlice({
       })
       .addCase(updateEvent.fulfilled, (state, action) => {
         state.eventsLoading = false;
-        state.events = action.payload;
+        state.event = action.payload;
+        state.events = state.events.map((event) =>
+          event.id === action.payload.id ? action.payload : event
+        );
       })
       .addCase(updateEvent.rejected, (state, action) => {
         state.eventsLoading = false;
@@ -81,7 +84,10 @@ const eventsSlice = createSlice({
       })
       .addCase(deleteEvent.fulfilled, (state, action) => {
         state.eventsLoading = false;
-        state.events = action.payload;
+        state.event = action.payload;
+        state.events = state.events.filter(
+          (event) => event.id !== action.payload.id
+        );
       })
       .addCase(deleteEvent.rejected, (state, action) => {
         state.eventsLoading = false;
