@@ -20,6 +20,7 @@ describe("Event Repository", () => {
       },
     ],
     image: "Test Image",
+    organisation: "5f7d7e8c8d8f8e8d8c8f8d8f",
   };
 
   describe("create", () => {
@@ -42,6 +43,7 @@ describe("Event Repository", () => {
         );
       });
       expect(createdEvent).toHaveProperty("image", event.image);
+      expect(createdEvent).toHaveProperty("organisation");
     });
   });
 
@@ -66,6 +68,7 @@ describe("Event Repository", () => {
         );
       });
       expect(foundEvent).toHaveProperty("image", event.image);
+      expect(foundEvent).toHaveProperty("organisation");
     });
   });
 
@@ -139,6 +142,7 @@ describe("Event Repository", () => {
           },
         ],
         image: "Updated Image",
+        organisation: "5f7d7e8c8d8f8e8d8c8f8d8f",
       };
       const foundEvent = await EventRepository.updateById(
         createdEvent._id,
@@ -169,6 +173,7 @@ describe("Event Repository", () => {
         );
       });
       expect(foundEvent).toHaveProperty("image", updatedEvent.image);
+      expect(foundEvent).toHaveProperty("organisation");
     });
   });
 

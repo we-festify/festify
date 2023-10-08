@@ -20,6 +20,7 @@ describe("Event Service", () => {
       },
     ],
     image: "Test Image",
+    organisation: "5f8f8d4f9d9e5d1f7c9d4d9e",
   };
 
   describe("create", () => {
@@ -93,6 +94,16 @@ describe("Event Service", () => {
           );
         });
       });
+
+      describe("When organisation is missing", () => {
+        it("should throw an error", async () => {
+          const event = { ...testEvent };
+          delete event.organisation;
+          await expect(EventService.create(event)).rejects.toThrow(
+            "Missing fields: organisation"
+          );
+        });
+      });
     });
 
     describe("When all required fields are provided", () => {
@@ -118,6 +129,7 @@ describe("Event Service", () => {
           );
         });
         expect(createdEvent).toHaveProperty("image", event.image);
+        expect(createdEvent).toHaveProperty("organisation");
       });
     });
   });
@@ -155,6 +167,7 @@ describe("Event Service", () => {
           );
         });
         expect(foundEvent).toHaveProperty("image", event.image);
+        expect(foundEvent).toHaveProperty("organisation");
       });
     });
   });
@@ -276,6 +289,7 @@ describe("Event Service", () => {
             },
           ],
           image: "Updated Test Image",
+          organisation: "5f8f8d4f9d9e5d1f7c9d4d9e",
         };
         const newEvent = await EventService.updateById(id, updatedEvent);
         expect(newEvent).toHaveProperty("_id", id);
@@ -303,6 +317,7 @@ describe("Event Service", () => {
           );
         });
         expect(newEvent).toHaveProperty("image", updatedEvent.image);
+        expect(newEvent).toHaveProperty("organisation");
       });
     });
 

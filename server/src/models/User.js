@@ -18,6 +18,11 @@ const userSchema = mongoose.Schema({
     enum: ["admin", "organiser", "user"],
     default: "user",
   },
+  organisation: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Organisation",
+    default: null,
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);
