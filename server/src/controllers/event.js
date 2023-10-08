@@ -1,11 +1,9 @@
 const EventService = require("../services/event");
-const { BadRequestError } = require("../utils/errors");
 
 class EventController {
   static async create(req, res, next) {
     try {
       const { event } = req.body;
-      if (!event) throw new BadRequestError("Event data is required");
       const createdEvent = await EventService.create(event);
       res.status(201).json({ event: createdEvent });
     } catch (err) {
@@ -48,7 +46,6 @@ class EventController {
     try {
       const { id } = req.params;
       const { event } = req.body;
-      if (!event) throw new BadRequestError("Event data is required");
       const updatedEvent = await EventService.updateById(id, event);
       res.status(200).json({ event: updatedEvent });
     } catch (err) {

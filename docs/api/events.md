@@ -44,7 +44,8 @@ Retreive a list of all events.
           "description": "Headlining act and fireworks show."
         }
       ],
-      "image": "https://fake-url.com/music_festival.jpg"
+      "image": "https://fake-url.com/music_festival.jpg",
+      "organisation": "5f7f2b9a4f3d1e0b1c9b4c7a"
     },
     {
       "_id": "5349b4ddd2781d08c09890f3",
@@ -70,7 +71,8 @@ Retreive a list of all events.
           "description": "Closing ceremony and art auction."
         }
       ],
-      "image": "https://fake-url.com/art_exhibition.jpg"
+      "image": "https://fake-url.com/art_exhibition.jpg",
+      "organisation": "5f7f2b9a4f3d1e0b1c9b4c7a"
     }
   ]
 }
@@ -118,7 +120,8 @@ Retreive details of a specific event by its id.
         "description": "Closing ceremony and art auction."
       }
     ],
-    "image": "https://fake-url.com/art_exhibition.jpg"
+    "image": "https://fake-url.com/art_exhibition.jpg",
+    "organisation": "5f7f2b9a4f3d1e0b1c9b4c7a"
   }
 }
 ```
@@ -165,7 +168,8 @@ Retreive a list of all events of a specific type.
         "description": "Closing ceremony and art auction."
       }
     ],
-    "image": "https://fake-url.com/art_exhibition.jpg"
+    "image": "https://fake-url.com/art_exhibition.jpg",
+    "organisation": "5f7f2b9a4f3d1e0b1c9b4c7a"
   }
 }
 ```
@@ -206,7 +210,8 @@ Create a new event.
         "description": "Closing ceremony and art auction."
       }
     ],
-    "image": "https://fake-url.com/art_exhibition.jpg"
+    "image": "https://fake-url.com/art_exhibition.jpg",
+    "organisation": "5f7f2b9a4f3d1e0b1c9b4c7a"
   }
 }
 ```
@@ -244,7 +249,8 @@ Create a new event.
         "description": "Closing ceremony and art auction."
       }
     ],
-    "image": "https://fake-url.com/art_exhibition.jpg"
+    "image": "https://fake-url.com/art_exhibition.jpg",
+    "organisation": "5f7f2b9a4f3d1e0b1c9b4c7a"
   }
 }
 ```
@@ -291,7 +297,8 @@ Update an existing event.
         "description": "Closing ceremony and art auction."
       }
     ],
-    "image": "https://fake-url.com/art_exhibition.jpg"
+    "image": "https://fake-url.com/art_exhibition.jpg",
+    "organisation": "5f7f2b9a4f3d1e0b1c9b4c7a"
   }
 }
 ```
@@ -329,7 +336,8 @@ Update an existing event.
         "description": "Closing ceremony and art auction."
       }
     ],
-    "image": "https://fake-url.com/art_exhibition.jpg"
+    "image": "https://fake-url.com/art_exhibition.jpg",
+    "organisation": "5f7f2b9a4f3d1e0b1c9b4c7a"
   }
 }
 ```
@@ -376,7 +384,8 @@ Delete an existing event.
         "description": "Closing ceremony and art auction."
       }
     ],
-    "image": "https://fake-url.com/art_exhibition.jpg"
+    "image": "https://fake-url.com/art_exhibition.jpg",
+    "organisation": "5f7f2b9a4f3d1e0b1c9b4c7a"
   }
 }
 ```

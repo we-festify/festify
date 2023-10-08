@@ -18,6 +18,7 @@ describe("EventController", () => {
       },
     ],
     image: "Test Image",
+    organisation: "5f7d7e8c8d8f8e8d8c8f8d8f",
   };
   const testEvents = [
     {
@@ -34,6 +35,7 @@ describe("EventController", () => {
         },
       ],
       image: "My Event Image",
+      organisation: "5f7d7e8c8d8f8e8d8c8f8d8f",
     },
     {
       name: "Another Event",
@@ -49,6 +51,7 @@ describe("EventController", () => {
         },
       ],
       image: "Another Event Image",
+      organisation: "5f7d7e8c8d8f8e8d8c8f8d8f",
     },
   ];
   describe("create", () => {
@@ -67,15 +70,17 @@ describe("EventController", () => {
     });
 
     it("should throw a BadRequestError if the event data is missing", async () => {
+      EventService.create.mockRejectedValue(
+        new BadRequestError("Missing event")
+      );
+
       const req = { body: {} };
-      const res = { status: jest.fn(), json: jest.fn() };
+      const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
       const next = jest.fn();
 
       await EventController.create(req, res, next);
-
-      expect(next).toHaveBeenCalledWith(
-        new BadRequestError("Event data is required")
-      );
+      expect(EventService.create).toHaveBeenCalledWith(undefined);
+      expect(next).toHaveBeenCalledWith(new BadRequestError("Missing event"));
     });
   });
   describe("getById", () => {
@@ -150,16 +155,16 @@ describe("EventController", () => {
       expect(res.status).toHaveBeenCalledWith(200);
       expect(res.json).toHaveBeenCalledWith({ events: testEvents });
     });
-    
+
     it("should return an empty list when there are no events of the specified type in the database", async () => {
       EventService.getAllByType.mockResolvedValue([]);
-  
+
       const req = { params: { type: "EVENT" }, query: { extended: false } };
       const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
       const next = jest.fn();
-  
+
       await EventController.getAllByType(req, res, next);
-  
+
       expect(EventService.getAllByType).toHaveBeenCalledWith("EVENT", {
         extended: false,
       });
@@ -215,16 +220,16 @@ describe("EventController", () => {
       expect(res.status).toHaveBeenCalledWith(200);
       expect(res.json).toHaveBeenCalledWith({ event: testEvent });
     });
-    
+
     it("should not delete any event when event id is not present", async () => {
       EventService.deleteById.mockResolvedValue(null);
-  
+
       const req = { params: { id: "1234567890" } };
       const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
       const next = jest.fn();
-  
+
       await EventController.deleteById(req, res, next);
-  
+
       expect(EventService.deleteById).toHaveBeenCalledWith("1234567890");
       expect(res.json).toHaveBeenCalledWith({ event: null });
     });

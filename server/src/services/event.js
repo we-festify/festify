@@ -3,6 +3,7 @@ const { BadRequestError } = require("../utils/errors");
 
 class EventService {
   static checkRequiredFields(event) {
+    if (!event) throw new BadRequestError("Missing event");
     const requiredFields = [
       "name",
       "type",
@@ -11,6 +12,7 @@ class EventService {
       "venue",
       "timeline",
       "image",
+      "organisation",
     ];
     const missingFields = [];
     requiredFields.forEach((field) => {
