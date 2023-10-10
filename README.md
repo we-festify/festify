@@ -9,7 +9,7 @@ Festify is a free and open-source framework for building fest management website
   - React (CRA)
   - Redux
   - Redux Toolkit
-  - CSS
+  - Modular CSS
 
 - **Backend**
 
