@@ -30,7 +30,11 @@ class AuthService {
       const accessToken = generateAccessToken(payload);
       const refreshToken = generateRefreshToken(payload);
 
-      return { accessToken, refreshToken };
+      return {
+        accessToken,
+        refreshToken,
+        user: { ...newUser, passwordHash: undefined },
+      };
     } catch (err) {
       throw err;
     }
@@ -62,7 +66,11 @@ class AuthService {
       const accessToken = generateAccessToken(payload);
       const refreshToken = generateRefreshToken(payload);
 
-      return { accessToken, refreshToken };
+      return {
+        accessToken,
+        refreshToken,
+        user: { ...user, passwordHash: undefined },
+      };
     } catch (err) {
       throw err;
     }
@@ -71,8 +79,20 @@ class AuthService {
   static async refreshAccessToken(refreshToken) {
     try {
       const payload = verifyRefreshToken(refreshToken);
-      const accessToken = generateAccessToken(payload);
-      return { accessToken, refreshToken };
+      const { _id } = payload;
+      const user = await UserRepository.getById(_id);
+      if (!user) throw new Error("User not found");
+      const newPayload = {
+        _id: user._id,
+        email: user.email,
+        role: user.role,
+      };
+      const accessToken = generateAccessToken(newPayload);
+      return {
+        accessToken,
+        refreshToken,
+        user: { ...user, passwordHash: undefined },
+      };
     } catch (err) {
       throw new UnauthorizedError("Invalid refresh token");
     }
