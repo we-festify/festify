@@ -67,4 +67,5 @@ class EventService {
   }
 }
 
-export default new EventService();
+const eventService = new EventService();
+export default eventService;
