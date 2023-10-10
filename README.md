@@ -48,7 +48,7 @@ npm install
 4. Run the client and server simultaneously in different terminals
 
 ```bash
-cd client-web
+cd web
 npm start
 ```
 
