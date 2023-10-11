@@ -42,6 +42,19 @@ class EventController {
     }
   }
 
+  static async getAllByOrganisation(req, res, next) {
+    try {
+      const { extended } = req.query;
+      const { organisationId } = req.params;
+      const events = await EventService.getAllByOrganisation(organisationId, {
+        extended,
+      });
+      res.status(200).json({ events });
+    } catch (err) {
+      next(err);
+    }
+  }
+
   static async updateById(req, res, next) {
     try {
       const { id } = req.params;

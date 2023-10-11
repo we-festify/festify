@@ -6,7 +6,7 @@ const { BadRequestError } = require("../../src/utils/errors");
 describe("EventController", () => {
   const testEvent = {
     name: "Test Event",
-    type: "EVENT",
+    type: "event",
     summary: "Test Summary",
     description: "Test Description",
     venue: "Test Venue",
@@ -23,7 +23,7 @@ describe("EventController", () => {
   const testEvents = [
     {
       name: "My Event",
-      type: "EVENT",
+      type: "event",
       summary: "This is my event summary.",
       description: "This is my event description.",
       venue: "My Venue",
@@ -39,7 +39,7 @@ describe("EventController", () => {
     },
     {
       name: "Another Event",
-      type: "EVENT",
+      type: "event",
       summary: "This is another event summary.",
       description: "This is another event description.",
       venue: "Another Venue",
@@ -143,13 +143,13 @@ describe("EventController", () => {
     it("should successfully return a list of events when there are events of the specified type in the database", async () => {
       EventService.getAllByType.mockResolvedValue(testEvents);
 
-      const req = { params: { type: "EVENT" }, query: { extended: false } };
+      const req = { params: { type: "event" }, query: { extended: false } };
       const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
       const next = jest.fn();
 
       await EventController.getAllByType(req, res, next);
 
-      expect(EventService.getAllByType).toHaveBeenCalledWith("EVENT", {
+      expect(EventService.getAllByType).toHaveBeenCalledWith("event", {
         extended: false,
       });
       expect(res.status).toHaveBeenCalledWith(200);
@@ -159,15 +159,56 @@ describe("EventController", () => {
     it("should return an empty list when there are no events of the specified type in the database", async () => {
       EventService.getAllByType.mockResolvedValue([]);
 
-      const req = { params: { type: "EVENT" }, query: { extended: false } };
+      const req = { params: { type: "event" }, query: { extended: false } };
       const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
       const next = jest.fn();
 
       await EventController.getAllByType(req, res, next);
 
-      expect(EventService.getAllByType).toHaveBeenCalledWith("EVENT", {
+      expect(EventService.getAllByType).toHaveBeenCalledWith("event", {
         extended: false,
       });
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith({ events: [] });
+    });
+  });
+
+  describe("getAllByOrganisation", () => {
+    it("should successfully return a list of events when there are events of the specified organisation in the database", async () => {
+      EventService.getAllByOrganisation.mockResolvedValue(testEvents);
+
+      const req = {
+        params: { organisationId: "1234567890" },
+        query: { extended: false },
+      };
+      const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+      const next = jest.fn();
+
+      await EventController.getAllByOrganisation(req, res, next);
+
+      expect(EventService.getAllByOrganisation).toHaveBeenCalledWith(
+        "1234567890",
+        { extended: false }
+      );
+      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.json).toHaveBeenCalledWith({ events: testEvents });
+    });
+    it("should return an empty list when there are no events of the specified organisation in the database", async () => {
+      EventService.getAllByOrganisation.mockResolvedValue([]);
+
+      const req = {
+        params: { organisationId: "1234567890" },
+        query: { extended: false },
+      };
+      const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
+      const next = jest.fn();
+
+      await EventController.getAllByOrganisation(req, res, next);
+
+      expect(EventService.getAllByOrganisation).toHaveBeenCalledWith(
+        "1234567890",
+        { extended: false }
+      );
       expect(res.status).toHaveBeenCalledWith(200);
       expect(res.json).toHaveBeenCalledWith({ events: [] });
     });

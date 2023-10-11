@@ -58,6 +58,17 @@ class EventService {
     }
   }
 
+  static async getAllByOrganisation(organisationId, { extended = false }) {
+    try {
+      if (!organisationId) throw new BadRequestError("Missing organisationId");
+      return await EventRepository.getAllByOrganisation(organisationId, {
+        extended,
+      });
+    } catch (err) {
+      throw err;
+    }
+  }
+
   static async updateById(id, event) {
     try {
       if (!id) throw new BadRequestError("Missing id");
