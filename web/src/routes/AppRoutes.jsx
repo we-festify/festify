@@ -5,6 +5,8 @@ import AdminPanelIndex from "../apps/admin";
 import OrganiserPanelIndex from "../apps/organiser";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import RequireAdmin from "./custom/RequireAdmin";
+import RequireOrganiser from "./custom/RequireOrganiser";
 
 const AppRoutes = () => {
   return (
@@ -12,8 +14,12 @@ const AppRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/*" element={<ClientIndex />} />
-      <Route path="/admin/*" element={<AdminPanelIndex />} />
-      <Route path="/organiser/*" element={<OrganiserPanelIndex />} />
+      <Route path="/admin/*" element={<RequireAdmin />}>
+        <Route path="*" element={<AdminPanelIndex />} />
+      </Route>
+      <Route path="/organiser/*" element={<RequireOrganiser />}>
+        <Route path="*" element={<OrganiserPanelIndex />} />
+      </Route>
     </Routes>
   );
 };

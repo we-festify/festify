@@ -1,17 +1,18 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { selectAccessToken } from "../../state/redux/auth/authSlice";
+import React, { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { selectIsLoggedIn } from "../../state/redux/auth/authSlice";
 import { useSelector } from "react-redux";
 
 const Login = () => {
+  const location = useLocation();
   const navigate = useNavigate();
-  const accessToken = useSelector(selectAccessToken);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  React.useEffect(() => {
-    if (accessToken) {
-      navigate("");
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate(location.state?.from ? location.state.from : "/");
     }
-  }, [accessToken, navigate]);
+  }, [isLoggedIn, navigate, location]);
 
   return <div>Login</div>;
 };
