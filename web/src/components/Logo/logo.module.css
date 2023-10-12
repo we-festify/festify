@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Playball&display=swap");
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: "Playball", cursive;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--color-white);
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.logo:hover {
+  animation: color-change 1s ease-in-out infinite alternate;
+}
+
+@keyframes color-change {
+  0% {
+    color: var(--color-primary-500);
+  }
+  100% {
+    color: var(--color-magenta-500);
+  }
+}

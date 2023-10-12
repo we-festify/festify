@@ -1,0 +1,8 @@
+:root {
+  --color-primary-500: hsl(260, 84%, 51%);
+  --color-magenta-500: hsl(326, 62%, 51%);
+  --color-white: hsl(0, 0%, 100%);
+  --color-white-hsl-values: 0, 0%, 100%;
+  --color-text: hsl(0, 0%, 0%);
+  --color-background-dark: hsl(0, 0%, 0%);
+}

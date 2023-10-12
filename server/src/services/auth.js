@@ -87,6 +87,9 @@ class AuthService {
         email: user.email,
         role: user.role,
       };
+      if (user.role === "organiser") {
+        newPayload.organisation = user.organisation;
+      }
       const accessToken = generateAccessToken(newPayload);
       return {
         accessToken,

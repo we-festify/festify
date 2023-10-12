@@ -1,32 +1,24 @@
+const OrganisationRepository = require("../repositories/organisation");
 const EventRepository = require("../repositories/event");
 const { BadRequestError } = require("../utils/errors");
 
-class EventService {
-  static checkRequiredFields(event) {
-    if (!event) throw new BadRequestError("Missing event");
-    const requiredFields = [
-      "name",
-      "type",
-      "summary",
-      "description",
-      "venue",
-      "timeline",
-      "image",
-      "organisation",
-    ];
+class OrganisationService {
+  static checkRequiredFields(organisation) {
+    if (!organisation) throw new BadRequestError("Missing organisation");
+    const requiredFields = ["name"];
     const missingFields = [];
     requiredFields.forEach((field) => {
-      if (!event[field]) missingFields.push(field);
+      if (!organisation[field]) missingFields.push(field);
     });
     if (missingFields.length > 0) {
       throw new BadRequestError(`Missing fields: ${missingFields.join(", ")}`);
     }
   }
 
-  static async create(event) {
+  static async create(organisation) {
     try {
-      this.checkRequiredFields(event);
-      return await EventRepository.create(event);
+      this.checkRequiredFields(organisation);
+      return await OrganisationRepository.create(organisation);
     } catch (err) {
       throw err;
     }
@@ -35,7 +27,7 @@ class EventService {
   static async getById(id) {
     try {
       if (!id) throw new BadRequestError("Missing id");
-      return await EventRepository.getById(id);
+      return await OrganisationRepository.getById(id);
     } catch (err) {
       throw err;
     }
@@ -43,7 +35,7 @@ class EventService {
 
   static async getAll({ extended = false }) {
     try {
-      return await EventRepository.getAll({ extended });
+      return await OrganisationRepository.getAll({ extended });
     } catch (err) {
       throw err;
     }
@@ -52,7 +44,7 @@ class EventService {
   static async getAllByType(type, { extended = false }) {
     try {
       if (!type) throw new BadRequestError("Missing type");
-      return await EventRepository.getAllByType(type, { extended });
+      return await OrganisationRepository.getAllByType(type, { extended });
     } catch (err) {
       throw err;
     }
@@ -61,7 +53,7 @@ class EventService {
   static async getAllByOrganisation(organisationId, { extended = false }) {
     try {
       if (!organisationId) throw new BadRequestError("Missing organisationId");
-      return await EventRepository.getAllByOrganisation(organisationId, {
+      return await OrganisationRepository.getAllByOrganisation(organisationId, {
         extended,
       });
     } catch (err) {
@@ -69,11 +61,10 @@ class EventService {
     }
   }
 
-  static async updateById(id, event) {
+  static async updateById(id, organisation) {
     try {
       if (!id) throw new BadRequestError("Missing id");
-      this.checkRequiredFields(event);
-      return await EventRepository.updateById(id, event);
+      return await OrganisationRepository.updateById(id, organisation);
     } catch (err) {
       throw err;
     }
@@ -82,11 +73,12 @@ class EventService {
   static async deleteById(id) {
     try {
       if (!id) throw new BadRequestError("Missing id");
-      return await EventRepository.deleteById(id);
+      await EventRepository.deleteAllByOrganisation(id);
+      return await OrganisationRepository.deleteById(id);
     } catch (err) {
       throw err;
     }
   }
 }
 
-module.exports = EventService;
+module.exports = OrganisationService;
