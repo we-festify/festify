@@ -3,8 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import ClientIndex from "../apps/client";
 import AdminPanelIndex from "../apps/admin";
 import OrganiserPanelIndex from "../apps/organiser";
-import Login from "../pages/Login/Login";
-import Register from "../pages/Register/Register";
+import Login from "../pages/Auth/Login/Login";
+import Register from "../pages/Auth/Register/Register";
 import RequireAdmin from "./custom/RequireAdmin";
 import RequireOrganiser from "./custom/RequireOrganiser";
 

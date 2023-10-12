@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import NotFound from "../../pages/404/NotFound";
+import NotFound from "../../pages/NotFound/NotFound";
 
 const ClientIndex = () => {
   return (

@@ -19,6 +19,7 @@ const authSlice = createSlice({
     builder
       .addCase(login.pending, (state, action) => {
         state.authLoading = true;
+        state.authError = null;
       })
       .addCase(login.fulfilled, (state, action) => {
         state.authLoading = false;
@@ -37,6 +38,7 @@ const authSlice = createSlice({
       })
       .addCase(register.pending, (state, action) => {
         state.authLoading = true;
+        state.authError = null;
       })
       .addCase(register.fulfilled, (state, action) => {
         state.authLoading = false;
@@ -55,6 +57,7 @@ const authSlice = createSlice({
       })
       .addCase(refresh.pending, (state, action) => {
         state.authLoading = true;
+        state.authError = null;
       })
       .addCase(refresh.fulfilled, (state, action) => {
         state.authLoading = false;

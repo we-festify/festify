@@ -3,28 +3,37 @@ import axios from "axios";
 class AuthService {
   constructor() {
     this.axios = axios.create({
-      baseURL: `${process.env.REACT_APP_SERVER_URL}/auth`,
-      withCredentials: true,
+      baseURL: `${process.env.REACT_APP_API_URL}/auth`,
     });
   }
 
-  async login(email, password) {
+  async login(user) {
     try {
-      const response = await this.axios.post("/login", {
-        user: { email, password },
-      });
+      if (!user.email || !user.password)
+        throw new Error("Email and password are required");
+      const emailRegex = /\S+@\S+\.\S+/;
+      if (!emailRegex.test(user.email))
+        throw new Error("Please enter a valid email");
+      const response = await this.axios.post("/login", { user });
       return response.data;
     } catch (error) {
-      throw error;
+      throw new Error(error.response?.data?.message || error.message);
     }
   }
 
   async register(user) {
     try {
+      if (!user.name || !user.email || !user.password)
+        throw new Error("Name, email and password are required");
+      if (user.password !== user.passwordConfirmation)
+        throw new Error("Passwords do not match");
+      const emailRegex = /\S+@\S+\.\S+/;
+      if (!emailRegex.test(user.email))
+        throw new Error("Please enter a valid email");
       const response = await this.axios.post("/register", { user });
       return response.data;
     } catch (error) {
-      throw error;
+      throw new Error(error.response?.data?.message || error.message);
     }
   }
 
@@ -33,7 +42,7 @@ class AuthService {
       const response = await this.axios.get("/refresh");
       return response.data;
     } catch (error) {
-      throw error;
+      throw new Error(error.response?.data?.message || error.message);
     }
   }
 
@@ -42,7 +51,7 @@ class AuthService {
       const response = await this.axios.get("/logout");
       return response.data;
     } catch (error) {
-      throw error;
+      throw new Error(error.response?.data?.message || error.message);
     }
   }
 }

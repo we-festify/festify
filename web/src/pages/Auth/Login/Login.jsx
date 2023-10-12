@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { selectIsLoggedIn } from "../../state/redux/auth/authSlice";
+import { selectIsLoggedIn } from "../../../state/redux/auth/authSlice";
 import { useSelector } from "react-redux";
+import LoginForm from "./LoginForm";
+import MorphBackgroundDark from "../../../components/MorphBackgroundDark/MorphBackgroundDark";
 
 const Login = () => {
   const location = useLocation();
@@ -10,11 +12,17 @@ const Login = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate(location.state?.from ? location.state.from : "/");
+      navigate(location.state?.from ? location.state.from : "/", {
+        replace: true,
+      });
     }
   }, [isLoggedIn, navigate, location]);
 
-  return <div>Login</div>;
+  return (
+    <MorphBackgroundDark>
+      <LoginForm />
+    </MorphBackgroundDark>
+  );
 };
 
 export default Login;

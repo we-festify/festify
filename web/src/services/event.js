@@ -17,7 +17,7 @@ class EventService {
       const response = await this.axios.get("/");
       return response.data.events.map((event) => new Event(event));
     } catch (error) {
-      throw error;
+      throw new Error(error.response?.data?.message || error.message);
     }
   }
 
@@ -26,7 +26,7 @@ class EventService {
       const response = await this.axios.get(`/${id}`);
       return new Event(response.data.event);
     } catch (error) {
-      throw error;
+      throw new Error(error.response?.data?.message || error.message);
     }
   }
 
@@ -35,7 +35,7 @@ class EventService {
       const response = await this.axios.get(`/type/${type}`);
       return response.data.events.map((event) => new Event(event));
     } catch (error) {
-      throw error;
+      throw new Error(error.response?.data?.message || error.message);
     }
   }
 
@@ -44,7 +44,7 @@ class EventService {
       const response = await this.axios.post("/", event);
       return new Event(response.data.event);
     } catch (error) {
-      throw error;
+      throw new Error(error.response?.data?.message || error.message);
     }
   }
 
@@ -53,7 +53,7 @@ class EventService {
       const response = await this.axios.put(`/${id}`, updatedEvent);
       return new Event(response.data.event);
     } catch (error) {
-      throw error;
+      throw new Error(error.response?.data?.message || error.message);
     }
   }
 
@@ -62,7 +62,7 @@ class EventService {
       const response = await this.axios.delete(`/${id}`);
       return new Event(response.data.event);
     } catch (error) {
-      throw error;
+      throw new Error(error.response?.data?.message || error.message);
     }
   }
 }
