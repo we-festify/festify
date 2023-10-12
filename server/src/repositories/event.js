@@ -46,6 +46,14 @@ class EventRepository {
     }
   }
 
+  static async deleteAllByOrganisation(organisationId) {
+    try {
+      return await Event.deleteMany({ organisation: organisationId });
+    } catch (err) {
+      throw err;
+    }
+  }
+
   static async updateById(id, event) {
     try {
       return await Event.findByIdAndUpdate(id, event, { new: true });
