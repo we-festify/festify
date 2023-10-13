@@ -20,6 +20,7 @@ const RegisterForm = () => {
         name: e.target.name.value,
         email: e.target.email.value,
         password: e.target.password.value,
+        confirmPassword: e.target.confirmPassword.value,
       })
     );
   };

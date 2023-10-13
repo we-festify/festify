@@ -25,7 +25,7 @@ class AuthService {
     try {
       if (!user.name || !user.email || !user.password)
         throw new Error("Name, email and password are required");
-      if (user.password !== user.passwordConfirmation)
+      if (user.password !== user.confirmPassword)
         throw new Error("Passwords do not match");
       const emailRegex = /\S+@\S+\.\S+/;
       if (!emailRegex.test(user.email))

@@ -1,6 +1,11 @@
 const User = require("../models/User");
 
 class UserRepository {
+  static excludeSensitiveFields(user) {
+    const { passwordHash, ...userWithoutSensitiveFields } = user._doc;
+    return userWithoutSensitiveFields;
+  }
+
   static async create(user) {
     try {
       return await User.create(user);

@@ -16,6 +16,11 @@ class AuthService {
         throw new BadRequestError("User with email already exists");
       }
 
+      if (password.length < 8)
+        throw new BadRequestError(
+          "Password must be at least 8 characters long"
+        );
+
       const hashedPassword = await hashPassword(password);
       user.password = undefined;
       user.passwordHash = hashedPassword;
@@ -33,7 +38,7 @@ class AuthService {
       return {
         accessToken,
         refreshToken,
-        user: { ...newUser, passwordHash: undefined },
+        user: UserRepository.excludeSensitiveFields(newUser),
       };
     } catch (err) {
       throw err;
@@ -69,7 +74,7 @@ class AuthService {
       return {
         accessToken,
         refreshToken,
-        user: { ...user, passwordHash: undefined },
+        user: UserRepository.excludeSensitiveFields(user),
       };
     } catch (err) {
       throw err;
@@ -94,7 +99,7 @@ class AuthService {
       return {
         accessToken,
         refreshToken,
-        user: { ...user, passwordHash: undefined },
+        user: UserRepository.excludeSensitiveFields(user),
       };
     } catch (err) {
       throw new UnauthorizedError("Invalid refresh token");
