@@ -11,7 +11,6 @@ class AuthController {
         refreshToken,
         user: userPayload,
       } = await AuthService.loginWithEmailPassword(email, password);
-      console.log(parseInt(process.env.JWT_REFRESH_EXPIRES_IN) * 1000);
       res.cookie("festifyRefreshToken", refreshToken, {
         httpOnly: true,
         sameSite: "none",
