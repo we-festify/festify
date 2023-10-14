@@ -83,10 +83,12 @@ class AuthService {
 
   static async refreshAccessToken(refreshToken) {
     try {
+      if (!refreshToken) throw new UnauthorizedError("Missing refresh token");
       const payload = verifyRefreshToken(refreshToken);
+      if (!payload) throw new UnauthorizedError("Invalid refresh token");
       const { _id } = payload;
       const user = await UserRepository.getById(_id);
-      if (!user) throw new Error("User not found");
+      if (!user) throw new UnauthorizedError("User not found");
       const newPayload = {
         _id: user._id,
         email: user.email,
@@ -102,7 +104,8 @@ class AuthService {
         user: UserRepository.excludeSensitiveFields(user),
       };
     } catch (err) {
-      throw new UnauthorizedError("Invalid refresh token");
+      console.log(err.message);
+      throw err;
     }
   }
 }

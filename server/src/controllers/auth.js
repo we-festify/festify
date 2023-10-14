@@ -15,7 +15,7 @@ class AuthController {
         httpOnly: true,
         sameSite: "none",
         secure: true,
-        expires: new Date(process.env.JWT_REFRESH_EXPIRES_IN),
+        maxAge: parseInt(process.env.JWT_REFRESH_EXPIRES_IN) * 1000,
       });
       res.status(200).json({ accessToken, user: userPayload });
     } catch (error) {
@@ -35,7 +35,7 @@ class AuthController {
         httpOnly: true,
         sameSite: "none",
         secure: true,
-        expires: new Date(process.env.JWT_REFRESH_EXPIRES_IN),
+        maxAge: parseInt(process.env.JWT_REFRESH_EXPIRES_IN) * 1000,
       });
       res.status(201).json({ accessToken, user: userPayload });
     } catch (error) {
@@ -56,7 +56,7 @@ class AuthController {
         httpOnly: true,
         sameSite: "none",
         secure: true,
-        expires: new Date(process.env.JWT_REFRESH_EXPIRES_IN),
+        maxAge: parseInt(process.env.JWT_REFRESH_EXPIRES_IN) * 1000,
       });
       res.status(200).json({ accessToken, user: userPayload });
     } catch (error) {
