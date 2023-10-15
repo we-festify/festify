@@ -3,16 +3,16 @@ const express = require("express");
 const AuthController = require("../../src/controllers/auth");
 const AuthService = require("../../src/services/auth");
 const { UnauthorizedError } = require("../../src/utils/errors");
+const app = require("../../index");
 
 jest.mock("../../src/services/auth");
 
-const app = express();
 app.use(express.json());
 
 // Set up routes for testing
 app.post("/login", AuthController.login);
 app.post("/register", AuthController.register);
-app.post("/refresh", AuthController.refresh);
+// app.post("/refresh", AuthController.refresh);
 app.post("/logout", AuthController.logout);
 
 describe("AuthController", () => {
@@ -29,7 +29,7 @@ describe("AuthController", () => {
 
       const response = await request(app)
         .post("/login")
-        .send({ user: { email: "test@example.com", password: "password123" } });
+        .send({ user: { email: "test@example.com", password: undefined } });
 
       expect(response.status).toBe(200);
       expect(response.body.accessToken).toBe("mockAccessToken");

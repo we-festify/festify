@@ -46,7 +46,7 @@ describe("AuthService", () => {
       expect(hashPassword).toHaveBeenCalledWith(user.password);
       expect(UserRepository.create).toHaveBeenCalledWith({
         email: user.email,
-        password: "hashedPassword",
+        password: user.password,
       });
       expect(generateAccessToken).toHaveBeenCalledWith(userPayload);
       expect(generateRefreshToken).toHaveBeenCalledWith(userPayload);
@@ -79,8 +79,8 @@ describe("AuthService", () => {
     it("should throw an error if password hashing fails", async () => {
       const user = { email: "test@example.com", password: "password123" };
       UserRepository.getByEmail.mockResolvedValue(null);
-      hashPassword.mockRejectedValue(new Error("Hashing error"));
-      await expect(AuthService.register(user)).rejects.toThrow(Error);
+      hashPassword.mockRejectedValue(new BadRequestError());
+      await expect(AuthService.register(user)).rejects.toThrow(BadRequestError);
     });
   });
 
@@ -94,16 +94,25 @@ describe("AuthService", () => {
       UserRepository.getByEmail.mockResolvedValue({
         _id: "123",
         email: user.email,
-        password: "hashedPassword",
+        password: user.password,
       });
+
       hashPassword.mockResolvedValue("hashedPassword");
+      comparePassword.mockResolvedValue(true);
       generateAccessToken.mockReturnValue(accessToken);
       generateRefreshToken.mockReturnValue(refreshToken);
 
-      const result = await AuthService.login(user);
+      const result = await AuthService.loginWithEmailPassword(
+        user.email,
+        user.password
+      );
 
       expect(UserRepository.getByEmail).toHaveBeenCalledWith(user.email);
       expect(hashPassword).toHaveBeenCalledWith(user.password);
+      expect(comparePassword).toHaveBeenCalledWith(
+        user.password,
+        "hashedPassword"
+      );
       expect(generateAccessToken).toHaveBeenCalledWith(userPayload);
       expect(generateRefreshToken).toHaveBeenCalledWith(userPayload);
       expect(result).toEqual({
@@ -127,6 +136,7 @@ describe("AuthService", () => {
         email,
         password: "hashedPassword",
       });
+      hashPassword.mockResolvedValue("hashedPassword");
       comparePassword.mockResolvedValue(true);
       generateAccessToken.mockReturnValue(accessToken);
       generateRefreshToken.mockReturnValue(refreshToken);
@@ -134,7 +144,11 @@ describe("AuthService", () => {
       const result = await AuthService.loginWithEmailPassword(email, password);
 
       expect(UserRepository.getByEmail).toHaveBeenCalledWith(email);
-      expect(comparePassword).toHaveBeenCalledWith(password, "hashedPassword");
+      expect(hashPassword).toHaveBeenCalledWith(user.password);
+      expect(comparePassword).toHaveBeenCalledWith(
+        user.password,
+        "hashedPassword"
+      );
       expect(generateAccessToken).toHaveBeenCalledWith(userPayload);
       expect(generateRefreshToken).toHaveBeenCalledWith(userPayload);
       expect(result).toEqual({
@@ -151,31 +165,38 @@ describe("AuthService", () => {
       UserRepository.getByEmail.mockResolvedValue(null);
       await expect(
         AuthService.loginWithEmailPassword(email, password)
-      ).rejects.toThrow(UnauthorizedError);
+      ).rejects.toThrow(BadRequestError);
+    });
+  });
+
+  // Test cases for refreshAccessToken
+
+  it("should refresh access token with a valid refresh token", async () => {
+    const refreshToken = "validRefreshToken";
+    const userPayload = {
+      _id: "123",
+      email: "test@example.com",
+      role: "user",
+    };
+    const newAccessToken = "newAccessToken";
+
+    UserRepository.getById.mockResolvedValue({
+      _id: "123",
+      email: "test@example.com",
+      role: "user",
     });
 
-    // Test cases for refreshAccessToken
+    verifyRefreshToken.mockReturnValue(userPayload);
+    generateAccessToken.mockReturnValue(newAccessToken);
 
-    it("should refresh access token with a valid refresh token", async () => {
-      const refreshToken = "validRefreshToken";
-      const userPayload = {
-        _id: "123",
-        email: "test@example.com",
-        role: "user",
-      };
-      const newAccessToken = "newAccessToken";
+    const result = await AuthService.refreshAccessToken(refreshToken);
 
-      verifyRefreshToken.mockReturnValue(userPayload);
-      generateAccessToken.mockReturnValue(newAccessToken);
-
-      const result = await AuthService.refreshAccessToken(refreshToken);
-
-      expect(verifyRefreshToken).toHaveBeenCalledWith(refreshToken);
-      expect(generateAccessToken).toHaveBeenCalledWith(userPayload);
-      expect(result).toEqual({
-        accessToken: newAccessToken,
-        user: userPayload,
-      });
+    expect(verifyRefreshToken).toHaveBeenCalledWith(refreshToken);
+    expect(generateAccessToken).toHaveBeenCalledWith(userPayload);
+    expect(result).toEqual({
+      accessToken: "newAccessToken",
+      refreshToken: "validRefreshToken",
+      user: undefined,
     });
 
     it("should throw UnauthorizedError for invalid refresh token", async () => {

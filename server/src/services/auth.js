@@ -7,6 +7,13 @@ const {
 } = require("../utils/jwt");
 const { hashPassword, comparePassword } = require("../utils/password");
 
+// Function to check if an email is valid
+function isValidEmail(email) {
+  // Regular expression for a valid email address
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  return emailPattern.test(email);
+}
+
 class AuthService {
   static async register(user) {
     try {
@@ -14,6 +21,10 @@ class AuthService {
       const existingUser = await UserRepository.getByEmail(email);
       if (existingUser) {
         throw new BadRequestError("User with email already exists");
+      }
+
+      if (!isValidEmail(email)) {
+        throw new BadRequestError("Invalid email format");
       }
 
       if (password.length < 8)
