@@ -5,6 +5,9 @@ class AuthController {
   static async login(req, res, next) {
     try {
       const { user } = req.body;
+      if(!user) {
+         throw  new BadRequestError("Missing user");
+      }
       const { email, password } = user;
       const {
         accessToken,
