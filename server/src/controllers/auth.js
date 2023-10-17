@@ -5,6 +5,10 @@ class AuthController {
   static async login(req, res, next) {
     try {
       const { user } = req.body;
+      if(!user)
+      {
+         throw  new BadRequestError("User Doesnt exists");
+      }
       const { email, password } = user;
       const {
         accessToken,
@@ -25,7 +29,11 @@ class AuthController {
 
   static async register(req, res, next) {
     try {
-      const { user } = req.body;
+      const  {user}  = req.body;
+      if(!user)
+      {
+         throw  new BadRequestError("User Doesnt exists");
+      }
       const {
         accessToken,
         refreshToken,
