@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Festify",
+  "name": "Festify: Manage Fests and Events",
+  "description": "Festify is a web app that helps you manage your fests and events. It is a one stop solution for all your fest related problems.",
   "icons": [
     {
       "src": "favicon.ico",

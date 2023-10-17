@@ -23,7 +23,7 @@ git clone https://github.com/<your-username>/festify.git
 Navigate to the project's directory and install the required dependencies accordingly for frontend and backend respectively:
 
 ```bash
-cd festify/client-web
+cd festify/web
 npm install
 ```
 

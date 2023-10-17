@@ -8,7 +8,7 @@ describe("Event Repository", () => {
 
   const testEvent = {
     name: "Test Event",
-    type: "EVENT",
+    type: "event",
     summary: "Test Summary",
     description: "Test Description",
     venue: "Test Venue",
@@ -20,6 +20,7 @@ describe("Event Repository", () => {
       },
     ],
     image: "Test Image",
+    organisation: "5f7d7e8c8d8f8e8d8c8f8d8f",
   };
 
   describe("create", () => {
@@ -42,6 +43,7 @@ describe("Event Repository", () => {
         );
       });
       expect(createdEvent).toHaveProperty("image", event.image);
+      expect(createdEvent).toHaveProperty("organisation");
     });
   });
 
@@ -66,6 +68,7 @@ describe("Event Repository", () => {
         );
       });
       expect(foundEvent).toHaveProperty("image", event.image);
+      expect(foundEvent).toHaveProperty("organisation");
     });
   });
 
@@ -97,11 +100,11 @@ describe("Event Repository", () => {
       it("should get all events by type with description and timeline", async () => {
         const event = testEvent;
         const createdEvent = await EventRepository.create(event);
-        const events = await EventRepository.getAllByType("EVENT", {
+        const events = await EventRepository.getAllByType("event", {
           extended: true,
         });
         expect(events).toBeInstanceOf(Array);
-        expect(events[0]).toHaveProperty("type", "EVENT");
+        expect(events[0]).toHaveProperty("type", "event");
         expect(events[0]).toHaveProperty("description");
         expect(events[0]).toHaveProperty("timeline");
       });
@@ -110,11 +113,42 @@ describe("Event Repository", () => {
       it("should get all events by type without description and timeline", async () => {
         const event = testEvent;
         const createdEvent = await EventRepository.create(event);
-        const events = await EventRepository.getAllByType("EVENT", {
+        const events = await EventRepository.getAllByType("event", {
           extended: false,
         });
         expect(events).toBeInstanceOf(Array);
-        expect(events[0]).toHaveProperty("type", "EVENT");
+        expect(events[0]).toHaveProperty("type", "event");
+        expect(events[0].description).toBeUndefined();
+        expect(events[0].timeline).toBeUndefined();
+      });
+    });
+  });
+
+  describe("getAllByOrganisation", () => {
+    describe("extended", () => {
+      it("should get all events by organisation with description and timeline", async () => {
+        const event = testEvent;
+        const createdEvent = await EventRepository.create(event);
+        const events = await EventRepository.getAllByOrganisation(
+          "5f7d7e8c8d8f8e8d8c8f8d8f",
+          { extended: true }
+        );
+        expect(events).toBeInstanceOf(Array);
+        expect(events[0]).toHaveProperty("organisation");
+        expect(events[0]).toHaveProperty("description");
+        expect(events[0]).toHaveProperty("timeline");
+      });
+    });
+    describe("not extended", () => {
+      it("should get all events by organisation without description and timeline", async () => {
+        const event = testEvent;
+        const createdEvent = await EventRepository.create(event);
+        const events = await EventRepository.getAllByOrganisation(
+          "5f7d7e8c8d8f8e8d8c8f8d8f",
+          { extended: false }
+        );
+        expect(events).toBeInstanceOf(Array);
+        expect(events[0]).toHaveProperty("organisation");
         expect(events[0].description).toBeUndefined();
         expect(events[0].timeline).toBeUndefined();
       });
@@ -127,7 +161,7 @@ describe("Event Repository", () => {
       const createdEvent = await EventRepository.create(event);
       const updatedEvent = {
         name: "Updated Event",
-        type: "EVENT",
+        type: "event",
         summary: "Updated Summary",
         description: "Updated Description",
         venue: "Updated Venue",
@@ -139,6 +173,7 @@ describe("Event Repository", () => {
           },
         ],
         image: "Updated Image",
+        organisation: "5f7d7e8c8d8f8e8d8c8f8d8f",
       };
       const foundEvent = await EventRepository.updateById(
         createdEvent._id,
@@ -169,6 +204,7 @@ describe("Event Repository", () => {
         );
       });
       expect(foundEvent).toHaveProperty("image", updatedEvent.image);
+      expect(foundEvent).toHaveProperty("organisation");
     });
   });
 

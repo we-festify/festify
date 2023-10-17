@@ -17,6 +17,7 @@ The Event Model represents the structure of an event in festify fest management 
 | `timePoint.venue`       | string             | Venue of the event                                                                                              |
 | `timePoint.description` | string             | Description of the event                                                                                        |
 | `image`                 | string             | Image of the event                                                                                              |
+| `organisation`          | string             | The name of the organisation hosting the event.                                                                 |
 
 ## Example Event Object
 
@@ -45,7 +46,8 @@ The Event Model represents the structure of an event in festify fest management 
       "description": "Closing ceremony and art auction."
     }
   ],
-  "image": "https://fake-url.com/art_exhibition.jpg"
+  "image": "https://fake-url.com/art_exhibition.jpg",
+  "organisation": "5f7f2b9a4f3d1e0b1c9b4c7a"
 }
 ```
 

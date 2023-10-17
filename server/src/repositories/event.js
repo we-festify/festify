@@ -35,6 +35,25 @@ class EventRepository {
     }
   }
 
+  static async getAllByOrganisation(organisationId, { extended = false }) {
+    try {
+      if (extended) return await Event.find({ organisation: organisationId });
+      return await Event.find({ organisation: organisationId }).select(
+        "-description -timeline"
+      );
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async deleteAllByOrganisation(organisationId) {
+    try {
+      return await Event.deleteMany({ organisation: organisationId });
+    } catch (err) {
+      throw err;
+    }
+  }
+
   static async updateById(id, event) {
     try {
       return await Event.findByIdAndUpdate(id, event, { new: true });

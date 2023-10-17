@@ -3,6 +3,7 @@ const { BadRequestError } = require("../utils/errors");
 
 class EventService {
   static checkRequiredFields(event) {
+    if (!event) throw new BadRequestError("Missing event");
     const requiredFields = [
       "name",
       "type",
@@ -11,6 +12,7 @@ class EventService {
       "venue",
       "timeline",
       "image",
+      "organisation",
     ];
     const missingFields = [];
     requiredFields.forEach((field) => {
@@ -51,6 +53,17 @@ class EventService {
     try {
       if (!type) throw new BadRequestError("Missing type");
       return await EventRepository.getAllByType(type, { extended });
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async getAllByOrganisation(organisationId, { extended = false }) {
+    try {
+      if (!organisationId) throw new BadRequestError("Missing organisationId");
+      return await EventRepository.getAllByOrganisation(organisationId, {
+        extended,
+      });
     } catch (err) {
       throw err;
     }

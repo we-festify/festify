@@ -9,7 +9,7 @@ Festify is a free and open-source framework for building fest management website
   - React (CRA)
   - Redux
   - Redux Toolkit
-  - CSS
+  - Modular CSS
 
 - **Backend**
 
@@ -48,7 +48,7 @@ npm install
 4. Run the client and server simultaneously in different terminals
 
 ```bash
-cd client-web
+cd web
 npm start
 ```
 

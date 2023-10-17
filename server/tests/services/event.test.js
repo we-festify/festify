@@ -8,7 +8,7 @@ describe("Event Service", () => {
 
   const testEvent = {
     name: "Test Event",
-    type: "EVENT",
+    type: "event",
     summary: "Test Summary",
     description: "Test Description",
     venue: "Test Venue",
@@ -20,6 +20,7 @@ describe("Event Service", () => {
       },
     ],
     image: "Test Image",
+    organisation: "5f8f8d4f9d9e5d1f7c9d4d9e",
   };
 
   describe("create", () => {
@@ -93,6 +94,16 @@ describe("Event Service", () => {
           );
         });
       });
+
+      describe("When organisation is missing", () => {
+        it("should throw an error", async () => {
+          const event = { ...testEvent };
+          delete event.organisation;
+          await expect(EventService.create(event)).rejects.toThrow(
+            "Missing fields: organisation"
+          );
+        });
+      });
     });
 
     describe("When all required fields are provided", () => {
@@ -118,6 +129,7 @@ describe("Event Service", () => {
           );
         });
         expect(createdEvent).toHaveProperty("image", event.image);
+        expect(createdEvent).toHaveProperty("organisation");
       });
     });
   });
@@ -155,6 +167,7 @@ describe("Event Service", () => {
           );
         });
         expect(foundEvent).toHaveProperty("image", event.image);
+        expect(foundEvent).toHaveProperty("organisation");
       });
     });
   });
@@ -194,7 +207,7 @@ describe("Event Service", () => {
   describe("getAllByType", () => {
     describe("When there are no events of the given type", () => {
       it("should return an empty array", async () => {
-        const events = await EventService.getAllByType("EVENT", {
+        const events = await EventService.getAllByType("event", {
           extended: false,
         });
         expect(events).toBeInstanceOf(Array);
@@ -206,7 +219,7 @@ describe("Event Service", () => {
       it("should return all events of the given type without description and timeline", async () => {
         const event = testEvent;
         const createdEvent = await EventService.create(event);
-        const events = await EventService.getAllByType("EVENT", {
+        const events = await EventService.getAllByType("event", {
           extended: false,
         });
         expect(events).toBeInstanceOf(Array);
@@ -219,7 +232,7 @@ describe("Event Service", () => {
       it("should return all events of the given type with description and timeline", async () => {
         const event = testEvent;
         const createdEvent = await EventService.create(event);
-        const events = await EventService.getAllByType("EVENT", {
+        const events = await EventService.getAllByType("event", {
           extended: true,
         });
         expect(events).toBeInstanceOf(Array);
@@ -232,14 +245,73 @@ describe("Event Service", () => {
       it("should return all events of the given type with description and timeline", async () => {
         const event = testEvent;
         const createdEvent = await EventService.create(event);
-        event.type = "COMPETITION";
+        event.type = "competition";
         const createdEvent2 = await EventService.create(event);
-        const events = await EventService.getAllByType("EVENT", {
+        const events = await EventService.getAllByType("event", {
           extended: true,
         });
         expect(events).toBeInstanceOf(Array);
         expect(events.length).toBe(1);
-        expect(events[0].type).toBe("EVENT");
+        expect(events[0].type).toBe("event");
+        expect(events[0]).toHaveProperty("description");
+        expect(events[0]).toHaveProperty("timeline");
+      });
+    });
+  });
+
+  describe("getAllByOrganisation", () => {
+    describe("When there are no events by the given organisation", () => {
+      it("should return an empty array", async () => {
+        const events = await EventService.getAllByOrganisation(
+          "5f8f8d4f9d9e5d1f7c9d4d9e",
+          { extended: false }
+        );
+        expect(events).toBeInstanceOf(Array);
+        expect(events.length).toBe(0);
+      });
+    });
+
+    describe("When extended is false", () => {
+      it("should return all events by the given organisation without description and timeline", async () => {
+        const event = testEvent;
+        const createdEvent = await EventService.create(event);
+        const events = await EventService.getAllByOrganisation(
+          "5f8f8d4f9d9e5d1f7c9d4d9e",
+          { extended: false }
+        );
+        expect(events).toBeInstanceOf(Array);
+        expect(events[0].description).toBeUndefined();
+        expect(events[0].timeline).toBeUndefined();
+      });
+    });
+
+    describe("When extended is true", () => {
+      it("should return all events by the given organisation with description and timeline", async () => {
+        const event = testEvent;
+        const createdEvent = await EventService.create(event);
+        const events = await EventService.getAllByOrganisation(
+          "5f8f8d4f9d9e5d1f7c9d4d9e",
+          { extended: true }
+        );
+        expect(events).toBeInstanceOf(Array);
+        expect(events[0]).toHaveProperty("description");
+        expect(events[0]).toHaveProperty("timeline");
+      });
+    });
+
+    describe("when there are multiple event by different organisations", () => {
+      it("should return all events by the given organisation with description and timeline", async () => {
+        const event = testEvent;
+        const createdEvent = await EventService.create(event);
+        event.organisation = "5f8f8d4f9d9e5d1f7c9d4d9f";
+        const createdEvent2 = await EventService.create(event);
+        const events = await EventService.getAllByOrganisation(
+          "5f8f8d4f9d9e5d1f7c9d4d9e",
+          { extended: true }
+        );
+        expect(events).toBeInstanceOf(Array);
+        expect(events.length).toBe(1);
+        expect(events[0].organisation).toBeDefined();
         expect(events[0]).toHaveProperty("description");
         expect(events[0]).toHaveProperty("timeline");
       });
@@ -264,7 +336,7 @@ describe("Event Service", () => {
         const id = createdEvent._id;
         const updatedEvent = {
           name: "Updated Test Event",
-          type: "COMPETITION",
+          type: "competition",
           summary: "Updated Test Summary",
           description: "Updated Test Description",
           venue: "Updated Test Venue",
@@ -276,6 +348,7 @@ describe("Event Service", () => {
             },
           ],
           image: "Updated Test Image",
+          organisation: "5f8f8d4f9d9e5d1f7c9d4d9e",
         };
         const newEvent = await EventService.updateById(id, updatedEvent);
         expect(newEvent).toHaveProperty("_id", id);
@@ -303,6 +376,7 @@ describe("Event Service", () => {
           );
         });
         expect(newEvent).toHaveProperty("image", updatedEvent.image);
+        expect(newEvent).toHaveProperty("organisation");
       });
     });
 

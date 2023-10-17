@@ -7,7 +7,7 @@ const EventSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ["EVENT", "COMPETITION", "EXHIBITION", "WORKSHOP", "OTHER"],
+    enum: ["event", "competition", "exhibition", "workshop", "other"],
     required: true,
   },
   summary: {
@@ -43,6 +43,11 @@ const EventSchema = new mongoose.Schema({
   },
   image: {
     type: String,
+    required: true,
+  },
+  organisation: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Organisation",
     required: true,
   },
 });

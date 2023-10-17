@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const app = express();
 
@@ -14,6 +15,7 @@ connectDB();
 
 // cors
 const corsOptions = {
+  credentials: true,
   origin: process.env.ALLOWED_CLIENTS.split(","),
 };
 app.use(cors(corsOptions));
@@ -21,6 +23,7 @@ app.use(cors(corsOptions));
 // middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // routes
 app.use("/api", require("./src/routes/index.js"));

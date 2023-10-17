@@ -29,7 +29,11 @@ class ForbiddenError extends Error {
 const handleErrors = (err, req, res, next) => {
   const { statusCode } = err;
   const { message } = err;
-  res.status(statusCode || 500).json({
+  sendError(res, statusCode, message);
+};
+
+const sendError = (res, statusCode, message) => {
+  return res.status(statusCode || 500).json({
     status: "error",
     statusCode: statusCode || 500,
     message: message || "Internal Server Error",
@@ -42,4 +46,5 @@ module.exports = {
   UnauthorizedError,
   ForbiddenError,
   handleErrors,
+  sendError,
 };
