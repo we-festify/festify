@@ -23,19 +23,6 @@ const checkLoggedIn = (req, res, next) => {
   }
 };
 
-const checkRole = (role) => (req, res, next) => {
-  const { user } = req;
-  if (user.role === role) {
-    if (user.role === "organiser" && !user.organisation) {
-      sendError(res, 403, "You are not allowed to access this resource");
-    }
-    next();
-  } else {
-    sendError(res, 403, "You are not allowed to access this resource");
-  }
-};
-
 module.exports = {
   checkLoggedIn,
-  checkRole,
 };
