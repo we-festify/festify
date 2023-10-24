@@ -4,9 +4,9 @@ import styles from "./morphBackgroundDark.module.css";
 const MorphBackgroundDark = ({ children }) => {
   return (
     <div className={styles.background}>
+      <div className={styles.bubble} />
+      <div className={styles.bubble} />
       {children}
-      <div className={styles.bubble} />
-      <div className={styles.bubble} />
     </div>
   );
 };

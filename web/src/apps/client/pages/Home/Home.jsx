@@ -1,8 +1,14 @@
 import React from "react";
-import Permit from "../../../../components/rbac/Permit";
+import MorphBackgroundDark from "../../../../components/MorphBackgroundDark/MorphBackgroundDark";
+import Navbar from "../../components/Navbar/Navbar";
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <MorphBackgroundDark>
+      <Navbar />
+      Home
+    </MorphBackgroundDark>
+  );
 };
 
 export default Home;
