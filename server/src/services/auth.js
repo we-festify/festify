@@ -6,11 +6,15 @@ const {
   verifyRefreshToken,
 } = require("../utils/jwt");
 const { hashPassword, comparePassword } = require("../utils/password");
+const { validateEmail } = require("../utils/emailValidator");
 
 class AuthService {
   static async register(user) {
     try {
       const { email, password } = user;
+      if (!email || !password)
+        throw new BadRequestError("Invalid email or password");
+      if (!validateEmail(email)) throw new BadRequestError("Invalid email");
       const existingUser = await UserRepository.getByEmail(email);
       if (existingUser) {
         throw new BadRequestError("User with email already exists");
@@ -24,6 +28,8 @@ class AuthService {
       const hashedPassword = await hashPassword(password);
       user.password = undefined;
       user.passwordHash = hashedPassword;
+
+      if (!validateEmail(email)) throw new BadRequestError("Invalid email");
 
       const newUser = await UserRepository.create(user);
 
@@ -49,6 +55,8 @@ class AuthService {
     try {
       if (!email || !password)
         throw new BadRequestError("Invalid email or password");
+
+      if (!validateEmail(email)) throw new BadRequestError("Invalid email");
 
       const user = await UserRepository.getByEmail(email);
       if (!user) {
