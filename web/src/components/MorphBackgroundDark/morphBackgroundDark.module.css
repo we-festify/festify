@@ -1,46 +1,42 @@
 .background {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100dvh;
+  min-height: 100dvh;
   position: relative;
   background-color: var(--color-background-dark);
-}
-
-.background > *:not(.bubble) {
-  z-index: 1;
+  color: var(--color-white);
 }
 
 .background .bubble {
-  position: absolute;
+  position: fixed;
   border-radius: 50%;
   opacity: 0.5;
   transition: box-shadow 0.5s ease-in-out;
+  z-index: 0;
 }
 
-.background .bubble:nth-last-child(1) {
+.background .bubble:nth-child(1) {
   top: 40%;
   left: 30%;
   box-shadow: 0 0 450px 220px var(--color-primary-500);
 }
 
-.background .bubble:nth-last-child(2) {
+.background .bubble:nth-child(2) {
   top: 60%;
   left: 70%;
-  box-shadow: 0 0 450px 220px var(--color-magenta-500);
+  box-shadow: 0 0 450px 220px var(--color-secondary-500);
 }
 
 @media screen and (max-width: 768px) {
-  .background .bubble:nth-last-child(1) {
+  .background .bubble:nth-child(1) {
     top: 30%;
     left: 20%;
     box-shadow: 0 0 350px 180px var(--color-primary-500);
   }
 
-  .background .bubble:nth-last-child(2) {
+  .background .bubble:nth-child(2) {
     top: 70%;
     left: 80%;
-    box-shadow: 0 0 350px 180px var(--color-magenta-500);
+    box-shadow: 0 0 350px 180px var(--color-secondary-500);
   }
 }

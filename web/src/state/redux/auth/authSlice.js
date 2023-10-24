@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { login, register, refresh, logout } from "./authActions";
 
 const initialState = {
-  user: {},
+  user: null,
   accessToken: null,
   isAdmin: false,
   isLoggedIn: false,
@@ -72,7 +72,7 @@ const authSlice = createSlice({
       .addCase(refresh.rejected, (state, action) => {
         state.authLoading = false;
         state.authError = action.error.message;
-        state.user = {};
+        state.user = null;
         state.accessToken = null;
         state.isAdmin = false;
         state.isOrganiser = false;
@@ -84,7 +84,7 @@ const authSlice = createSlice({
       .addCase(logout.fulfilled, (state, action) => {
         state.authLoading = false;
         localStorage.removeItem("festify-access-token");
-        state.user = {};
+        state.user = null;
         state.accessToken = null;
         state.isAdmin = false;
         state.isOrganiser = false;
