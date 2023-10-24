@@ -50,6 +50,26 @@ const EventSchema = new mongoose.Schema({
     ref: "Organisation",
     required: true,
   },
+  isTicketed: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  minTeamSize: {
+    type: Number,
+    required: true,
+    default: 1,
+  },
+  maxTeamSize: {
+    type: Number,
+    required: true,
+    default: 1,
+  },
+  registrationsOpen: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("Event", EventSchema);
