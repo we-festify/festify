@@ -6,7 +6,7 @@ const {
   verifyRefreshToken,
 } = require("../utils/jwt");
 const { hashPassword, comparePassword } = require("../utils/password");
-const { validateEmail } = require("../utils/emailValidator");
+const { validateEmail } = require("../utils/validations");
 
 class AuthService {
   static async register(user) {
