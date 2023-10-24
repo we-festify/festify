@@ -39,74 +39,80 @@ const Navbar = () => {
   };
 
   return (
-    <div className={styles.navbar}>
-      <div className={styles.left}>
-        <Logo />
-      </div>
-      <div className={styles.right}>
-        <div
-          className={
-            (isPortrait ? styles.drawer : "") +
-            " " +
-            (openDrawer ? styles.open : "")
-          }
-        >
-          <ul className={styles.navlinks}>
-            {links?.map((link) => (
-              <li key={link.text} className={styles.navlink}>
-                {isPortrait && <span className={styles.icon}>{link.icon}</span>}
-                <Link
-                  to={link.path}
-                  className={link.active ? styles.active : ""}
-                >
-                  {link.text}
-                </Link>
-              </li>
-            ))}
-            {isAdmin && (
-              <li className={styles.navlink}>
-                {isPortrait && (
-                  <span className={styles.icon}>
-                    <SiAuth0 />
-                  </span>
-                )}
-                <Link to="/admin">Admin Panel</Link>
-              </li>
-            )}
-            {isOrganiser && (
-              <li className={styles.navlink}>
-                {isPortrait && (
-                  <span className={styles.icon}>
-                    <SiAuth0 />
-                  </span>
-                )}
-                <Link to="/organiser">Organiser Panel</Link>
-              </li>
-            )}
-          </ul>
+    <div className={styles.wrapper}>
+      <div className={styles.navbar}>
+        <div className={styles.left}>
+          <Logo />
         </div>
-        {user ? (
-          <Link to="/profile">
-            <span>
-              {user.name}
-              {/* <img className={styles.avatar} src={user.avatar} alt="avatar" /> */}
-            </span>
-          </Link>
-        ) : (
-          <button className={styles.login} onClick={handleLogin}>
-            Login
-          </button>
-        )}
-        {isPortrait && (
+        <div className={styles.right}>
           <div
-            className={styles.hamburger + " " + (openDrawer ? styles.open : "")}
-            onClick={() => setOpenDrawer(!openDrawer)}
+            className={
+              (isPortrait ? styles.drawer : "") +
+              " " +
+              (openDrawer ? styles.open : "")
+            }
           >
-            <div className={styles.line}></div>
-            <div className={styles.line}></div>
-            <div className={styles.line}></div>
+            <ul className={styles.navlinks}>
+              {links?.map((link) => (
+                <li key={link.text} className={styles.navlink}>
+                  {isPortrait && (
+                    <span className={styles.icon}>{link.icon}</span>
+                  )}
+                  <Link
+                    to={link.path}
+                    className={link.active ? styles.active : ""}
+                  >
+                    {link.text}
+                  </Link>
+                </li>
+              ))}
+              {isAdmin && (
+                <li className={styles.navlink}>
+                  {isPortrait && (
+                    <span className={styles.icon}>
+                      <SiAuth0 />
+                    </span>
+                  )}
+                  <Link to="/admin">Admin Panel</Link>
+                </li>
+              )}
+              {isOrganiser && (
+                <li className={styles.navlink}>
+                  {isPortrait && (
+                    <span className={styles.icon}>
+                      <SiAuth0 />
+                    </span>
+                  )}
+                  <Link to="/organiser">Organiser Panel</Link>
+                </li>
+              )}
+            </ul>
           </div>
-        )}
+          {user ? (
+            <Link to="/profile">
+              <span>
+                {user.name}
+                {/* <img className={styles.avatar} src={user.avatar} alt="avatar" /> */}
+              </span>
+            </Link>
+          ) : (
+            <button className={styles.login} onClick={handleLogin}>
+              Login
+            </button>
+          )}
+          {isPortrait && (
+            <div
+              className={
+                styles.hamburger + " " + (openDrawer ? styles.open : "")
+              }
+              onClick={() => setOpenDrawer(!openDrawer)}
+            >
+              <div className={styles.line}></div>
+              <div className={styles.line}></div>
+              <div className={styles.line}></div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

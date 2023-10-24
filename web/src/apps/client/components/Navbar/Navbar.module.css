@@ -1,31 +1,26 @@
-.navbar {
+.wrapper {
   background-color: var(--color-navbar);
   border-bottom: 1px solid hsla(var(--color-white-hsl-values), 0.1);
-  padding: 0.6rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 1;
 }
 
+.wrapper .navbar {
+  padding: 0.6rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .left {
   display: flex;
   align-items: center;
-}
-
-.left .logo {
-  margin: 0 1rem;
-  height: 1.6rem;
-}
-
-.left .logo img {
-  width: auto;
-  height: 100%;
-  object-fit: contain;
 }
 
 .title {
