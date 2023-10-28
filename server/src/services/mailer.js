@@ -32,6 +32,18 @@ class Mailer {
       }),
     });
   }
+
+  static async sendVerificationEmail({ email, verificationToken }) {
+    const verificationUrl = `${process.env.CLIENT_URL}/verify-email?token=${verificationToken}`;
+    return await Mailer.sendMail({
+      from: process.env.MAILING_SERVICE_USER,
+      to: email,
+      subject: "Verify your email for Festify",
+      html: templates.emailVerification({
+        verificationUrl,
+      }),
+    });
+  }
 }
 
 module.exports = Mailer;
