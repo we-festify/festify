@@ -34,7 +34,7 @@ class Mailer {
   }
 
   static async sendVerificationEmail({ email, verificationToken }) {
-    const verificationUrl = `${process.env.CLIENT_URL}/verify-email?token=${verificationToken}`;
+    const verificationUrl = `${process.env.CLIENT_URL}/u/verify-email?token=${verificationToken}`;
     return await Mailer.sendMail({
       from: process.env.MAILING_SERVICE_USER,
       to: email,

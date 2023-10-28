@@ -35,7 +35,7 @@ const Navbar = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    navigate("/login");
+    navigate("/a/login");
   };
 
   return (

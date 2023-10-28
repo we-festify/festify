@@ -55,6 +55,17 @@ class AuthService {
       throw new Error(error.response?.data?.message || error.message);
     }
   }
+
+  async verifyEmail(verificationToken) {
+    try {
+      const response = await this.axios.get(
+        `/verify-email?token=${verificationToken}`
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response?.data?.message || error.message);
+    }
+  }
 }
 
 const authService = new AuthService();

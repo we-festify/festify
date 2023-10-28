@@ -61,7 +61,7 @@ const RegisterForm = () => {
         <button type="submit">Register</button>
         <div className={styles.info}>
           <span>Already have an account?</span>
-          <Link to="/login">Login</Link>
+          <Link to="/a/login">Login</Link>
         </div>
       </form>
     </div>

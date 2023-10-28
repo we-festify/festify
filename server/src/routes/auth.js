@@ -12,6 +12,6 @@ router.post(
   checkLoggedIn,
   AuthController.sendVerificationEmail
 );
-router.post("/verify-email", AuthController.verifyEmail);
+router.get("/verify-email", AuthController.verifyEmail);
 
 module.exports = router;
