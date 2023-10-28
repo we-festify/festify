@@ -53,6 +53,23 @@ class UserRepository {
       throw err;
     }
   }
+
+  static async verifyById(id) {
+    try {
+      return await User.findByIdAndUpdate(id, { isVerified: true });
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async checkAllVerified(userIds) {
+    try {
+      const users = await User.find({ _id: { $in: userIds } });
+      return users.every((user) => user.isVerified);
+    } catch (err) {
+      return false;
+    }
+  }
 }
 
 module.exports = UserRepository;

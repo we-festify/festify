@@ -6,10 +6,18 @@ const testEmailTemplateSrc = fs.readFileSync(
   path.join(__dirname, "./test.hbs"),
   "utf8"
 );
+const emailVerificationTemplateSrc = fs.readFileSync(
+  path.join(__dirname, "./verify-email.hbs"),
+  "utf8"
+);
 const testEmailTemplate = handlebars.compile(testEmailTemplateSrc);
+const emailVerificationTemplate = handlebars.compile(
+  emailVerificationTemplateSrc
+);
 
 const templates = {
   test: testEmailTemplate,
+  emailVerification: emailVerificationTemplate,
 };
 
 module.exports = templates;

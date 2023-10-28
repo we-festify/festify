@@ -1,4 +1,4 @@
-const { verifyAccessToken } = require("../utils/jwt");
+const { verifyAccessToken } = require("../utils/token");
 const { sendError } = require("../utils/errors");
 
 const checkLoggedIn = (req, res, next) => {
