@@ -116,7 +116,6 @@ class AuthService {
         user: UserRepository.excludeSensitiveFields(user),
       };
     } catch (err) {
-      console.log(err.message);
       throw err;
     }
   }
