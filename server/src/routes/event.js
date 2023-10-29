@@ -1,49 +1,45 @@
 const express = require("express");
 const router = express.Router();
 const EventController = require("../controllers/event");
-const { checkLoggedIn } = require("../middlewares/auth");
-const { checkPermission } = require("../middlewares/rbac");
+const AuthMiddleware = require("../middlewares/auth");
+const RBACMiddleware = require("../middlewares/rbac");
 
 router.post(
   "/",
-  checkLoggedIn,
-  checkPermission("event", "create"),
+  AuthMiddleware.requireLoggedIn,
+  RBACMiddleware.requirePermission("event", "create"),
   EventController.create
 );
 router.get(
   "/:id",
-  checkLoggedIn,
-  checkPermission("event", "read"),
+  RBACMiddleware.requirePermission("event", "read"),
   EventController.getById
 );
 router.get(
   "/",
-  checkLoggedIn,
-  checkPermission("event", "read"),
+  RBACMiddleware.requirePermission("event", "read"),
   EventController.getAll
 );
 router.get(
   "/type/:type",
-  checkLoggedIn,
-  checkPermission("event", "read"),
+  RBACMiddleware.requirePermission("event", "read"),
   EventController.getAllByType
 );
 router.get(
   "/organisation/:organisationId",
-  checkLoggedIn,
-  checkPermission("event", "read"),
+  RBACMiddleware.requirePermission("event", "read"),
   EventController.getAllByOrganisation
 );
 router.put(
   "/:id",
-  checkLoggedIn,
-  checkPermission("event", "update"),
+  AuthMiddleware.requireLoggedIn,
+  RBACMiddleware.requirePermission("event", "update"),
   EventController.updateById
 );
 router.delete(
   "/:id",
-  checkLoggedIn,
-  checkPermission("event", "delete"),
+  AuthMiddleware.requireLoggedIn,
+  RBACMiddleware.requirePermission("event", "delete"),
   EventController.deleteById
 );
 
