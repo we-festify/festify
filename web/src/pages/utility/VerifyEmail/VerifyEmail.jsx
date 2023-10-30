@@ -13,11 +13,12 @@ const VerifyEmail = () => {
   const [message, setMessage] = useState(null);
 
   useEffect(() => {
-    if (!token) return setError("Invalid token");
+    if (!token) return setError("Invalid url, please go to home page.");
     setLoading(true);
     authService
       .verifyEmail(token)
       .then((res) => {
+        console.log(res);
         setMessage(res.message);
       })
       .catch((err) => {

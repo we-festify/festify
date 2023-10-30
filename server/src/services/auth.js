@@ -5,6 +5,7 @@ const {
   generateRefreshToken,
   verifyRefreshToken,
   verifyEmailVerificationToken,
+  generateEmailVerificationToken,
 } = require("../utils/token");
 const { hashPassword, comparePassword } = require("../utils/password");
 const { validateEmail } = require("../utils/validations");
@@ -35,7 +36,7 @@ class AuthService {
 
       const newUser = await UserRepository.create(user);
 
-      await MailerService.sendVerificationEmail(newUser);
+      this.trySendVerificationEmail(newUser._id);
 
       const payload = {
         _id: newUser._id,
@@ -120,7 +121,7 @@ class AuthService {
     }
   }
 
-  static async sendVerificationEmail(userId) {
+  static async trySendVerificationEmail(userId) {
     try {
       const user = await UserRepository.getById(userId);
       if (!user) throw new BadRequestError("User not found");
