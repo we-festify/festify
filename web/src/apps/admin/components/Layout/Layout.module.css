@@ -1,0 +1,10 @@
+.layout {
+  display: flex;
+  height: 100dvh;
+  background-color: var(--color-background-admin);
+  color: var(--color-text-admin);
+}
+
+.content {
+  flex: 1;
+}

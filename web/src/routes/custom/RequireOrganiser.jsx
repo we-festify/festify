@@ -12,7 +12,9 @@ const RequireOrganiser = () => {
   const isOrganiser = useSelector(selectIsOrganiser);
 
   if (!isLoggedIn) {
-    return <Navigate to="/login" state={{ from: window.location.pathname }} />;
+    return (
+      <Navigate to="/a/login" state={{ from: window.location.pathname }} />
+    );
   }
 
   if (!isOrganiser) {

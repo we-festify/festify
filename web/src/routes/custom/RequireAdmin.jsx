@@ -12,7 +12,7 @@ const RequireAdmin = () => {
   const isAdmin = useSelector(selectIsAdmin);
 
   if (!isLoggedIn) {
-    return <Navigate to="/login" state={{ from: window.location.pathname }} />;
+    return <Navigate to="/a/login" state={{ from: window.location.pathname }} />;
   }
 
   if (!isAdmin) {

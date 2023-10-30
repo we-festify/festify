@@ -10,4 +10,13 @@
   --color-navbar: hsla(0, 0%, 100%, 0.05);
   --color-navbar-drawer: hsla(0, 0%, 0%, 0.7);
   --color-text: hsl(0, 0%, 100%);
+
+  --color-background-admin-sidebar: hsl(0, 0%, 100%);
+  --color-text-admin-sidebar: hsl(0, 0%, 0%);
+  --color-background-admin: hsl(206, 47%, 97%);
+  --color-text-admin: hsl(0, 0%, 0%);
+  --color-text-light-admin: hsl(200, 2%, 70%);
+  --color-navbar-admin: hsl(206, 47%, 97%);
+  --color-navbar-drawer-admin: hsla(213, 35%, 94%, 0.7);
+  --color-background-dark-admin: hsl(213, 35%, 94%);
 }
