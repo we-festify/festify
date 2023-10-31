@@ -67,6 +67,39 @@ class AuthController {
     }
   }
 
+  static async forgotPassword(req, res, next) {
+    try {
+      const { email } = req.body;
+      await AuthService.forgotPassword(email);
+      res
+        .status(200)
+        .json({ message: "Reset password link has been sent to your email" });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async redirectForgotPassword(req, res, next) {
+    try {
+      const { token } = req.params;
+      const isValid = await AuthService.validateForgotPasswordToken(token);
+      if (!isValid) throw new UnauthorizedError("Invalid token");
+      res.redirect(`${process.env.CLIENT_RESET_PASSWORD_URL}/${token}`);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async resetPassword(req, res, next) {
+    try {
+      const { token, password } = req.body;
+      await AuthService.resetPassword(token, password);
+      res.status(200).json({ message: "Password reset successfully" });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async logout(req, res, next) {
     try {
       res.clearCookie("festifyRefreshToken");

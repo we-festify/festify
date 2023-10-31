@@ -6,6 +6,7 @@ const testEmailTemplateSrc = fs.readFileSync(
   path.join(__dirname, "./test.hbs"),
   "utf8"
 );
+
 const emailVerificationTemplateSrc = fs.readFileSync(
   path.join(__dirname, "./verify-email.hbs"),
   "utf8"
