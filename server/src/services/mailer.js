@@ -33,15 +33,14 @@ class Mailer {
     });
   }
 
-  static async sendForgotPasswordMail({ to, redirectUrl, user, organisation }) {
+  static async sendVerificationEmail({ email, verificationToken }) {
+    const verificationUrl = `${process.env.CLIENT_URL}/verify-email?token=${verificationToken}`;
     return await Mailer.sendMail({
       from: process.env.MAILING_SERVICE_USER,
-      to,
-      subject: "Festify Password Reset",
-      html: templates.forgotPassword({
-        redirectUrl,
-        user,
-        organisation,
+      to: email,
+      subject: "Verify your email for Festify",
+      html: templates.emailVerification({
+        verificationUrl,
       }),
     });
   }

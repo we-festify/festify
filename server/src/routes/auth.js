@@ -7,5 +7,11 @@ router.post("/login", AuthController.login);
 router.post("/register", AuthController.register);
 router.get("/refresh", AuthController.refresh);
 router.get("/logout", checkLoggedIn, AuthController.logout);
+router.post(
+  "/send-verification-email",
+  checkLoggedIn,
+  AuthController.sendVerificationEmail
+);
+router.post("/verify-email", AuthController.verifyEmail);
 
 module.exports = router;

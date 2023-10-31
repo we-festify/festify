@@ -7,6 +7,7 @@ import {
   selectAuthLoading,
 } from "../../../state/redux/auth/authSlice";
 import Logo from "../../../components/Logo/Logo";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,10 @@ const LoginForm = () => {
         {error && <span className={styles.error}>{error}</span>}
         {loading && <span className={styles.loading}>Loading...</span>}
         <button type="submit">Login</button>
+        <div className={styles.info}>
+          <span>Don't have an account?</span>
+          <Link to="/register">Register</Link>
+        </div>
       </form>
     </div>
   );

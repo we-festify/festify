@@ -10,6 +10,8 @@
   border-radius: 1.2rem;
   padding: 2.4rem;
   gap: 3rem;
+  margin: auto;
+  z-index: 1;
 }
 
 .form form {
@@ -54,7 +56,7 @@
 }
 
 .form form .error {
-  color: var(--color-magenta-500);
+  color: var(--color-secondary-500);
   font-size: 0.8rem;
   font-weight: 500;
 }
@@ -73,7 +75,7 @@
   background: linear-gradient(
     150deg,
     var(--color-primary-500) 0%,
-    var(--color-magenta-500) 100%
+    var(--color-secondary-500) 100%
   );
   border: none;
   color: var(--color-white);
@@ -84,6 +86,25 @@
 
 .form form button:hover {
   animation: wobble 0.5s ease-in-out;
+}
+
+.form form .info {
+  color: var(--color-white);
+  font-size: 0.8rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.form form .info a {
+  color: var(--color-primary-500);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.form form .info a:hover {
+  text-decoration: underline;
 }
 
 @keyframes wobble {
