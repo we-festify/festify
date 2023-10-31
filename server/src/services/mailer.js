@@ -32,6 +32,19 @@ class Mailer {
       }),
     });
   }
+
+  static async sendForgotPasswordMail({ to, redirectUrl, user, organisation }) {
+    return await Mailer.sendMail({
+      from: process.env.MAILING_SERVICE_USER,
+      to,
+      subject: "Festify Password Reset",
+      html: templates.forgotPassword({
+        redirectUrl,
+        user,
+        organisation,
+      }),
+    });
+  }
 }
 
 module.exports = Mailer;
