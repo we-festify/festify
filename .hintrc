@@ -8,5 +8,15 @@
     "not and_ff <= 113",
     "not firefox <= 113",
     "not opera <= 99"
-  ]
+  ],
+  "hints": {
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "-webkit-tap-highlight-color"
+        ]
+      }
+    ]
+  }
 }
