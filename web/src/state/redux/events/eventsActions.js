@@ -13,15 +13,6 @@ export const getAllEvents = createAsyncThunk(
   }
 );
 
-export const getEvent = createAsyncThunk("events/getEvent", async (id) => {
-  try {
-    const data = await EventService.getEvent(id);
-    return data;
-  } catch (error) {
-    throw error;
-  }
-});
-
 export const getEventsByType = createAsyncThunk(
   "events/getEventsByType",
   async (type) => {
@@ -34,48 +25,8 @@ export const getEventsByType = createAsyncThunk(
   }
 );
 
-export const createEvent = createAsyncThunk(
-  "events/createEvent",
-  async (event) => {
-    try {
-      const data = await EventService.createEvent(event);
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  }
-);
-
-export const updateEvent = createAsyncThunk(
-  "events/updateEvent",
-  async ({ id, updatedEvent }) => {
-    try {
-      const data = await EventService.updateEvent(id, updatedEvent);
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  }
-);
-
-export const deleteEvent = createAsyncThunk(
-  "events/deleteEvent",
-  async (id) => {
-    try {
-      const data = await EventService.deleteEvent(id);
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  }
-);
-
 const eventsActions = {
   getAllEvents,
-  getEvent,
   getEventsByType,
-  createEvent,
-  updateEvent,
-  deleteEvent,
 };
 export default eventsActions;

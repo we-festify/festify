@@ -10,6 +10,8 @@
   color: var(--color-white);
   text-decoration: none !important;
   cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .logo:hover {
@@ -21,6 +23,6 @@
     color: var(--color-primary-500);
   }
   100% {
-    color: var(--color-magenta-500);
+    color: var(--color-secondary-500);
   }
 }

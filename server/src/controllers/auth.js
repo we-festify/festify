@@ -1,5 +1,5 @@
 const AuthService = require("../services/auth");
-const { UnauthorizedError } = require("../utils/errors");
+const { UnauthorizedError, BadRequestError } = require("../utils/errors");
 
 class AuthController {
   static async login(req, res, next) {
@@ -104,6 +104,26 @@ class AuthController {
     try {
       res.clearCookie("festifyRefreshToken");
       res.status(200).json({ message: "Logged out successfully" });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async verifyEmail(req, res, next) {
+    try {
+      const { token } = req.query;
+      const user = await AuthService.verifyUserEmail(token);
+      res.status(200).json({ user });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async sendVerificationEmail(req, res, next) {
+    try {
+      const { user } = req;
+      await AuthService.sendVerificationEmail(user._id);
+      res.status(200).json({ message: "Verification email sent" });
     } catch (error) {
       next(error);
     }
