@@ -6,24 +6,6 @@ const app = express();
 
 // home route
 app.get("/", async (req, res) => {
-  // const Mailer = require("./src/services/mailer");
-  // await Mailer.sendForgotPasswordMail({
-  //   to: "test@gmail.com",
-  //   redirectUrl: "http://localhost:3000",
-  //   user: {
-  //     name: "Test User",
-  //   },
-  //   organisation: {
-  //     name: "Festify",
-  //     address: {
-  //       street: "123 Main St",
-  //       city: "New York",
-  //       state: "NY",
-  //       zip: "12345",
-  //       country: "US",
-  //     },
-  //   },
-  // });
   res.send(`Festify API - Home`);
 });
 
