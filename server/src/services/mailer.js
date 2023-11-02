@@ -45,7 +45,7 @@ class Mailer {
     });
   }
 
-  static async sendForgotPasswordMail({ to, redirectUrl, user, organisation }) {
+  static async sendForgotPasswordMail({ to, redirectUrl, user }) {
     return await Mailer.sendMail({
       from: process.env.MAILING_SERVICE_USER,
       to,
@@ -53,7 +53,17 @@ class Mailer {
       html: templates.forgotPassword({
         redirectUrl,
         user,
-        organisation,
+        company: {
+          name: "Festify",
+          email: "dummy@festify.app",
+          address: {
+            street: "Dahiya Street",
+            city: "Dhanbad",
+            state: "Jharkhand",
+            country: "India",
+            zip: "826004",
+          },
+        },
       }),
     });
   }

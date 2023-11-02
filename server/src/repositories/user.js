@@ -2,7 +2,8 @@ const User = require("../models/User");
 
 class UserRepository {
   static excludeSensitiveFields(user) {
-    const { passwordHash, ...userWithoutSensitiveFields } = user._doc;
+    const { passwordHash, resetPasswordToken, ...userWithoutSensitiveFields } =
+      user._doc;
     return userWithoutSensitiveFields;
   }
 
@@ -33,6 +34,14 @@ class UserRepository {
   static async getAll() {
     try {
       return await User.find();
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async getByResetPasswordToken(resetPasswordToken) {
+    try {
+      return await User.findOne({ resetPasswordToken });
     } catch (err) {
       throw err;
     }
