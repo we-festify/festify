@@ -1,0 +1,120 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+h5.label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-text-light-admin);
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+button.remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  width: 2rem;
+  border: none;
+  margin-top: 0.5rem;
+  background-color: transparent;
+  color: var(--color-error-500);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+button.remove svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+button.remove:hover {
+  transform: scale(1.1) translate(-0.1rem, -0.1rem);
+}
+
+button.remove:focus {
+  outline: none;
+}
+
+button.remove span {
+  display: none;
+}
+
+button.add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: var(--color-background-admin);
+  color: var(--color-primary-500);
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button.add:hover {
+  background-color: var(--color-background-dark-admin);
+}
+
+p.error {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-error-500);
+}
+
+@media screen and (max-width: 768px) {
+  button.remove {
+    margin-top: -1rem;
+    width: 100%;
+  }
+
+  button.remove span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+}

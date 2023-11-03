@@ -1,0 +1,122 @@
+.group {
+  flex: 1;
+  position: relative;
+  margin-top: 0.5rem;
+  margin-bottom: 1.1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .group {
+    width: 100%;
+    flex: unset;
+  }
+}
+
+.input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 0.6rem;
+  border: 2px solid var(--color-gray-300);
+  outline: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-admin);
+  box-shadow: none;
+}
+
+.input:focus {
+  border: 2px solid var(--color-primary-500);
+}
+
+.label {
+  position: absolute;
+  top: -0.5rem;
+  left: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0 0.3rem;
+  color: var(--color-text-admin);
+  background-color: var(--color-white);
+  pointer-events: none;
+  letter-spacing: 0.03rem;
+}
+
+.label span {
+  font-size: 0.65rem;
+  color: var(--color-gray-500);
+}
+
+.input.error {
+  border: 2px solid var(--color-error-500);
+}
+
+p.error {
+  position: absolute;
+  bottom: -1.8rem;
+  left: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-error-500);
+}
+
+textarea.input {
+  resize: vertical;
+}
+
+.group:has(textarea) p.error {
+  bottom: -1.5rem;
+}
+
+.checkboxes {
+  display: flex;
+  gap: 1.5rem;
+  row-gap: 0.5rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-text-light-admin);
+}
+
+.input[type="checkbox"] {
+  /* width: 1rem;
+  height: 1rem; */
+  margin: 0;
+  margin-right: 0.5rem;
+  accent-color: var(--color-primary-500);
+}
+
+.radioButtons {
+  display: flex;
+  gap: 1.5rem;
+  row-gap: 0.5rem;
+  padding-top: 0.8rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.radioButton {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-text-light-admin);
+}
+
+.input[type="radio"] {
+  /* width: 1rem;
+  height: 1rem; */
+  margin: 0;
+  margin-right: 0.5rem;
+  accent-color: var(--color-primary-500);
+}

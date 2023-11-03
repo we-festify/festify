@@ -5,6 +5,7 @@ import Navbar from "../Navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Dashboard from "../../pages/Dashboard/Dashboard";
 import Organisations from "../../pages/Organisations/Organisations";
+import Users from "../../pages/Users/Users";
 
 const Layout = () => {
   return (
@@ -14,6 +15,7 @@ const Layout = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/users" element={<Users />} />
           <Route path="/organisations" element={<Organisations />} />
         </Routes>
       </div>

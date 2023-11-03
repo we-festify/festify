@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { RiOrganizationChart } from "react-icons/ri";
+import { FaUsers } from "react-icons/fa";
 
 const AdminSidebarContext = createContext();
 
@@ -14,6 +15,11 @@ const AdminSidebarProvider = ({ children }) => {
       text: "Dashboard",
       path: "/admin",
       icon: <AiFillHome />,
+    },
+    {
+      text: "Users",
+      path: "/admin/users",
+      icon: <FaUsers />,
     },
     {
       text: "Organisations",

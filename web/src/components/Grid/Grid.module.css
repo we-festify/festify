@@ -1,0 +1,7 @@
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-auto-flow: dense;
+  grid-auto-columns: minmax(0, 1fr);
+  /* grid-auto-rows: minmax(0, 1fr); */
+}

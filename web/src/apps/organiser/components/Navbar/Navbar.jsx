@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import { selectUser } from "./../../../../state/redux/auth/authSlice";
 import { useSelector } from "react-redux";
 import Logo from "./../../../../components/Logo/Logo";
-import { useAdminSidebar } from "../../../../state/context/AdminSidebar";
+import { useOrganiserSidebar } from "../../../../state/context/OrganiserSidebar";
 
 const Navbar = () => {
   const [isPortrait, setIsPortrait] = useState(
     window.matchMedia("(orientation: portrait)").matches
   );
   const [openDrawer, setOpenDrawer] = useState(false);
-  const { links } = useAdminSidebar();
+  const { links } = useOrganiserSidebar();
   const user = useSelector(selectUser);
 
   useEffect(() => {
@@ -41,19 +41,46 @@ const Navbar = () => {
           >
             <ul className={styles.navlinks}>
               {links?.map((link) => (
-                <li key={link.text}>
-                  <Link
-                    to={link.path}
-                    className={
-                      styles.navlink + " " + (link.active ? styles.active : "")
-                    }
-                  >
-                    {isPortrait && (
-                      <span className={styles.icon}>{link.icon}</span>
-                    )}
-                    {link.text}
-                  </Link>
-                </li>
+                <React.Fragment key={link.text}>
+                  <li key={link.text}>
+                    <Link
+                      to={link.path}
+                      className={
+                        styles.navlink +
+                        " " +
+                        (link.active ? styles.active : "")
+                      }
+                    >
+                      {isPortrait && (
+                        <span className={styles.icon}>{link.icon}</span>
+                      )}
+                      {link.text}
+                    </Link>
+                  </li>
+                  {link.sublinks && (
+                    <ul className={styles.sublinks}>
+                      {link.sublinks.map((sublink) => (
+                        <li key={sublink.text}>
+                          <Link
+                            to={sublink.path}
+                            className={
+                              styles.navlink +
+                              " " +
+                              (sublink.active ? styles.active : "")
+                            }
+                          >
+                            {isPortrait && (
+                              <span className={styles.icon}>
+                                {sublink.icon}
+                              </span>
+                            )}
+                            {sublink.text}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </React.Fragment>
               ))}
             </ul>
           </div>

@@ -42,6 +42,13 @@
   display: none; /* Hide the navlinks in top navbar, only visible in drawer */
 }
 
+.sublinks {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+}
+
 .navlinks .navlink {
   display: flex;
   align-items: center;
