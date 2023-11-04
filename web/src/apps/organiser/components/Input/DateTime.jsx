@@ -11,7 +11,8 @@ const DateTime = ({
   readOnly,
 }) => {
   const [error, setError] = useState("");
-  const [datetime, setDateTime] = useState("");
+  defaultValue = new Date(defaultValue || null).toISOString().slice(0, -1); // remove Z at the end
+  const [datetime, setDateTime] = useState(defaultValue || "");
 
   const validate = () => {
     let isValid = true;

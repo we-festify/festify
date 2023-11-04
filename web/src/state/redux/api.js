@@ -32,6 +32,7 @@ const api = createApi({
   endpoints: (builder) => ({
     // ...endpoints
   }),
+  tagTypes: ["Events"],
 });
 
 export default api;

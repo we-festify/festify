@@ -3,6 +3,27 @@
   overflow: auto;
 }
 
+/* Events List */
+.actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: var(--color-text-light-admin);
+}
+
+.action:hover {
+  color: var(--color-primary-500);
+}
+
+/* Events Create */
 h4.title {
   font-size: 1rem;
   font-weight: 500;

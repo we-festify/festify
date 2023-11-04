@@ -3,7 +3,7 @@ import File from "./File";
 import Date from "./Date";
 import Time from "./Time";
 import Textarea from "./Textarea";
-import CheckBox from "./CheckBox";
+import CheckBoxes from "./CheckBoxes";
 import Radio from "./Radio";
 import Dropdown from "./Dropdown";
 import DateTime from "./DateTime";
@@ -15,7 +15,7 @@ const Input = {
   Time: Time,
   DateTime: DateTime,
   TextArea: Textarea,
-  CheckBox: CheckBox,
+  CheckBoxes: CheckBoxes,
   Radio: Radio,
   Dropdown: Dropdown,
 };

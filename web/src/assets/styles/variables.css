@@ -31,4 +31,5 @@
   --color-navbar-admin: hsl(206, 47%, 97%);
   --color-navbar-drawer-admin: hsla(213, 35%, 94%, 0.7);
   --color-background-dark-admin: hsl(213, 35%, 94%);
+  --color-backdrop-overlay-admin: hsla(213, 35%, 84%, 0.7);
 }

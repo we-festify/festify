@@ -12,7 +12,7 @@ const Text = ({
   readOnly,
 }) => {
   const [error, setError] = useState("");
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(defaultValue || "");
 
   const validate = () => {
     let isValid = true;

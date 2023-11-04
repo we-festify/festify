@@ -12,7 +12,7 @@ const Radio = ({
   readOnly,
 }) => {
   const [error, setError] = useState("");
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(defaultValue || entries[0]);
 
   const validate = () => {
     let isValid = true;
@@ -34,15 +34,15 @@ const Radio = ({
             <input
               type="radio"
               defaultChecked={defaultValue === value}
-              onChange={(e) => {
-                setValue(e.target.value);
-                if (onChange) onChange(e.target.value);
+              onChange={() => {
+                setValue(value);
+                if (onChange) onChange(value);
               }}
               onBlur={validate}
               required={validations?.required}
               readOnly={readOnly}
               className={styles.input}
-              name={name}
+              name={name || label}
             />
             <label htmlFor={value?.toLowerCase()}>{value}</label>
           </div>

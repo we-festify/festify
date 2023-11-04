@@ -12,7 +12,7 @@ const File = ({
   readOnly,
 }) => {
   const [error, setError] = useState("");
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState(defaultValue || "");
 
   const validate = () => {
     let isValid = true;

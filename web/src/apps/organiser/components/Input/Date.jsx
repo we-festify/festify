@@ -11,7 +11,7 @@ const Date = ({
   readOnly,
 }) => {
   const [error, setError] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(defaultValue || "");
 
   const validate = () => {
     let isValid = true;

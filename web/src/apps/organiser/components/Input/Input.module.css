@@ -28,6 +28,15 @@
   border: 2px solid var(--color-primary-500);
 }
 
+.input:read-only {
+  background-color: var(--color-gray-100);
+  color: var(--color-text-light-admin);
+}
+
+.input:read-only:focus {
+  border: 2px solid var(--color-gray-300);
+}
+
 .label {
   position: absolute;
   top: -0.5rem;

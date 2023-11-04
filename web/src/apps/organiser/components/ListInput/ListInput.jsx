@@ -31,7 +31,7 @@ const ListInput = ({
         },
       ]);
     }
-  }, [defaultValue]);
+  }, []);
 
   const validate = () => {
     let isValid = true;
@@ -133,7 +133,7 @@ const ListInput = ({
       </div>
       {error && <p className={styles.error}>{error}</p>}
       <button className={styles.add} onClick={handleItemAdd}>
-        Add
+        Add {label} Item
       </button>
     </div>
   );

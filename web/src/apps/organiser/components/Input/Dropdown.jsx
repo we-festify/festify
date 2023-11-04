@@ -12,7 +12,7 @@ const Dropdown = ({
   readOnly,
 }) => {
   const [error, setError] = useState("");
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(defaultValue);
 
   const validate = () => {
     let isValid = true;
@@ -24,6 +24,8 @@ const Dropdown = ({
     if (isValid) setError("");
     return isValid;
   };
+
+  console.log(defaultValue);
 
   return (
     <div className={styles.group}>

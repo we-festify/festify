@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Input.module.css";
 
-const CheckBox = ({
+const CheckBoxes = ({
   label,
   name,
   entries,
@@ -12,7 +12,7 @@ const CheckBox = ({
   readOnly,
 }) => {
   const [error, setError] = useState("");
-  const [values, setValues] = useState([]);
+  const [values, setValues] = useState(defaultValues || {});
 
   const validate = () => {
     let isValid = true;
@@ -44,12 +44,11 @@ const CheckBox = ({
               name={name}
               defaultChecked={defaultValues?.includes(value)}
               onChange={(e) => {
-                if (e.target.checked) {
-                  setValues([...values, e.target.value]);
-                } else {
-                  setValues(values.filter((v) => v !== e.target.value));
-                }
-                if (onChange) onChange(e.target.value);
+                const newValues = { ...values };
+                if (e.target.checked) newValues[value] = true;
+                else delete newValues[value];
+                setValues(newValues);
+                if (onChange) onChange(Object.keys(newValues));
               }}
               required={validations?.required}
               readOnly={readOnly}
@@ -65,4 +64,4 @@ const CheckBox = ({
   );
 };
 
-export default CheckBox;
+export default CheckBoxes;
