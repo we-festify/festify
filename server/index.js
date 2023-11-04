@@ -5,7 +5,7 @@ require("dotenv").config();
 const app = express();
 
 // home route
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   res.send(`Festify API - Home`);
 });
 

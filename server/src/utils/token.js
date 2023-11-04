@@ -42,6 +42,24 @@ const verifyEmailVerificationToken = (token) => {
   }
 };
 
+const generateResetPasswordToken = (payload, oldPasswordHash) => {
+  return jwt.sign(
+    payload,
+    oldPasswordHash + process.env.JWT_RESET_PASSWORD_SECRET
+  );
+};
+
+const verifyResetPasswordToken = (token, oldPasswordHash) => {
+  try {
+    return jwt.verify(
+      token,
+      oldPasswordHash + process.env.JWT_RESET_PASSWORD_SECRET
+    );
+  } catch (err) {
+    return null;
+  }
+};
+
 module.exports = {
   generateAccessToken,
   verifyAccessToken,
@@ -49,4 +67,6 @@ module.exports = {
   verifyRefreshToken,
   generateEmailVerificationToken,
   verifyEmailVerificationToken,
+  generateResetPasswordToken,
+  verifyResetPasswordToken,
 };
