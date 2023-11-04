@@ -8,7 +8,7 @@ const Logo = ({ className, light = true }) => {
       to="/"
       className={styles.logo + " " + className}
       style={{
-        color: light ? "white" : "black",
+        color: light ? "white" : "var(--color-primary-500)",
       }}
     >
       festify

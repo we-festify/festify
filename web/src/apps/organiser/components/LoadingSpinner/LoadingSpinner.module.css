@@ -1,0 +1,40 @@
+.backdrop.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-backdrop-overlay-admin);
+}
+
+.fixed .spinner {
+  z-index: 101;
+}
+
+.backdrop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 0.4rem solid transparent;
+  border-top: 0.4rem solid var(--color-primary-500);
+  border-left: 0.4rem solid var(--color-primary-500);
+  border-right: 0.4rem solid var(--color-primary-500);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

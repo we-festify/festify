@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { MdHotelClass } from "react-icons/md";
 
-const NavContext = React.createContext();
+const ClientNavbarContext = createContext();
 
-export const useNav = () => React.useContext(NavContext);
+export const useClientNavbar = () => useContext(ClientNavbarContext);
 
-export const NavProvider = ({ children }) => {
+export const ClientNavbarProvider = ({ children }) => {
   const location = useLocation();
-  const [links, setLinks] = React.useState([
+  const [links, setLinks] = useState([
     {
       text: "Home",
       path: "/",
@@ -40,7 +40,11 @@ export const NavProvider = ({ children }) => {
     activeLink,
   };
 
-  return <NavContext.Provider value={value}>{children}</NavContext.Provider>;
+  return (
+    <ClientNavbarContext.Provider value={value}>
+      {children}
+    </ClientNavbarContext.Provider>
+  );
 };
 
-export default NavProvider;
+export default ClientNavbarProvider;

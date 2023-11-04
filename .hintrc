@@ -1,0 +1,23 @@
+{
+  "extends": [
+    "development"
+  ],
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not and_ff <= 113",
+    "not firefox <= 113",
+    "not opera <= 99",
+    "not samsung <= 21"
+  ],
+  "hints": {
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "-webkit-tap-highlight-color"
+        ]
+      }
+    ]
+  }
+}

@@ -1,7 +1,5 @@
 import axios from "axios";
 import Event from "./../models/Event";
-import { refresh } from "../state/redux/auth/authActions";
-import store from "../state/redux/store";
 
 class EventService {
   constructor() {
@@ -13,20 +11,6 @@ class EventService {
         Authorization: `Bearer ${localStorage.getItem("festify-access-token")}`,
       },
     });
-    this.axios.interceptors.response.use(
-      (response) => response,
-      (error) => {
-        // retry once if token is expired
-        const originalRequest = error.config;
-        if (error.response.status === 401) {
-          return store.dispatch(refresh()).then(() => {
-            return this.axios(originalRequest);
-          });
-        } else {
-          return Promise.reject(error);
-        }
-      }
-    );
   }
 
   async getAllEvents() {

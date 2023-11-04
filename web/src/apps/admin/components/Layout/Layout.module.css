@@ -1,0 +1,15 @@
+.layout {
+  display: flex;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  background-color: var(--color-background-admin);
+  color: var(--color-text-admin);
+  font-family: sans-serif;
+}
+
+.content {
+  flex: 1;
+  position: relative;
+  overflow: auto;
+}

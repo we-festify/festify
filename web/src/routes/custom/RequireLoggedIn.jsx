@@ -7,7 +7,9 @@ const RequireLoggedIn = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   if (!isLoggedIn) {
-    return <Navigate to="/login" state={{ from: window.location.pathname }} />;
+    return (
+      <Navigate to="/a/login" state={{ from: window.location.pathname }} />
+    );
   }
 
   return <Outlet />;

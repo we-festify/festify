@@ -96,6 +96,7 @@
 }
 
 .right a {
+  text-transform: capitalize;
   text-decoration: none;
 }
 

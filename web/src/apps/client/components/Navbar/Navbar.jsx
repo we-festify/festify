@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useNav } from "../../../../state/context/nav";
+import { useClientNavbar } from "../../../../state/context/ClientNavbar";
 import {
   selectUser,
   selectIsAdmin,
@@ -12,17 +12,17 @@ import Logo from "./../../../../components/Logo/Logo";
 import { SiAuth0 } from "react-icons/si";
 
 const Navbar = () => {
-  const [isPortrait, setIsPortrait] = React.useState(
+  const [isPortrait, setIsPortrait] = useState(
     window.matchMedia("(orientation: portrait)").matches
   );
-  const [openDrawer, setOpenDrawer] = React.useState(false);
-  const { links } = useNav();
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const { links } = useClientNavbar();
   const user = useSelector(selectUser);
   const isAdmin = useSelector(selectIsAdmin);
   const isOrganiser = useSelector(selectIsOrganiser);
   const navigate = useNavigate();
 
-  React.useEffect(() => {
+  useEffect(() => {
     const mediaQuery = window.matchMedia("(orientation: portrait)");
     const listener = (e) => {
       setIsPortrait(e.matches);
@@ -35,7 +35,7 @@ const Navbar = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    navigate("/login");
+    navigate("/a/login");
   };
 
   return (

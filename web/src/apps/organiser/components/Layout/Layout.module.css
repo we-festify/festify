@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+.layout {
+  display: flex;
+  height: 100dvh;
+  background-color: var(--color-background-admin);
+  color: var(--color-text-admin);
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+}
+
+.content {
+  flex: 1;
+  position: relative;
+  overflow-y: auto;
+}

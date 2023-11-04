@@ -102,7 +102,10 @@ class AuthController {
     try {
       const { token } = req.query;
       const user = await AuthService.verifyUserEmail(token);
-      res.status(200).json({ user });
+      res.status(200).json({
+        user,
+        message: "Email verified successfully",
+      });
     } catch (error) {
       next(error);
     }
@@ -111,7 +114,7 @@ class AuthController {
   static async sendVerificationEmail(req, res, next) {
     try {
       const { user } = req;
-      await AuthService.sendVerificationEmail(user._id);
+      await AuthService.trySendVerificationEmail(user._id);
       res.status(200).json({ message: "Verification email sent" });
     } catch (error) {
       next(error);

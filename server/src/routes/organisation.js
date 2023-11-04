@@ -1,37 +1,37 @@
 const express = require("express");
 const router = express.Router();
 const OrganisationController = require("../controllers/organisation");
-const { checkLoggedIn } = require("../middlewares/auth");
-const { checkPermission } = require("../middlewares/rbac");
+const AuthMiddleware = require("../middlewares/auth");
+const RBACMiddleware = require("../middlewares/rbac");
 
 router.post(
   "/",
-  checkLoggedIn,
-  checkPermission("organisation", "create"),
+  AuthMiddleware.requireLoggedIn,
+  RBACMiddleware.requirePermission("organisation", "create"),
   OrganisationController.create
 );
 router.get(
   "/:id",
-  checkLoggedIn,
-  checkPermission("organisation", "read"),
+  AuthMiddleware.requireLoggedIn,
+  RBACMiddleware.requirePermission("organisation", "read"),
   OrganisationController.getById
 );
 router.get(
   "/",
-  checkLoggedIn,
-  checkPermission("organisation", "read"),
+  AuthMiddleware.requireLoggedIn,
+  RBACMiddleware.requirePermission("organisation", "read"),
   OrganisationController.getAll
 );
 router.put(
   "/:id",
-  checkLoggedIn,
-  checkPermission("organisation", "update"),
+  AuthMiddleware.requireLoggedIn,
+  RBACMiddleware.requirePermission("organisation", "update"),
   OrganisationController.updateById
 );
 router.delete(
   "/:id",
-  checkLoggedIn,
-  checkPermission("organisation", "delete"),
+  AuthMiddleware.requireLoggedIn,
+  RBACMiddleware.requirePermission("organisation", "delete"),
   OrganisationController.deleteById
 );
 

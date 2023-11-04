@@ -1,13 +1,35 @@
 :root {
+  /* shared */
   --color-primary-500: hsl(260, 84%, 51%);
-  --color-primary-500-hsl-values: 260, 84%, 51%;
+  --color-primary-600: hsl(260, 84%, 41%);
   --color-secondary-500: hsl(326, 62%, 51%);
-  --color-secondary-500-hsl-values: 326, 62%, 51%;
   --color-white: hsl(0, 0%, 100%);
+  --color-gray-100: hsl(0, 0%, 98%);
+  --color-gray-200: hsl(0, 0%, 96%);
+  --color-gray-300: hsl(0, 0%, 92%);
+  --color-gray-400: hsl(0, 0%, 87%);
+  --color-gray-500: hsl(0, 0%, 80%);
   --color-white-hsl-values: 0, 0%, 100%;
+  --color-primary-500-hsl-values: 260, 84%, 51%;
+  --color-secondary-500-hsl-values: 326, 62%, 51%;
+  --color-error-500: hsl(346, 62%, 51%);
+
+  /* client */
   --color-text: hsl(0, 0%, 0%);
   --color-background-dark: hsl(0, 0%, 0%);
   --color-navbar: hsla(0, 0%, 100%, 0.05);
   --color-navbar-drawer: hsla(0, 0%, 0%, 0.7);
   --color-text: hsl(0, 0%, 100%);
+
+  /* admin */
+  --color-background-admin-sidebar: hsl(0, 0%, 100%);
+  --color-text-admin-sidebar: hsl(0, 0%, 0%);
+  --color-background-admin: hsl(206, 47%, 97%);
+  --color-text-admin: hsl(0, 0%, 0%);
+  --color-text-light-admin: hsl(234, 17%, 44%, 0.7);
+  --color-white-admin: hsl(0, 0%, 100%);
+  --color-navbar-admin: hsl(206, 47%, 97%);
+  --color-navbar-drawer-admin: hsla(213, 35%, 94%, 0.7);
+  --color-background-dark-admin: hsl(213, 35%, 94%);
+  --color-backdrop-overlay-admin: hsla(213, 35%, 84%, 0.7);
 }
