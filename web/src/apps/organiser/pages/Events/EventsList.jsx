@@ -3,12 +3,9 @@ import styles from "./Events.module.css";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../state/redux/auth/authSlice";
 import { useGetEventsByOrganisationIdQuery } from "../../../../state/redux/events/eventsApi";
-import DataTable, {
-  DataTableRow,
-} from "../../../../components/DataTable/DataTable";
 import Card from "../../components/Card/Card";
-import { MdEdit } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import DataTable from "../../../../components/DataTable/DataTable";
 
 const EventsList = () => {
   const { organisation } = useSelector(selectUser);
@@ -31,27 +28,31 @@ const EventsList = () => {
     <div className={styles.page}>
       <Card>
         <DataTable
-          columns={["Actions", "ID", "Name", "Type", "Venue", "Summary"]}
+          columns={[
+            {
+              label: "ID",
+              key: "_id",
+            },
+            {
+              label: "Name",
+              key: "name",
+            },
+            {
+              label: "Type",
+              key: "type",
+            },
+            {
+              label: "Venue",
+              key: "venue",
+            },
+            {
+              label: "Summary",
+              key: "summary",
+            },
+          ]}
           title="Events List"
-        >
-          {events.map((event) => (
-            <DataTableRow key={event._id} id={event._id}>
-              <td>
-                <div className={styles.actions}>
-                  <MdEdit
-                    className={styles.action}
-                    onClick={() => handleEditEvent(event)}
-                  />
-                </div>
-              </td>
-              <td>{event._id}</td>
-              <td>{event.name}</td>
-              <td>{event.type}</td>
-              <td>{event.venue}</td>
-              <td>{event.summary}</td>
-            </DataTableRow>
-          ))}
-        </DataTable>
+          data={events}
+        />
       </Card>
     </div>
   );

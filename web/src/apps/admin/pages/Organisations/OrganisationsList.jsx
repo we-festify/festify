@@ -1,8 +1,7 @@
 import React from "react";
 import { useGetAllOrganisationsQuery } from "../../../../state/redux/organisations/organisationsApi";
-import DataTable, {
-  DataTableRow,
-} from "../../../../components/DataTable/DataTable";
+import DataTable from "../../../../components/DataTable/DataTable";
+import DataTableSkeleton from "../../../../components/DataTable/DataTableSkeleton";
 
 const OrganisationsList = () => {
   const {
@@ -11,19 +10,25 @@ const OrganisationsList = () => {
     isLoading,
   } = useGetAllOrganisationsQuery();
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <DataTableSkeleton rows={5} />;
 
   if (error) return <div>{JSON.stringify(error, null, 2)}</div>;
 
   return (
-    <DataTable columns={["id", "name"]} title="Organisations List">
-      {organisations?.map((organisation) => (
-        <DataTableRow key={organisation._id} id={organisation._id}>
-          <td>{organisation._id}</td>
-          <td>{organisation.name}</td>
-        </DataTableRow>
-      ))}
-    </DataTable>
+    <DataTable
+      columns={[
+        {
+          label: "ID",
+          key: "_id",
+        },
+        {
+          label: "Name",
+          key: "name",
+        },
+      ]}
+      title="Organisations List"
+      data={organisations}
+    />
   );
 };
 

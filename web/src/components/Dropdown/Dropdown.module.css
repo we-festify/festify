@@ -1,0 +1,25 @@
+.wrapper {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 1rem);
+  right: 0;
+  z-index: 100;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.3rem;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-300);
+  border-radius: 0.4rem;
+  box-shadow: 0 0.2rem 0.4rem hsla(var(--color-primary-500-hsl-values), 0.15);
+}
+
+.button {
+  cursor: pointer;
+}
+
+.wrapper.hide .dropdown {
+  display: none;
+}

@@ -1,0 +1,38 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 1rem;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  padding-top: 2rem;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

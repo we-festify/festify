@@ -25,8 +25,6 @@ const Dropdown = ({
     return isValid;
   };
 
-  console.log(defaultValue);
-
   return (
     <div className={styles.group}>
       <label className={styles.label}>{label}</label>

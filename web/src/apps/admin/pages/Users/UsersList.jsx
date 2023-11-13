@@ -1,27 +1,37 @@
 import React from "react";
 import { useGetAllUsersQuery } from "../../../../state/redux/users/usersApi";
-import DataTable, {
-  DataTableRow,
-} from "../../../../components/DataTable/DataTable";
+import DataTable from "../../../../components/DataTable/DataTable";
+import DataTableSkeleton from "../../../../components/DataTable/DataTableSkeleton";
 
 const UsersList = () => {
   const { data: { users } = {}, error, isLoading } = useGetAllUsersQuery();
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <DataTableSkeleton rows={5} />;
 
   if (error) return <div>{JSON.stringify(error)}</div>;
 
   return (
-    <DataTable columns={["id", "name", "email", "role"]} title="Users List">
-      {users.map((user) => (
-        <DataTableRow key={user._id} id={user._id}>
-          <td>{user._id}</td>
-          <td>{user.name}</td>
-          <td>{user.email}</td>
-          <td>{user.role}</td>
-        </DataTableRow>
-      ))}
-    </DataTable>
+    <DataTable
+      columns={[
+        {
+          label: "ID",
+          key: "_id",
+        },
+        {
+          label: "Name",
+          key: "name",
+        },
+        {
+          label: "Email",
+          key: "email",
+        },
+      ]}
+      title="Users List"
+      data={users}
+      actions={{
+        delete: (id) => console.log("delete", id),
+      }}
+    />
   );
 };
 

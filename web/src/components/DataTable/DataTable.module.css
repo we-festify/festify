@@ -39,6 +39,10 @@
   overflow: hidden;
 }
 
+.table .row td.rowActions {
+  overflow: unset;
+}
+
 .table .row.highlighted td {
   background-color: hsla(var(--color-primary-500-hsl-values), 0.1);
 }
@@ -66,7 +70,7 @@
 }
 
 .actions .pageLimitInput {
-  width: 5rem;
+  width: 4rem;
   padding: 0.4rem 0.6rem;
   border-radius: 0.4rem;
   border: 1px solid var(--color-gray-300);
@@ -90,19 +94,124 @@
   border-color: var(--color-gray-500);
 }
 
-.table tr.footer td {
+.actions button.columnsSelector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  border: 1px solid var(--color-gray-300);
+  border-radius: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-light-admin);
+  cursor: pointer;
+}
+
+.actions button.columnsSelector:hover {
+  background-color: var(--color-gray-100);
+  color: var(--color-text-admin);
+}
+
+.actions .show .hide button.columnsSelector .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.actions ul.columnsSelector {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.actions ul.columnsSelector li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-admin);
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+  min-width: 6rem;
+}
+
+.actions ul.columnsSelector li:hover {
+  background-color: var(--color-gray-200);
+}
+
+.actions ul.columnsSelector li label {
+  padding-left: 1.2rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.actions ul.columnsSelector li input[type="checkbox"] {
+  display: none;
+}
+
+.actions ul.columnsSelector li input[type="checkbox"]:checked + label::before {
+  content: "✓";
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 0.8rem;
+}
+
+.rowActions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rowActions ul li.rowActionsHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-admin);
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+  min-width: 6rem;
+}
+
+.table .row td.rowActions li:not(.rowActionsHeader) {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-admin);
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+  min-width: 6rem;
+  text-transform: capitalize;
+}
+
+.table .row td.rowActions li:not(.rowActionsHeader):hover {
+  background-color: var(--color-gray-200);
+}
+
+.table .row td.rowActions li.delete {
+  color: var(--color-error-500);
+}
+
+.table .footer tr td {
   border-top: 1px solid var(--color-gray-300);
   padding: 1rem 0.5rem;
   padding-bottom: 0;
 }
 
-.table tr.footer td span {
+.table .footer tr td span {
   font-size: 0.8rem;
   font-weight: 400;
   color: var(--color-text-light-admin);
 }
 
-.table tr.footer td button {
+.table .footer tr td button {
   font-size: 0.8rem;
   font-weight: 500;
   background-color: var(--color-gray-100);
@@ -112,15 +221,15 @@
   cursor: pointer;
 }
 
-.table tr.footer td button:hover {
+.table .footer tr td button:hover {
   background-color: var(--color-gray-200);
 }
-.table tr.footer td button:disabled {
+.table .footer tr td button:disabled {
   color: var(--color-text-light-admin);
   cursor: not-allowed;
 }
 
-.table tr.footer td > * {
+.table .footer tr td > * {
   margin-right: 1rem;
 }
 
@@ -129,6 +238,10 @@
   text-align: center;
   font-size: 0.9rem;
   color: var(--color-text-light-admin);
+}
+
+.table tr td .checkbox {
+  accent-color: var(--color-primary-500);
 }
 
 @media screen and (max-width: 400px) {

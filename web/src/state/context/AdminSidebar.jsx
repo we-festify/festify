@@ -20,6 +20,12 @@ const AdminSidebarProvider = ({ children }) => {
       text: "Users",
       path: "/admin/users",
       icon: <FaUsers />,
+      sublinks: [
+        {
+          text: "Add User",
+          path: "/admin/users/add",
+        },
+      ],
     },
     {
       text: "Organisations",
@@ -31,6 +37,18 @@ const AdminSidebarProvider = ({ children }) => {
 
   useEffect(() => {
     const newLinks = links.map((link) => {
+      if (link.sublinks) {
+        const newSublinks = link.sublinks.map((sublink) => {
+          if (sublink.path === location.pathname) {
+            return { ...sublink, active: true };
+          }
+          return { ...sublink, active: false };
+        });
+        if (link.path === location.pathname) {
+          return { ...link, active: true, sublinks: newSublinks };
+        }
+        return { ...link, active: false, sublinks: newSublinks };
+      }
       if (link.path === location.pathname) {
         return { ...link, active: true };
       }
