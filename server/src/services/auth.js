@@ -6,6 +6,8 @@ const {
   verifyRefreshToken,
   verifyEmailVerificationToken,
   generateEmailVerificationToken,
+  generateResetPasswordToken,
+  verifyResetPasswordToken,
 } = require("../utils/token");
 const { hashPassword, comparePassword } = require("../utils/password");
 const { validateEmail } = require("../utils/validations");
@@ -144,6 +146,49 @@ class AuthService {
       const { _id } = payload;
       const user = await UserRepository.verifyById(_id);
       if (!user) throw new BadRequestError("User not found");
+      return UserRepository.excludeSensitiveFields(user);
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async sendForgotPasswordEmail(email) {
+    try {
+      if (!email) throw new BadRequestError("Email is required");
+      if (!validateEmail(email)) throw new BadRequestError("Invalid email");
+      const user = await UserRepository.getByEmail(email);
+      if (!user) throw new BadRequestError("User not found");
+      const userPayload = {
+        _id: user._id,
+        email: user.email,
+        role: user.role,
+      };
+      const token = generateResetPasswordToken(userPayload, user.passwordHash);
+      user.resetPasswordToken = token;
+      await user.save();
+      const redirectUrl = `${process.env.CLIENT_URL}/u/reset-password?token=${token}`;
+      await MailerService.sendForgotPasswordMail({
+        to: user.email,
+        redirectUrl,
+        user: UserRepository.excludeSensitiveFields(user),
+      });
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async resetPassword(token, newPassword) {
+    try {
+      if (!token || !newPassword)
+        throw new BadRequestError("Token and new password are required");
+      const user = await UserRepository.getByResetPasswordToken(token);
+      if (!user) throw new BadRequestError("Invalid token");
+      const payload = verifyResetPasswordToken(token, user.passwordHash);
+      if (!payload) throw new BadRequestError("Invalid token");
+      const hashedPassword = await hashPassword(newPassword);
+      user.passwordHash = hashedPassword;
+      user.resetPasswordToken = null;
+      await user.save();
       return UserRepository.excludeSensitiveFields(user);
     } catch (err) {
       throw err;

@@ -44,6 +44,29 @@ class Mailer {
       }),
     });
   }
+
+  static async sendForgotPasswordMail({ to, redirectUrl, user }) {
+    return await Mailer.sendMail({
+      from: process.env.MAILING_SERVICE_USER,
+      to,
+      subject: "Festify Password Reset",
+      html: templates.forgotPassword({
+        redirectUrl,
+        user,
+        company: {
+          name: "Festify",
+          email: "dummy@festify.app",
+          address: {
+            street: "Dahiya Street",
+            city: "Dhanbad",
+            state: "Jharkhand",
+            country: "India",
+            zip: "826004",
+          },
+        },
+      }),
+    });
+  }
 }
 
 module.exports = Mailer;
