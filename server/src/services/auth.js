@@ -50,6 +50,8 @@ class AuthService {
       user.password = undefined;
       user.passwordHash = hashedPassword;
 
+      email = email.trim().toLowerCase();
+      user.email = email;
       if (!validateEmail(email)) throw new BadRequestError("Invalid email");
 
       const newUser = await UserRepository.create(user);
@@ -79,6 +81,7 @@ class AuthService {
       if (!email || !password)
         throw new BadRequestError("Invalid email or password");
 
+      email = email.trim().toLowerCase();
       if (!validateEmail(email)) throw new BadRequestError("Invalid email");
 
       const user = await UserRepository.getByEmail(email);
@@ -171,6 +174,7 @@ class AuthService {
   static async sendForgotPasswordEmail(email) {
     try {
       if (!email) throw new BadRequestError("Email is required");
+      email = email.trim().toLowerCase();
       if (!validateEmail(email)) throw new BadRequestError("Invalid email");
       const user = await UserRepository.getByEmail(email);
       if (!user) throw new BadRequestError("User not found");
@@ -182,10 +186,9 @@ class AuthService {
       const token = generateResetPasswordToken(userPayload, user.passwordHash);
       user.resetPasswordToken = token;
       await user.save();
-      const redirectUrl = `${process.env.CLIENT_URL}/u/reset-password?token=${token}`;
       await MailerService.sendForgotPasswordMail({
         to: user.email,
-        redirectUrl,
+        resetPasswordToken: token,
         user: UserRepository.excludeSensitiveFields(user),
       });
     } catch (err) {

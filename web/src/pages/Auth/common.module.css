@@ -76,16 +76,43 @@
   color: var(--color-white);
 }
 
+.form form .formGroup .forgotPassword {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  color: hsla(var(--color-white-hsl-values), 0.5);
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.form form .formGroup .forgotPassword:hover {
+  text-decoration: underline;
+}
+
 .form form .error {
-  color: var(--color-secondary-500);
+  color: var(--color-error-500);
   font-size: 0.8rem;
   font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.03rem;
 }
 
 .form form .loading {
   color: var(--color-white);
   font-size: 0.8rem;
   font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.03rem;
+}
+
+.form form .message {
+  color: var(--color-white);
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 0.03rem;
 }
 
 .form form .actions {

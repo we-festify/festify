@@ -13,6 +13,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
     const { email, password } = e.target.elements;
     try {
       const data = await login({
@@ -48,6 +49,9 @@ const LoginForm = () => {
             placeholder="password"
             required
           />
+          <Link className={styles.forgotPassword} to="/a/forgot-password">
+            Forgot Password?
+          </Link>
         </div>
         {error && <span className={styles.error}>{error}</span>}
         <button className={styles.primary} disabled={isLoading} type="submit">
