@@ -13,6 +13,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
     const { email, password } = e.target.elements;
     try {
       const data = await login({
@@ -48,10 +49,14 @@ const LoginForm = () => {
             placeholder="password"
             required
           />
+          <Link className={styles.forgotPassword} to="/a/forgot-password">
+            Forgot Password?
+          </Link>
         </div>
         {error && <span className={styles.error}>{error}</span>}
-        {isLoading && <span className={styles.loading}>Loading...</span>}
-        <button type="submit">Login</button>
+        <button className={styles.primary} disabled={isLoading} type="submit">
+          {isLoading ? "Loading..." : "Login"}
+        </button>
         <div className={styles.info}>
           <span>Don't have an account?</span>
           <Link to="/a/register">Register</Link>

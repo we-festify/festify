@@ -1,0 +1,256 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0 1rem;
+}
+
+.table .row th,
+.table .row td {
+  padding: 1rem 0.5rem;
+  border-bottom: 1px solid var(--color-gray-300);
+  text-align: left;
+  max-width: 20rem;
+}
+
+.table .row th {
+  font-weight: 500;
+  text-transform: capitalize;
+  font-size: 0.9rem;
+}
+
+.table .row:last-child td {
+  border-bottom: none;
+}
+
+.table .row:nth-child(even) {
+  background-color: var(--color-gray-100);
+}
+
+.table tbody .row:hover {
+  background-color: var(--color-gray-200);
+}
+
+.table .row:hover td {
+  background-color: transparent;
+}
+
+.table .row td {
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.table .row td.rowActions {
+  overflow: unset;
+}
+
+.table .row.highlighted td {
+  background-color: hsla(var(--color-primary-500-hsl-values), 0.1);
+}
+
+.table tr.header td {
+  border-bottom: none;
+  padding: 1rem 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.table tr.header td div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table tr.header td div .title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-admin);
+}
+
+.table tr.header td div .actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.actions .pageLimitInput {
+  width: 4rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.4rem;
+  border: 1px solid var(--color-gray-300);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-admin);
+}
+
+.actions .searchInput {
+  width: 10rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.4rem;
+  border: 1px solid var(--color-gray-300);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-admin);
+}
+
+.actions input:focus {
+  outline: 1px solid var(--color-gray-500);
+  border-color: var(--color-gray-500);
+}
+
+.actions button.columnsSelector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  border: 1px solid var(--color-gray-300);
+  border-radius: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-light-admin);
+  cursor: pointer;
+}
+
+.actions button.columnsSelector:hover {
+  background-color: var(--color-gray-100);
+  color: var(--color-text-admin);
+}
+
+.actions .show .hide button.columnsSelector .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.actions ul.columnsSelector {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.actions ul.columnsSelector li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-admin);
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+  min-width: 6rem;
+}
+
+.actions ul.columnsSelector li:hover {
+  background-color: var(--color-gray-200);
+}
+
+.actions ul.columnsSelector li label {
+  padding-left: 1.2rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.actions ul.columnsSelector li input[type="checkbox"] {
+  display: none;
+}
+
+.actions ul.columnsSelector li input[type="checkbox"]:checked + label::before {
+  content: "✓";
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 0.8rem;
+}
+
+.rowActions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rowActions ul li.rowActionsHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-admin);
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+  min-width: 6rem;
+}
+
+.table .row td.rowActions li:not(.rowActionsHeader) {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-admin);
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.4rem;
+  min-width: 6rem;
+  text-transform: capitalize;
+}
+
+.table .row td.rowActions li:not(.rowActionsHeader):hover {
+  background-color: var(--color-gray-200);
+}
+
+.table .row td.rowActions li.delete {
+  color: var(--color-error-500);
+}
+
+.table .footer tr td {
+  border-top: 1px solid var(--color-gray-300);
+  padding: 1rem 0.5rem;
+  padding-bottom: 0;
+}
+
+.table .footer tr td span {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--color-text-light-admin);
+}
+
+.table .footer tr td button {
+  font-size: 0.8rem;
+  font-weight: 500;
+  background-color: var(--color-gray-100);
+  border: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+.table .footer tr td button:hover {
+  background-color: var(--color-gray-200);
+}
+.table .footer tr td button:disabled {
+  color: var(--color-text-light-admin);
+  cursor: not-allowed;
+}
+
+.table .footer tr td > * {
+  margin-right: 1rem;
+}
+
+.table tr.empty td {
+  padding: 1rem 0.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-text-light-admin);
+}
+
+.table tr td .checkbox {
+  accent-color: var(--color-primary-500);
+}
+
+@media screen and (max-width: 400px) {
+  .actions .pageLimitInput {
+    display: none;
+  }
+
+  .actions .searchInput {
+    width: 100%;
+  }
+}

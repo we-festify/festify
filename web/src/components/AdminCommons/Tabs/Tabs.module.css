@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.3rem;
+  background-color: var(--color-background-dark-admin);
+  border-radius: 0.4rem;
+  width: max-content;
+  padding: 0.25rem;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem 2rem;
+  border-radius: 0.3rem;
+  color: var(--color-text-light-admin);
+  font-size: 0.9rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.tab.active {
+  background-color: var(--color-white);
+  color: var(--color-text-admin);
+}

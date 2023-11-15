@@ -4,19 +4,13 @@ import Card from "../../components/Card/Card";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../state/redux/auth/authSlice";
 import { useCreateEventMutation } from "../../../../state/redux/events/eventsApi";
-import EventForm from "./components/EventForm";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import Form from "./components/Form";
+import LoadingSpinner from "../../../../components/LoadingSpinner/LoadingSpinner";
 
 const CreateEvent = () => {
   const user = useSelector(selectUser);
   const organisationId = user.organisation;
   const [event, setEvent] = useState({
-    name: "",
-    type: "",
-    venue: "",
-    summary: "",
-    description: "",
-    image: "",
     organisation: organisationId,
     timeline: [],
   });
@@ -24,19 +18,12 @@ const CreateEvent = () => {
     useCreateEventMutation();
 
   const handleSubmit = () => {
-    console.log(event);
     createEvent(event);
   };
 
   useEffect(() => {
     if (isSuccess) {
       setEvent({
-        name: "",
-        type: "",
-        venue: "",
-        summary: "",
-        description: "",
-        image: "",
         organisation: organisationId,
         timeline: [],
       });
@@ -46,12 +33,13 @@ const CreateEvent = () => {
   return (
     <div className={styles.page}>
       <Card>
-        <div className={styles.createEventCard}>
+        <div className={styles.eventCard}>
           <h4 className={styles.title}>Event Details</h4>
           <p className={styles.subtitle}>
             Enter the details of the event you want to create.
+            {error && <p className={styles.error}>{error?.data?.message}</p>}
           </p>
-          <EventForm
+          <Form
             defaultValue={event}
             onSubmit={handleSubmit}
             onChange={(event) => setEvent(event)}

@@ -51,10 +51,11 @@ p.loading {
   margin: 0;
 }
 
-.createEventCard {
+.eventCard {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  container-type: inline-size;
 }
 
 button.submit {
@@ -75,4 +76,25 @@ button.submit {
 
 button.submit:hover {
   background-color: var(--color-primary-600);
+}
+
+/* event details */
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.detail {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.detail span {
+  background-color: var(--color-background-admin);
+  padding: 0.5rem;
+  border-radius: 0.4rem;
 }

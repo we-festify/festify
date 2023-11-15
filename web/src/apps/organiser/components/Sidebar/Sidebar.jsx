@@ -27,7 +27,7 @@ const Sidebar = () => {
                   <span>{link.text}</span>
                 </Link>
               </li>
-              {link.sublinks && (
+              {link.active && link.sublinks && (
                 <ul className={styles.sublinks}>
                   {link.sublinks.map((sublink) => (
                     <li key={sublink.text}>

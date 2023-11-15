@@ -53,21 +53,75 @@
 
 .form form .formGroup input::placeholder {
   color: hsl(var(--color-white-hsl-values), 0.3);
+  font-weight: 400;
+}
+
+.form form .formGroup .radioGroup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.form form .formGroup .radioGroup .radio {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  accent-color: var(--color-primary-500);
+}
+
+.form form .formGroup .radioGroup .radio label {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-white);
+}
+
+.form form .formGroup .forgotPassword {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  color: hsla(var(--color-white-hsl-values), 0.5);
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.form form .formGroup .forgotPassword:hover {
+  text-decoration: underline;
 }
 
 .form form .error {
-  color: var(--color-secondary-500);
+  color: var(--color-error-500);
   font-size: 0.8rem;
   font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.03rem;
 }
 
 .form form .loading {
   color: var(--color-white);
   font-size: 0.8rem;
   font-weight: 500;
+  text-align: center;
+  letter-spacing: 0.03rem;
 }
 
-.form form button {
+.form form .message {
+  color: var(--color-white);
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 0.03rem;
+}
+
+.form form .actions {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.form form button.primary {
   width: 100%;
   border-radius: 0.8rem;
   padding: 0.6rem 1rem;
@@ -84,7 +138,24 @@
   transition: transform 0.2s ease-in-out;
 }
 
-.form form button:hover {
+.form form button.primary:hover {
+  animation: wobble 0.5s ease-in-out;
+}
+
+.form form button.secondary {
+  width: 100%;
+  border-radius: 0.8rem;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  background-color: hsl(var(--color-white-hsl-values), 0.05);
+  border: 1px solid hsl(var(--color-white-hsl-values), 0.1);
+  color: var(--color-white);
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.form form button.secondary:hover {
   animation: wobble 0.5s ease-in-out;
 }
 
@@ -105,6 +176,11 @@
 
 .form form .info a:hover {
   text-decoration: underline;
+}
+
+.form .progress {
+  margin: -1rem 0;
+  width: 100%;
 }
 
 @keyframes wobble {

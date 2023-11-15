@@ -70,6 +70,9 @@ const EventSchema = new mongoose.Schema({
     required: true,
     default: false,
   },
+  rulebookUrl: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("Event", EventSchema);

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "../Events.module.css";
 import Grid, { GridItem } from "../../../../../components/Grid/Grid";
-import Input from "../../../components/Input";
+import Input from "../../../../../components/AdminCommons/Input";
 import ListInput from "../../../components/ListInput/ListInput";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../../state/redux/auth/authSlice";
 
-const EventForm = ({ onSubmit, defaultValue, onChange }) => {
+const Form = ({ onSubmit, defaultValue, onChange }) => {
   const user = useSelector(selectUser);
   const organisationId = user.organisation;
   const [canSubmit, setCanSubmit] = useState(false);
@@ -21,6 +21,9 @@ const EventForm = ({ onSubmit, defaultValue, onChange }) => {
       image: "",
       organisation: organisationId,
       timeline: [],
+      registrationsOpen: false,
+      isTicketed: false,
+      rulebookUrl: "",
     }
   );
 
@@ -75,7 +78,7 @@ const EventForm = ({ onSubmit, defaultValue, onChange }) => {
             defaultValue={event.venue}
           />
         </GridItem>
-        <GridItem sm={12} md={6} lg={4}>
+        <GridItem sm={12} md={12} lg={8}>
           <Input.Text
             label="Summary"
             validations={{ required: true }}
@@ -104,6 +107,15 @@ const EventForm = ({ onSubmit, defaultValue, onChange }) => {
         </GridItem>
         <GridItem sm={12} md={6} lg={4}>
           <Input.Text
+            label="Rulebook URL"
+            validations={{}}
+            onValidation={handleCanSubmit}
+            onChange={(value) => handleChange("rulebookUrl", value)}
+            defaultValue={event.image}
+          />
+        </GridItem>
+        <GridItem sm={12} md={6} lg={4}>
+          <Input.Text
             label="Organisation ID"
             readOnly={true}
             defaultValue={organisationId}
@@ -115,6 +127,17 @@ const EventForm = ({ onSubmit, defaultValue, onChange }) => {
             entries={["Yes", "No"]}
             validations={{ required: true }}
             onChange={(value) => handleChange("isTicketed", value === "Yes")}
+            defaultValue={event.isTicketed ? "Yes" : "No"}
+          />
+        </GridItem>
+        <GridItem sm={12} md={4} lg={4}>
+          <Input.Radio
+            label="Are registrations open?"
+            entries={["Yes", "No"]}
+            validations={{ required: true }}
+            onChange={(value) =>
+              handleChange("registrationsOpen", value === "Yes")
+            }
             defaultValue={event.isTicketed ? "Yes" : "No"}
           />
         </GridItem>
@@ -174,4 +197,4 @@ const EventForm = ({ onSubmit, defaultValue, onChange }) => {
   );
 };
 
-export default EventForm;
+export default Form;

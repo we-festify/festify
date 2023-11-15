@@ -2,13 +2,13 @@ import React from "react";
 import styles from "./Events.module.css";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../state/redux/auth/authSlice";
-import { useGetEventsByOrganisationIdQuery } from "../../../../state/redux/events/eventsApi";
-import DataTable, {
-  DataTableRow,
-} from "../../../../components/DataTable/DataTable";
+import {
+  useDeleteEventMutation,
+  useGetEventsByOrganisationIdQuery,
+} from "../../../../state/redux/events/eventsApi";
 import Card from "../../components/Card/Card";
-import { MdEdit } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import DataTable from "../../../../components/AdminCommons/DataTable/DataTable";
 
 const EventsList = () => {
   const { organisation } = useSelector(selectUser);
@@ -17,10 +17,23 @@ const EventsList = () => {
     error,
     isLoading,
   } = useGetEventsByOrganisationIdQuery(organisation);
+  const [deleteEvent] = useDeleteEventMutation();
   const navigate = useNavigate();
 
-  const handleEditEvent = (event) => {
-    navigate(`/organiser/events/edit/${event._id}`);
+  const handleEditEvent = (id) => {
+    navigate(`/organiser/events/edit/${id}`);
+  };
+
+  const handleDeleteEvent = (id) => {
+    const confirm = window.confirm(
+      "Are you sure you want to delete this event?"
+    );
+    if (!confirm) return;
+    deleteEvent(id);
+  };
+
+  const handleShowEventDetails = (id) => {
+    navigate(`/organiser/events/details/${id}`);
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -31,27 +44,36 @@ const EventsList = () => {
     <div className={styles.page}>
       <Card>
         <DataTable
-          columns={["Actions", "ID", "Name", "Type", "Venue", "Summary"]}
+          columns={[
+            {
+              label: "ID",
+              key: "_id",
+            },
+            {
+              label: "Name",
+              key: "name",
+            },
+            {
+              label: "Type",
+              key: "type",
+            },
+            {
+              label: "Venue",
+              key: "venue",
+            },
+            {
+              label: "Summary",
+              key: "summary",
+            },
+          ]}
           title="Events List"
-        >
-          {events.map((event) => (
-            <DataTableRow key={event._id} id={event._id}>
-              <td>
-                <div className={styles.actions}>
-                  <MdEdit
-                    className={styles.action}
-                    onClick={() => handleEditEvent(event)}
-                  />
-                </div>
-              </td>
-              <td>{event._id}</td>
-              <td>{event.name}</td>
-              <td>{event.type}</td>
-              <td>{event.venue}</td>
-              <td>{event.summary}</td>
-            </DataTableRow>
-          ))}
-        </DataTable>
+          data={events}
+          actions={{
+            edit: handleEditEvent,
+            delete: handleDeleteEvent,
+            details: handleShowEventDetails,
+          }}
+        />
       </Card>
     </div>
   );

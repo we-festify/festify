@@ -14,15 +14,31 @@ const { validateEmail } = require("../utils/validations");
 const MailerService = require("./mailer");
 
 class AuthService {
+  static #checkRequiredFields(user) {
+    const requiredFields = [
+      "name",
+      "email",
+      "password",
+      "gender",
+      "college",
+      "zipCode",
+      "degree",
+      "yearOfGraduation",
+    ];
+    const missingFields = requiredFields.filter((field) => !user[field]);
+    if (missingFields.length) {
+      throw new BadRequestError(`Missing ${missingFields.join(", ")}`);
+    }
+  }
+
   static async register(user) {
     try {
+      this.#checkRequiredFields(user);
       const { email, password } = user;
-      if (!email || !password)
-        throw new BadRequestError("Invalid email or password");
       if (!validateEmail(email)) throw new BadRequestError("Invalid email");
       const existingUser = await UserRepository.getByEmail(email);
       if (existingUser) {
-        throw new BadRequestError("User with email already exists");
+        throw new BadRequestError("User with email already exists, try login");
       }
 
       if (password.length < 8)
@@ -34,6 +50,8 @@ class AuthService {
       user.password = undefined;
       user.passwordHash = hashedPassword;
 
+      email = email.trim().toLowerCase();
+      user.email = email;
       if (!validateEmail(email)) throw new BadRequestError("Invalid email");
 
       const newUser = await UserRepository.create(user);
@@ -63,6 +81,7 @@ class AuthService {
       if (!email || !password)
         throw new BadRequestError("Invalid email or password");
 
+      email = email.trim().toLowerCase();
       if (!validateEmail(email)) throw new BadRequestError("Invalid email");
 
       const user = await UserRepository.getByEmail(email);
@@ -155,6 +174,7 @@ class AuthService {
   static async sendForgotPasswordEmail(email) {
     try {
       if (!email) throw new BadRequestError("Email is required");
+      email = email.trim().toLowerCase();
       if (!validateEmail(email)) throw new BadRequestError("Invalid email");
       const user = await UserRepository.getByEmail(email);
       if (!user) throw new BadRequestError("User not found");
@@ -166,10 +186,9 @@ class AuthService {
       const token = generateResetPasswordToken(userPayload, user.passwordHash);
       user.resetPasswordToken = token;
       await user.save();
-      const redirectUrl = `${process.env.CLIENT_URL}/u/reset-password?token=${token}`;
       await MailerService.sendForgotPasswordMail({
         to: user.email,
-        redirectUrl,
+        resetPasswordToken: token,
         user: UserRepository.excludeSensitiveFields(user),
       });
     } catch (err) {

@@ -13,6 +13,7 @@
   --color-primary-500-hsl-values: 260, 84%, 51%;
   --color-secondary-500-hsl-values: 326, 62%, 51%;
   --color-error-500: hsl(346, 62%, 51%);
+  --color-success-500: hsl(141, 100%, 38%);
 
   /* client */
   --color-text: hsl(0, 0%, 0%);
