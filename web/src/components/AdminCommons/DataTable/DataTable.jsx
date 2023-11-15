@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import styles from "./DataTable.module.css";
-import usePagination from "../../hooks/usePagination";
+import usePagination from "../../../hooks/usePagination";
 import useSearchQuery from "./hooks/useSearchQuery";
 import Dropdown from "../Dropdown/Dropdown";
 import { BiChevronDown } from "react-icons/bi";
@@ -263,7 +263,7 @@ const DataTableRow = ({ children, id }) => {
         </td>
       )}
       {children}
-      {actions && id != "DATA_TABLE_HEADER" && (
+      {actions && id !== "DATA_TABLE_HEADER" && (
         <td className={styles.rowActions}>
           <Dropdown button={<FiMoreHorizontal size={18} />}>
             <ul>
@@ -279,6 +279,15 @@ const DataTableRow = ({ children, id }) => {
                   Delete
                 </li>
               )}
+              {Object.keys(actions)
+                .filter((k) => k !== "delete")
+                .map((key) => {
+                  return (
+                    <li key={key} onClick={() => actions[key](id)}>
+                      {key}
+                    </li>
+                  );
+                })}
             </ul>
           </Dropdown>
         </td>

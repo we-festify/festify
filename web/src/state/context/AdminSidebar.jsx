@@ -23,7 +23,7 @@ const AdminSidebarProvider = ({ children }) => {
       sublinks: [
         {
           text: "Add User",
-          path: "/admin/users/add",
+          path: "/admin/users/create",
         },
       ],
     },
@@ -31,6 +31,12 @@ const AdminSidebarProvider = ({ children }) => {
       text: "Organisations",
       path: "/admin/organisations",
       icon: <RiOrganizationChart />,
+      sublinks: [
+        {
+          text: "Create",
+          path: "/admin/organisations/create",
+        },
+      ],
     },
   ]);
   const [activeLink, setActiveLink] = useState("/");

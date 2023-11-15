@@ -22,7 +22,7 @@ router.get(
   RBACMiddleware.requirePermission("organisation", "read"),
   OrganisationController.getAll
 );
-router.put(
+router.patch(
   "/:id",
   AuthMiddleware.requireLoggedIn,
   RBACMiddleware.requirePermission("organisation", "update"),

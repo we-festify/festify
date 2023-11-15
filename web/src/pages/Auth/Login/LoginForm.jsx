@@ -50,8 +50,9 @@ const LoginForm = () => {
           />
         </div>
         {error && <span className={styles.error}>{error}</span>}
-        {isLoading && <span className={styles.loading}>Loading...</span>}
-        <button type="submit">Login</button>
+        <button className={styles.primary} disabled={isLoading} type="submit">
+          {isLoading ? "Loading..." : "Login"}
+        </button>
         <div className={styles.info}>
           <span>Don't have an account?</span>
           <Link to="/a/register">Register</Link>

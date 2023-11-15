@@ -15,7 +15,7 @@ const Sidebar = () => {
       <div className={styles.links}>
         <ul className={styles.navlinks}>
           {links?.map((link) => (
-            <React.Fragment key={link.to}>
+            <React.Fragment key={link.text}>
               <li key={link.text}>
                 <Link
                   to={link.path}
@@ -27,7 +27,7 @@ const Sidebar = () => {
                   <span>{link.text}</span>
                 </Link>
               </li>
-              {link.sublinks && (
+              {link.active && link.sublinks && (
                 <ul className={styles.sublinks}>
                   {link.sublinks.map((sublink) => (
                     <li key={sublink.text}>

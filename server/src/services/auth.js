@@ -14,15 +14,31 @@ const { validateEmail } = require("../utils/validations");
 const MailerService = require("./mailer");
 
 class AuthService {
+  static #checkRequiredFields(user) {
+    const requiredFields = [
+      "name",
+      "email",
+      "password",
+      "gender",
+      "college",
+      "zipCode",
+      "degree",
+      "yearOfGraduation",
+    ];
+    const missingFields = requiredFields.filter((field) => !user[field]);
+    if (missingFields.length) {
+      throw new BadRequestError(`Missing ${missingFields.join(", ")}`);
+    }
+  }
+
   static async register(user) {
     try {
+      this.#checkRequiredFields(user);
       const { email, password } = user;
-      if (!email || !password)
-        throw new BadRequestError("Invalid email or password");
       if (!validateEmail(email)) throw new BadRequestError("Invalid email");
       const existingUser = await UserRepository.getByEmail(email);
       if (existingUser) {
-        throw new BadRequestError("User with email already exists");
+        throw new BadRequestError("User with email already exists, try login");
       }
 
       if (password.length < 8)

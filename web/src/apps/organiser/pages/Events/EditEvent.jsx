@@ -5,8 +5,8 @@ import {
   useGetEventByIdQuery,
   useUpdateEventMutation,
 } from "../../../../state/redux/events/eventsApi";
-import EventForm from "./components/EventForm";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import Form from "./components/Form";
+import LoadingSpinner from "../../../../components/LoadingSpinner/LoadingSpinner";
 import { useLocation } from "react-router-dom";
 
 const EditEvent = () => {
@@ -33,13 +33,14 @@ const EditEvent = () => {
   return (
     <div className={styles.page}>
       <Card>
-        <div className={styles.createEventCard}>
+        <div className={styles.eventCard}>
           <h4 className={styles.title}>Event Details</h4>
           <p className={styles.subtitle}>
             Enter the details of the event you want to edit.
+            {error && <p className={styles.error}>{error?.data?.message}</p>}
           </p>
           {event && (
-            <EventForm
+            <Form
               defaultValue={event}
               onSubmit={handleSubmit}
               onChange={(event) => setEvent(event)}

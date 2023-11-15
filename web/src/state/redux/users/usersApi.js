@@ -4,8 +4,46 @@ const userApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getAllUsers: builder.query({
       query: () => "/users",
+      providesTags: ["Users"],
+    }),
+    getUserById: builder.query({
+      query: (userId) => `/users/${userId}`,
+      providesTags: ["Users"],
+    }),
+    createUser: builder.mutation({
+      query: (user) => ({
+        url: "/users",
+        method: "POST",
+        body: {
+          user,
+        },
+      }),
+      invalidatesTags: ["Users"],
+    }),
+    updateUser: builder.mutation({
+      query: ({ userId, user }) => ({
+        url: `/users/${userId}`,
+        method: "PATCH",
+        body: {
+          user,
+        },
+      }),
+      invalidatesTags: ["Users"],
+    }),
+    deleteUser: builder.mutation({
+      query: ({ userId }) => ({
+        url: `/users/${userId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Users"],
     }),
   }),
 });
 
-export const { useGetAllUsersQuery } = userApi;
+export const {
+  useGetAllUsersQuery,
+  useGetUserByIdQuery,
+  useCreateUserMutation,
+  useUpdateUserMutation,
+  useDeleteUserMutation,
+} = userApi;
