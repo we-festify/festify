@@ -1,3 +1,8 @@
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -48,24 +53,22 @@
   background-color: hsla(var(--color-primary-500-hsl-values), 0.1);
 }
 
-.table tr.header td {
-  border-bottom: none;
+.top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
   padding: 1rem 0.5rem;
   padding-top: 0.5rem;
 }
 
-.table tr.header td div {
-  display: flex;
-  justify-content: space-between;
-}
-
-.table tr.header td div .title {
+.top .title {
   font-size: 1rem;
   font-weight: 500;
   color: var(--color-text-admin);
 }
 
-.table tr.header td div .actions {
+.top .actions {
   display: flex;
   gap: 1rem;
 }
@@ -99,6 +102,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
   background-color: transparent;
   border: 1px solid var(--color-gray-300);
   border-radius: 0.4rem;
@@ -200,19 +204,19 @@
   color: var(--color-error-500);
 }
 
-.table .footer tr td {
+.footer {
   border-top: 1px solid var(--color-gray-300);
   padding: 1rem 0.5rem;
   padding-bottom: 0;
 }
 
-.table .footer tr td span {
+.footer span {
   font-size: 0.8rem;
   font-weight: 400;
   color: var(--color-text-light-admin);
 }
 
-.table .footer tr td button {
+.footer button {
   font-size: 0.8rem;
   font-weight: 500;
   background-color: var(--color-gray-100);
@@ -222,15 +226,15 @@
   cursor: pointer;
 }
 
-.table .footer tr td button:hover {
+.footer button:hover {
   background-color: var(--color-gray-200);
 }
-.table .footer tr td button:disabled {
+.footer button:disabled {
   color: var(--color-text-light-admin);
   cursor: not-allowed;
 }
 
-.table .footer tr td > * {
+.footer > * {
   margin-right: 1rem;
 }
 
@@ -245,12 +249,12 @@
   accent-color: var(--color-primary-500);
 }
 
-@media screen and (max-width: 400px) {
-  .actions .pageLimitInput {
+@media screen and (max-width: 500px) {
+  .top .actions > *:not(.searchInput) {
     display: none;
   }
 
-  .actions .searchInput {
+  .top .actions .searchInput {
     width: 100%;
   }
 }

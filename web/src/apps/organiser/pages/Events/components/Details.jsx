@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./../Events.module.css";
 import { useGetEventByIdQuery } from "../../../../../state/redux/events/eventsApi";
 
@@ -7,7 +7,6 @@ const Details = ({ eventId }) => {
     data: { event } = {},
     isLoading,
     error,
-    isSuccess,
   } = useGetEventByIdQuery(eventId);
 
   if (isLoading) return <p className={styles.loading}>Loading...</p>;

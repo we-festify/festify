@@ -1,33 +1,28 @@
 import React, { useEffect, useState } from "react";
 import styles from "./VerifyEmail.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import authService from "../../../services/auth";
 import MorphBackgroundDark from "../../../components/MorphBackgroundDark/MorphBackgroundDark";
+import { useVerifyEmailMutation } from "../../../state/redux/auth/authApi";
 
 const VerifyEmail = () => {
   const location = useLocation();
   const token = new URLSearchParams(location.search).get("token");
   const navigate = useNavigate();
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [verifyEmail, { isLoading, error, isSuccess }] =
+    useVerifyEmailMutation();
   const [message, setMessage] = useState(null);
 
   useEffect(() => {
-    if (!token) return setError("Invalid url, please go to home page.");
-    setLoading(true);
-    authService
-      .verifyEmail(token)
-      .then((res) => {
-        console.log(res);
-        setMessage(res.message);
-      })
-      .catch((err) => {
-        setError(err.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [location]);
+    if (!token)
+      setMessage(
+        "Invalid token. Please try again later. If the problem persists, contact support."
+      );
+    verifyEmail(token);
+  }, [location, token, verifyEmail]);
+
+  useEffect(() => {
+    if (isSuccess) setMessage("Email verified successfully.");
+  }, [isSuccess]);
 
   const handleGoHome = (e) => {
     e.preventDefault();
@@ -38,7 +33,7 @@ const VerifyEmail = () => {
     <MorphBackgroundDark>
       <div className={styles.container}>
         <p className={styles.subtitle}>
-          {loading ? "Verifying..." : error ? error : message}
+          {isLoading ? "Verifying..." : error ? error.data?.message : message}
         </p>
         <button className={styles.button} onClick={handleGoHome}>
           Go to Home

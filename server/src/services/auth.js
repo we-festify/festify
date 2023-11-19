@@ -34,7 +34,7 @@ class AuthService {
   static async register(user) {
     try {
       this.#checkRequiredFields(user);
-      const { email, password } = user;
+      let { email, password } = user;
       if (!validateEmail(email)) throw new BadRequestError("Invalid email");
       const existingUser = await UserRepository.getByEmail(email);
       if (existingUser) {
@@ -161,7 +161,10 @@ class AuthService {
   static async verifyUserEmail(token) {
     try {
       const payload = verifyEmailVerificationToken(token);
-      if (!payload) throw new BadRequestError("Invalid token");
+      if (!payload)
+        throw new BadRequestError(
+          "Invalid token. The token may have expired. Try resending verification email from profile page"
+        );
       const { _id } = payload;
       const user = await UserRepository.verifyById(_id);
       if (!user) throw new BadRequestError("User not found");

@@ -100,7 +100,7 @@ class AuthController {
 
   static async verifyEmail(req, res, next) {
     try {
-      const { token } = req.query;
+      const { token } = req.body;
       const user = await AuthService.verifyUserEmail(token);
       res.status(200).json({
         user,

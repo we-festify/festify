@@ -3,27 +3,27 @@
   padding: 1rem;
   background-color: var(--color-white-admin);
   box-shadow: 0 0.1rem 0.2rem hsla(var(--color-primary-500-hsl-values), 0.1);
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .content {
   position: relative;
-  overflow: auto;
+  /* overflow: auto; */
   display: flex;
   flex-direction: column;
 }
 
-.card > *::-webkit-scrollbar {
+.card *::-webkit-scrollbar {
   width: 0.5rem;
   height: 0.5rem;
 }
 
-.card > *::-webkit-scrollbar-thumb {
+.card *::-webkit-scrollbar-thumb {
   background-color: hsla(220, 27%, 60%, 0.2);
   border-radius: 0.25rem;
 }
 
-.card > *::-webkit-scrollbar-track {
+.card *::-webkit-scrollbar-track {
   background-color: hsla(220, 27%, 60%, 0.1);
   border-radius: 0.25rem;
 }

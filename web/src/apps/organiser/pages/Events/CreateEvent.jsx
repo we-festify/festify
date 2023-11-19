@@ -28,7 +28,7 @@ const CreateEvent = () => {
         timeline: [],
       });
     }
-  }, [isSuccess]);
+  }, [isSuccess, organisationId]);
 
   return (
     <div className={styles.page}>
