@@ -88,16 +88,19 @@ const DataTable = ({
   };
   return (
     <dataTableContext.Provider value={value}>
-      <table className={styles.table}>
-        <DataTableHead />
-        <DataTableBody />
-        <DataTableFooter />
-      </table>
+      <DataTableTop />
+      <div className={styles.tableContainer}>
+        <table className={styles.table}>
+          <DataTableHead />
+          <DataTableBody />
+        </table>
+      </div>
+      <DataTableFooter />
     </dataTableContext.Provider>
   );
 };
 
-const DataTableHead = () => {
+const DataTableTop = () => {
   const {
     columns,
     title,
@@ -107,67 +110,69 @@ const DataTableHead = () => {
     setSearchQuery,
     selectedColumns,
     setSelectedColumns,
-    actions,
   } = useDataTable();
 
   return (
+    <div className={styles.top}>
+      <span className={styles.title}>{title}</span>
+      <div className={styles.actions}>
+        <input
+          type="number"
+          name="page-limit"
+          className={styles.pageLimitInput}
+          min={1}
+          value={pageLimit}
+          onChange={(e) => {
+            if (e.target.value > 0) setPageLimit(e.target.value);
+          }}
+        />
+        <input
+          type="text"
+          name="search"
+          className={styles.searchInput}
+          placeholder="Search (regex)"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <Dropdown
+          button={
+            <button className={styles.columnsSelector}>
+              Columns <BiChevronDown className={styles.icon} size={18} />
+            </button>
+          }
+        >
+          <ul className={styles.columnsSelector}>
+            {columns.map(({ label, key }, index) => (
+              <li key={`${key}${index}`}>
+                <input
+                  type="checkbox"
+                  id={key}
+                  checked={selectedColumns.includes(key)}
+                  onChange={() => {
+                    if (selectedColumns.includes(key)) {
+                      setSelectedColumns((prev) =>
+                        prev.filter((k) => k !== key)
+                      );
+                    } else {
+                      setSelectedColumns((prev) => [...prev, key]);
+                    }
+                  }}
+                />
+                <label htmlFor={key}>{label}</label>
+              </li>
+            ))}
+          </ul>
+        </Dropdown>
+      </div>
+    </div>
+  );
+};
+
+const DataTableHead = () => {
+  const { columns, selectedColumns, actions } = useDataTable();
+
+  return (
     <thead>
-      <tr className={styles.header}>
-        <td colSpan={columns.length + 1 + 1}>
-          <div>
-            <span className={styles.title}>{title}</span>
-            <div className={styles.actions}>
-              <input
-                type="number"
-                name="page-limit"
-                className={styles.pageLimitInput}
-                min={1}
-                value={pageLimit}
-                onChange={(e) => {
-                  if (e.target.value > 0) setPageLimit(e.target.value);
-                }}
-              />
-              <input
-                type="text"
-                name="search"
-                className={styles.searchInput}
-                placeholder="Search (regex)"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <Dropdown
-                button={
-                  <button className={styles.columnsSelector}>
-                    Columns <BiChevronDown className={styles.icon} size={18} />
-                  </button>
-                }
-              >
-                <ul className={styles.columnsSelector}>
-                  {columns.map(({ label, key }, index) => (
-                    <li key={`${key}${index}`}>
-                      <input
-                        type="checkbox"
-                        id={key}
-                        checked={selectedColumns.includes(key)}
-                        onChange={() => {
-                          if (selectedColumns.includes(key)) {
-                            setSelectedColumns((prev) =>
-                              prev.filter((k) => k !== key)
-                            );
-                          } else {
-                            setSelectedColumns((prev) => [...prev, key]);
-                          }
-                        }}
-                      />
-                      <label htmlFor={key}>{label}</label>
-                    </li>
-                  ))}
-                </ul>
-              </Dropdown>
-            </div>
-          </div>
-        </td>
-      </tr>
       <DataTableRow id="DATA_TABLE_HEADER">
         {columns
           .filter(({ key }) => selectedColumns.includes(key))
@@ -217,29 +222,25 @@ const DataTableFooter = () => {
   } = useDataTable();
 
   return (
-    <tfoot className={styles.footer}>
-      <tr>
-        <td colSpan={columns.length + 1}>
-          <span>
-            Showing{" "}
-            <b>
-              {currentPage * pageLimit + 1}-
-              {currentPage * pageLimit + (paginatedRows?.length || 0)}
-            </b>{" "}
-            of <b>{totalRows}</b> rows
-          </span>
-          <button onClick={movePageLeft} disabled={currentPage === 0}>
-            prev
-          </button>
-          <button
-            onClick={movePageRight}
-            disabled={currentPage === totalPages - 1 || totalPages === 0}
-          >
-            next
-          </button>
-        </td>
-      </tr>
-    </tfoot>
+    <div className={styles.footer}>
+      <span>
+        Showing{" "}
+        <b>
+          {currentPage * pageLimit + 1}-
+          {currentPage * pageLimit + (paginatedRows?.length || 0)}
+        </b>{" "}
+        of <b>{totalRows}</b> rows
+      </span>
+      <button onClick={movePageLeft} disabled={currentPage === 0}>
+        prev
+      </button>
+      <button
+        onClick={movePageRight}
+        disabled={currentPage === totalPages - 1 || totalPages === 0}
+      >
+        next
+      </button>
+    </div>
   );
 };
 

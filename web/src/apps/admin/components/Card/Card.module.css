@@ -13,17 +13,17 @@
   flex-direction: column;
 }
 
-.card > *::-webkit-scrollbar {
+.card *::-webkit-scrollbar {
   width: 0.5rem;
   height: 0.5rem;
 }
 
-.card > *::-webkit-scrollbar-thumb {
+.card *::-webkit-scrollbar-thumb {
   background-color: hsla(220, 27%, 60%, 0.2);
   border-radius: 0.25rem;
 }
 
-.card > *::-webkit-scrollbar-track {
+.card *::-webkit-scrollbar-track {
   background-color: hsla(220, 27%, 60%, 0.1);
   border-radius: 0.25rem;
 }

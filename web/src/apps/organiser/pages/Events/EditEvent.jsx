@@ -13,12 +13,12 @@ const EditEvent = () => {
   const location = useLocation();
   const eventId = location.pathname.split("/").pop();
   const {
-    data: initialEventData,
+    data: { initialEvent } = {},
     isLoading: initialEventLoading,
     isSuccess: initialEventSuccess,
   } = useGetEventByIdQuery(eventId);
   const [updateEvent, { error, isLoading }] = useUpdateEventMutation();
-  const [event, setEvent] = useState(initialEventData?.event);
+  const [event, setEvent] = useState(initialEvent);
 
   const handleSubmit = () => {
     updateEvent(event);
@@ -26,9 +26,9 @@ const EditEvent = () => {
 
   useEffect(() => {
     if (initialEventSuccess) {
-      setEvent(initialEventData?.event);
+      setEvent(initialEvent);
     }
-  }, [initialEventSuccess]);
+  }, [initialEventSuccess, initialEvent]);
 
   return (
     <div className={styles.page}>
