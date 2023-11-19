@@ -11,7 +11,14 @@ const DateTime = ({
   readOnly,
 }) => {
   const [error, setError] = useState("");
-  defaultValue = new Date(defaultValue || null).toISOString().slice(0, -1); // remove Z at the end
+  // add 5:30 to the time
+  if (defaultValue) {
+    defaultValue = new Date(
+      new Date(defaultValue).getTime() + 5.5 * 60 * 60 * 1000
+    )
+      .toISOString()
+      .slice(0, -8);
+  }
   const [datetime, setDateTime] = useState(defaultValue || "");
 
   const validate = () => {

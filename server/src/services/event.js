@@ -13,6 +13,8 @@ class EventService {
       "timeline",
       "image",
       "organisation",
+      "registrationsStart",
+      "registrationsEnd",
     ];
     const missingFields = [];
     requiredFields.forEach((field) => {

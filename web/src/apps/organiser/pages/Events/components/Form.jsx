@@ -21,7 +21,13 @@ const Form = ({ onSubmit, defaultValue, onChange }) => {
       image: "",
       organisation: organisationId,
       timeline: [],
-      registrationsOpen: false,
+      category: "other",
+      minTeamSize: 1,
+      maxTeamSize: 1,
+      tags: [],
+      feesInINR: 0,
+      registrationsStart: "",
+      registrationsEnd: "",
       isTicketed: false,
       rulebookUrl: "",
     }
@@ -111,7 +117,7 @@ const Form = ({ onSubmit, defaultValue, onChange }) => {
             validations={{}}
             onValidation={handleCanSubmit}
             onChange={(value) => handleChange("rulebookUrl", value)}
-            defaultValue={event.image}
+            defaultValue={event.rulebookUrl}
           />
         </GridItem>
         <GridItem sm={12} md={6} lg={4}>
@@ -131,14 +137,64 @@ const Form = ({ onSubmit, defaultValue, onChange }) => {
           />
         </GridItem>
         <GridItem sm={12} md={4} lg={4}>
-          <Input.Radio
-            label="Are registrations open?"
-            entries={["Yes", "No"]}
+          <Input.DateTime
+            label="Registrations Start Time"
             validations={{ required: true }}
-            onChange={(value) =>
-              handleChange("registrationsOpen", value === "Yes")
-            }
-            defaultValue={event.isTicketed ? "Yes" : "No"}
+            onValidation={handleCanSubmit}
+            onChange={(value) => handleChange("registrationsStart", value)}
+            defaultValue={event.registrationsStart}
+          />
+        </GridItem>
+        <GridItem sm={12} md={4} lg={4}>
+          <Input.DateTime
+            label="Registrations End Time"
+            validations={{ required: true }}
+            onValidation={handleCanSubmit}
+            onChange={(value) => handleChange("registrationsEnd", value)}
+            defaultValue={event.registrationsEnd}
+          />
+        </GridItem>
+        <GridItem sm={12} md={4} lg={4}>
+          <Input.Dropdown
+            label="Category"
+            entries={[
+              "design",
+              "management",
+              "technical",
+              "literary",
+              "art",
+              "dramatics",
+              "dance",
+              "music",
+              "quiz",
+              "gaming",
+              "workshop",
+              "other",
+            ]}
+            validations={{ required: true }}
+            onValidation={handleCanSubmit}
+            onChange={(value) => handleChange("category", value)}
+            defaultValue={event.category || "other"}
+          />
+        </GridItem>
+        <GridItem sm={12} md={8} lg={4}>
+          <Input.Tags
+            key={event.tags}
+            label="Tags"
+            validations={{ required: true }}
+            onValidation={handleCanSubmit}
+            onChange={(value) => handleChange("tags", value)}
+            defaultValue={event.tags}
+          />
+        </GridItem>
+        <GridItem sm={12} md={4} lg={4}>
+          <Input.Text
+            type="number"
+            label="Fee (in INR * 100)"
+            validations={{ required: true }}
+            onValidation={handleCanSubmit}
+            onChange={(value) => handleChange("feesInINR", value)}
+            defaultValue={event.fee || 0}
           />
         </GridItem>
         <GridItem sm={12} md={4} lg={4}>

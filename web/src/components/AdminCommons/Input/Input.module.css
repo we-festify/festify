@@ -129,3 +129,43 @@ textarea.input {
   margin-right: 0.5rem;
   accent-color: var(--color-primary-500);
 }
+
+.tags {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  margin-bottom: -1rem;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-text-light-admin);
+  outline: 1px solid var(--color-gray-300);
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.5rem;
+}
+
+.tag:hover {
+  background-color: var(--color-gray-100);
+}
+
+.tag button.removeTag {
+  font-size: 1rem;
+  padding: 0;
+  color: var(--color-text-light-admin);
+  background-color: transparent;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.tag button.removeTag:hover {
+  color: var(--color-text-admin);
+}
