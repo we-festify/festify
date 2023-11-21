@@ -56,6 +56,7 @@ const EventsPageProvider = ({ children }) => {
   }, [searchParams]);
 
   useEffect(() => {
+    if (!events) return;
     if (selectedCategory === "All") {
       setEventsList(events);
     } else {

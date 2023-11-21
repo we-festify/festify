@@ -5,6 +5,7 @@
   max-height: calc(100dvh - 3.5rem);
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 
 .content {
@@ -23,4 +24,10 @@
 
 .content *::-webkit-scrollbar-thumb {
   background-color: hsla(var(--color-white-hsl-values), 0.1);
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
 }

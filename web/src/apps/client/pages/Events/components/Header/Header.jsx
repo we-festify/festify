@@ -3,14 +3,11 @@ import styles from "./Header.module.css";
 import { IoIosSearch } from "react-icons/io";
 import { useEventsPage } from "../../../../../../state/context/ClientEventsPage";
 import { useNavigate } from "react-router-dom";
-import { useMediaQuery } from "../../../../../../hooks/useMediaQuery";
 
 const Header = () => {
-  const { suggestions, searchByQuery, categories, changeCategory } =
-    useEventsPage();
+  const { suggestions, searchByQuery } = useEventsPage();
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
-  const isPortrait = useMediaQuery("(orientation: portrait)");
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -45,44 +42,27 @@ const Header = () => {
         <h1 className={styles.title}>Events</h1>
       </div>
       <div className={styles.right}>
-        {!isPortrait && (
-          <div className={styles.search}>
-            <IoIosSearch className={styles.icon} />
-            <input
-              type="text"
-              placeholder="Search for events..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            {suggestions.length > 0 && (
-              <ul key={search} className={styles.suggestions}>
-                {suggestions.map((suggestion) => (
-                  <li
-                    key={suggestion.id}
-                    onClick={() => handleSuggestionClick(suggestion)}
-                  >
-                    {markSearchedPart(suggestion.name)}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        )}
-        {isPortrait && (
-          <div className={styles.select}>
-            <input
-              list="categories"
-              placeholder="Select Category"
-              onChange={(e) => changeCategory(e.target.value)}
-            />
-            <datalist id="categories">
-              <option value="All" />
-              {categories.map((category) => (
-                <option key={category} value={category} />
+        <div className={styles.search}>
+          <IoIosSearch className={styles.icon} />
+          <input
+            type="text"
+            placeholder="Search for events..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          {suggestions.length > 0 && (
+            <ul key={search} className={styles.suggestions}>
+              {suggestions.map((suggestion) => (
+                <li
+                  key={suggestion.id}
+                  onClick={() => handleSuggestionClick(suggestion)}
+                >
+                  {markSearchedPart(suggestion.name)}
+                </li>
               ))}
-            </datalist>
-          </div>
-        )}
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -1,3 +1,9 @@
+.container {
+  width: 100%;
+  height: 100%;
+  container: grid / inline-size;
+}
+
 .grid {
   display: grid;
   width: 100%;
@@ -7,7 +13,7 @@
   padding: 1rem;
 }
 
-@media screen and (max-width: 768px) {
+@container grid (max-width: 768px) {
   .grid {
     padding: 1.5rem;
     gap: 2rem;

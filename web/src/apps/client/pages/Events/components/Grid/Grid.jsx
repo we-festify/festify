@@ -6,22 +6,24 @@ import Card from "../Card/Card";
 const EventsGrid = () => {
   const { eventsList } = useEventsPage();
   return (
-    <div className={styles.grid}>
-      {eventsList?.map((event) => (
-        <Card key={event._id} event={event} />
-      ))}
-      {eventsList?.map((event) => (
-        <Card key={event._id} event={event} />
-      ))}
-      {eventsList?.map((event) => (
-        <Card key={event._id} event={event} />
-      ))}
-      {eventsList?.map((event) => (
-        <Card key={event._id} event={event} />
-      ))}
-      {eventsList?.map((event) => (
-        <Card key={event._id} event={event} />
-      ))}
+    <div className={styles.container}>
+      <div className={styles.grid}>
+        {eventsList?.map((event) => (
+          <Card key={event._id} event={event} />
+        ))}
+        {eventsList?.map((event) => (
+          <Card key={event._id} event={event} />
+        ))}
+        {eventsList?.map((event) => (
+          <Card key={event._id} event={event} />
+        ))}
+        {eventsList?.map((event) => (
+          <Card key={event._id} event={event} />
+        ))}
+        {eventsList?.map((event) => (
+          <Card key={event._id} event={event} />
+        ))}
+      </div>
     </div>
   );
 };

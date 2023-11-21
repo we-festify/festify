@@ -67,7 +67,7 @@
 
 .right button.login {
   background-color: var(--color-primary-500);
-  color: var(--color-text-light);
+  color: var(--color-text);
   font-size: 1rem;
   font-weight: 500;
   padding: 0.4rem 0.8rem;

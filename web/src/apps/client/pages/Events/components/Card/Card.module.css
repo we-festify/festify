@@ -8,6 +8,7 @@
   border-radius: 0.5rem;
   overflow: hidden;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .image {
@@ -38,18 +39,11 @@
   color: var(--color-text);
   background-color: var(--color-secondary-500);
   text-transform: uppercase;
+  letter-spacing: 0.03rem;
 }
 
-.badge.upcoming {
-  background-color: var(--color-primary-500);
-}
-
-.badge.completed {
+.badge.team {
   background-color: var(--color-secondary-500);
-}
-
-.badge.ongoing {
-  background-color: var(--color-success-500);
 }
 
 .bottom {

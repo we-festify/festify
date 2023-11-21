@@ -190,7 +190,7 @@ const Form = ({ onSubmit, defaultValue, onChange }) => {
         <GridItem sm={12} md={4} lg={4}>
           <Input.Text
             type="number"
-            label="Fee (in INR * 100)"
+            label="Fee (in INR)"
             validations={{ required: true }}
             onValidation={handleCanSubmit}
             onChange={(value) => handleChange("feesInINR", value)}
