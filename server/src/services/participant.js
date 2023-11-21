@@ -37,6 +37,12 @@ class ParticipantService {
   }
 
   static async #checkValidParticipation(event, participant) {
+    const date = new Date();
+    if (event.registrationsStart > date) {
+      throw new BadRequestError("Registrations have not started yet");
+    } else if (event.registrationsEnd < date) {
+      throw new BadRequestError("Registrations have ended");
+    }
     if (participant.isTeam) {
       if (event.minTeamSize > participant.members.length) {
         throw new BadRequestError(

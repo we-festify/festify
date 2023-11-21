@@ -7,6 +7,7 @@ import CheckBoxes from "./CheckBoxes";
 import Radio from "./Radio";
 import Dropdown from "./Dropdown";
 import DateTime from "./DateTime";
+import Tags from "./Tags";
 
 const Input = {
   Text: Text,
@@ -18,5 +19,6 @@ const Input = {
   CheckBoxes: CheckBoxes,
   Radio: Radio,
   Dropdown: Dropdown,
+  Tags: Tags,
 };
 export default Input;

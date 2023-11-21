@@ -1,0 +1,21 @@
+.container {
+  width: 100%;
+  height: 100%;
+  container: grid / inline-size;
+}
+
+.grid {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+@container grid (max-width: 768px) {
+  .grid {
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+}

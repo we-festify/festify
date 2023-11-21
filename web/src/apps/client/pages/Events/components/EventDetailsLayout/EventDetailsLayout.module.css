@@ -1,0 +1,61 @@
+.page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.top {
+  display: flex;
+}
+
+.left {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.right {
+  height: 100%;
+  width: 100%;
+  min-width: 250px;
+  max-width: 300px;
+}
+
+.right .title {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.03rem;
+  color: var(--color-text);
+  padding: 1rem 1.5rem;
+  padding-bottom: 0;
+  margin: 0;
+  margin-bottom: -0.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .top {
+    flex-direction: column;
+  }
+
+  .right {
+    width: 100%;
+    max-width: 100%;
+    background-color: transparent;
+  }
+
+  .right .title {
+    padding: 1rem;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+}

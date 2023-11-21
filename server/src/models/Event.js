@@ -65,10 +65,41 @@ const EventSchema = new mongoose.Schema({
     required: true,
     default: 1,
   },
-  registrationsOpen: {
-    type: Boolean,
+  registrationsStart: {
+    type: Date,
     required: true,
-    default: false,
+  },
+  registrationsEnd: {
+    type: Date,
+    required: true,
+  },
+  feesInINR: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
+  category: {
+    type: String,
+    enum: [
+      "design",
+      "management",
+      "technical",
+      "literary",
+      "art",
+      "dramatics",
+      "dance",
+      "music",
+      "quiz",
+      "gaming",
+      "workshop",
+      "other",
+    ],
+    required: true,
+    default: "other",
+  },
+  tags: {
+    type: [String],
+    required: true,
   },
   rulebookUrl: {
     type: String,

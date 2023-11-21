@@ -1,0 +1,33 @@
+.page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  max-height: calc(100dvh - 3.5rem);
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  overflow-y: auto;
+}
+
+.content *::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.content *::-webkit-scrollbar-track {
+  background-color: hsla(var(--color-white-hsl-values), 0.05);
+}
+
+.content *::-webkit-scrollbar-thumb {
+  background-color: hsla(var(--color-white-hsl-values), 0.1);
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+}

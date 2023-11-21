@@ -1,0 +1,101 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  z-index: 1;
+}
+
+h1.title {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  padding: 0 1rem;
+  border-radius: 0.5rem;
+  background-color: hsla(var(--color-white-hsl-values), 0.1);
+}
+
+.search .icon {
+  color: var(--color-text-light);
+}
+
+.search input {
+  max-width: 20rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  border: none;
+  outline: 0;
+  background-color: transparent;
+  caret-color: var(--color-text);
+  color: var(--color-text);
+  position: relative;
+}
+
+.search:has(input:focus) .icon {
+  color: var(--color-text);
+}
+
+.search .suggestions {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  background: hsla(0, 0%, 0%, 0.7);
+  border-radius: 0.5rem;
+  border: 1px solid hsla(var(--color-white-hsl-values), 0.3);
+  padding: 0.3rem;
+  z-index: 10;
+  list-style: none;
+  margin: 0;
+}
+
+.suggestions li {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.suggestions li:hover {
+  background-color: hsla(var(--color-white-hsl-values), 0.1);
+}
+
+.suggestions li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.suggestions mark {
+  background-color: var(--color-primary-500);
+  color: var(--color-white);
+}
+
+.select input {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid hsla(var(--color-white-hsl-values), 0.1);
+  outline: 0;
+  background-color: hsla(var(--color-white-hsl-values), 0.1);
+  caret-color: var(--color-text);
+  color: var(--color-text);
+  position: relative;
+  cursor: pointer;
+}
