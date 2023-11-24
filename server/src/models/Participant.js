@@ -30,3 +30,4 @@ const ParticipantSchema = new mongoose.Schema({
 });
 
 const Participant = mongoose.model("Participant", ParticipantSchema);
+module.exports = Participant;

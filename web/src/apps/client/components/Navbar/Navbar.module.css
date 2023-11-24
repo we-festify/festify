@@ -16,11 +16,19 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  view-transition-name: navbar;
 }
 
 .left {
   display: flex;
   align-items: center;
+}
+
+.back {
+  margin-right: 1rem;
+  cursor: pointer;
 }
 
 .title {

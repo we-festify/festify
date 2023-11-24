@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  max-height: calc(100dvh - 3.5rem);
+  max-height: calc(100dvh - var(--navbar-height));
   display: flex;
   flex-direction: column;
   z-index: 1;

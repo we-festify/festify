@@ -24,7 +24,7 @@ const EditEvent = () => {
   const handleSubmit = () => {
     toast.promise(updateEvent(event), {
       pending: "Updating event...",
-      success: "Event updated successfully.",
+      success: "Event updated successfully!",
       error: "Error updating event.",
     });
   };

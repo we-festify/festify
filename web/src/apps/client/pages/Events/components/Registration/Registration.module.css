@@ -1,0 +1,144 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+  color: var(--color-text);
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 2rem;
+}
+
+h2.title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.close {
+  outline: 0;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  color: var(--color-text);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.participantDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.participantDetails .item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.participantDetails .key {
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.participantDetails .value {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroup label {
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.formGroup input,
+.formGroup textarea {
+  outline: 0;
+  border: 1px solid var(--color-text-light);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: inherit;
+  background-color: transparent;
+  color: var(--color-text);
+  caret-color: var(--color-text);
+  resize: none;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  outline: 1px solid var(--color-secondary-500);
+  border-color: var(--color-secondary-500);
+}
+
+.members {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.member {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.member .remove {
+  outline: 0;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  color: var(--color-text);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+p.error {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-error-500);
+}
+
+button.submit {
+  outline: 0;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  background-color: var(--color-secondary-500);
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 400;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}

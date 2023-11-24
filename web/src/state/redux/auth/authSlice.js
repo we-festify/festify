@@ -6,6 +6,7 @@ const initialState = {
   isAdmin: false,
   isLoggedIn: false,
   isOrganiser: false,
+  isVerified: false,
 };
 
 const authSlice = createSlice({
@@ -20,6 +21,7 @@ const authSlice = createSlice({
       state.user = user;
       state.accessToken = accessToken;
       state.isLoggedIn = true;
+      state.isVerified = user.isVerified;
     },
     clearCredentials(state, action) {
       state.user = null;
@@ -27,6 +29,7 @@ const authSlice = createSlice({
       state.isAdmin = false;
       state.isOrganiser = false;
       state.isLoggedIn = false;
+      state.isVerified = false;
     },
   },
 });
@@ -36,6 +39,7 @@ export const selectUser = (state) => state.auth.user;
 export const selectIsLoggedIn = (state) => state.auth.isLoggedIn;
 export const selectIsAdmin = (state) => state.auth.isAdmin;
 export const selectIsOrganiser = (state) => state.auth.isOrganiser;
+export const selectIsVerified = (state) => state.auth.isVerified;
 
 export const { setCredentials, clearCredentials } = authSlice.actions;
 

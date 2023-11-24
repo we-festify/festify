@@ -13,6 +13,33 @@ class ParticipantController {
       next(error);
     }
   }
+
+  static async getAllParticipationsBySelf(req, res, next) {
+    try {
+      const { user } = req;
+      const participations =
+        await ParticipantService.getAllParticipationsBySelf(user._id);
+      res.status(200).json({
+        message: "Participations fetched successfully",
+        participations,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async getAllByUserId(req, res, next) {
+    try {
+      const { userId } = req.params;
+      const participations = await ParticipantService.getAllByUserId(userId);
+      res.status(200).json({
+        message: "Participations fetched successfully",
+        participations,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = ParticipantController;

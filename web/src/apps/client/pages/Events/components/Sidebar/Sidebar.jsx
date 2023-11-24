@@ -9,8 +9,8 @@ const Sidebar = () => {
       <h2 className={styles.title}>Categories</h2>
       <ul className={styles.categories}>
         <li
-          className={selectedCategory === "All" ? styles.active : ""}
-          onClick={() => changeCategory("All")}
+          className={selectedCategory === "all" ? styles.active : ""}
+          onClick={() => changeCategory("all")}
         >
           All
         </li>

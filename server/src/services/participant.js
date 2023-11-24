@@ -38,12 +38,15 @@ class ParticipantService {
 
   static async #checkValidParticipation(event, participant) {
     const date = new Date();
-    if (event.registrationsStart > date) {
+    if (new Date(event.registrationsStart) > date) {
       throw new BadRequestError("Registrations have not started yet");
-    } else if (event.registrationsEnd < date) {
+    } else if (new Date(event.registrationsEnd) < date) {
       throw new BadRequestError("Registrations have ended");
     }
     if (participant.isTeam) {
+      if (!participant.teamName) {
+        throw new BadRequestError("Team name is required");
+      }
       if (event.minTeamSize > participant.members.length) {
         throw new BadRequestError(
           `Team must have at least ${event.minTeamSize} members`
@@ -68,7 +71,7 @@ class ParticipantService {
       if (!event) throw new BadRequestError("Invalid event");
 
       participant.members = [
-        ...new Set([participant.leader, ...participant.members]),
+        ...new Set([participant.leader, ...(participant.members || [])]),
       ]; // add leader and remove duplicates
 
       await this.#checkValidMembers(participant.members);
@@ -83,6 +86,27 @@ class ParticipantService {
       await this.#checkValidParticipation(event, participant);
 
       return await ParticipantRepository.create(participant);
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async getAllParticipationsBySelf(userId) {
+    try {
+      if (!userId) throw new BadRequestError("Missing userId");
+      const participations =
+        await ParticipantRepository.getAllParticipationsBySelf(userId);
+      return participations;
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async getAllByUserId(userId) {
+    try {
+      if (!userId) throw new BadRequestError("Missing userId");
+      const participations = await ParticipantRepository.getAllByUserId(userId);
+      return participations;
     } catch (err) {
       throw err;
     }

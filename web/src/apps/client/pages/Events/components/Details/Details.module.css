@@ -7,11 +7,20 @@
   margin-bottom: 1rem;
 }
 
+.back {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
 .image {
   width: 100%;
   overflow: hidden;
   border-radius: 0.5rem;
   position: relative;
+  view-transition-name: var(--hero-image-transition-name);
 }
 
 .image img {
@@ -40,6 +49,7 @@
   font-weight: 500;
   color: var(--color-text);
   margin: 0;
+  view-transition-name: var(--hero-title-transition-name);
 }
 
 .details {
@@ -65,6 +75,7 @@ p.text {
   color: var(--color-text-light);
   line-height: 1.6;
   margin: 0;
+  white-space: pre-line;
 }
 
 p.text span {
@@ -125,12 +136,30 @@ p.text span {
 }
 
 .timeline .item .time {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: lighter;
   letter-spacing: 0.03rem;
   color: var(--color-text-light);
   line-height: 1.6;
   margin: 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tags .tag {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.03rem;
+  color: var(--color-text-light);
+  background-color: hsla(var(--color-white-hsl-values), 0.1);
+  cursor: pointer;
+  text-transform: uppercase;
 }
 
 .other {
@@ -153,6 +182,11 @@ p.text span {
   margin: 0;
 }
 
+.other .item.price .value {
+  font-weight: 600;
+  color: var(--color-secondary-500);
+}
+
 .other .item .value {
   font-size: 1rem;
   font-weight: lighter;
@@ -165,7 +199,7 @@ p.text span {
 .actions {
   display: flex;
   gap: 1rem;
-  margin-top: 1rem;
+  padding-top: 1rem;
 }
 
 .actions .secondary {
@@ -185,6 +219,26 @@ p.text span {
 
 .actions .secondary:hover {
   background-color: hsla(var(--color-secondary-500-hsl-values), 0.9);
+}
+
+.actions .secondary:disabled {
+  filter: brightness(0.8);
+  cursor: not-allowed;
+}
+
+.actions .registered {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  max-width: 200px;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.03rem;
+  color: var(--color-background-dark);
+  border: none;
+  background-color: var(--color-success-500);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .actions .outline {
@@ -207,8 +261,13 @@ p.text span {
 }
 
 @media screen and (max-width: 768px) {
+  .back {
+    display: none;
+  }
+
   .image img {
     aspect-ratio: 1 / 1;
+    max-height: 400px;
   }
 
   .image .info .name {
@@ -216,10 +275,15 @@ p.text span {
   }
 
   .actions {
-    flex-direction: column;
+    position: sticky;
+    bottom: 0;
+    padding-bottom: 1rem;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
   }
 
   .actions .secondary,
+  .actions .registered,
   .actions .outline {
     max-width: 100%;
   }
