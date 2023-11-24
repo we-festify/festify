@@ -16,6 +16,7 @@
   --color-success-500: hsl(141, 100%, 38%);
 
   /* client */
+  --navbar-height: 3.5rem;
   --color-background-dark: hsl(0, 0%, 0%);
   --color-navbar: hsla(0, 0%, 100%, 0.05);
   --color-navbar-drawer: hsla(0, 0%, 0%, 0.7);

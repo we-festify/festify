@@ -6,6 +6,7 @@ import { selectUser } from "../../../../state/redux/auth/authSlice";
 import { useCreateEventMutation } from "../../../../state/redux/events/eventsApi";
 import Form from "./components/Form";
 import LoadingSpinner from "../../../../components/LoadingSpinner/LoadingSpinner";
+import { toast } from "react-toastify";
 
 const CreateEvent = () => {
   const user = useSelector(selectUser);
@@ -18,7 +19,11 @@ const CreateEvent = () => {
     useCreateEventMutation();
 
   const handleSubmit = () => {
-    createEvent(event);
+    toast.promise(createEvent(event), {
+      loading: "Creating event...",
+      success: "Event created successfully!",
+      error: "Error creating event.",
+    });
   };
 
   useEffect(() => {

@@ -1,0 +1,31 @@
+::view-transition-old(dialog-mobile) {
+  animation: slide-down 0.25s ease-out forwards;
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+/* ::view-transition-new(root) {
+  animation: slide-left 0.25s ease-in-out forwards;
+}
+
+@media screen and (max-width: 768px) {
+  ::view-transition-new(root) {
+    animation: slide-left 0.25s ease-in-out forwards;
+  }
+
+  @keyframes slide-left {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+} */

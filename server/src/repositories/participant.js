@@ -19,6 +19,26 @@ class ParticipantRepository {
       throw err;
     }
   }
+
+  static async getAllParticipationsBySelf(userId) {
+    try {
+      return await Participant.find({
+        members: { $in: [userId] },
+      }).populate("event", "_id name");
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async getAllByUserId(userId) {
+    try {
+      return await Participant.find({
+        members: { $in: [userId] },
+      });
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 module.exports = ParticipantRepository;

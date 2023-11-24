@@ -62,6 +62,7 @@ class AuthService {
         _id: newUser._id,
         email: newUser.email,
         role: newUser.role,
+        isVerified: newUser.isVerified,
       };
       const accessToken = generateAccessToken(payload);
       const refreshToken = generateRefreshToken(payload);
@@ -98,6 +99,7 @@ class AuthService {
         _id: user._id,
         email: user.email,
         role: user.role,
+        isVerified: user.isVerified,
       };
       if (user.role === "organiser") {
         payload.organisation = user.organisation;
@@ -127,6 +129,7 @@ class AuthService {
         _id: user._id,
         email: user.email,
         role: user.role,
+        isVerified: user.isVerified,
       };
       if (user.role === "organiser") {
         newPayload.organisation = user.organisation;
@@ -185,6 +188,7 @@ class AuthService {
         _id: user._id,
         email: user.email,
         role: user.role,
+        isVerified: user.isVerified,
       };
       const token = generateResetPasswordToken(userPayload, user.passwordHash);
       user.resetPasswordToken = token;

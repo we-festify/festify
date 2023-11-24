@@ -1,10 +1,22 @@
 import React from "react";
 import styles from "./Details.module.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useGetEventByIdQuery } from "../../../../../../state/redux/events/eventsApi";
 import { formatDateTime } from "../../../../../../utils/time";
+import { MdChevronLeft } from "react-icons/md";
+import { viewTransition } from "../../../../../../utils/view_transition";
+import useModal from "../../../../../../hooks/useModal/useModal";
+import Registration from "../Registration/Registration";
+import { useSelector } from "react-redux";
+import {
+  selectIsLoggedIn,
+  selectIsVerified,
+} from "../../../../../../state/redux/auth/authSlice";
+import { useGetParticipationsBySelfQuery } from "../../../../../../state/redux/participants/participantsApi";
 
 const Details = () => {
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isVerified = useSelector(selectIsVerified);
   const location = useLocation();
   const eventId = location.pathname.split("/").pop();
   const {
@@ -12,8 +24,43 @@ const Details = () => {
     isLoading,
     error,
   } = useGetEventByIdQuery(eventId);
+  const navigate = useNavigate();
+  const today = new Date();
+  const [RegistrationModal, { open }] = useModal(Registration, {
+    event,
+  });
+  const { data: { participations } = {} } = useGetParticipationsBySelfQuery();
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    open();
+  };
+
+  const handleNavigateToRulebook = (e) => {
+    e.preventDefault();
+    if (event?.rulebook) {
+      window.open(event?.rulebook, "_blank");
+    }
+  };
+
+  const handleGoBack = () => {
+    viewTransition(() => {
+      navigate("/events", { replace: true });
+    });
+  };
+
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      style={{
+        "--hero-image-transition-name": `hero-card-transition-${eventId}`,
+        "--hero-title-transition-name": `hero-title-transition-${eventId}`,
+      }}
+    >
+      <RegistrationModal />
+      <div className={styles.back} onClick={handleGoBack}>
+        <MdChevronLeft /> Back
+      </div>
       <div className={styles.image}>
         <img src={event?.image} alt={event?.name} />
         <div className={styles.info}>
@@ -40,12 +87,14 @@ const Details = () => {
               className={
                 styles.item +
                 " " +
-                (new Date(item.time) < new Date() ? styles.past : "")
+                (new Date(item.time) < today ? styles.past : "")
               }
               key={item._id}
             >
               <p className={styles.desc}>{item.description}</p>
-              <p className={styles.time}>{formatDateTime(item.time)}</p>
+              <p className={styles.time}>
+                {formatDateTime(item.time)} <span>({item.venue})</span>
+              </p>
             </div>
           ))}
         </div>
@@ -59,7 +108,7 @@ const Details = () => {
             <p className={styles.key}>Max Team Size</p>
             <p className={styles.value}>{event?.maxTeamSize}</p>
           </div>
-          <div className={styles.item}>
+          <div className={styles.item + " " + styles.price}>
             <p className={styles.key}>
               Entry Charges {event?.feesInINR > 0 ? "(in INR)" : ""}
             </p>
@@ -72,12 +121,46 @@ const Details = () => {
             <p className={styles.value}>{event?.venue}</p>
           </div>
         </div>
+        <h2 className={styles.heading}>Tags</h2>
+        <div className={styles.tags}>
+          {event?.tags?.map((tag) => (
+            <div className={styles.tag} key={tag}>
+              {tag}
+            </div>
+          ))}
+        </div>
         <div className={styles.actions}>
-          <button className={styles.secondary}>Register</button>
+          {!isLoggedIn ? (
+            <button className={styles.secondary} disabled>
+              Login to Register
+            </button>
+          ) : !isVerified ? (
+            <button className={styles.secondary} disabled>
+              Verify Email to Register
+            </button>
+          ) : participations?.some(
+              (participation) => participation.event?._id === event?._id
+            ) ? (
+            <button className={styles.registered} disabled>
+              Registered
+            </button>
+          ) : new Date(event?.registrationsStart) > today ? (
+            <button className={styles.secondary} disabled>
+              Registration Not Started
+            </button>
+          ) : new Date(event?.registrationsEnd) < today ? (
+            <button className={styles.secondary} disabled>
+              Registration Closed
+            </button>
+          ) : (
+            <button className={styles.secondary} onClick={handleRegister}>
+              Register
+            </button>
+          )}
           {event?.rulebook && (
             <button
               className={styles.outline}
-              onClick={() => window.open(event?.rulebook, "_blank")}
+              onClick={handleNavigateToRulebook}
             >
               Rulebook
             </button>

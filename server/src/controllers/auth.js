@@ -114,6 +114,9 @@ class AuthController {
   static async sendVerificationEmail(req, res, next) {
     try {
       const { user } = req;
+      if (user.isVerified) {
+        throw new BadRequestError("User is already verified");
+      }
       await AuthService.trySendVerificationEmail(user._id);
       res.status(200).json({ message: "Verification email sent" });
     } catch (error) {

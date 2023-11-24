@@ -1,20 +1,23 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useGetAllEventsQuery } from "../redux/events/eventsApi";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { viewTransition } from "../../utils/view_transition";
 
 const EventsPageContext = createContext();
 
 export const useEventsPage = () => useContext(EventsPageContext);
 
 const EventsPageProvider = ({ children }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  const navigate = useNavigate();
   const { data: { events } = {}, isSuccess: eventsSuccess } =
     useGetAllEventsQuery();
   const [eventsList, setEventsList] = useState([]);
   const [types, setTypes] = useState([]);
   const [categories, setCategories] = useState([]);
   const [suggestedEvents, setSuggestedEvents] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const selectedCategory =
+    new URLSearchParams(location.search).get("category") || "all";
 
   useEffect(() => {
     if (eventsSuccess) {
@@ -39,25 +42,14 @@ const EventsPageProvider = ({ children }) => {
   };
 
   const changeCategory = (category) => {
-    if (category === "All") {
-      setSearchParams({});
-    } else {
-      setSearchParams({ category });
-    }
+    viewTransition(() => {
+      navigate(`/events?category=${category}`);
+    });
   };
 
   useEffect(() => {
-    const category = searchParams.get("category");
-    if (category) {
-      setSelectedCategory(category);
-    } else {
-      setSelectedCategory("All");
-    }
-  }, [searchParams]);
-
-  useEffect(() => {
     if (!events) return;
-    if (selectedCategory === "All") {
+    if (selectedCategory === "all") {
       setEventsList(events);
     } else {
       const filteredEvents = events.filter(

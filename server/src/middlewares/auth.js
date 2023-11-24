@@ -25,6 +25,14 @@ class AuthMiddleware {
     }
     next();
   };
+
+  static requireVerified = (req, res, next) => {
+    const { user } = req;
+    if (!user.isVerified) {
+      sendError(res, 403, "You must verify your email to perform this action");
+    }
+    next();
+  };
 }
 
 module.exports = AuthMiddleware;
