@@ -26,7 +26,6 @@ const EventsPageProvider = ({ children }) => {
       setTypes(types);
       setCategories(categories);
       setEventsList(events);
-      setSuggestedEvents(events.slice(0, 5));
     }
   }, [eventsSuccess, events]);
 

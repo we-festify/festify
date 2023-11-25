@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Details.module.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useGetEventByIdQuery } from "../../../../../../state/redux/events/eventsApi";
 import { formatDateTime } from "../../../../../../utils/time";
 import { MdChevronLeft } from "react-icons/md";
@@ -30,6 +30,9 @@ const Details = () => {
     event,
   });
   const { data: { participations } = {} } = useGetParticipationsBySelfQuery();
+  const isRegistered = participations?.some(
+    (participation) => participation.event?._id === eventId
+  );
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -45,7 +48,8 @@ const Details = () => {
 
   const handleGoBack = () => {
     viewTransition(() => {
-      navigate("/events", { replace: true });
+      const from = location.state?.from;
+      navigate(from || "/events", { replace: true });
     });
   };
 
@@ -138,9 +142,7 @@ const Details = () => {
             <button className={styles.secondary} disabled>
               Verify Email to Register
             </button>
-          ) : participations?.some(
-              (participation) => participation.event?._id === event?._id
-            ) ? (
+          ) : isRegistered ? (
             <button className={styles.registered} disabled>
               Registered
             </button>
@@ -166,6 +168,16 @@ const Details = () => {
             </button>
           )}
         </div>
+        {isRegistered && (
+          <p className={styles.note}>
+            You have already registered for this event. You can view your
+            participation details in the{" "}
+            <Link to="/profile" className={styles.link}>
+              Profile
+            </Link>{" "}
+            section.
+          </p>
+        )}
       </div>
     </div>
   );

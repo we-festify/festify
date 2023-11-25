@@ -260,6 +260,20 @@ p.text span {
   background-color: hsla(var(--color-secondary-500-hsl-values), 0.1);
 }
 
+.note {
+  font-size: 0.9rem;
+  font-weight: lighter;
+  letter-spacing: 0.03rem;
+  color: var(--color-text-light);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.note a {
+  color: var(--color-secondary-500);
+  text-decoration: none;
+}
+
 @media screen and (max-width: 768px) {
   .back {
     display: none;

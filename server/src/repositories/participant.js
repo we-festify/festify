@@ -24,7 +24,9 @@ class ParticipantRepository {
     try {
       return await Participant.find({
         members: { $in: [userId] },
-      }).populate("event", "_id name");
+      })
+        .populate("event")
+        .populate("members");
     } catch (err) {
       throw err;
     }

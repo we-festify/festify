@@ -50,6 +50,9 @@ class AuthService {
       user.password = undefined;
       user.passwordHash = hashedPassword;
 
+      // Remove all fields except the ones that are required
+      user = UserRepository.removeUnauthorizedFields(user);
+
       email = email.trim().toLowerCase();
       user.email = email;
       if (!validateEmail(email)) throw new BadRequestError("Invalid email");
@@ -85,7 +88,7 @@ class AuthService {
       email = email.trim().toLowerCase();
       if (!validateEmail(email)) throw new BadRequestError("Invalid email");
 
-      const user = await UserRepository.getByEmail(email);
+      const user = await UserRepository.getByEmail(email, true);
       if (!user) {
         throw new BadRequestError("Invalid email or password");
       }
