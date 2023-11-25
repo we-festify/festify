@@ -12,6 +12,7 @@ const userSchema = mongoose.Schema({
   passwordHash: {
     type: String,
     required: [true, "Password is required"],
+    select: false,
   },
   gender: {
     type: String,
@@ -53,6 +54,7 @@ const userSchema = mongoose.Schema({
   resetPasswordToken: {
     type: String,
     default: null,
+    select: false,
   },
 });
 

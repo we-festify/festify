@@ -13,6 +13,7 @@
   --color-primary-500-hsl-values: 260, 84%, 51%;
   --color-secondary-500-hsl-values: 326, 62%, 51%;
   --color-error-500: hsl(346, 62%, 51%);
+  --color-error-500-hsl-values: 346, 62%, 51%;
   --color-success-500: hsl(141, 100%, 38%);
 
   /* client */
@@ -22,6 +23,8 @@
   --color-navbar-drawer: hsla(0, 0%, 0%, 0.7);
   --color-text: hsl(0, 0%, 100%);
   --color-text-light: hsl(0, 0%, 100%, 0.7);
+  --color-border: hsl(0, 0%, 100%, 0.1);
+  --color-border-light: hsl(0, 0%, 100%, 0.05);
 
   /* admin */
   --color-background-admin-sidebar: hsl(0, 0%, 100%);

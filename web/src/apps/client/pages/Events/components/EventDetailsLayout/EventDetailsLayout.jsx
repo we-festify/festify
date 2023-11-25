@@ -16,7 +16,7 @@ const EventDetailsLayout = () => {
           </div>
           <div className={styles.right}>
             <h2 className={styles.title}>More Events</h2>
-            <EventsGrid excludeIds={[eventId]} />
+            <EventsGrid excludeIds={[eventId]} maxCount={5} />
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ import styles from "./Header.module.css";
 import { IoIosSearch } from "react-icons/io";
 import { useEventsPage } from "../../../../../../state/context/ClientEventsPage";
 import { useNavigate } from "react-router-dom";
+import { viewTransition } from "../../../../../../utils/view_transition";
 
 const Header = () => {
   const { suggestions, searchByQuery } = useEventsPage();
@@ -18,7 +19,9 @@ const Header = () => {
 
   const handleSuggestionClick = (suggestion) => {
     setSearch("");
-    navigate(`/events/${suggestion.id}`);
+    viewTransition(() => {
+      navigate(`/events/${suggestion.id}`);
+    });
   };
 
   const markSearchedPart = (name) => {

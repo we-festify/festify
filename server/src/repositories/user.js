@@ -1,6 +1,18 @@
 const User = require("../models/User");
 
 class UserRepository {
+  static removeUnauthorizedFields(user) {
+    const {
+      passwordHash,
+      resetPasswordToken,
+      isVerified,
+      role,
+      organisation,
+      ...userWithoutUnauthorizedFields
+    } = user;
+    return userWithoutUnauthorizedFields;
+  }
+
   static excludeSensitiveFields(user) {
     const { passwordHash, resetPasswordToken, ...userWithoutSensitiveFields } =
       user._doc;
@@ -15,17 +27,24 @@ class UserRepository {
     }
   }
 
-  static async getById(id) {
+  static async getById(id, selectSensitiveFields = false) {
     try {
-      return await User.findById(id);
+      if (!selectSensitiveFields) return await User.findById(id);
+      return await User.findById(id).select(
+        "+passwordHash +resetPasswordToken"
+      );
     } catch (err) {
       throw err;
     }
   }
 
-  static async getByEmail(email) {
+  static async getByEmail(email, selectSensitiveFields = false) {
     try {
-      return await User.findOne({ email });
+      if (!selectSensitiveFields)
+        return await User.findOne({ email: email.toLowerCase() });
+      return await User.findOne({ email: email.toLowerCase() }).select(
+        "+passwordHash +resetPasswordToken"
+      );
     } catch (err) {
       throw err;
     }
@@ -41,7 +60,9 @@ class UserRepository {
 
   static async getByResetPasswordToken(resetPasswordToken) {
     try {
-      return await User.findOne({ resetPasswordToken });
+      return await User.findOne({ resetPasswordToken }).populate(
+        "+passwordHash +resetPasswordToken"
+      );
     } catch (err) {
       throw err;
     }
