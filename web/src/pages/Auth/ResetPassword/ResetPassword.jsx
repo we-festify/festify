@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { selectIsLoggedIn } from "../../../state/redux/auth/authSlice";
 import { useSelector } from "react-redux";
-import MorphBackgroundDark from "../../../components/MorphBackgroundDark/MorphBackgroundDark";
+import FixedBackdrop from "../../../components/FixedBackdrop/FixedBackdrop";
 import ResetPasswordForm from "./ResetPasswordForm";
 
 const ResetPassword = () => {
@@ -19,9 +19,9 @@ const ResetPassword = () => {
   }, [isLoggedIn, navigate, location]);
 
   return (
-    <MorphBackgroundDark>
+    <FixedBackdrop>
       <ResetPasswordForm />
-    </MorphBackgroundDark>
+    </FixedBackdrop>
   );
 };
 

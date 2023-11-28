@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./NotFound.module.css";
-import MorphBackgroundDark from "../../components/MorphBackgroundDark/MorphBackgroundDark";
 import { useNavigate } from "react-router-dom";
+import FixedBackdrop from "../../components/FixedBackdrop/FixedBackdrop";
 
 const NotFound = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const NotFound = () => {
   };
 
   return (
-    <MorphBackgroundDark>
+    <FixedBackdrop>
       <div className={styles.container}>
         <h1 className={styles.title}>404</h1>
         <p className={styles.subtitle}>
@@ -22,7 +22,7 @@ const NotFound = () => {
           Go Back
         </button>
       </div>
-    </MorphBackgroundDark>
+    </FixedBackdrop>
   );
 };
 

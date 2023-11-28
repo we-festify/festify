@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./VerifyEmail.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import MorphBackgroundDark from "../../../components/MorphBackgroundDark/MorphBackgroundDark";
 import { useVerifyEmailMutation } from "../../../state/redux/auth/authApi";
+import FixedBackdrop from "../../../components/FixedBackdrop/FixedBackdrop";
 
 const VerifyEmail = () => {
   const location = useLocation();
@@ -30,7 +30,7 @@ const VerifyEmail = () => {
   };
 
   return (
-    <MorphBackgroundDark>
+    <FixedBackdrop>
       <div className={styles.container}>
         <p className={styles.subtitle}>
           {isLoading ? "Verifying..." : error ? error.data?.message : message}
@@ -39,7 +39,7 @@ const VerifyEmail = () => {
           Go to Home
         </button>
       </div>
-    </MorphBackgroundDark>
+    </FixedBackdrop>
   );
 };
 

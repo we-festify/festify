@@ -1,14 +1,14 @@
 import React from "react";
-import MorphBackgroundDark from "../../../../components/MorphBackgroundDark/MorphBackgroundDark";
 import Navbar from "../../components/Navbar/Navbar";
 import EventsPageProvider from "../../../../state/context/ClientEventsPage";
 import { Route, Routes } from "react-router-dom";
 import EventsPage from "./EventsPage";
 import EventDetails from "./EventDetails";
+import FixedBackdrop from "../../../../components/FixedBackdrop/FixedBackdrop";
 
 const EventsIndex = () => {
   return (
-    <MorphBackgroundDark>
+    <FixedBackdrop>
       <Navbar />
       <EventsPageProvider>
         <Routes>
@@ -17,7 +17,7 @@ const EventsIndex = () => {
           <Route path="*" element={<div>Not Found</div>} />
         </Routes>
       </EventsPageProvider>
-    </MorphBackgroundDark>
+    </FixedBackdrop>
   );
 };
 

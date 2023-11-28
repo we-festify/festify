@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Forbidden.module.css";
-import MorphBackgroundDark from "../../components/MorphBackgroundDark/MorphBackgroundDark";
 import { useNavigate } from "react-router-dom";
+import FixedBackdrop from "../../components/FixedBackdrop/FixedBackdrop";
 
 const Forbidden = ({ message }) => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const Forbidden = ({ message }) => {
   };
 
   return (
-    <MorphBackgroundDark>
+    <FixedBackdrop>
       <div className={styles.container}>
         <h1 className={styles.title}>403</h1>
         <p className={styles.subtitle}>
@@ -22,7 +22,7 @@ const Forbidden = ({ message }) => {
           Go Back
         </button>
       </div>
-    </MorphBackgroundDark>
+    </FixedBackdrop>
   );
 };
 
