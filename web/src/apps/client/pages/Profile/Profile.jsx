@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Profile.module.css";
 import Navbar from "../../components/Navbar/Navbar";
-import MorphBackgroundDark from "../../../../components/MorphBackgroundDark/MorphBackgroundDark";
+import FixedBackdrop from "../../../../components/FixedBackdrop/FixedBackdrop";
 import {
   selectUser,
   selectIsVerified,
@@ -36,7 +36,7 @@ const Profile = () => {
   };
 
   return (
-    <MorphBackgroundDark>
+    <FixedBackdrop>
       <Navbar />
       <div className={styles.page}>
         <div className={styles.container}>
@@ -107,7 +107,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-    </MorphBackgroundDark>
+    </FixedBackdrop>
   );
 };
 

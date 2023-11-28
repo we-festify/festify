@@ -1,13 +1,13 @@
 import React from "react";
-import MorphBackgroundDark from "../../../../components/MorphBackgroundDark/MorphBackgroundDark";
 import Navbar from "../../components/Navbar/Navbar";
+import FixedBackdrop from "../../../../components/FixedBackdrop/FixedBackdrop";
 
 const Home = () => {
   return (
-    <MorphBackgroundDark>
+    <FixedBackdrop>
       <Navbar />
       Home
-    </MorphBackgroundDark>
+    </FixedBackdrop>
   );
 };
 

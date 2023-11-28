@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { selectIsLoggedIn } from "../../../state/redux/auth/authSlice";
 import { useSelector } from "react-redux";
 import RegisterForm from "./RegisterForm";
-import MorphBackgroundDark from "../../../components/MorphBackgroundDark/MorphBackgroundDark";
+import FixedBackdrop from "../../../components/FixedBackdrop/FixedBackdrop";
 
 const Register = () => {
   const location = useLocation();
@@ -19,9 +19,9 @@ const Register = () => {
   }, [isLoggedIn, navigate, location]);
 
   return (
-    <MorphBackgroundDark>
+    <FixedBackdrop>
       <RegisterForm />
-    </MorphBackgroundDark>
+    </FixedBackdrop>
   );
 };
 
