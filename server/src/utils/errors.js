@@ -33,11 +33,15 @@ const handleErrors = (err, req, res, next) => {
 };
 
 const sendError = (res, statusCode, message) => {
-  return res?.status(statusCode || 500)?.json({
-    status: "error",
-    statusCode: statusCode || 500,
-    message: message || "Internal Server Error",
-  });
+  try {
+    return res.status(statusCode || 500).json({
+      status: "error",
+      statusCode: statusCode || 500,
+      message: message || "Internal Server Error",
+    });
+  } catch (err) {
+    console.log("Error while sending error response", err.message);
+  }
 };
 
 module.exports = {

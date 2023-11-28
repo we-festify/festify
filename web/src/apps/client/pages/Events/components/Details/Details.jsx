@@ -53,6 +53,20 @@ const Details = () => {
     });
   };
 
+  const handleNavigateToLogin = () => {
+    viewTransition(() => {
+      navigate("/a/login", {
+        state: { from: location.pathname },
+      });
+    });
+  };
+
+  const handleNavigateToProfile = () => {
+    viewTransition(() => {
+      navigate("/profile");
+    });
+  };
+
   return (
     <div
       className={styles.container}
@@ -135,11 +149,17 @@ const Details = () => {
         </div>
         <div className={styles.actions}>
           {!isLoggedIn ? (
-            <button className={styles.secondary} disabled>
+            <button
+              className={styles.secondary}
+              onClick={handleNavigateToLogin}
+            >
               Login to Register
             </button>
           ) : !isVerified ? (
-            <button className={styles.secondary} disabled>
+            <button
+              className={styles.secondary}
+              onClick={handleNavigateToProfile}
+            >
               Verify Email to Register
             </button>
           ) : isRegistered ? (
