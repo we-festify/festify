@@ -5,7 +5,7 @@ const { hashPassword } = require("../utils/password");
 const { validateEmail } = require("../utils/validations");
 
 class UserService {
-  static #checkRequiredFields(user) {
+  static #checkRequiredFields(user, except = []) {
     const requiredFields = [
       "name",
       "email",
@@ -16,7 +16,9 @@ class UserService {
       "degree",
       "yearOfGraduation",
     ];
-    const missingFields = requiredFields.filter((field) => !user[field]);
+    const missingFields = requiredFields.filter(
+      (field) => !user[field] && !except.includes(field)
+    );
     if (missingFields.length) {
       throw new BadRequestError(`Missing ${missingFields.join(", ")}`);
     }
@@ -83,20 +85,27 @@ class UserService {
     }
   }
 
-  static async update(id, user) {
+  static async update(id, user, config = {}) {
     try {
-      this.#checkRequiredFields(user);
+      // check required fields except password
+      this.#checkRequiredFields(user, ["password"]);
       if (!validateEmail(user.email)) {
         throw new BadRequestError("Invalid email");
       }
-      if (user.password.length < 8) {
-        throw new BadRequestError(
-          "Password must be at least 8 characters long"
-        );
+      const existingUser = await UserRepository.getByEmail(user.email);
+      if (existingUser && existingUser.id !== id) {
+        throw new BadRequestError("Email already exists");
       }
-      if (user.organisation) {
-        await this.#checkValidOrganisation(user.organisation);
+      // password can only be updated by the user
+      // from the forgot password route
+      user.password = undefined;
+      // only allow admin to update role and organisation
+      if (config.role !== "admin") {
+        user.role = existingUser.role;
+        user.organisation = existingUser.organisation;
       }
+      await this.#checkValidOrganisation(user.organisation);
+
       const userPayload = await UserRepository.updateById(id, user);
       if (!userPayload) {
         throw new BadRequestError("Invalid user");

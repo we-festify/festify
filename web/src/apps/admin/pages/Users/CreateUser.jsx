@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./Users.module.css";
 import { useCreateUserMutation } from "../../../../state/redux/users/usersApi";
 import Card from "../../../organiser/components/Card/Card";
-import UserForm from "./components/UserForm";
+import Form from "./components/Form";
 import LoadingSpinner from "../../../../components/LoadingSpinner/LoadingSpinner";
 
 const CreateUser = () => {
@@ -28,7 +28,7 @@ const CreateUser = () => {
             Enter the details of the user you want to create.
             {error && <p className={styles.error}>{error?.data?.message}</p>}
           </p>
-          <UserForm
+          <Form
             defaultValue={user}
             onSubmit={handleSubmit}
             onChange={(user) => setUser(user)}

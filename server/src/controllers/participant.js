@@ -40,6 +40,19 @@ class ParticipantController {
       next(error);
     }
   }
+
+  static async getAllByEventId(req, res, next) {
+    try {
+      const { eventId } = req.params;
+      const participations = await ParticipantService.getAllByEventId(eventId);
+      res.status(200).json({
+        message: "Participations fetched successfully",
+        participations,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = ParticipantController;

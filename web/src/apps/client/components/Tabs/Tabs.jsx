@@ -6,8 +6,6 @@ const Tabs = ({ items }) => {
     throw new Error("Tabs must have at least one item");
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  console.log(items);
-
   return (
     <div className={styles.container}>
       <div className={styles.tabs}>

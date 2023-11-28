@@ -18,8 +18,9 @@ const useSearchQuery = ({ data, getRowId, columns }) => {
     const regex = new RegExp(searchQuery, "i");
     const queryResultIds = data
       .filter((row) => {
-        for (let { key } of columns) {
-          if (regex.test(row[key])) return true;
+        for (let { key, modifier } of columns) {
+          const value = modifier ? modifier(row[key]) : row[key];
+          if (regex.test(value)) return true;
         }
         return false;
       })

@@ -16,8 +16,15 @@ const participantsApi = api.injectEndpoints({
       query: () => "/participants/me",
       providesTags: ["Participants"],
     }),
+    getParticipationsByEventId: builder.query({
+      query: (eventId) => `/participants/event/${eventId}`,
+      providesTags: ["Participants"],
+    }),
   }),
 });
 
-export const { useCreateParticipantMutation, useGetParticipationsBySelfQuery } =
-  participantsApi;
+export const {
+  useCreateParticipantMutation,
+  useGetParticipationsBySelfQuery,
+  useGetParticipationsByEventIdQuery,
+} = participantsApi;

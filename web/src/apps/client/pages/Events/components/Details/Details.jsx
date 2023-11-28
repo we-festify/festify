@@ -26,9 +26,7 @@ const Details = () => {
   } = useGetEventByIdQuery(eventId);
   const navigate = useNavigate();
   const today = new Date();
-  const [RegistrationModal, { open }] = useModal(Registration, {
-    event,
-  });
+  const [RegistrationModal, { open }] = useModal(Registration);
   const { data: { participations } = {} } = useGetParticipationsBySelfQuery();
   const isRegistered = participations?.some(
     (participation) => participation.event?._id === eventId
@@ -75,7 +73,7 @@ const Details = () => {
         "--hero-title-transition-name": `hero-title-transition-${eventId}`,
       }}
     >
-      <RegistrationModal />
+      <RegistrationModal event={event} />
       <div className={styles.back} onClick={handleGoBack}>
         <MdChevronLeft /> Back
       </div>

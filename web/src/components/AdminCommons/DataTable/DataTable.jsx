@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import styles from "./DataTable.module.css";
 import usePagination from "../../../hooks/usePagination";
 import useSearchQuery from "./hooks/useSearchQuery";
@@ -173,14 +173,16 @@ const DataTableHead = () => {
 
   return (
     <thead>
-      <DataTableRow id="DATA_TABLE_HEADER">
-        {columns
-          .filter(({ key }) => selectedColumns.includes(key))
-          .map(({ label, key }) => (
-            <DataTableHeader key={key}>{label}</DataTableHeader>
-          ))}
-        {actions && <DataTableHeader></DataTableHeader>}
-      </DataTableRow>
+      {columns.length > 0 && (
+        <DataTableRow id="DATA_TABLE_HEADER">
+          {columns
+            .filter(({ key }) => selectedColumns.includes(key))
+            .map(({ label, key }) => (
+              <DataTableHeader key={key}>{label}</DataTableHeader>
+            ))}
+          {actions && <DataTableHeader></DataTableHeader>}
+        </DataTableRow>
+      )}
     </thead>
   );
 };
@@ -195,8 +197,10 @@ const DataTableBody = () => {
             <DataTableRow key={getRowId(row)} id={getRowId(row)}>
               {columns
                 .filter(({ key }) => selectedColumns.includes(key))
-                .map(({ key }) => (
-                  <DataTableCell key={key}>{row[key]}</DataTableCell>
+                .map(({ modifier, key }) => (
+                  <DataTableCell key={key}>
+                    {modifier ? modifier(row[key]) : row[key]}
+                  </DataTableCell>
                 ))}
             </DataTableRow>
           ))
@@ -211,7 +215,6 @@ const DataTableBody = () => {
 
 const DataTableFooter = () => {
   const {
-    columns,
     currentPage,
     paginatedRows,
     pageLimit,
@@ -283,10 +286,20 @@ const DataTableRow = ({ children, id }) => {
               {Object.keys(actions)
                 .filter((k) => k !== "delete")
                 .map((key) => {
-                  return (
-                    <li key={key} onClick={() => actions[key](id)}>
-                      {key}
-                    </li>
+                  if (typeof actions[key] === "object")
+                    return (
+                      <li key={key} onClick={() => actions[key].action(id)}>
+                        {actions[key].label}
+                      </li>
+                    );
+                  if (typeof actions[key] === "function")
+                    return (
+                      <li key={key} onClick={() => actions[key](id)}>
+                        {key}
+                      </li>
+                    );
+                  throw new Error(
+                    "Invalid action type. Action must be either a function or an object with an action function and a label string"
                   );
                 })}
             </ul>

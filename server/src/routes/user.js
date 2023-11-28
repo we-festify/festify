@@ -21,17 +21,11 @@ router.post(
   RBACMiddleware.requirePermission("user", "create"),
   UserController.create
 );
-
-// TODO: Add RBAC middleware
-// TODO: Add validation middleware for only updating the allowed fields
-// TODO: and only if the user is updating their own profile
-// TODO: cannot update role, organisation, isVerified
-// router.patch(
-//   "/:userId",
-//   RBACMiddleware.requirePermission("user", "update"),
-//   UserController.update
-// );
-
+router.patch(
+  "/:userId",
+  RBACMiddleware.requirePermission("user", "update"),
+  UserController.update
+);
 router.delete(
   "/:userId",
   RBACMiddleware.requireAdmin,
