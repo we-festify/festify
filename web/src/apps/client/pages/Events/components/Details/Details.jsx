@@ -13,6 +13,9 @@ import {
   selectIsVerified,
 } from "../../../../../../state/redux/auth/authSlice";
 import { useGetParticipationsBySelfQuery } from "../../../../../../state/redux/participants/participantsApi";
+import Button from "../../../../atoms/Button";
+import Timeline from "../../../../components/Timeline/Timeline";
+import DetailsSkeleton from "./DetailsSkeleton";
 
 const Details = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -65,6 +68,10 @@ const Details = () => {
     });
   };
 
+  if (isLoading) {
+    return <DetailsSkeleton />;
+  }
+
   return (
     <div
       className={styles.container}
@@ -97,23 +104,13 @@ const Details = () => {
         <h2 className={styles.heading}>Details</h2>
         <p className={styles.text}>{event?.description}</p>
         <h2 className={styles.heading}>Timeline</h2>
-        <div className={styles.timeline}>
-          {event?.timeline?.map((item) => (
-            <div
-              className={
-                styles.item +
-                " " +
-                (new Date(item.time) < today ? styles.past : "")
-              }
-              key={item._id}
-            >
-              <p className={styles.desc}>{item.description}</p>
-              <p className={styles.time}>
-                {formatDateTime(item.time)} <span>({item.venue})</span>
-              </p>
-            </div>
-          ))}
-        </div>
+        <Timeline
+          timeline={event?.timeline?.map((item) => ({
+            time: item.time,
+            title: item.description,
+            subtitle: item.venue,
+          }))}
+        />
         <h2 className={styles.heading}>Other Details</h2>
         <div className={styles.other}>
           <div className={styles.item}>
@@ -147,43 +144,37 @@ const Details = () => {
         </div>
         <div className={styles.actions}>
           {!isLoggedIn ? (
-            <button
-              className={styles.secondary}
-              onClick={handleNavigateToLogin}
-            >
+            <Button variant="secondary" onClick={handleNavigateToLogin}>
               Login to Register
-            </button>
+            </Button>
           ) : !isVerified ? (
-            <button
-              className={styles.secondary}
-              onClick={handleNavigateToProfile}
-            >
+            <Button variant="secondary" onClick={handleNavigateToProfile}>
               Verify Email to Register
-            </button>
+            </Button>
           ) : isRegistered ? (
-            <button className={styles.registered} disabled>
+            <Button variant="success" disabled>
               Registered
-            </button>
+            </Button>
           ) : new Date(event?.registrationsStart) > today ? (
-            <button className={styles.secondary} disabled>
+            <Button variant="secondary" disabled>
               Registration Not Started
-            </button>
+            </Button>
           ) : new Date(event?.registrationsEnd) < today ? (
-            <button className={styles.secondary} disabled>
+            <Button variant="secondary" disabled>
               Registration Closed
-            </button>
+            </Button>
           ) : (
-            <button className={styles.secondary} onClick={handleRegister}>
+            <Button variant="secondary" onClick={handleRegister}>
               Register
-            </button>
+            </Button>
           )}
           {event?.rulebook && (
-            <button
-              className={styles.outline}
+            <Button
+              variant="outline-secondary"
               onClick={handleNavigateToRulebook}
             >
               Rulebook
-            </button>
+            </Button>
           )}
         </div>
         {isRegistered && (

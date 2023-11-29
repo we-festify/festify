@@ -10,8 +10,11 @@ export const useEventsPage = () => useContext(EventsPageContext);
 const EventsPageProvider = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { data: { events } = {}, isSuccess: eventsSuccess } =
-    useGetAllEventsQuery();
+  const {
+    data: { events } = {},
+    isSuccess: eventsSuccess,
+    isLoading: eventsLoading,
+  } = useGetAllEventsQuery();
   const [eventsList, setEventsList] = useState([]);
   const [types, setTypes] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -62,6 +65,7 @@ const EventsPageProvider = ({ children }) => {
     types,
     categories,
     eventsList,
+    eventsLoading,
     suggestions: suggestedEvents.map((event) => ({
       id: event._id,
       name: event.name,

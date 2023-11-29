@@ -1,0 +1,81 @@
+.button {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  max-width: 200px;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.03rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button:disabled {
+  filter: brightness(0.8);
+  cursor: not-allowed;
+}
+
+.button.primary {
+  color: var(--color-text);
+  background-color: var(--color-primary-500);
+}
+
+.button.primary:hover:not(:disabled) {
+  background-color: hsla(var(--color-primary-500-hsl-values), 0.9);
+}
+
+.button.secondary {
+  color: var(--color-text);
+  background-color: var(--color-secondary-500);
+}
+
+.button.secondary:hover:not(:disabled) {
+  background-color: hsla(var(--color-secondary-500-hsl-values), 0.9);
+}
+
+.button.outline-primary {
+  color: var(--color-primary-500);
+  border: 1px solid var(--color-primary-500);
+  background-color: transparent;
+}
+
+.button.outline-primary:hover:not(:disabled) {
+  background-color: hsla(var(--color-primary-500-hsl-values), 0.1);
+}
+
+.button.outline-secondary {
+  color: var(--color-secondary-500);
+  border: 1px solid var(--color-secondary-500);
+  background-color: transparent;
+}
+
+.button.outline-secondary:hover:not(:disabled) {
+  background-color: hsla(var(--color-secondary-500-hsl-values), 0.1);
+}
+
+.button.success {
+  color: var(--color-background-dark);
+  background-color: var(--color-success-500);
+}
+
+.button.success:hover {
+  background-color: var(--color-success-500);
+  cursor: default;
+}
+
+.button.danger {
+  color: var(--color-background-dark);
+  background-color: var(--color-danger-500);
+}
+
+.button.danger:hover {
+  background-color: var(--color-danger-500);
+  cursor: default;
+}
+
+@media screen and (max-width: 768px) {
+  .button {
+    max-width: 100%;
+  }
+}

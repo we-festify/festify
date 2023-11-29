@@ -8,17 +8,25 @@ const Skeleton = ({
   borderRadius,
   animation = "pulse",
   flex,
+  className,
+  style,
+  children,
+  ...props
 }) => {
   return (
     <div
-      className={styles.skeleton + " " + styles[animation]}
+      className={styles.skeleton + " " + styles[animation] + " " + className}
       style={{
         width: variant === "circle" ? Math.max(width, height) : width,
         height: variant === "circle" ? Math.max(width, height) : height,
         borderRadius: variant === "circle" ? "50%" : borderRadius,
         flex: flex,
+        ...style,
       }}
-    ></div>
+      {...props}
+    >
+      {children}
+    </div>
   );
 };
 
