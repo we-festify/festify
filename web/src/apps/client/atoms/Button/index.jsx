@@ -1,9 +1,12 @@
 import React from "react";
 import styles from "./Button.module.css";
 
-const Button = ({ variant = "primary", ...props }) => {
+const Button = ({ variant = "primary", className, ...props }) => {
   return (
-    <button className={`${styles.button} ${styles[variant]}`} {...props} />
+    <button
+      className={`${styles.button} ${styles[variant]} ${className}`}
+      {...props}
+    />
   );
 };
 

@@ -4,6 +4,7 @@ import { useCreateParticipantMutation } from "../../../../../../state/redux/part
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../../../state/redux/auth/authSlice";
 import { toast } from "react-toastify";
+import Button from "../../../../atoms/Button";
 
 const Registration = ({ event = {}, close }) => {
   const user = useSelector(selectUser);
@@ -65,6 +66,12 @@ const Registration = ({ event = {}, close }) => {
       close();
     } catch (err) {
       setError(err.data?.message);
+      toast.error(
+        err.data?.message ||
+          err.error?.message ||
+          (typeof err.data === "string" && err.data) ||
+          "Unable to register"
+      );
     }
   };
 
@@ -136,7 +143,6 @@ const Registration = ({ event = {}, close }) => {
               type="text"
               name="teamMembers"
               id="teamMembers"
-              required
               className={styles.input}
               onChange={handleTeamMembersChange}
               value={membersInput}
@@ -170,9 +176,9 @@ const Registration = ({ event = {}, close }) => {
           </div>
         )}
         {error && <p className={styles.error}>{error}</p>}
-        <button type="submit" className={styles.submit}>
+        <Button variant="secondary" type="submit" className={styles.submit}>
           {event.feesInINR > 0 ? "Pay and Confirm" : "Confirm"}
-        </button>
+        </Button>
       </form>
     </div>
   );

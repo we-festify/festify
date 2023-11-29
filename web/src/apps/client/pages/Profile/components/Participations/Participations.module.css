@@ -7,15 +7,6 @@
   gap: 1rem;
 }
 
-h2.title {
-  font-size: 1.5rem;
-  font-weight: 500;
-  letter-spacing: 0.03rem;
-  color: var(--color-text);
-  font-family: sans-serif;
-  margin: 0;
-}
-
 .participations {
   width: 100%;
   display: grid;

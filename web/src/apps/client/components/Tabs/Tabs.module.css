@@ -7,7 +7,8 @@
 .tabs {
   display: flex;
   gap: 0.3rem;
-  background-color: var(--color-background-dark);
+  -webkit-backdrop-filter: contrast(0.9);
+  backdrop-filter: contrast(0.9);
   border-radius: 0.4rem;
   width: max-content;
   padding: 0.25rem;
@@ -28,6 +29,6 @@
 }
 
 .tab.active {
-  background-color: var(--color-secondary-500);
+  background-color: var(--color-primary-500);
   color: var(--color-text);
 }

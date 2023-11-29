@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./DetailsModal.module.css";
 import { useSelector } from "react-redux";
 import { selectUser } from "./../../../../../../../../state/redux/auth/authSlice";
+import Avatar from "../../../../../../components/Avatar/Avatar";
 
 const DetailsModal = ({ close, participation }) => {
   const user = useSelector(selectUser);
@@ -32,9 +33,7 @@ const DetailsModal = ({ close, participation }) => {
         {members.map((member) => (
           <div key={member._id} className={styles.listTile}>
             <div className={styles.left}>
-              <span className={styles.avatar}>
-                {member.name.charAt(0).toUpperCase()}
-              </span>
+              <Avatar image={member.image} name={member.name} size={40} />
               <div className={styles.info}>
                 <h3 className={styles.name}>{member.name}</h3>
                 <p className={styles.email}>{member.email}</p>

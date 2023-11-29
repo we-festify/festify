@@ -11,6 +11,8 @@ import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { useSendVerificationEmailMutation } from "../../../../state/redux/auth/authApi";
 import { toast } from "react-toastify";
 import Participations from "./components/Participations/Participations";
+import Tabs from "../../components/Tabs/Tabs";
+import Avatar from "../../components/Avatar/Avatar";
 
 const Profile = () => {
   const user = useSelector(selectUser);
@@ -42,6 +44,7 @@ const Profile = () => {
         <div className={styles.container}>
           <div className={styles.left}>
             <div className={styles.profile}>
+              <Avatar image={user?.image} name={user?.name} size={100} />
               <h2 className={styles.name}>{user?.name}</h2>
               <p className={styles.email}>
                 {user?.email}
@@ -103,7 +106,18 @@ const Profile = () => {
             </div>
           </div>
           <div className={styles.right}>
-            <Participations />
+            <Tabs
+              items={[
+                {
+                  label: "Participations",
+                  component: <Participations />,
+                },
+                {
+                  label: "Update Profile",
+                  component: <div>Update Profile</div>,
+                },
+              ]}
+            />
           </div>
         </div>
       </div>
