@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import Participations from "./components/Participations/Participations";
 import Tabs from "../../components/Tabs/Tabs";
 import Avatar from "../../components/Avatar/Avatar";
+import UpdateInfo from "./components/UpdateInfo/UpdateInfo";
 
 const Profile = () => {
   const user = useSelector(selectUser);
@@ -114,11 +115,7 @@ const Profile = () => {
                 },
                 {
                   label: "Update Profile",
-                  component: <div>Update Profile</div>,
-                },
-                {
-                  label: "Change Password",
-                  component: <div>Change Password</div>,
+                  component: <UpdateInfo />,
                 },
               ]}
             />
