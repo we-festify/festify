@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./UpdateInfo.module.css";
 import Grid, { GridItem } from "../../../../../../components/Grid/Grid";
-import Input from "../Input";
+import Input from "../../../../atoms/Input";
 import Button from "../../../../atoms/Button";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -119,11 +119,7 @@ const UpdateInfo = () => {
       </Grid>
       <Grid columns={12}>
         <GridItem sm={12} md={12} lg={12}>
-          <Button
-            variant="primary"
-            type="submit"
-            disabled={isLoading}
-          >
+          <Button variant="primary" type="submit" disabled={isLoading}>
             Update
           </Button>
         </GridItem>
