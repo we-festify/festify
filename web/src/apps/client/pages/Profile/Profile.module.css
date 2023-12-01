@@ -16,6 +16,7 @@
   height: 100%;
   gap: 1rem;
   color: var(--color-text);
+  overflow-y: auto;
 }
 
 .left {

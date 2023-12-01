@@ -44,6 +44,7 @@ const Navbar = () => {
                 className={styles.back}
                 size={32}
                 onClick={handleGoBack}
+                style={{ marginLeft: "-0.7rem" }}
               />
             ) : (
               <div
