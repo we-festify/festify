@@ -89,12 +89,27 @@ const Navbar = () => {
       )}
       <div className={styles.navbar}>
         <div className={styles.left}>
-          {location.pathname.split("/").length > 2 && isPortrait && (
-            <MdChevronLeft
-              className={styles.back}
-              size={32}
-              onClick={handleGoBack}
-            />
+          {isPortrait ? (
+            location.pathname.split("/").length > 2 ? (
+              <MdChevronLeft
+                className={styles.back}
+                size={32}
+                onClick={handleGoBack}
+              />
+            ) : (
+              <div
+                className={
+                  styles.hamburger + " " + (openDrawer ? styles.open : "")
+                }
+                onClick={() => setOpenDrawer(!openDrawer)}
+              >
+                <div className={styles.line}></div>
+                <div className={styles.line}></div>
+                <div className={styles.line}></div>
+              </div>
+            )
+          ) : (
+            ""
           )}
           <Logo />
         </div>
@@ -149,18 +164,6 @@ const Navbar = () => {
             <button className={styles.login} onClick={handleLogin}>
               Login
             </button>
-          )}
-          {isPortrait && (
-            <div
-              className={
-                styles.hamburger + " " + (openDrawer ? styles.open : "")
-              }
-              onClick={() => setOpenDrawer(!openDrawer)}
-            >
-              <div className={styles.line}></div>
-              <div className={styles.line}></div>
-              <div className={styles.line}></div>
-            </div>
           )}
         </div>
       </div>

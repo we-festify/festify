@@ -8,7 +8,7 @@
 }
 
 .wrapper .navbar {
-  padding: 0.6rem 1rem;
+  padding: 0.6rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -120,7 +120,7 @@
 }
 
 .hamburger {
-  margin-left: 1rem;
+  margin-right: 1rem;
   cursor: pointer;
 }
 
@@ -165,7 +165,7 @@
   background-color: var(--color-navbar-drawer);
   color: var(--color-text);
   z-index: 100;
-  transform: translateX(100%);
+  transform: translateX(-100%);
   transition: transform 0.2s ease-in-out;
 }
 
@@ -179,7 +179,7 @@
   align-items: flex-start;
   list-style: none;
   padding: 0;
-  margin: 2rem 1rem;
+  margin: 2rem;
 }
 
 .drawer .navlinks .icon svg {

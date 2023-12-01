@@ -116,6 +116,10 @@ const Profile = () => {
                   label: "Update Profile",
                   component: <div>Update Profile</div>,
                 },
+                {
+                  label: "Change Password",
+                  component: <div>Change Password</div>,
+                },
               ]}
             />
           </div>

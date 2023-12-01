@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { selectUser } from "./../../../../state/redux/auth/authSlice";
 import { useSelector } from "react-redux";
 import Logo from "./../../../../components/Logo/Logo";
 import { useAdminSidebar } from "../../../../state/context/AdminSidebar";
+import { MdChevronLeft } from "react-icons/md";
+import { viewTransition } from "../../../../utils/view_transition";
 
 const Navbar = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [isPortrait, setIsPortrait] = useState(
     window.matchMedia("(orientation: portrait)").matches
   );
@@ -25,10 +29,37 @@ const Navbar = () => {
     };
   }, []);
 
+  const handleGoBack = (e) => {
+    e.preventDefault();
+    navigate(-1);
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.navbar}>
         <div className={styles.left}>
+          {isPortrait ? (
+            location.pathname.split("/").length > 2 ? (
+              <MdChevronLeft
+                className={styles.back}
+                size={32}
+                onClick={handleGoBack}
+              />
+            ) : (
+              <div
+                className={
+                  styles.hamburger + " " + (openDrawer ? styles.open : "")
+                }
+                onClick={() => setOpenDrawer(!openDrawer)}
+              >
+                <div className={styles.line}></div>
+                <div className={styles.line}></div>
+                <div className={styles.line}></div>
+              </div>
+            )
+          ) : (
+            ""
+          )}
           {isPortrait && <Logo light={false} />}
         </div>
         <div className={styles.right}>
@@ -64,18 +95,6 @@ const Navbar = () => {
                 {/* <img className={styles.avatar} src={user.avatar} alt="avatar" /> */}
               </span>
             </Link>
-          )}
-          {isPortrait && (
-            <div
-              className={
-                styles.hamburger + " " + (openDrawer ? styles.open : "")
-              }
-              onClick={() => setOpenDrawer(!openDrawer)}
-            >
-              <div className={styles.line}></div>
-              <div className={styles.line}></div>
-              <div className={styles.line}></div>
-            </div>
           )}
         </div>
       </div>
