@@ -4,6 +4,10 @@
   gap: 0.8rem;
 }
 
+.tabsContainer {
+  overflow-x: auto; /* Enable horizontal scrolling */
+}
+
 .tabs {
   display: flex;
   gap: 0.3rem;

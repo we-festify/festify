@@ -8,18 +8,22 @@ const Tabs = ({ items }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.tabs}>
-        {items.map((item, index) => (
-          <div
-            key={item.label}
-            className={
-              styles.tab + " " + (index === selectedIndex ? styles.active : "")
-            }
-            onClick={() => setSelectedIndex(index)}
-          >
-            {item.label}
-          </div>
-        ))}
+      <div className={styles.tabsContainer}>
+        <div className={styles.tabs}>
+          {items.map((item, index) => (
+            <div
+              key={item.label}
+              className={
+                styles.tab +
+                " " +
+                (index === selectedIndex ? styles.active : "")
+              }
+              onClick={() => setSelectedIndex(index)}
+            >
+              {item.label}
+            </div>
+          ))}
+        </div>
       </div>
       <div className={styles.content}>{items[selectedIndex]?.component}</div>
     </div>
