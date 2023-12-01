@@ -7,7 +7,7 @@ const Tabs = ({ items }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   return (
-    <div className={styles.container}>
+    <>
       <div className={styles.tabsContainer}>
         <div className={styles.tabs}>
           {items.map((item, index) => (
@@ -26,7 +26,7 @@ const Tabs = ({ items }) => {
         </div>
       </div>
       <div className={styles.content}>{items[selectedIndex]?.component}</div>
-    </div>
+    </>
   );
 };
 

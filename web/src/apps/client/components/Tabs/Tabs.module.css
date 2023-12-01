@@ -1,9 +1,3 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
 .tabsContainer {
   overflow-x: auto; /* Enable horizontal scrolling */
 }
