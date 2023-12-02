@@ -1,0 +1,51 @@
+<svg width="350" height="390" viewBox="0 0 350 390" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Property 1=Long hair">
+<path id="hair back" fill-rule="evenodd" clip-rule="evenodd" d="M174.845 33C214.684 33 244.602 55.5966 258.993 90.596C289.492 98.4275 314 123.275 314 155.5C314 166.937 310.7 178.168 305.053 188.34C325.356 204.978 337.715 228.333 337.015 253.875C335.685 302.458 302.358 344.96 244.389 343.373C219.706 342.697 194.534 334.136 173.869 320.776C152.886 334.486 127.069 343 101.995 343C45.3861 343 14 299.601 14 251C14 229.886 22.6609 210.509 37.099 195.345C30.7509 184.653 27 172.694 27 160.5C27 128.043 51.8615 103.071 82.6645 95.43C99.6388 58.4007 134.543 33 174.845 33Z" fill="#323232"/>
+<g id="neck">
+<rect id="neck_2" x="141" y="185" width="68.2139" height="128.131" rx="13.7769"  stroke="#323232" stroke-width="4" stroke-linecap="round"/>
+<path id="neck shadow" d="M142.896 267.634V226.678H211.5C206.333 247.68 175.523 268.768 142.896 267.634Z" fill="#7E7E7E" fill-opacity="0.45"/>
+</g>
+<g id="Face">
+<g id="ears">
+<path id="left ear" d="M132 174.5C132 186.189 121.45 196 108 196C94.5501 196 84 186.189 84 174.5C84 162.811 94.5501 153 108 153C121.45 153 132 162.811 132 174.5Z"  stroke="#323232" stroke-width="4"/>
+<path id="right ear" d="M219 174.5C219 186.189 229.55 196 243 196C256.45 196 267 186.189 267 174.5C267 162.811 256.45 153 243 153C229.55 153 219 162.811 219 174.5Z"  stroke="#323232" stroke-width="4"/>
+</g>
+<path id="face" d="M242 164.261C242 186.713 236.042 203.834 224.986 215.337C213.941 226.828 197.532 233 176.03 233C154.526 233 137.842 226.827 126.529 215.321C115.211 203.81 109 186.69 109 164.261C109 141.804 115.232 118.379 126.779 100.629C138.311 82.9028 155.009 71 176.03 71C197.043 71 213.472 82.8934 224.74 100.612C236.025 118.358 242 141.787 242 164.261Z"  stroke="#323232" stroke-width="4" stroke-linecap="round"/>
+<path id="nose" d="M176 163C174.029 169.812 173 173.371 173 180.458C175.64 181.72 178.163 182.036 182.5 182" stroke="#323232" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="eyes">
+<g id="Left">
+<path id="left" d="M140.768 174.225C142.829 174.225 144.657 173.11 145.953 171.382C147.249 169.655 148.035 167.291 148.035 164.702C148.035 162.112 147.249 159.748 145.953 158.021C144.657 156.293 142.829 155.178 140.768 155.178C138.706 155.178 136.878 156.293 135.582 158.021C134.287 159.748 133.5 162.112 133.5 164.702C133.5 167.291 134.287 169.655 135.582 171.382C136.878 173.11 138.706 174.225 140.768 174.225Z" fill="#323232" stroke="#323232" stroke-linecap="round"/>
+<circle id="hightlight" cx="143.616" cy="162.487" r="2.5"  stroke="#323232"/>
+</g>
+<g id="right">
+<path id="right_2" d="M212.768 174.225C214.829 174.225 216.657 173.11 217.953 171.382C219.249 169.655 220.035 167.291 220.035 164.702C220.035 162.112 219.249 159.748 217.953 158.021C216.657 156.293 214.829 155.178 212.768 155.178C210.706 155.178 208.878 156.293 207.582 158.021C206.287 159.748 205.5 162.112 205.5 164.702C205.5 167.291 206.287 169.655 207.582 171.382C208.878 173.11 210.706 174.225 212.768 174.225Z" fill="#323232" stroke="#323232" stroke-linecap="round"/>
+<circle id="highlight" cx="215.616" cy="162.487" r="2" />
+</g>
+</g>
+<path id="mouth" d="M168 197.5C171 201.167 178.8 206.3 186 197.5" stroke="#323232" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="blushes">
+<g id="Ellipse 46" filter="url(#filter0_f_23_1012)">
+<ellipse cx="136.5" cy="192.5" rx="9.5" ry="5.5" fill="#FC9D80"/>
+</g>
+<g id="Ellipse 47" filter="url(#filter1_f_23_1012)">
+<ellipse cx="215.5" cy="192.5" rx="9.5" ry="5.5" fill="#FC9D80"/>
+</g>
+</g>
+</g>
+<g id="Female hair bangs/hair bangs 1">
+<path id="hair bangs" d="M190 95C168.149 137.401 150.136 146.762 103 151C93.5001 86.5 108.661 72.8036 179.5 62C237.144 81.2209 238.619 99.613 240 151C205.433 141.149 202.344 126.803 190 95Z" fill="#323232"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_23_1012" x="115" y="175" width="43" height="35" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="6" result="effect1_foregroundBlur_23_1012"/>
+</filter>
+<filter id="filter1_f_23_1012" x="194" y="175" width="43" height="35" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="6" result="effect1_foregroundBlur_23_1012"/>
+</filter>
+</defs>
+</svg>

@@ -23,7 +23,6 @@ const UpdateInfo = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(value);
     try {
       const data = await updateUser({
         userId: user?._id,
@@ -48,6 +47,21 @@ const UpdateInfo = () => {
       <Grid columns={12}>
         <GridItem sm={12} md={6} lg={4}>
           <Input
+            variant="avatar"
+            label="Avatar"
+            name="avatar"
+            defaultValue={{
+              avatarCode: user?.avatarCode,
+              image: user?.image,
+              name: user?.name,
+            }}
+            onChange={({ avatarCode }) =>
+              handleChange("avatarCode", avatarCode)
+            }
+          />
+        </GridItem>
+        <GridItem sm={12} md={6} lg={4}>
+          <Input
             variant="text"
             label="Name"
             name="name"
@@ -62,7 +76,7 @@ const UpdateInfo = () => {
             type="email"
             name="email"
             defaultValue={user?.email}
-            onChange={(value) => handleChange("email", value)}
+            readOnly={true}
           />
         </GridItem>
         <GridItem sm={12} md={6} lg={4}>

@@ -1,0 +1,55 @@
+<svg width="350" height="390" viewBox="0 0 350 390" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Property 1=Short hair with bangs">
+<path id="hair back" d="M87 146C87 97.3989 126.399 58 175 58C223.601 58 263 97.3989 263 146V243C263 258.464 250.464 271 235 271H115C99.536 271 87 258.464 87 243V146Z" fill="#323232"/>
+<g id="ears">
+<path id="left ear" d="M132 181.5C132 193.189 121.45 203 108 203C94.5501 203 84 193.189 84 181.5C84 169.811 94.5501 160 108 160C121.45 160 132 169.811 132 181.5Z"  stroke="#323232" stroke-width="4"/>
+<path id="right ear" d="M219 181.5C219 193.189 229.55 203 243 203C256.45 203 267 193.189 267 181.5C267 169.811 256.45 160 243 160C229.55 160 219 169.811 219 181.5Z"  stroke="#323232" stroke-width="4"/>
+</g>
+<g id="neck">
+<rect id="neck_2" x="141" y="185" width="68.2139" height="128.131" rx="13.7769"  stroke="#323232" stroke-width="4" stroke-linecap="round"/>
+<path id="neck shadow" d="M142.896 267.634V226.678H211.5C206.333 247.68 175.523 268.768 142.896 267.634Z" fill="#7E7E7E" fill-opacity="0.45"/>
+</g>
+<g id="Face">
+<g id="ears_2">
+<path id="left ear_2" d="M131 181.5C131 193.189 120.45 203 107 203C93.5501 203 83 193.189 83 181.5C83 169.811 93.5501 160 107 160C120.45 160 131 169.811 131 181.5Z"  stroke="#323232" stroke-width="4"/>
+<path id="right ear_2" d="M218 181.5C218 193.189 228.55 203 242 203C255.45 203 266 193.189 266 181.5C266 169.811 255.45 160 242 160C228.55 160 218 169.811 218 181.5Z"  stroke="#323232" stroke-width="4"/>
+</g>
+<path id="face" d="M241 171.261C241 193.713 235.042 210.834 223.986 222.337C212.941 233.828 196.532 240 175.03 240C153.526 240 136.842 233.827 125.529 222.321C114.211 210.81 108 193.69 108 171.261C108 148.804 114.232 125.379 125.779 107.629C137.311 89.9028 154.009 78 175.03 78C196.043 78 212.472 89.8934 223.74 107.612C235.025 125.358 241 148.787 241 171.261Z"  stroke="#323232" stroke-width="4" stroke-linecap="round"/>
+<path id="nose" d="M175 170C173.029 176.812 172 180.371 172 187.458C174.64 188.72 177.163 189.036 181.5 189" stroke="#323232" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="eyes">
+<g id="Left">
+<path id="left" d="M139.768 181.225C141.829 181.225 143.657 180.11 144.953 178.382C146.249 176.655 147.035 174.291 147.035 171.702C147.035 169.112 146.249 166.748 144.953 165.021C143.657 163.293 141.829 162.178 139.768 162.178C137.706 162.178 135.878 163.293 134.582 165.021C133.287 166.748 132.5 169.112 132.5 171.702C132.5 174.291 133.287 176.655 134.582 178.382C135.878 180.11 137.706 181.225 139.768 181.225Z" fill="#323232" stroke="#323232" stroke-linecap="round"/>
+<circle id="hightlight" cx="142.616" cy="169.487" r="2.5"  stroke="#323232"/>
+</g>
+<g id="right">
+<path id="right_2" d="M211.768 181.225C213.829 181.225 215.657 180.11 216.953 178.382C218.249 176.655 219.035 174.291 219.035 171.702C219.035 169.112 218.249 166.748 216.953 165.021C215.657 163.293 213.829 162.178 211.768 162.178C209.706 162.178 207.878 163.293 206.582 165.021C205.287 166.748 204.5 169.112 204.5 171.702C204.5 174.291 205.287 176.655 206.582 178.382C207.878 180.11 209.706 181.225 211.768 181.225Z" fill="#323232" stroke="#323232" stroke-linecap="round"/>
+<circle id="highlight" cx="214.616" cy="169.487" r="2" />
+</g>
+</g>
+<path id="mouth" d="M167 204.5C170 208.167 177.8 213.3 185 204.5" stroke="#323232" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="blushes">
+<g id="Ellipse 46" filter="url(#filter0_f_23_1017)">
+<ellipse cx="135.5" cy="199.5" rx="9.5" ry="5.5" fill="#FC9D80"/>
+</g>
+<g id="Ellipse 47" filter="url(#filter1_f_23_1017)">
+<ellipse cx="214.5" cy="199.5" rx="9.5" ry="5.5" fill="#FC9D80"/>
+</g>
+</g>
+</g>
+<g id="Female hair bangs">
+<path id="hair front" d="M239.451 123.5C243.669 119.087 243.877 114.101 243.877 108.886C243.877 90.1714 213.469 75 175.959 75C138.449 75 108.041 90.1714 108.041 108.886C108.041 114.661 110.937 120.099 116.043 124.858C109.516 127.728 105 133.91 105 141.075C105 150.975 113.623 159 124.26 159C129.612 159 134.455 156.968 137.945 153.688C141.436 156.968 146.278 159 151.63 159C156.982 159 161.825 156.968 165.315 153.688C168.806 156.968 173.648 159 179 159C184.352 159 189.194 156.968 192.685 153.688C196.175 156.968 201.018 159 206.37 159C211.722 159 216.564 156.968 220.055 153.688C223.545 156.968 228.388 159 233.74 159C244.377 159 253 150.975 253 141.075C253 132.306 248.388 125.053 239.451 123.5Z" fill="#323232"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_23_1017" x="114" y="182" width="43" height="35" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="6" result="effect1_foregroundBlur_23_1017"/>
+</filter>
+<filter id="filter1_f_23_1017" x="193" y="182" width="43" height="35" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="6" result="effect1_foregroundBlur_23_1017"/>
+</filter>
+</defs>
+</svg>

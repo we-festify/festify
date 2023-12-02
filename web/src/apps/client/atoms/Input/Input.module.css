@@ -37,7 +37,7 @@
 }
 
 .input:read-only:focus {
-  border: 2px solid var(--color-gray-300);
+  border: 2px solid transparent;
 }
 
 .label {

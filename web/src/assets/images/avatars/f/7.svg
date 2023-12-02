@@ -1,0 +1,65 @@
+<svg width="350" height="390" viewBox="0 0 350 390" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Property 1=Female Hijab">
+<g id="neck">
+<rect id="neck_2" x="141" y="185" width="68.2139" height="128.131" rx="13.7769"  stroke="#323232" stroke-width="4" stroke-linecap="round"/>
+<path id="neck shadow" d="M142.896 267.634V226.678H211.5C206.333 247.68 175.523 268.768 142.896 267.634Z" fill="#7E7E7E" fill-opacity="0.45"/>
+</g>
+<g id="Face">
+<g id="ears">
+<path id="left ear" d="M132 181.5C132 193.189 121.45 203 108 203C94.5501 203 84 193.189 84 181.5C84 169.811 94.5501 160 108 160C121.45 160 132 169.811 132 181.5Z"  stroke="#323232" stroke-width="4"/>
+<path id="right ear" d="M219 181.5C219 193.189 229.55 203 243 203C256.45 203 267 193.189 267 181.5C267 169.811 256.45 160 243 160C229.55 160 219 169.811 219 181.5Z"  stroke="#323232" stroke-width="4"/>
+</g>
+<path id="face" d="M242 171.261C242 193.713 236.042 210.834 224.986 222.337C213.941 233.828 197.532 240 176.03 240C154.526 240 137.842 233.827 126.529 222.321C115.211 210.81 109 193.69 109 171.261C109 148.804 115.232 125.379 126.779 107.629C138.311 89.9028 155.009 78 176.03 78C197.043 78 213.472 89.8934 224.74 107.612C236.025 125.358 242 148.787 242 171.261Z"  stroke="#323232" stroke-width="4" stroke-linecap="round"/>
+<path id="nose" d="M176 170C174.029 176.812 173 180.371 173 187.458C175.64 188.72 178.163 189.036 182.5 189" stroke="#323232" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="eyes">
+<g id="Left">
+<path id="left" d="M140.768 181.225C142.829 181.225 144.657 180.11 145.953 178.382C147.249 176.655 148.035 174.291 148.035 171.702C148.035 169.112 147.249 166.748 145.953 165.021C144.657 163.293 142.829 162.178 140.768 162.178C138.706 162.178 136.878 163.293 135.582 165.021C134.287 166.748 133.5 169.112 133.5 171.702C133.5 174.291 134.287 176.655 135.582 178.382C136.878 180.11 138.706 181.225 140.768 181.225Z" fill="#323232" stroke="#323232" stroke-linecap="round"/>
+<circle id="hightlight" cx="143.616" cy="169.487" r="2.5"  stroke="#323232"/>
+</g>
+<g id="right">
+<path id="right_2" d="M212.768 181.225C214.829 181.225 216.657 180.11 217.953 178.382C219.249 176.655 220.035 174.291 220.035 171.702C220.035 169.112 219.249 166.748 217.953 165.021C216.657 163.293 214.829 162.178 212.768 162.178C210.706 162.178 208.878 163.293 207.582 165.021C206.287 166.748 205.5 169.112 205.5 171.702C205.5 174.291 206.287 176.655 207.582 178.382C208.878 180.11 210.706 181.225 212.768 181.225Z" fill="#323232" stroke="#323232" stroke-linecap="round"/>
+<circle id="highlight" cx="215.616" cy="169.487" r="2" />
+</g>
+</g>
+<path id="mouth" d="M168 204.5C171 208.167 178.8 213.3 186 204.5" stroke="#323232" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="blushes">
+<g id="Ellipse 46" filter="url(#filter0_f_23_1018)">
+<ellipse cx="136.5" cy="199.5" rx="9.5" ry="5.5" fill="#FC9D80"/>
+</g>
+<g id="Ellipse 47" filter="url(#filter1_f_23_1018)">
+<ellipse cx="215.5" cy="199.5" rx="9.5" ry="5.5" fill="#FC9D80"/>
+</g>
+</g>
+</g>
+<g id="Female hair bangs/hair bangs 1">
+<path id="hair bangs" d="M193 102C171.149 144.401 153.136 153.762 106 158C96.5001 93.5 111.661 79.8036 182.5 69C240.144 88.2209 241.619 106.613 243 158C208.433 148.149 205.344 133.803 193 102Z" fill="#323232"/>
+</g>
+<g id="Hijab">
+<path id="hijab" fill-rule="evenodd" clip-rule="evenodd" d="M177.376 291C234.262 291 280.376 234.14 280.376 164C280.376 93.8598 234.262 46 177.376 46C120.491 46 74.3763 93.8598 74.3763 164C74.3763 234.14 120.491 291 177.376 291ZM175.376 235C212.379 235 242.376 202.988 242.376 163.5C242.376 124.012 212.379 92 175.376 92C138.373 92 108.376 124.012 108.376 163.5C108.376 202.988 138.373 235 175.376 235Z" fill="#323232"/>
+<g id="hijab_2" filter="url(#filter2_d_23_1018)">
+<path d="M110.931 235C96.6298 235 85.0365 249.327 85.0365 267.001C85.0365 269.868 85.3439 272.657 85.9223 275.315C81.2307 281.769 73.0841 285.5 74.0842 300.5C75.0842 315.5 106.584 368.554 130.584 372C188.982 380.386 187.56 340.958 236.084 333C250.605 330.619 277.084 318.102 277.084 300C277.084 289.612 270.908 280.396 265.324 273.683C265.645 271.654 265.813 269.562 265.813 267.429C265.813 249.519 254.065 235 239.572 235H110.931Z" fill="#323232"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_23_1018" x="115" y="182" width="43" height="35" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="6" result="effect1_foregroundBlur_23_1018"/>
+</filter>
+<filter id="filter1_f_23_1018" x="194" y="182" width="43" height="35" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="6" result="effect1_foregroundBlur_23_1018"/>
+</filter>
+<filter id="filter2_d_23_1018" x="62" y="225" width="227.084" height="162.163" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="2"/>
+<feGaussianBlur stdDeviation="6"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.0784314 0 0 0 0 0.137255 0 0 0 0 0.490196 0 0 0 0.16 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_23_1018"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_23_1018" result="shape"/>
+</filter>
+</defs>
+</svg>

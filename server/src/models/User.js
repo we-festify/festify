@@ -35,6 +35,9 @@ const userSchema = mongoose.Schema({
     type: Number,
     required: [true, "Year of graduation is required"],
   },
+  avatarCode: {
+    type: String,
+  },
   role: {
     type: String,
     enum: ["admin", "organiser", "user"],

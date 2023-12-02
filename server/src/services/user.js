@@ -89,12 +89,13 @@ class UserService {
     try {
       // check required fields except password
       this.#checkRequiredFields(user, ["password"]);
-      if (!validateEmail(user.email)) {
-        throw new BadRequestError("Invalid email");
+      // cannot update email
+      const existingUser = await UserRepository.getById(id);
+      if (!existingUser) {
+        throw new BadRequestError("Invalid user");
       }
-      const existingUser = await UserRepository.getByEmail(user.email);
-      if (existingUser && existingUser.id !== id) {
-        throw new BadRequestError("Email already exists");
+      if (existingUser.email !== user.email) {
+        throw new BadRequestError("Cannot update email");
       }
       // password can only be updated by the user
       // from the forgot password route

@@ -1,13 +1,44 @@
 .avatar {
   width: 100%;
   height: 100%;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
   background-color: hsla(var(--color-primary-500-hsl-values), 0.1);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   letter-spacing: 2px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.face,
+.cloth {
+  height: var(--size);
+  width: var(--size);
+  position: relative;
+}
+
+.face svg {
+  height: auto;
+  width: 100%;
+  position: absolute;
+  top: -15%;
+  left: 50%;
+  transform: translateX(-50%);
+  fill: var(--fill-face);
+}
+
+.cloth svg {
+  height: auto;
+  width: 70%;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  fill: var(--fill-cloth);
 }

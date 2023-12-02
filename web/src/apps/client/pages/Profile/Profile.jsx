@@ -45,7 +45,7 @@ const Profile = () => {
         <div className={styles.container}>
           <div className={styles.left}>
             <div className={styles.profile}>
-              <Avatar image={user?.image} name={user?.name} size={100} />
+              <Avatar image={user?.image} name={user?.name} avatarCode={user?.avatarCode} size={100} />
               <h2 className={styles.name}>{user?.name}</h2>
               <p className={styles.email}>
                 {user?.email}
