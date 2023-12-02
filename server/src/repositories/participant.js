@@ -41,6 +41,18 @@ class ParticipantRepository {
       throw err;
     }
   }
+
+  static async getAllByEventId(eventId) {
+    try {
+      return await Participant.find({
+        event: eventId,
+      })
+        .populate("leader")
+        .populate("members");
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 module.exports = ParticipantRepository;

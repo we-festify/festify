@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./useModal.module.css";
 import { viewTransition } from "../../utils/view_transition";
 
-const useModal = (Component, props = {}) => {
+const useModal = (Component) => {
   const modalRef = useRef();
 
   const open = () => {
@@ -19,24 +19,8 @@ const useModal = (Component, props = {}) => {
     });
   };
 
-  // useEffect(() => {
-  //   const handleOutsideClick = (e) => {
-  //     if (e.target === modalRef.current) {
-  //       close();
-  //     }
-  //   };
-  //   if (modalRef.current) {
-  //     modalRef.current.addEventListener("click", handleOutsideClick);
-  //   }
-  //   return () => {
-  //     if (modalRef.current) {
-  //       modalRef.current.removeEventListener("click", handleOutsideClick);
-  //     }
-  //   };
-  // }, []);
-
   return [
-    () => (
+    (props) => (
       <dialog ref={modalRef} className={styles.dialog}>
         <Component {...props} close={close} />
       </dialog>

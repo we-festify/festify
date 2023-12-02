@@ -14,9 +14,7 @@ const Card = ({ participation }) => {
   const leader = members.find((member) => member._id === participation.leader);
   const isPortrait = useMediaQuery("(orientation: portrait)");
   const navigate = useNavigate();
-  const [ParticipationDetailsModal, { open }] = useModal(DetailsModal, {
-    participation,
-  });
+  const [ParticipationDetailsModal, { open }] = useModal(DetailsModal);
 
   const handleShareEvent = () => {
     if (navigator.share) {
@@ -51,7 +49,7 @@ const Card = ({ participation }) => {
 
   return (
     <div className={styles.container}>
-      <ParticipationDetailsModal />
+      <ParticipationDetailsModal participation={participation} />
       <div
         className={styles.imageCard}
         onClick={handleNavigateToEventDetails}

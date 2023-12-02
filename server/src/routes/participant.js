@@ -9,12 +9,17 @@ router.post(
   AuthMiddleware.requireVerified,
   ParticipantController.create
 );
-
 router.get(
   "/me",
   AuthMiddleware.requireLoggedIn,
   AuthMiddleware.requireVerified,
   ParticipantController.getAllParticipationsBySelf
+);
+router.get(
+  "/event/:eventId",
+  AuthMiddleware.requireLoggedIn,
+  AuthMiddleware.requireVerified,
+  ParticipantController.getAllByEventId
 );
 
 module.exports = router;

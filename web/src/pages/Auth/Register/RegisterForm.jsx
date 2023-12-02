@@ -145,7 +145,7 @@ const RegisterForm = () => {
 
   const handleNext = (e) => {
     e.preventDefault();
-    if (hasNext()) {
+    if (hasNext() && pages[page].validate()) {
       setPage(page + 1);
     }
   };

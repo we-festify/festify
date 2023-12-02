@@ -59,6 +59,7 @@ h2.title {
   .categories {
     padding: 0 1rem;
     padding-top: 0.2rem;
+    padding-bottom: 0.5rem;
     display: flex;
     overflow-x: auto;
     gap: 1rem;

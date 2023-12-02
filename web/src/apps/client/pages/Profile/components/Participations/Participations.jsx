@@ -15,7 +15,6 @@ const Participations = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Participations</h2>
       <div className={styles.participations}>
         {participations?.length === 0 && <p>No participations</p>}
         {participations?.map((participation) => (

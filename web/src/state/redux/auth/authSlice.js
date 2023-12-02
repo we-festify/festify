@@ -31,6 +31,9 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
       state.isVerified = false;
     },
+    setUser(state, action) {
+      state.user = action.payload;
+    },
   },
 });
 
@@ -41,6 +44,6 @@ export const selectIsAdmin = (state) => state.auth.isAdmin;
 export const selectIsOrganiser = (state) => state.auth.isOrganiser;
 export const selectIsVerified = (state) => state.auth.isVerified;
 
-export const { setCredentials, clearCredentials } = authSlice.actions;
+export const { setCredentials, clearCredentials, setUser } = authSlice.actions;
 
 export default authSlice.reducer;

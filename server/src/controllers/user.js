@@ -1,4 +1,5 @@
 const UserService = require("../services/user");
+const { BadRequestError } = require("../utils/errors");
 
 class UserController {
   static async getAll(req, res, next) {
@@ -37,10 +38,11 @@ class UserController {
     try {
       const { userId } = req.params;
       const { user } = req.body;
+      const { role } = req.user;
       if (!user) {
         throw new BadRequestError("Missing user");
       }
-      const userPayload = await UserService.update(userId, user);
+      const userPayload = await UserService.update(userId, user, { role });
       res.status(200).json({ user: userPayload });
     } catch (err) {
       next(err);

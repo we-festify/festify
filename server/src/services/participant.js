@@ -111,6 +111,18 @@ class ParticipantService {
       throw err;
     }
   }
+
+  static async getAllByEventId(eventId) {
+    try {
+      if (!eventId) throw new BadRequestError("Missing eventId");
+      const participations = await ParticipantRepository.getAllByEventId(
+        eventId
+      );
+      return participations;
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 module.exports = ParticipantService;

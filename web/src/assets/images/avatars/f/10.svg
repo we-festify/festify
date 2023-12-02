@@ -1,0 +1,67 @@
+<svg width="350" height="350" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Property 1=Short hair and cap">
+<g id="neck">
+<rect id="neck_2" x="141" y="185" width="68.2139" height="128.131" rx="13.7769"  stroke="#323232" stroke-width="4" stroke-linecap="round"/>
+<path id="neck shadow" d="M142.896 267.634V226.678H211.5C206.333 247.68 175.523 268.768 142.896 267.634Z" fill="#7E7E7E" fill-opacity="0.45"/>
+</g>
+<g id="face">
+<g id="Face">
+<g id="ears">
+<path id="left ear" d="M132 179.178C132 190.867 121.45 200.678 108 200.678C94.5501 200.678 84 190.867 84 179.178C84 167.489 94.5501 157.678 108 157.678C121.45 157.678 132 167.489 132 179.178Z"  stroke="#323232" stroke-width="4"/>
+<path id="right ear" d="M215 179.178C215 190.867 225.55 200.678 239 200.678C252.45 200.678 263 190.867 263 179.178C263 167.489 252.45 157.678 239 157.678C225.55 157.678 215 167.489 215 179.178Z"  stroke="#323232" stroke-width="4"/>
+</g>
+<path id="face_2" d="M240 172.261C240 194.713 234.042 211.834 222.986 223.337C211.941 234.828 195.532 241 174.03 241C152.526 241 135.842 234.827 124.529 223.321C113.211 211.81 107 194.69 107 172.261C107 149.804 113.232 126.379 124.779 108.629C136.311 90.9028 153.009 79 174.03 79C195.043 79 211.472 90.8934 222.74 108.612C234.025 126.358 240 149.787 240 172.261Z"  stroke="#323232" stroke-width="4" stroke-linecap="round"/>
+<path id="nose" d="M174 188C172.029 194.812 171 198.371 171 205.458C173.64 206.72 176.163 207.036 180.5 207" stroke="#323232" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="eyes">
+<g id="left">
+<path id="left eye" d="M138.768 201.225C140.829 201.225 142.657 200.11 143.953 198.382C145.249 196.655 146.035 194.291 146.035 191.702C146.035 189.112 145.249 186.748 143.953 185.021C142.657 183.293 140.829 182.178 138.768 182.178C136.706 182.178 134.878 183.293 133.582 185.021C132.287 186.748 131.5 189.112 131.5 191.702C131.5 194.291 132.287 196.655 133.582 198.382C134.878 200.11 136.706 201.225 138.768 201.225Z" fill="#323232" stroke="#323232" stroke-linecap="round"/>
+<circle id="Ellipse 19" cx="141.616" cy="189.487" r="2.5"  stroke="#323232"/>
+</g>
+<g id="right">
+<path id="left eye_2" d="M210.768 201.225C212.829 201.225 214.657 200.11 215.953 198.382C217.249 196.655 218.035 194.291 218.035 191.702C218.035 189.112 217.249 186.748 215.953 185.021C214.657 183.293 212.829 182.178 210.768 182.178C208.706 182.178 206.878 183.293 205.582 185.021C204.287 186.748 203.5 189.112 203.5 191.702C203.5 194.291 204.287 196.655 205.582 198.382C206.878 200.11 208.706 201.225 210.768 201.225Z" fill="#323232" stroke="#323232" stroke-linecap="round"/>
+<circle id="Ellipse 19_2" cx="213.616" cy="189.487" r="2" />
+</g>
+</g>
+<path id="mouth" d="M167 218.678C170 222.345 177.8 227.478 185 218.678" stroke="#323232" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="blushes">
+<g id="Ellipse 46" filter="url(#filter0_f_23_3224)">
+<ellipse cx="133.5" cy="212.5" rx="9.5" ry="5.5" fill="#FC9D80"/>
+</g>
+<g id="Ellipse 47" filter="url(#filter1_f_23_3224)">
+<ellipse cx="212.5" cy="212.5" rx="9.5" ry="5.5" fill="#FC9D80"/>
+</g>
+</g>
+</g>
+<path id="hair" d="M106 157.678C104.36 135.605 125.5 88.9999 144 84.4999C144 84.4999 199 54.0246 226.754 105.5C254.508 156.975 237 206 237 206C222.5 191 228.5 186.178 226.754 166.975C196 184.178 168 180.178 149 162.178C142 176.678 129.5 179.678 125.754 179.678C127.901 191.991 116 202.5 110.5 205.5C104.746 191.5 107.223 178.183 106 157.678Z" fill="#323232"/>
+</g>
+<g id="Accessories">
+<g id="Rectangle 5" filter="url(#filter2_d_23_3224)">
+<path d="M107.106 124.089C107.602 97.939 128.943 77 155.097 77H193.2C219.236 77 240.525 97.7571 241.184 123.785L242 156H106.5L107.106 124.089Z" />
+<path d="M109.106 124.127C109.581 99.0665 130.033 79 155.097 79H193.2C218.151 79 238.554 98.8922 239.185 123.836L239.949 154H108.538L109.106 124.127Z" stroke="#323232" stroke-width="4"/>
+</g>
+<path id="Rectangle 6" d="M145 110C145 93.4315 158.431 80 175 80C191.569 80 205 93.4315 205 110V154H145V110Z" fill="#323232" fill-opacity="0.38" stroke="#323232" stroke-width="4"/>
+<path id="Rectangle 7" d="M74 156.322C74 154.113 75.7909 152.322 78 152.322H241V156.322H74Z" fill="#323232"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_23_3224" x="112" y="195" width="43" height="35" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="6" result="effect1_foregroundBlur_23_3224"/>
+</filter>
+<filter id="filter1_f_23_3224" x="191" y="195" width="43" height="35" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="6" result="effect1_foregroundBlur_23_3224"/>
+</filter>
+<filter id="filter2_d_23_3224" x="102.5" y="77" width="143.5" height="87" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.0916667 0 0 0 0 0.0916667 0 0 0 0 0.0916667 0 0 0 0.35 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_23_3224"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_23_3224" result="shape"/>
+</filter>
+</defs>
+</svg>

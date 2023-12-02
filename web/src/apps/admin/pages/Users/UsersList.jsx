@@ -60,6 +60,9 @@ const UsersList = () => {
               if (!confirm) return;
               deleteUser(id);
             },
+            edit: (id) => {
+              navigate(`/admin/users/edit/${id}`);
+            },
           }}
         />
       </Card>

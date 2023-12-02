@@ -1,0 +1,14 @@
+<svg width="237" height="116" viewBox="0 0 237 116" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Property 1=Overall 2">
+<g id="Clothes">
+<path id="cloth" d="M84.1803 3.03201C84.6375 2.82044 85.3031 2.98828 85.6365 3.56596C101.781 31.5404 140.874 29.3501 153.064 3.82134C153.396 3.12658 154.144 2.92198 154.623 3.13903C181.582 15.3572 199.284 28.3528 211.373 45.3207C223.476 62.3077 230.102 83.4818 234.512 112.356C234.604 112.958 234.132 113.5 233.538 113.5H3.47117C2.87815 113.5 2.40543 112.956 2.5001 112.354C7.26355 82.0358 15.0978 60.6106 27.931 43.8514C40.765 27.0912 58.7469 14.8029 84.1803 3.03201Z" stroke="#323232" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Union" fill-rule="evenodd" clip-rule="evenodd" d="M56 20.7423C63.4803 15.735 67.8875 13.3721 76 9.16846V61H165V10.3135C173.292 14.5021 177.661 17.3655 185 22.3042V61C189.418 61 193 64.5818 193 69V111.5H45V69C45 64.5818 48.5817 61 53 61H56V20.7423Z" fill="#323232"/>
+<path id="Rectangle 23" d="M185 111.5V76C185 71.5817 181.418 68 177 68H61C56.5817 68 53 71.5817 53 76V111.5" stroke="white" stroke-width="0.5" stroke-linecap="round" stroke-dasharray="4 4"/>
+</g>
+<line id="Line 17" x1="62.5" y1="60.5" x2="62.5" y2="20.5" stroke="white" stroke-linecap="round" stroke-dasharray="4 4"/>
+<line id="Line 18" x1="178.5" y1="60.5" x2="178.5" y2="20.5" stroke="white" stroke-linecap="round" stroke-dasharray="4 4"/>
+<circle id="Ellipse 49" cx="63" cy="67" r="6" fill="white"/>
+<circle id="Ellipse 50" cx="177" cy="67" r="6" fill="white"/>
+<path id="Rectangle 28" d="M81 93C81 86.9249 85.9249 82 92 82H145C151.075 82 156 86.9249 156 93V112H81V93Z" fill="white" fill-opacity="0.5"/>
+</g>
+</svg>

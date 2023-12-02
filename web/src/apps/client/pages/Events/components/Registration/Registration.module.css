@@ -133,14 +133,5 @@ p.error {
 }
 
 button.submit {
-  outline: 0;
-  border: none;
-  padding: 0.5rem 1rem;
-  margin: 0;
-  background-color: var(--color-secondary-500);
-  color: var(--color-text);
-  font-size: 1rem;
-  font-weight: 400;
-  border-radius: 0.5rem;
-  cursor: pointer;
+  max-width: 100%;
 }

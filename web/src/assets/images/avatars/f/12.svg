@@ -1,0 +1,50 @@
+<svg width="350" height="390" viewBox="0 0 350 390" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Property 1=Short under cut">
+<g id="neck">
+<rect id="neck_2" x="141" y="185" width="68.2139" height="128.131" rx="13.7769"  stroke="#323232" stroke-width="4" stroke-linecap="round"/>
+<path id="neck shadow" d="M142.896 267.634V226.678H211.5C206.333 247.68 175.523 268.768 142.896 267.634Z" fill="#7E7E7E" fill-opacity="0.45"/>
+</g>
+<g id="Face">
+<g id="ears">
+<path id="left ear" d="M134 178.178C134 189.867 123.45 199.678 110 199.678C96.5501 199.678 86 189.867 86 178.178C86 166.489 96.5501 156.678 110 156.678C123.45 156.678 134 166.489 134 178.178Z"  stroke="#323232" stroke-width="4"/>
+<path id="right ear" d="M217 178.178C217 189.867 227.55 199.678 241 199.678C254.45 199.678 265 189.867 265 178.178C265 166.489 254.45 156.678 241 156.678C227.55 156.678 217 166.489 217 178.178Z"  stroke="#323232" stroke-width="4"/>
+</g>
+<g id="face">
+<path id="face_2" d="M242 171.261C242 193.713 236.042 210.834 224.986 222.337C213.941 233.828 197.532 240 176.03 240C154.526 240 137.842 233.827 126.529 222.321C115.211 210.81 109 193.69 109 171.261C109 148.835 115.207 132.753 126.467 122.251C137.752 111.726 154.439 106.5 176.03 106.5C197.621 106.5 214.032 111.726 225.047 122.236C236.045 132.729 242 148.812 242 171.261Z"  stroke="#323232" stroke-width="4" stroke-linecap="round"/>
+<path id="nose" d="M176 187C174.029 193.812 173 197.371 173 204.458C175.64 205.72 178.163 206.036 182.5 206" stroke="#323232" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="eyes">
+<g id="Group 1">
+<path id="left eye" d="M140.768 200.225C142.829 200.225 144.657 199.11 145.953 197.382C147.249 195.655 148.035 193.291 148.035 190.702C148.035 188.112 147.249 185.748 145.953 184.021C144.657 182.293 142.829 181.178 140.768 181.178C138.706 181.178 136.878 182.293 135.582 184.021C134.287 185.748 133.5 188.112 133.5 190.702C133.5 193.291 134.287 195.655 135.582 197.382C136.878 199.11 138.706 200.225 140.768 200.225Z" fill="#323232" stroke="#323232" stroke-linecap="round"/>
+<circle id="Ellipse 19" cx="143.616" cy="188.487" r="2.5"  stroke="#323232"/>
+</g>
+<g id="Group 1_2">
+<path id="left eye_2" d="M212.768 200.225C214.829 200.225 216.657 199.11 217.953 197.382C219.249 195.655 220.035 193.291 220.035 190.702C220.035 188.112 219.249 185.748 217.953 184.021C216.657 182.293 214.829 181.178 212.768 181.178C210.706 181.178 208.878 182.293 207.582 184.021C206.287 185.748 205.5 188.112 205.5 190.702C205.5 193.291 206.287 195.655 207.582 197.382C208.878 199.11 210.706 200.225 212.768 200.225Z" fill="#323232" stroke="#323232" stroke-linecap="round"/>
+<circle id="Ellipse 19_2" cx="215.616" cy="188.487" r="2" />
+</g>
+</g>
+<path id="mouth" d="M169 217.678C172 221.345 179.8 226.478 187 217.678" stroke="#323232" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<g id="blushes">
+<g id="Ellipse 46" filter="url(#filter0_f_23_3226)">
+<ellipse cx="136.5" cy="211.5" rx="9.5" ry="5.5" fill="#FC9D80"/>
+</g>
+<g id="Ellipse 47" filter="url(#filter1_f_23_3226)">
+<ellipse cx="215.5" cy="211.5" rx="9.5" ry="5.5" fill="#FC9D80"/>
+</g>
+</g>
+</g>
+<path id="Vector 12" d="M96.5001 133C93.1412 163.005 109 183.5 112 186C112 186 115.23 159.457 127.787 138.5C166.245 152.347 182.078 152.798 220.5 138.5C227 149.5 235.5 165.5 239.257 186C245.5 183.5 255.398 137.445 252 116C248.602 94.5545 232.142 96.1151 232.142 96.1151C232.142 96.1151 244 85.4708 239.257 74.8266C234.513 64.1823 211.982 74.8266 211.982 74.8266C211.982 74.8266 222.655 59.4515 204.867 54.7208C187.079 49.99 165.734 70.0958 165.734 70.0958C165.734 70.0958 174.035 54.7208 158.619 54.7208C143.203 54.7208 127.787 85.4708 127.787 85.4708C127.787 85.4708 124.115 73.4038 117 80.5C109.885 87.5962 113.557 112.673 113.557 112.673C113.557 112.673 99.859 102.995 96.5001 133Z" fill="#323232"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_23_3226" x="115" y="194" width="43" height="35" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="6" result="effect1_foregroundBlur_23_3226"/>
+</filter>
+<filter id="filter1_f_23_3226" x="194" y="194" width="43" height="35" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="6" result="effect1_foregroundBlur_23_3226"/>
+</filter>
+</defs>
+</svg>

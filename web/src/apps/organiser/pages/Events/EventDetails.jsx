@@ -4,6 +4,7 @@ import Card from "../../components/Card/Card";
 import Details from "./components/Details";
 import { useLocation } from "react-router-dom";
 import Tabs from "../../../../components/AdminCommons/Tabs/Tabs";
+import ParticipationTable from "./components/ParticipationTable";
 
 const EventDetails = () => {
   const location = useLocation();
@@ -32,11 +33,7 @@ const EventDetails = () => {
             component: (
               <Card>
                 <div className={styles.eventCard}>
-                  <h4 className={styles.title}>Event Participants</h4>
-                  <p className={styles.subtitle}>
-                    Here you can see the details of the participants of the
-                    event.
-                  </p>
+                  <ParticipationTable eventId={eventId} />
                 </div>
               </Card>
             ),

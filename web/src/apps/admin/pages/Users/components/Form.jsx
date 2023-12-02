@@ -3,7 +3,7 @@ import Grid, { GridItem } from "../../../../../components/Grid/Grid";
 import Input from "../../../../../components/AdminCommons/Input";
 import styles from "./../Users.module.css";
 
-const UserForm = ({ onSubmit, defaultValue, onChange }) => {
+const Form = ({ onSubmit, defaultValue, onChange, mode = "create" }) => {
   const [user, setUser] = useState(
     defaultValue || {
       name: "",
@@ -56,16 +56,18 @@ const UserForm = ({ onSubmit, defaultValue, onChange }) => {
             defaultValue={user.email}
           />
         </GridItem>
-        <GridItem sm={12} md={6} lg={4}>
-          <Input.Text
-            type="password"
-            label="Password"
-            validations={{ required: true }}
-            onValidation={handleCanSubmit}
-            onChange={(value) => handleChange("password", value)}
-            defaultValue={user.password}
-          />
-        </GridItem>
+        {mode === "create" && (
+          <GridItem sm={12} md={6} lg={4}>
+            <Input.Text
+              type="password"
+              label="Password"
+              validations={{ required: true }}
+              onValidation={handleCanSubmit}
+              onChange={(value) => handleChange("password", value)}
+              defaultValue={user.password}
+            />
+          </GridItem>
+        )}
         <GridItem sm={12} md={6} lg={4}>
           <Input.Dropdown
             label="Role"
@@ -141,4 +143,4 @@ const UserForm = ({ onSubmit, defaultValue, onChange }) => {
   );
 };
 
-export default UserForm;
+export default Form;
