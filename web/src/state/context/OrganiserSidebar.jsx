@@ -32,13 +32,15 @@ const OrganiserSidebarProvider = ({ children }) => {
   useEffect(() => {
     const newLinks = links.map((link) => {
       if (link.sublinks) {
+        let hasSublinkActive = false;
         const newSublinks = link.sublinks.map((sublink) => {
           if (sublink.path === location.pathname) {
+            hasSublinkActive = true;
             return { ...sublink, active: true };
           }
           return { ...sublink, active: false };
         });
-        if (link.path === location.pathname) {
+        if (link.path === location.pathname || hasSublinkActive) {
           return { ...link, active: true, sublinks: newSublinks };
         }
         return { ...link, active: false, sublinks: newSublinks };

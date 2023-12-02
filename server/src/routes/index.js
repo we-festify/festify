@@ -14,5 +14,6 @@ router.use("/events", require("./event"));
 router.use("/organisations", require("./organisation"));
 router.use("/participants", require("./participant"));
 router.use("/users", require("./user"));
+router.use("/sponsors", require("./sponsor"));
 
 module.exports = router;

@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { RiOrganizationChart } from "react-icons/ri";
-import { FaUsers } from "react-icons/fa";
+import { FaUsers, FaRegHandshake } from "react-icons/fa";
 
 const AdminSidebarContext = createContext();
 
@@ -38,19 +38,32 @@ const AdminSidebarProvider = ({ children }) => {
         },
       ],
     },
+    {
+      text: "Sponsors",
+      path: "/admin/sponsors",
+      icon: <FaRegHandshake />,
+      sublinks: [
+        {
+          text: "Create",
+          path: "/admin/sponsors/create",
+        },
+      ],
+    },
   ]);
   const [activeLink, setActiveLink] = useState("/");
 
   useEffect(() => {
     const newLinks = links.map((link) => {
       if (link.sublinks) {
+        let hasSublinkActive = false;
         const newSublinks = link.sublinks.map((sublink) => {
           if (sublink.path === location.pathname) {
+            hasSublinkActive = true;
             return { ...sublink, active: true };
           }
           return { ...sublink, active: false };
         });
-        if (link.path === location.pathname) {
+        if (hasSublinkActive || link.path === location.pathname) {
           return { ...link, active: true, sublinks: newSublinks };
         }
         return { ...link, active: false, sublinks: newSublinks };

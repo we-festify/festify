@@ -6,7 +6,6 @@ import useModal from "../../../../../hooks/useModal/useModal";
 import AvatarInputModalContent from "./AvatarInputModalContent";
 
 const AvatarInput = ({
-  label,
   onChange,
   defaultValue = {
     name: "Avatar",
@@ -23,7 +22,6 @@ const AvatarInput = ({
   return (
     <div className={styles.group}>
       <AvatarInputModal onChange={handleChange} />
-      <label className={styles.label}>{label}</label>
       <div className={styles.avatarInput} onClick={() => open()}>
         <Avatar {...value} size={100} />
         <span className={styles.edit}>

@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { MdHotelClass } from "react-icons/md";
+import { FaHandshake } from "react-icons/fa";
 
 const ClientNavbarContext = createContext();
 
@@ -19,6 +20,11 @@ export const ClientNavbarProvider = ({ children }) => {
       text: "Events",
       path: "/events",
       icon: <MdHotelClass />,
+    },
+    {
+      text: "Sponsors",
+      path: "/sponsors",
+      icon: <FaHandshake />,
     },
   ]);
   const [activeLink, setActiveLink] = useState("/");

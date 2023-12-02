@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import "./index.css";
 import Profile from "./pages/Profile/Profile";
 import RequireLoggedIn from "../../routes/custom/RequireLoggedIn";
+import SponsorsIndex from "./pages/Sponsors";
 
 const ClientIndex = () => {
   return (
@@ -15,6 +16,7 @@ const ClientIndex = () => {
       <Routes>
         <Route path="" element={<Home />} />
         <Route path="events/*" element={<EventsIndex />} />
+        <Route path="sponsors/*" element={<SponsorsIndex />} />
         <Route path="profile/*" element={<RequireLoggedIn />}>
           <Route path="" element={<Profile />} />
         </Route>

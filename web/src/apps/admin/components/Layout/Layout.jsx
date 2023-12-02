@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Dashboard from "../../pages/Dashboard/Dashboard";
 import UsersIndex from "../../pages/Users";
 import OrganisationsIndex from "../../pages/Organisations";
+import SponsorsIndex from "../../pages/Sponsors";
 
 const Layout = () => {
   return (
@@ -17,6 +18,7 @@ const Layout = () => {
           <Route path="/" element={<Dashboard />} />
           <Route path="/users/*" element={<UsersIndex />} />
           <Route path="/organisations/*" element={<OrganisationsIndex />} />
+          <Route path="/sponsors/*" element={<SponsorsIndex />} />
         </Routes>
       </div>
     </div>

@@ -108,7 +108,7 @@ const AvatarInputModalContent = ({ onChange, close }) => {
         )}
         {page === 2 && (
           <>
-            <h3 className={styles.subtitle}>Select your cloth color</h3>
+            <h3 className={styles.subtitle}>Select your body color</h3>
             <div className={styles.colors}>
               {clothColors.map((color, index) => (
                 <div
@@ -135,7 +135,7 @@ const AvatarInputModalContent = ({ onChange, close }) => {
         )}
         {page === 3 && (
           <>
-            <h3 className={styles.subtitle}>Select your cloth</h3>
+            <h3 className={styles.subtitle}>Select your body</h3>
             <div className={styles.clothes}>
               {clothes.map((Cloth, index) => (
                 <div
