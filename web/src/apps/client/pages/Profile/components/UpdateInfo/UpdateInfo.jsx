@@ -15,10 +15,18 @@ const UpdateInfo = () => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const [value, setValue] = useState(user || {});
+  const [hasChanged, setHasChanged] = useState(false);
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
   const handleChange = (key, value) => {
+    value = value.trim();
     setValue((prev) => ({ ...prev, [key]: value }));
+    // check if any value has changed
+    if (value !== user[key]) {
+      setHasChanged(true);
+    } else {
+      setHasChanged(false);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -133,7 +141,11 @@ const UpdateInfo = () => {
       </Grid>
       <Grid columns={12}>
         <GridItem sm={12} md={12} lg={12}>
-          <Button variant="primary" type="submit" disabled={isLoading}>
+          <Button
+            variant="primary"
+            type="submit"
+            disabled={isLoading || !hasChanged}
+          >
             Update
           </Button>
         </GridItem>
