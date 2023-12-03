@@ -32,7 +32,7 @@ const api = createApi({
   endpoints: (builder) => ({
     // ...endpoints
   }),
-  tagTypes: ["Events", "Organisations", "Users", "Participants"],
+  tagTypes: ["Events", "Organisations", "Users", "Participants", "Sponsors"],
 });
 
 export default api;

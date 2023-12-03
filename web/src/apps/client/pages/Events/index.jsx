@@ -13,6 +13,7 @@ const EventsIndex = () => {
       <EventsPageProvider>
         <Routes>
           <Route path="/" element={<EventsPage />} />
+          <Route path="/timeline" element={<EventsPage />} />
           <Route path="/:id" element={<EventDetails />} />
           <Route path="*" element={<div>Not Found</div>} />
         </Routes>

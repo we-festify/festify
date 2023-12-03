@@ -19,6 +19,32 @@ h1.title {
   gap: 1rem;
 }
 
+.calendar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: hsla(var(--color-white-hsl-values), 0.1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.calendar .icon {
+  color: var(--color-text-light);
+}
+
+.calendar .text {
+  color: var(--color-text-light);
+  font-size: 0.8rem;
+}
+
+.calendar:hover .icon,
+.calendar:hover .text {
+  color: var(--color-text);
+}
+
 .search {
   display: flex;
   align-items: center;
@@ -98,4 +124,17 @@ h1.title {
   color: var(--color-text);
   position: relative;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .calendar {
+    padding: 0.5rem;
+  }
+  .calendar .text {
+    display: none;
+  }
+
+  .search input {
+    max-width: 5rem;
+  }
 }
