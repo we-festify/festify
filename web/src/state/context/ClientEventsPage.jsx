@@ -45,7 +45,9 @@ const EventsPageProvider = ({ children }) => {
 
   const changeCategory = (category) => {
     viewTransition(() => {
-      navigate(`/events?category=${category}`);
+      const params = new URLSearchParams(location.search);
+      params.set("category", category);
+      navigate(`?${params.toString()}`);
     });
   };
 

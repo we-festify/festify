@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import styles from "./Header.module.css";
 import { IoIosSearch } from "react-icons/io";
 import { useEventsPage } from "../../../../../../state/context/ClientEventsPage";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { viewTransition } from "../../../../../../utils/view_transition";
+import { MdOutlineViewTimeline } from "react-icons/md";
+import { FiGrid } from "react-icons/fi";
 
 const Header = () => {
   const { suggestions, searchByQuery } = useEventsPage();
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -45,6 +48,17 @@ const Header = () => {
         <h1 className={styles.title}>Events</h1>
       </div>
       <div className={styles.right}>
+        {location.pathname !== "/events/timeline" ? (
+          <Link to="timeline" className={styles.calendar}>
+            <MdOutlineViewTimeline className={styles.icon} />
+            <span className={styles.text}>Calendar</span>
+          </Link>
+        ) : (
+          <Link to="/events" className={styles.calendar}>
+            <FiGrid size={14} className={styles.icon} />
+            <span className={styles.text}>Grid</span>
+          </Link>
+        )}
         <div className={styles.search}>
           <IoIosSearch className={styles.icon} />
           <input

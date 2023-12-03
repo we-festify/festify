@@ -38,3 +38,19 @@ export const formatDate = (timestamp) => {
 export const formatDateTime = (date) => {
   return `${formatDate(date)} - ${formatTime(date)}`;
 };
+
+export const ceilHour = (timestamp) => {
+  const date = new Date(timestamp);
+  date.setMinutes(59);
+  date.setSeconds(59);
+  date.setMilliseconds(999);
+  return date.getTime() + 1;
+};
+
+export const floorHour = (timestamp) => {
+  const date = new Date(timestamp);
+  date.setMinutes(0);
+  date.setSeconds(0);
+  date.setMilliseconds(0);
+  return date.getTime();
+};

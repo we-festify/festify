@@ -1,0 +1,135 @@
+.calendar {
+  display: flex;
+  gap: 1rem;
+  overflow-x: hidden;
+  width: 100%;
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 1;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin: 0;
+
+  padding: 0.3rem;
+  height: 54px; /* same height as .day */
+}
+
+.timeline {
+  display: flex;
+  align-items: center;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: hsla(var(--color-white-hsl-values), 0.1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.day .date {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-light);
+}
+
+.blocks {
+  display: flex;
+}
+
+.block {
+  position: relative;
+  width: calc(50px * var(--block-size));
+  min-width: 50px;
+  left: calc(50px * var(--block-index));
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  gap: 1rem;
+  overflow-y: auto;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: max-content;
+  min-width: 100px;
+}
+
+.events {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.event {
+  font-size: 1rem;
+  padding: 0.3rem;
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-x: auto;
+}
+
+.gantts {
+  display: flex;
+  flex: 1;
+}
+
+.gantt {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+  padding: 0 1rem;
+}
+
+.tile {
+  background: linear-gradient(
+    90deg,
+    hsla(var(--color-primary-500-hsl-values), 0.9),
+    hsla(var(--color-secondary-500-hsl-values), 0.5)
+  );
+  border-radius: 0.3rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+  /* same designs as .left .event */
+  padding: 0.3rem 0.5rem;
+
+  animation: widthSlideIn 0.5s ease-in-out;
+}
+
+@keyframes widthSlideIn {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .calendar *::-webkit-scrollbar {
+    display: none;
+  }
+}

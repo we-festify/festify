@@ -15,6 +15,8 @@ class EventService {
       "organisation",
       "registrationsStart",
       "registrationsEnd",
+      "startTime",
+      "endTime",
     ];
     const missingFields = [];
     requiredFields.forEach((field) => {

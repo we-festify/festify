@@ -217,6 +217,24 @@ const Form = ({ onSubmit, defaultValue, onChange }) => {
             defaultValue={event.maxTeamSize || 1}
           />
         </GridItem>
+        <GridItem sm={12} md={6} lg={4}>
+          <Input.DateTime
+            label="Start Time"
+            validations={{ required: true }}
+            onValidation={handleCanSubmit}
+            onChange={(value) => handleChange("startTime", value)}
+            defaultValue={event.startTime}
+          />
+        </GridItem>
+        <GridItem sm={12} md={6} lg={4}>
+          <Input.DateTime
+            label="End Time"
+            validations={{ required: true }}
+            onValidation={handleCanSubmit}
+            onChange={(value) => handleChange("endTime", value)}
+            defaultValue={event.endTime}
+          />
+        </GridItem>
         <GridItem sm={12} md={12} lg={12}>
           <ListInput
             label="Timeline"
