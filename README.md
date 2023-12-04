@@ -65,6 +65,12 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md) for ways to get started.
 
 Please adhere to this project's [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
 
+## Our valuable Contributors👩‍💻👨‍💻
+
+<p>
+  <img src="https://api.vaunt.dev/v1/github/entities/we-festify/repositories/festify/contributors?format=svg&limit=54" width="600" height"250" />
+</p>
+
 ## License
 
 Distributed under the Apache License 2.0. See [`LICENSE`](LICENSE) for more information.
