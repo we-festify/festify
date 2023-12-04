@@ -1,0 +1,152 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.announcements {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.announcement {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: hsla(var(--color-white-hsl-values), 0.05);
+}
+
+.empty {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 400;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .left {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.header .left .details {
+  display: flex;
+  flex-direction: column;
+}
+
+.header .left .details .name {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-text);
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.header .left .details .time {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--color-text-light);
+  margin: 0;
+}
+
+.header .right {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.header .right .badge {
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.1rem 0.5rem;
+  border-radius: 1rem;
+  background-color: hsla(var(--color-white-hsl-values), 0.05);
+}
+
+.description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--color-text-light);
+}
+
+input.title {
+  border: none;
+  background-color: transparent;
+}
+
+input.title::placeholder {
+  color: var(--color-text-light);
+}
+
+input.title:focus {
+  outline: none;
+}
+
+textarea.description {
+  border: none;
+  background-color: transparent;
+  resize: none;
+  font-family: inherit;
+}
+
+textarea.description::placeholder {
+  color: var(--color-text-light);
+}
+
+textarea.description:focus {
+  outline: none;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.actions .submit {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  outline: 0;
+  border: none;
+  background-color: hsla(var(--color-white-hsl-values), 0.05);
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.actions .submit:hover {
+  background-color: hsla(var(--color-white-hsl-values), 0.1);
+}

@@ -104,7 +104,7 @@ const extractNumber = (str) => {
   return num ? num[0] : null;
 };
 
-const Avatar = ({ avatarCode, image, name, size }) => {
+const Avatar = ({ avatarCode, image, name = "Avatar", size = 40 }) => {
   const getFontSize = (size) => {
     if (!size) return null;
     if (typeof size === "number") return size / 2;

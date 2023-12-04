@@ -24,6 +24,12 @@ const permissions = {
       update: true,
       delete: true,
     },
+    announcement: {
+      read: true,
+      create: true,
+      update: true,
+      delete: true,
+    },
   },
   organiser: {
     user: {
@@ -49,6 +55,12 @@ const permissions = {
       create: false,
       update: false,
       delete: false,
+    },
+    announcement: {
+      read: true,
+      create: true,
+      update: true,
+      delete: true,
     },
   },
   user: {
@@ -76,6 +88,12 @@ const permissions = {
       update: false,
       delete: false,
     },
+    announcement: {
+      read: true,
+      create: false,
+      update: false,
+      delete: false,
+    },
   },
   guest: {
     user: {
@@ -98,6 +116,12 @@ const permissions = {
     },
     sponsor: {
       read: true,
+      create: false,
+      update: false,
+      delete: false,
+    },
+    announcement: {
+      read: false,
       create: false,
       update: false,
       delete: false,

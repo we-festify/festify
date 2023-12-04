@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { MdHotelClass } from "react-icons/md";
 import { AiFillNotification } from "react-icons/ai";
 import Details from "../components/Details/Details";
+import Announcements from "../components/Announcements/Announcements";
 
 const useDetailsNavigation = () => {
   const location = useLocation();
@@ -14,14 +15,14 @@ const useDetailsNavigation = () => {
       key: "details",
       icon: <MdHotelClass />,
       activeIcon: <MdHotelClass />,
-      component: <Details />,
+      component: Details,
     },
     {
       name: "Announcements",
       key: "announcements",
       icon: <AiFillNotification />,
       activeIcon: <AiFillNotification />,
-      component: <div>Announcements</div>,
+      component: Announcements,
     },
   ];
 
@@ -42,7 +43,7 @@ const useDetailsNavigation = () => {
     tabs,
     activeTabIndex,
     handleChooseTab,
-    activeComponent: tabs[activeTabIndex].component,
+    ActiveComponent: tabs[activeTabIndex].component,
   };
 };
 

@@ -13,7 +13,7 @@ const EventDetailsLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const eventId = location.pathname.split("/").pop();
-  const { tabs, activeTabIndex, activeComponent, handleChooseTab } =
+  const { tabs, activeTabIndex, ActiveComponent, handleChooseTab } =
     useDetailsNavigation();
 
   const handleGoBack = (e) => {
@@ -53,7 +53,7 @@ const EventDetailsLayout = () => {
                   </div>
                 </div>
               )}
-              {activeComponent}
+              <ActiveComponent />
             </div>
             <div className={styles.right}>
               <h2 className={styles.title}>More Events</h2>
