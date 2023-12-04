@@ -129,13 +129,13 @@ const Calendar = () => {
       <div className={styles.right}>
         <div className={styles.timeline}>
           {blocksEveryDay?.map((blocks, index) => (
-            <div className={styles.day}>
+            <div className={styles.day} key={`${blocks.length}-${index}`}>
               <div className={styles.date}>
                 {formatDate(eventsGroupedByDay[index].day)}
               </div>
               <div className={styles.blocks}>
-                {blocks?.map((block) => (
-                  <span className={styles.block}>
+                {blocks?.map((block, blockIndex) => (
+                  <span className={styles.block} key={`${block}-${index}`}>
                     {block === 0 || block === 24
                       ? "12 am"
                       : block === 12

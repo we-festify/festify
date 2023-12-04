@@ -22,6 +22,48 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.topNavigationBar {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  justify-content: space-between;
+}
+
+.back {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.tabs {
+  display: flex;
+}
+
+.tabs .tab {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: var(--color-text);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.tabs .tab:hover {
+  background-color: hsla(var(--color-white-hsl-values), 0.1);
+}
+
+.tabs .tab.active {
+  background-color: hsla(var(--color-white-hsl-values), 0.1);
 }
 
 .right {

@@ -3,7 +3,6 @@ import styles from "./Details.module.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useGetEventByIdQuery } from "../../../../../../state/redux/events/eventsApi";
 import { formatDateTime } from "../../../../../../utils/time";
-import { MdChevronLeft } from "react-icons/md";
 import { viewTransition } from "../../../../../../utils/view_transition";
 import useModal from "../../../../../../hooks/useModal/useModal";
 import Registration from "../Registration/Registration";
@@ -47,13 +46,6 @@ const Details = () => {
     }
   };
 
-  const handleGoBack = () => {
-    viewTransition(() => {
-      const from = location.state?.from;
-      navigate(from || "/events", { replace: true });
-    });
-  };
-
   const handleNavigateToLogin = () => {
     viewTransition(() => {
       navigate("/a/login", {
@@ -81,9 +73,7 @@ const Details = () => {
       }}
     >
       <RegistrationModal event={event} />
-      <div className={styles.back} onClick={handleGoBack}>
-        <MdChevronLeft /> Back
-      </div>
+      
       <div className={styles.image}>
         <img src={event?.image} alt={event?.name} />
         <div className={styles.info}>
