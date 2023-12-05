@@ -10,11 +10,11 @@ const BottomNavigationBar = ({ tabs, activeTabIndex, onTabChange }) => {
           return (
             <div
               className={`${styles.tab} ${isActive ? styles.active : ""}`}
-              key={tab.path}
+              key={`${tab.name}-${index}`}
             >
               <button onClick={() => onTabChange(index)}>
-                {isActive ? tab.activeIcon : tab.icon}
-                <span className={styles.name}>{tab.name}</span>
+                {isActive ? tab.activeIcon || tab.icon : tab.icon}
+                <span className={styles.name}>{tab.name || tab.label}</span>
               </button>
             </div>
           );

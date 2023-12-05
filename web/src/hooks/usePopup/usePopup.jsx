@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
-import styles from "./useModal.module.css";
+import styles from "./usePopup.module.css";
 import { viewTransition } from "../../utils/view_transition";
 
-const useModal = (Component) => {
+const usePopup = (Component) => {
   const modalRef = useRef();
 
   const open = () => {
@@ -32,4 +32,4 @@ const useModal = (Component) => {
   ];
 };
 
-export default useModal;
+export default usePopup;

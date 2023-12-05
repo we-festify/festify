@@ -39,7 +39,7 @@ const Navbar = () => {
       <div className={styles.navbar}>
         <div className={styles.left}>
           {isPortrait ? (
-            location.pathname.split("/").length > 2 ? (
+            location.pathname.split("/").length > 3 ? (
               <MdChevronLeft
                 className={styles.back}
                 size={32}

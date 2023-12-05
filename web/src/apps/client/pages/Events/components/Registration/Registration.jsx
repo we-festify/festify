@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./Registration.module.css";
 import { useCreateParticipantMutation } from "../../../../../../state/redux/participants/participantsApi";
 import { useSelector } from "react-redux";
@@ -67,10 +67,7 @@ const Registration = ({ event = {}, close }) => {
     } catch (err) {
       setError(err.data?.message);
       toast.error(
-        err.data?.message ||
-          err.error?.message ||
-          (typeof err.data === "string" && err.data) ||
-          "Unable to register"
+        err.data?.message || err.error?.message || "Unable to register"
       );
     }
   };

@@ -73,7 +73,7 @@ const Details = () => {
       }}
     >
       <RegistrationModal event={event} />
-      
+
       <div className={styles.image}>
         <img src={event?.image} alt={event?.name} />
         <div className={styles.info}>

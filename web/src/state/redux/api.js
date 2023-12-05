@@ -39,6 +39,7 @@ const api = createApi({
     "Participants",
     "Sponsors",
     "Announcements",
+    "WebPushSubscription",
   ],
 });
 

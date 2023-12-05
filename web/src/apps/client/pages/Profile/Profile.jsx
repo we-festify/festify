@@ -8,19 +8,31 @@ import {
 } from "../../../../state/redux/auth/authSlice";
 import { useSelector } from "react-redux";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
+import { AiFillHome } from "react-icons/ai";
+import { FaUserEdit } from "react-icons/fa";
+import { IoMdSettings } from "react-icons/io";
 import { useSendVerificationEmailMutation } from "../../../../state/redux/auth/authApi";
 import { toast } from "react-toastify";
 import Participations from "./components/Participations/Participations";
 import Tabs from "../../components/Tabs/Tabs";
 import Avatar from "../../components/Avatar/Avatar";
 import UpdateInfo from "./components/UpdateInfo/UpdateInfo";
+import { useMediaQuery } from "../../../../hooks/useMediaQuery";
+import BottomNavigationBar from "../../components/BottomNavigationBar/BottomNavigationBar";
+import Settings from "./components/Settings/Settings";
 
 const Profile = () => {
+  const isPortrait = useMediaQuery("(orientation: portrait)");
   const user = useSelector(selectUser);
   const isVerified = useSelector(selectIsVerified);
   const [disableEmailVerificationButton, setDisableEmailVerificationButton] =
     useState(false);
   const [getEmailVerificationLink] = useSendVerificationEmailMutation();
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
+
+  const handleTabChange = (index) => {
+    setActiveTabIndex(index);
+  };
 
   const handleGetEmailVerificationLink = async () => {
     try {
@@ -38,6 +50,24 @@ const Profile = () => {
     }
   };
 
+  const tabs = [
+    {
+      label: "Participations",
+      icon: <AiFillHome />,
+      component: <Participations />,
+    },
+    {
+      label: "Update Profile",
+      icon: <FaUserEdit />,
+      component: <UpdateInfo />,
+    },
+    {
+      label: "Settings",
+      icon: <IoMdSettings />,
+      component: <Settings />,
+    },
+  ];
+
   return (
     <FixedBackdrop>
       <Navbar />
@@ -45,7 +75,12 @@ const Profile = () => {
         <div className={styles.container}>
           <div className={styles.left}>
             <div className={styles.profile}>
-              <Avatar image={user?.image} name={user?.name} avatarCode={user?.avatarCode} size={100} />
+              <Avatar
+                image={user?.image}
+                name={user?.name}
+                avatarCode={user?.avatarCode}
+                size={100}
+              />
               <h2 className={styles.name}>{user?.name}</h2>
               <p className={styles.email}>
                 {user?.email}
@@ -107,18 +142,15 @@ const Profile = () => {
             </div>
           </div>
           <div className={styles.right}>
-            <Tabs
-              items={[
-                {
-                  label: "Participations",
-                  component: <Participations />,
-                },
-                {
-                  label: "Update Profile",
-                  component: <UpdateInfo />,
-                },
-              ]}
-            />
+            {!isPortrait && <Tabs items={tabs} />}
+            {isPortrait && tabs[activeTabIndex].component}
+            {isPortrait && (
+              <BottomNavigationBar
+                tabs={tabs}
+                activeTabIndex={activeTabIndex}
+                onTabChange={handleTabChange}
+              />
+            )}
           </div>
         </div>
       </div>

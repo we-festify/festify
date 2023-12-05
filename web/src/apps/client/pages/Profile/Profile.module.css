@@ -149,6 +149,7 @@ h2.name {
   gap: 1rem;
   width: 100%;
   flex: 1;
+  padding-bottom: var(--bottom-navigation-bar-height);
 }
 
 @media screen and (max-width: 768px) {
