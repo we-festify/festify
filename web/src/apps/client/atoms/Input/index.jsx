@@ -50,8 +50,6 @@ const Input = ({
       return (
         <AvatarInput
           {...{
-            label,
-            name,
             onChange,
             defaultValue,
           }}

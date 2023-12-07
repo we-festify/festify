@@ -20,19 +20,65 @@ const Settings = () => {
 };
 
 const NotificationSettingsGroup = () => {
-  const { data: { subscription } = {} } = useGetWebPushSubscriptionQuery();
-  const [subscribeToWebPush, {}] = useSubscribeWebPushMutation();
-  const [unsubscribeFromWebPush, {}] = useUnsubscribeWebPushMutation();
-  const [push, setPush] = useState(false);
   const [testWebPush, {}] = useTestWebPushMutation();
   const isAdmin = useSelector(selectIsAdmin);
 
+  const handleTestWebPush = async () => {
+    testWebPush({
+      title: "Test Web Push",
+      body: "This is a test notification",
+    });
+  };
+
+  return (
+    <div className={styles.group}>
+      <h2 className={styles.title}>Notifications</h2>
+      <div className={styles.item}>
+        <p className={styles.key}>Email</p>
+        <input type="checkbox" className={styles.value} checked disabled />
+      </div>
+      <WebPushToggleItem />
+      <div className={styles.item}>
+        <p className={styles.key}>In-App</p>
+        <input type="checkbox" className={styles.value} checked disabled />
+      </div>
+      {isAdmin && (
+        <Button
+          variant="outline-secondary"
+          style={{ marginTop: "1rem" }}
+          onClick={handleTestWebPush}
+        >
+          Test Web Push
+        </Button>
+      )}
+    </div>
+  );
+};
+
+const WebPushToggleItem = () => {
+  const { data: { subscription } = {}, isLoading } =
+    useGetWebPushSubscriptionQuery();
+  const [subscribeToWebPush, {}] = useSubscribeWebPushMutation();
+  const [unsubscribeFromWebPush, {}] = useUnsubscribeWebPushMutation();
+  const [push, setPush] = useState(false);
+
   useEffect(() => {
-    if (subscription && subscription?.subscriptions?.length > 0) {
-      setPush(true);
-    } else {
-      setPush(false);
-    }
+    WebPushService.getSubscription().then((sub) => {
+      if (sub) {
+        let found = false;
+        subscription?.subscriptions?.forEach((s) => {
+          if (s.endpoint === sub.endpoint) {
+            setPush(true);
+            found = true;
+          }
+        });
+        if (!found) {
+          setPush(false);
+        }
+      } else {
+        setPush(false);
+      }
+    });
   }, [subscription]);
 
   const handlePushChange = async (e) => {
@@ -44,6 +90,7 @@ const NotificationSettingsGroup = () => {
         if (payload) {
           unsubscribeFromWebPush(payload);
         }
+        console.log("Unsubscribed from web push");
         return;
       }
       if (!WebPushService.hasPermission()) {
@@ -61,42 +108,18 @@ const NotificationSettingsGroup = () => {
     }
   };
 
-  const handleTestWebPush = async () => {
-    testWebPush({
-      title: "Test Web Push",
-      body: "This is a test notification",
-    });
-  };
-
   return (
-    <div className={styles.group}>
-      <h2 className={styles.title}>Notifications</h2>
-      <div className={styles.item}>
-        <p className={styles.key}>Email</p>
-        <input type="checkbox" className={styles.value} checked disabled />
-      </div>
-      <div className={styles.item}>
-        <p className={styles.key}>Web Push</p>
+    <div key={subscription?._id} className={styles.item}>
+      <p className={styles.key}>Web Push</p>
+      {isLoading ? (
+        <p className={styles.value}>Loading...</p>
+      ) : (
         <input
           type="checkbox"
           className={styles.value}
-          id="push"
           checked={push}
           onChange={handlePushChange}
         />
-      </div>
-      <div className={styles.item}>
-        <p className={styles.key}>In-App</p>
-        <input type="checkbox" className={styles.value} checked disabled />
-      </div>
-      {isAdmin && (
-        <Button
-          variant="outline-secondary"
-          style={{ marginTop: "1rem" }}
-          onClick={handleTestWebPush}
-        >
-          Test Web Push
-        </Button>
       )}
     </div>
   );

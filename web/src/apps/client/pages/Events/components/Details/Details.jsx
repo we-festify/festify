@@ -151,7 +151,7 @@ const Details = () => {
             </Button>
           ) : new Date(event?.registrationsEnd) < today ? (
             <Button variant="secondary" disabled>
-              Registration Closed
+              Registration Ended
             </Button>
           ) : (
             <Button variant="secondary" onClick={handleRegister}>

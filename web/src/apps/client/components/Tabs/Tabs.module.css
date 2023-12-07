@@ -1,4 +1,5 @@
 .tabsContainer {
+  display: flex;
   overflow-x: auto; /* Enable horizontal scrolling */
 }
 

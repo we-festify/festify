@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import styles from "./DataTable.module.css";
 import usePagination from "../../../hooks/usePagination";
 import useSearchQuery from "./hooks/useSearchQuery";

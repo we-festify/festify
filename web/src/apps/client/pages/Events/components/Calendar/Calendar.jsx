@@ -3,7 +3,6 @@ import styles from "./Calendar.module.css";
 import { useEventsPage } from "../../../../../../state/context/ClientEventsPage";
 import {
   formatDate,
-  formatTime,
   ceilHour,
   floorHour,
 } from "../../../../../../utils/time";
@@ -22,8 +21,6 @@ const groupBy = (array, key) => {
 const Calendar = () => {
   const { eventsList } = useEventsPage();
   const [eventsGroupedByDay, setEventsGroupedByDay] = useState([]);
-  const [minStartTimesEveryDay, setMinStartTimesEveryDay] = useState([]);
-  const [maxEndTimesEveryDay, setMaxEndTimesEveryDay] = useState([]);
   const [totalBlocksEveryDay, setTotalBlocksEveryDay] = useState([]);
   const [blocksEveryDay, setBlocksEveryDay] = useState([]);
 
@@ -53,14 +50,14 @@ const Calendar = () => {
         day.events[0].startTime
       )
     );
-    setMinStartTimesEveryDay(minStartTimes);
+
     const maxEndTimes = eventsGroupedByDay?.map((day) =>
       day.events.reduce(
         (max, event) => (event.endTime > max ? event.endTime : max),
         day.events[0].endTime
       )
     );
-    setMaxEndTimesEveryDay(maxEndTimes);
+
     const totalBlocks = minStartTimes?.map((min, index) => {
       const max = maxEndTimes[index];
       const minNextFullHour = ceilHour(min);
@@ -75,6 +72,7 @@ const Calendar = () => {
       return Math.min(Math.max(blocks, 0), 24);
     });
     setTotalBlocksEveryDay(totalBlocks);
+
     const blocks = minStartTimes?.map((min, index) => {
       const max = maxEndTimes[index];
       const minPrevFullHour = floorHour(min);
@@ -103,7 +101,6 @@ const Calendar = () => {
     if (new Date(time).getMinutes() !== 0) {
       index += new Date(time).getMinutes() / 60;
     }
-    // console.log(formatTime(time), prevDaysBlocks, fullPrevHour, index);
     return prevDaysBlocks + index;
   };
 

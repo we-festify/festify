@@ -1,12 +1,9 @@
 import React from "react";
 import styles from "./Participations.module.css";
 import { useGetParticipationsBySelfQuery } from "../../../../../../state/redux/participants/participantsApi";
-import { useSelector } from "react-redux";
-import { selectUser } from "../../../../../../state/redux/auth/authSlice";
 import Card from "./components/Card/Card";
 
 const Participations = () => {
-  const user = useSelector(selectUser);
   const {
     data: { participations } = {},
     isLoading,

@@ -75,8 +75,10 @@ self.addEventListener("message", (event) => {
 // push notifications
 self.addEventListener("push", (event) => {
   let { title, body, icon } = event.data.json();
+  if (!title) title = "New Notification";
+  if (!body) return;
   self.registration.showNotification(title, {
     body,
-    icon: icon || "https://localhost:3000/logo192.png",
+    icon: icon || `${process.env.PUBLIC_URL}/logo192.png`,
   });
 });

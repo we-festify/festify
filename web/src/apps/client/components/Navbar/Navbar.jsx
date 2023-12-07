@@ -15,6 +15,7 @@ import { IoMdPerson } from "react-icons/io";
 import { useMediaQuery } from "../../../../hooks/useMediaQuery";
 import { useLocation } from "react-router-dom";
 import { viewTransition } from "../../../../utils/view_transition";
+import Avatar from "../Avatar/Avatar";
 
 const Navbar = () => {
   const isPortrait = useMediaQuery("(orientation: portrait)");
@@ -156,10 +157,7 @@ const Navbar = () => {
           )}
           {user ? (
             <Link to="/profile">
-              <span>
-                {user.name}
-                {/* <img className={styles.avatar} src={user.avatar} alt="avatar" /> */}
-              </span>
+              <Avatar className={styles.avatar} name={user.name} avatarCode={user.avatarCode} />
             </Link>
           ) : (
             <button className={styles.login} onClick={handleLogin}>

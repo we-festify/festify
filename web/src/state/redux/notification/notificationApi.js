@@ -11,16 +11,16 @@ const webPushApi = api.injectEndpoints({
         url: "/notifications/webpush/subscription",
         method: "POST",
         body: { subscription },
-        invalidatesTags: ["WebPushSubscription"],
       }),
+      invalidatesTags: ["WebPushSubscription"],
     }),
     unsubscribeWebPush: builder.mutation({
       query: (subscription) => ({
         url: "/notifications/webpush/subscription",
         method: "DELETE",
         body: { subscription },
-        invalidatesTags: ["WebPushSubscription"],
       }),
+      invalidatesTags: ["WebPushSubscription"],
     }),
     testWebPush: builder.mutation({
       query: (notification) => ({

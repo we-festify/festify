@@ -45,7 +45,6 @@ const UpdateInfo = () => {
           (typeof error.data === "string" && error.data) ||
           "Unable to update profile"
       );
-      console.log(error);
     }
   };
 

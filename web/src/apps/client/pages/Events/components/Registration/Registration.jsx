@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../../../../../state/redux/auth/authSlice";
 import { toast } from "react-toastify";
 import Button from "../../../../atoms/Button";
+import Modal from "../../../../components/Modal/Modal";
 
 const Registration = ({ event = {}, close }) => {
   const user = useSelector(selectUser);
@@ -74,27 +75,15 @@ const Registration = ({ event = {}, close }) => {
 
   if (!event || !user) {
     return (
-      <div className={styles.container}>
-        <div className={styles.header}>
-          <h2 className={styles.title}>
-            {!event ? "Event not found" : "Login to register"}
-          </h2>
-          <button className={styles.close} onClick={close}>
-            &times;
-          </button>
-        </div>
-      </div>
+      <Modal
+        title={!event ? "Event not found" : "Login to register"}
+        close={close}
+      />
     );
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>{event.name}</h2>
-        <button className={styles.close} onClick={close}>
-          &times;
-        </button>
-      </div>
+    <Modal title={event.name} close={close}>
       <div className={styles.participantDetails}>
         <div className={styles.item}>
           <p className={styles.key}>
@@ -177,7 +166,7 @@ const Registration = ({ event = {}, close }) => {
           {event.feesInINR > 0 ? "Pay and Confirm" : "Confirm"}
         </Button>
       </form>
-    </div>
+    </Modal>
   );
 };
 

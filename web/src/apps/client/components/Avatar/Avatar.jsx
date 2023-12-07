@@ -104,7 +104,13 @@ const extractNumber = (str) => {
   return num ? num[0] : null;
 };
 
-const Avatar = ({ avatarCode, image, name = "Avatar", size = 40 }) => {
+const Avatar = ({
+  avatarCode,
+  image,
+  name = "Avatar",
+  size = 40,
+  className,
+}) => {
   const getFontSize = (size) => {
     if (!size) return null;
     if (typeof size === "number") return size / 2;
@@ -147,7 +153,7 @@ const Avatar = ({ avatarCode, image, name = "Avatar", size = 40 }) => {
     />
   ) : (
     <span
-      className={styles.avatar}
+      className={styles.avatar + " " + className}
       style={{ width: size, height: size, fontSize: getFontSize(size) }}
     >
       {name
