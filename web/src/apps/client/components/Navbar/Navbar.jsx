@@ -157,7 +157,7 @@ const Navbar = () => {
           )}
           {user ? (
             <Link to="/profile">
-              <Avatar className={styles.avatar} name={user.name} avatarCode={user.avatarCode} />
+              <Avatar name={user.name} avatarCode={user.avatarCode} size={30} />
             </Link>
           ) : (
             <button className={styles.login} onClick={handleLogin}>

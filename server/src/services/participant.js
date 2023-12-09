@@ -70,6 +70,12 @@ class ParticipantService {
       const event = await EventRepository.getById(participant.event);
       if (!event) throw new BadRequestError("Invalid event");
 
+      if (!event.isRegistrationRequired) {
+        throw new BadRequestError(
+          "Registrations are not required for this event"
+        );
+      }
+
       participant.members = [
         ...new Set([participant.leader, ...(participant.members || [])]),
       ]; // add leader and remove duplicates

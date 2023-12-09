@@ -30,7 +30,12 @@ const DetailsModal = ({ close, participation }) => {
           <ListTile
             key={member._id}
             leading={
-              <Avatar image={member.image} name={member.name} size={40} />
+              <Avatar
+                image={member.image}
+                avatarCode={member.avatarCode}
+                name={member.name}
+                size={40}
+              />
             }
             title={member.name}
             subtitle={member.email}

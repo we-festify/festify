@@ -1,3 +1,11 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  gap: 1rem;
+}
+
 h2.title {
   margin: 0;
   font-size: 1rem;

@@ -85,6 +85,10 @@
 }
 
 @media screen and (max-width: 768px) {
+  .container {
+    padding-bottom: var(--bottom-navigation-bar-height);
+  }
+
   .top {
     flex-direction: column;
   }

@@ -122,7 +122,7 @@ const Avatar = ({
     const { Face, Cloth, faceColor, clothColor, backgroundColor } =
       decodeAvatarCode(avatarCode);
     return (
-      <span
+      <div
         className={styles.avatar}
         style={{
           width: size,
@@ -134,13 +134,13 @@ const Avatar = ({
           backgroundColor: backgroundColor || "#bdf0c6",
         }}
       >
-        <span className={styles.face}>
+        <div className={styles.face}>
           <Face />
-        </span>
-        <span className={styles.cloth}>
+        </div>
+        <div className={styles.cloth}>
           <Cloth />
-        </span>
-      </span>
+        </div>
+      </div>
     );
   }
 

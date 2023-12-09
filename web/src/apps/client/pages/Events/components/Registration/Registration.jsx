@@ -97,7 +97,7 @@ const Registration = ({ event = {}, close }) => {
         </div>
       </div>
       <form className={styles.form} onSubmit={handleSubmit}>
-        {!event.feesInINR > 0 && false && (
+        {!event.registrationFeesInINR > 0 && false && (
           <div className={styles.formGroup}>
             <label htmlFor="promoCode">Promo Code</label>
             <input
@@ -149,7 +149,7 @@ const Registration = ({ event = {}, close }) => {
             </div>
           </div>
         )}
-        {event.feesInINR > 0 && (
+        {event.registrationFeesInINR > 0 && (
           <div className={styles.formGroup}>
             <label htmlFor="promoCode">Promo Code</label>
             <input
@@ -163,7 +163,7 @@ const Registration = ({ event = {}, close }) => {
         )}
         {error && <p className={styles.error}>{error}</p>}
         <Button variant="secondary" type="submit" className={styles.submit}>
-          {event.feesInINR > 0 ? "Pay and Confirm" : "Confirm"}
+          {event.registrationFeesInINR > 0 ? "Pay and Confirm" : "Confirm"}
         </Button>
       </form>
     </Modal>

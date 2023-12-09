@@ -112,12 +112,6 @@
   background-color: var(--color-background-dark);
 }
 
-.right .avatar {
-  border-radius: 50%;
-  overflow: hidden;
-  color: var(--color-text);
-}
-
 .hamburger {
   margin-right: 1.5rem;
   cursor: pointer;

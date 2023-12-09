@@ -8,13 +8,35 @@ import {
   useUnsubscribeWebPushMutation,
 } from "../../../../../../state/redux/notification/notificationApi";
 import Button from "../../../../atoms/Button";
-import { selectIsAdmin } from "../../../../../../state/redux/auth/authSlice";
-import { useSelector } from "react-redux";
+import {
+  clearCredentials,
+  selectIsAdmin,
+} from "../../../../../../state/redux/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useLogoutMutation } from "../../../../../../state/redux/auth/authApi";
+import { toast } from "react-toastify";
 
 const Settings = () => {
+  const dispatch = useDispatch();
+  const [logout, {}] = useLogoutMutation();
+
+  const handleLogout = async () => {
+    try {
+      await logout().unwrap();
+      dispatch(clearCredentials()); // clear credentials from redux store
+    } catch (error) {
+      toast.error(error.data.message);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <NotificationSettingsGroup />
+      <div className={styles.group}>
+        <Button variant="outline-secondary" onClick={handleLogout}>
+          Log Out
+        </Button>
+      </div>
     </div>
   );
 };

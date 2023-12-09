@@ -58,34 +58,6 @@ const EventSchema = new mongoose.Schema({
     ref: "Organisation",
     required: true,
   },
-  isTicketed: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
-  minTeamSize: {
-    type: Number,
-    required: true,
-    default: 1,
-  },
-  maxTeamSize: {
-    type: Number,
-    required: true,
-    default: 1,
-  },
-  registrationsStart: {
-    type: Date,
-    required: true,
-  },
-  registrationsEnd: {
-    type: Date,
-    required: true,
-  },
-  feesInINR: {
-    type: Number,
-    required: true,
-    default: 0,
-  },
   category: {
     type: String,
     enum: [
@@ -111,6 +83,52 @@ const EventSchema = new mongoose.Schema({
   },
   rulebookUrl: {
     type: String,
+  },
+
+  // Registrations are required for events like competitions, workshops, etc.
+  isRegistrationRequired: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  minTeamSize: {
+    type: Number,
+    min: 1,
+  },
+  maxTeamSize: {
+    type: Number,
+    min: 1,
+  },
+  registrationsStart: {
+    type: Date,
+  },
+  registrationsEnd: {
+    type: Date,
+  },
+  registrationFeesInINR: {
+    type: Number,
+    default: 0,
+  },
+
+  // Entry Passes are required for events like concerts, standup comedy, etc.
+  isEntryPassRequired: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  entryPassPriceInINR: {
+    type: Number,
+    default: 0,
+  },
+  totalEntryPasses: {
+    type: Number,
+    default: 0, // 0 means unlimited
+  },
+  entryPassDistributionStart: {
+    type: Date,
+  },
+  entryPassDistributionEnd: {
+    type: Date,
   },
 });
 

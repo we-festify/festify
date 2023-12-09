@@ -83,14 +83,30 @@ const Details = () => {
       <div className={styles.details}>
         <h2 className={styles.heading}>About</h2>
         <p className={styles.text}>{event?.summary}</p>
-        <h2 className={styles.heading}>Registration date & time</h2>
-        <p className={styles.text}>
-          <span>Starts: </span>
-          {formatDateTime(event?.registrationsStart)}
-          <br />
-          <span>Ends: </span>
-          {formatDateTime(event?.registrationsEnd)}
-        </p>
+        {event?.isRegistrationRequired && (
+          <>
+            <h2 className={styles.heading}>Registration date & time</h2>
+            <p className={styles.text}>
+              <span>Starts: </span>
+              {formatDateTime(event?.registrationsStart)}
+              <br />
+              <span>Ends: </span>
+              {formatDateTime(event?.registrationsEnd)}
+            </p>
+          </>
+        )}
+        {event?.isEntryPassRequired && (
+          <>
+            <h2 className={styles.heading}>Entry Pass Distribution</h2>
+            <p className={styles.text}>
+              <span>Starts: </span>
+              {formatDateTime(event?.entryPassDistributionStart)}
+              <br />
+              <span>Ends: </span>
+              {formatDateTime(event?.entryPassDistributionEnd)}
+            </p>
+          </>
+        )}
         <h2 className={styles.heading}>Details</h2>
         <p className={styles.text}>{event?.description}</p>
         <h2 className={styles.heading}>Timeline</h2>
@@ -103,22 +119,51 @@ const Details = () => {
         />
         <h2 className={styles.heading}>Other Details</h2>
         <div className={styles.other}>
-          <div className={styles.item}>
-            <p className={styles.key}>Min Team Size</p>
-            <p className={styles.value}>{event?.minTeamSize}</p>
-          </div>
-          <div className={styles.item}>
-            <p className={styles.key}>Max Team Size</p>
-            <p className={styles.value}>{event?.maxTeamSize}</p>
-          </div>
-          <div className={styles.item + " " + styles.price}>
-            <p className={styles.key}>
-              Entry Charges {event?.feesInINR > 0 ? "(in INR)" : ""}
-            </p>
-            <p className={styles.value}>
-              {event?.feesInINR > 0 ? `₹ ${event?.feesInINR}` : "Free"}
-            </p>
-          </div>
+          {event?.isRegistrationRequired && (
+            <>
+              <div className={styles.item}>
+                <p className={styles.key}>Min Team Size</p>
+                <p className={styles.value}>{event?.minTeamSize}</p>
+              </div>
+              <div className={styles.item}>
+                <p className={styles.key}>Max Team Size</p>
+                <p className={styles.value}>{event?.maxTeamSize}</p>
+              </div>
+              <div className={styles.item + " " + styles.price}>
+                <p className={styles.key}>
+                  Registration Fees{" "}
+                  {event?.registrationFeesInINR > 0 ? "(in INR)" : ""}
+                </p>
+                <p className={styles.value}>
+                  {event?.registrationFeesInINR > 0
+                    ? `₹ ${event?.registrationFeesInINR}`
+                    : "Free"}
+                </p>
+              </div>
+            </>
+          )}
+          {event?.isEntryPassRequired && (
+            <>
+              <div className={styles.item}>
+                <p className={styles.key}>Total Entry Passes</p>
+                <p className={styles.value}>
+                  {event?.totalEntryPasses === 0
+                    ? "Enough"
+                    : event?.totalEntryPasses}
+                </p>
+              </div>
+              <div className={styles.item + " " + styles.price}>
+                <p className={styles.key}>
+                  Entry Fees {event?.entryPassPriceInINR > 0 ? "(in INR)" : ""}
+                </p>
+                <p className={styles.value}>
+                  {event?.entryPassPriceInINR > 0
+                    ? `₹ ${event?.entryPassPriceInINR}`
+                    : "Free"}
+                </p>
+              </div>
+            </>
+          )}
           <div className={styles.item}>
             <p className={styles.key}>Venue</p>
             <p className={styles.value}>{event?.venue}</p>
@@ -133,31 +178,52 @@ const Details = () => {
           ))}
         </div>
         <div className={styles.actions}>
-          {!isLoggedIn ? (
-            <Button variant="secondary" onClick={handleNavigateToLogin}>
-              Login to Register
-            </Button>
-          ) : !isVerified ? (
-            <Button variant="secondary" onClick={handleNavigateToProfile}>
-              Verify Email to Register
-            </Button>
-          ) : isRegistered ? (
-            <Button variant="success" disabled>
-              Registered
-            </Button>
-          ) : new Date(event?.registrationsStart) > today ? (
-            <Button variant="secondary" disabled>
-              Registration Not Started
-            </Button>
-          ) : new Date(event?.registrationsEnd) < today ? (
-            <Button variant="secondary" disabled>
-              Registration Ended
-            </Button>
-          ) : (
-            <Button variant="secondary" onClick={handleRegister}>
-              Register
-            </Button>
-          )}
+          {event?.isRegistrationRequired &&
+            (!isLoggedIn ? (
+              <Button variant="secondary" onClick={handleNavigateToLogin}>
+                Login to Register
+              </Button>
+            ) : !isVerified ? (
+              <Button variant="secondary" onClick={handleNavigateToProfile}>
+                Verify Email
+              </Button>
+            ) : isRegistered ? (
+              <Button variant="success" disabled>
+                Registered
+              </Button>
+            ) : new Date(event?.registrationsStart) > today ? (
+              <Button variant="secondary" disabled>
+                Registration Not Started
+              </Button>
+            ) : new Date(event?.registrationsEnd) < today ? (
+              <Button variant="secondary" disabled>
+                Registration Ended
+              </Button>
+            ) : (
+              <Button variant="secondary" onClick={handleRegister}>
+                Register
+              </Button>
+            ))}
+          {event?.isEntryPassRequired &&
+            (!isLoggedIn ? (
+              <Button variant="secondary" onClick={handleNavigateToLogin}>
+                Login to Get Pass
+              </Button>
+            ) : !isVerified ? (
+              <Button variant="secondary" onClick={handleNavigateToProfile}>
+                Verify Email
+              </Button>
+            ) : isRegistered ? (
+              <Button variant="success" disabled>
+                View Pass
+              </Button>
+            ) : new Date(event?.entryPassDistributionStart) >
+              today ? null : new Date(event?.entryPassDistributionEnd) <
+              today ? null : (
+              <Button variant="secondary" onClick={handleRegister}>
+                Get Entry Pass
+              </Button>
+            ))}
           {event?.rulebook && (
             <Button
               variant="outline-secondary"

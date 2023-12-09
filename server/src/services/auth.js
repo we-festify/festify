@@ -190,7 +190,7 @@ class AuthService {
       if (!email) throw new BadRequestError("Email is required");
       email = email.trim().toLowerCase();
       if (!validateEmail(email)) throw new BadRequestError("Invalid email");
-      const user = await UserRepository.getByEmail(email);
+      const user = await UserRepository.getByEmail(email, true);
       if (!user) throw new BadRequestError("User not found");
       const userPayload = {
         _id: user._id,
