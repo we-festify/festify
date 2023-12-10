@@ -221,7 +221,7 @@ const Form = ({ onSubmit, defaultValue, onChange }) => {
             onChange={(value) =>
               handleChange("isRegistrationRequired", value === "Yes")
             }
-            defaultValue={event.isRegistrationRequired || "No"}
+            defaultValue={event.isRegistrationRequired ? "Yes" : "No"}
           />
         </GridItem>
         <GridItem sm={12} md={4} lg={4}>
@@ -280,7 +280,7 @@ const Form = ({ onSubmit, defaultValue, onChange }) => {
             onChange={(value) =>
               handleChange("isEntryPassRequired", value === "Yes")
             }
-            defaultValue={event.isEntryPassRequired || "No"}
+            defaultValue={event.isEntryPassRequired ? "Yes" : "No"}
           />
         </GridItem>
         <GridItem sm={12} md={4} lg={4}>

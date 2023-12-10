@@ -34,7 +34,7 @@ class Mailer {
   }
 
   static async sendVerificationEmail({ email, verificationToken }) {
-    const verificationUrl = `${process.env.EMAIL_VERIFICATION_URL}?token=${verificationToken}`;
+    const verificationUrl = `${process.env.CLIENT_EMAIL_VERIFICATION_URL}?token=${verificationToken}`;
     return await Mailer.sendMail({
       from: process.env.MAILING_SERVICE_USER,
       to: email,
@@ -46,7 +46,7 @@ class Mailer {
   }
 
   static async sendForgotPasswordMail({ to, resetPasswordToken, user }) {
-    const redirectUrl = `${process.env.RESET_PASSWORD_URL}?token=${resetPasswordToken}`;
+    const redirectUrl = `${process.env.CLIENT_RESET_PASSWORD_URL}?token=${resetPasswordToken}`;
     return await Mailer.sendMail({
       from: process.env.MAILING_SERVICE_USER,
       to,

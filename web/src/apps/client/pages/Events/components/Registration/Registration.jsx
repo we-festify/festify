@@ -97,18 +97,6 @@ const Registration = ({ event = {}, close }) => {
         </div>
       </div>
       <form className={styles.form} onSubmit={handleSubmit}>
-        {!event.registrationFeesInINR > 0 && false && (
-          <div className={styles.formGroup}>
-            <label htmlFor="promoCode">Promo Code</label>
-            <input
-              type="text"
-              name="promoCode"
-              id="promoCode"
-              className={styles.input}
-              onChange={handleChange}
-            />
-          </div>
-        )}
         {event.minTeamSize > 1 && (
           <div className={styles.formGroup}>
             <label htmlFor="teamName">Team Name</label>

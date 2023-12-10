@@ -16,5 +16,7 @@ router.use("/participants", require("./participant"));
 router.use("/users", require("./user"));
 router.use("/sponsors", require("./sponsor"));
 router.use("/notifications", require("./notification"));
+router.use("/entry-passes", require("./entryPass"));
+router.use("/payments", require("./payment"));
 
 module.exports = router;

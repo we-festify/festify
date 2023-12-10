@@ -15,6 +15,7 @@ import { useGetParticipationsBySelfQuery } from "../../../../../../state/redux/p
 import Button from "../../../../atoms/Button";
 import Timeline from "../../../../components/Timeline/Timeline";
 import DetailsSkeleton from "./DetailsSkeleton";
+import PurchaseEntryPass from "../PurchaseEntryPass/PurchaseEntryPass";
 
 const Details = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -28,7 +29,10 @@ const Details = () => {
   } = useGetEventByIdQuery(eventId);
   const navigate = useNavigate();
   const today = new Date();
-  const [RegistrationModal, { open }] = useModal(Registration);
+  const [RegistrationModal, { open: openRegistrationModal }] =
+    useModal(Registration);
+  const [PurchaseEntryPassModal, { open: openPurchaseEntryPassModal }] =
+    useModal(PurchaseEntryPass);
   const { data: { participations } = {} } = useGetParticipationsBySelfQuery();
   const isRegistered = participations?.some(
     (participation) => participation.event?._id === eventId
@@ -36,7 +40,12 @@ const Details = () => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    open();
+    openRegistrationModal();
+  };
+
+  const handlePurchaseEntryPass = (e) => {
+    e.preventDefault();
+    openPurchaseEntryPassModal();
   };
 
   const handleNavigateToRulebook = (e) => {
@@ -73,7 +82,7 @@ const Details = () => {
       }}
     >
       <RegistrationModal event={event} />
-
+      <PurchaseEntryPassModal event={event} />
       <div className={styles.image}>
         <img src={event?.image} alt={event?.name} />
         <div className={styles.info}>
@@ -220,7 +229,7 @@ const Details = () => {
             ) : new Date(event?.entryPassDistributionStart) >
               today ? null : new Date(event?.entryPassDistributionEnd) <
               today ? null : (
-              <Button variant="secondary" onClick={handleRegister}>
+              <Button variant="secondary" onClick={handlePurchaseEntryPass}>
                 Get Entry Pass
               </Button>
             ))}
