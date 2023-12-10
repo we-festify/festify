@@ -40,6 +40,7 @@ const api = createApi({
     "Sponsors",
     "Announcements",
     "WebPushSubscription",
+    "NotificationPermission", // for user notification permission
   ],
 });
 

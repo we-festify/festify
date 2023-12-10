@@ -79,6 +79,6 @@ self.addEventListener("push", (event) => {
   if (!body) return;
   self.registration.showNotification(title, {
     body,
-    icon: icon || `${process.env.PUBLIC_URL}/logo192.png`,
+    icon: icon || `logo192.png`,
   });
 });

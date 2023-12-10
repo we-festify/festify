@@ -2,6 +2,21 @@ import api from "./../api";
 
 const webPushApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    // Notification Permission
+    getNotificationPermission: builder.query({
+      query: () => "/notifications/permission",
+      providesTags: ["NotificationPermission"],
+    }),
+    updateNotificationPermission: builder.mutation({
+      query: (notificationPermission) => ({
+        url: "/notifications/permission",
+        method: "PATCH",
+        body: { notificationPermission },
+      }),
+      invalidatesTags: ["NotificationPermission"],
+    }),
+
+    // Web Push
     getWebPushSubscription: builder.query({
       query: () => "/notifications/webpush/subscription",
       providesTags: ["WebPushSubscription"],
@@ -33,6 +48,9 @@ const webPushApi = api.injectEndpoints({
 });
 
 export const {
+  useGetNotificationPermissionQuery,
+  useUpdateNotificationPermissionMutation,
+
   useGetWebPushSubscriptionQuery,
   useSubscribeWebPushMutation,
   useUnsubscribeWebPushMutation,

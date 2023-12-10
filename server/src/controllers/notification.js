@@ -1,6 +1,40 @@
+const NotificationService = require("../services/notification");
 const WebPushService = require("../services/webPush");
 
 class NotificationController {
+  // Notification Permission
+  static async updatePermissions(req, res, next) {
+    try {
+      const { user } = req;
+      const { notificationPermission } = req.body;
+      const updatedNotificationPermission =
+        await NotificationService.updatePermissions(
+          user._id,
+          notificationPermission
+        );
+      res.status(200).json({
+        notificationPermission: updatedNotificationPermission,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async getPermissions(req, res, next) {
+    try {
+      const { user } = req;
+      const notificationPermission = await NotificationService.getPermissions(
+        user._id
+      );
+      res.status(200).json({
+        notificationPermission,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  // Web Push
   static async subscribeWebPush(req, res, next) {
     try {
       const { user } = req;

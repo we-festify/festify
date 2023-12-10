@@ -77,3 +77,7 @@ input.value[type="checkbox"]::before {
 input.value[type="checkbox"]:checked::before {
   transform: translateX(1.05rem);
 }
+
+input.value[type="checkbox"]:disabled {
+  cursor: not-allowed;
+}

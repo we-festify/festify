@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import styles from "./Settings.module.css";
 import WebPushService from "./../../../../../../services/webPush";
 import {
+  useGetNotificationPermissionQuery,
   useGetWebPushSubscriptionQuery,
   useSubscribeWebPushMutation,
   useTestWebPushMutation,
   useUnsubscribeWebPushMutation,
+  useUpdateNotificationPermissionMutation,
 } from "../../../../../../state/redux/notification/notificationApi";
 import Button from "../../../../atoms/Button";
 import {
@@ -42,6 +44,8 @@ const Settings = () => {
 };
 
 const NotificationSettingsGroup = () => {
+  const { data: { notificationPermission } = {} } =
+    useGetNotificationPermissionQuery();
   const [testWebPush, {}] = useTestWebPushMutation();
   const isAdmin = useSelector(selectIsAdmin);
 
@@ -57,12 +61,22 @@ const NotificationSettingsGroup = () => {
       <h2 className={styles.title}>Notifications</h2>
       <div className={styles.item}>
         <p className={styles.key}>Email</p>
-        <input type="checkbox" className={styles.value} checked disabled />
+        <input
+          type="checkbox"
+          className={styles.value}
+          checked={notificationPermission?.email || false}
+          disabled
+        />
       </div>
       <WebPushToggleItem />
       <div className={styles.item}>
         <p className={styles.key}>In-App</p>
-        <input type="checkbox" className={styles.value} checked disabled />
+        <input
+          type="checkbox"
+          className={styles.value}
+          checked={notificationPermission?.inApp || false}
+          disabled
+        />
       </div>
       {isAdmin && (
         <Button
@@ -78,6 +92,9 @@ const NotificationSettingsGroup = () => {
 };
 
 const WebPushToggleItem = () => {
+  const { data: { notificationPermission } = {} } =
+    useGetNotificationPermissionQuery();
+  const [updatePermission, {}] = useUpdateNotificationPermissionMutation();
   const { data: { subscription } = {}, isLoading } =
     useGetWebPushSubscriptionQuery();
   const [subscribeToWebPush, {}] = useSubscribeWebPushMutation();
@@ -92,10 +109,18 @@ const WebPushToggleItem = () => {
           if (s.endpoint === sub.endpoint) {
             setPush(true);
             found = true;
+            updatePermission({ push: true });
           }
         });
         if (!found) {
-          setPush(false);
+          // If the subscription is not found in the database, try to subscribe again
+          // if the user has given permission
+          if (notificationPermission?.push) {
+            subscribeToWebPush(sub);
+            setPush(true);
+          } else {
+            setPush(false);
+          }
         }
       } else {
         setPush(false);
@@ -103,6 +128,7 @@ const WebPushToggleItem = () => {
     });
   }, [subscription]);
 
+  // This function can have inconsistent behavior
   const handlePushChange = async (e) => {
     const { checked } = e.target;
     setPush(checked);
@@ -111,6 +137,7 @@ const WebPushToggleItem = () => {
         const payload = await WebPushService.unsubscribe();
         if (payload) {
           unsubscribeFromWebPush(payload);
+          updatePermission({ push: false });
         }
         console.log("Unsubscribed from web push");
         return;
@@ -123,6 +150,7 @@ const WebPushToggleItem = () => {
         subscription = await WebPushService.subscribe();
       }
       subscribeToWebPush(subscription);
+      updatePermission({ push: true });
       console.log("Subscribed to web push");
     } catch (error) {
       setPush(!checked);

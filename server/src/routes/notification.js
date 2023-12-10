@@ -4,6 +4,19 @@ const NotificationController = require("../controllers/notification");
 const AuthMiddleware = require("../middlewares/auth");
 const RBACMiddleware = require("../middlewares/rbac");
 
+// Notification Permission
+router.patch(
+  "/permission",
+  AuthMiddleware.requireLoggedIn,
+  NotificationController.updatePermissions
+);
+router.get(
+  "/permission",
+  AuthMiddleware.requireLoggedIn,
+  NotificationController.getPermissions
+);
+
+// Web Push
 router.post(
   "/webpush/subscription",
   AuthMiddleware.requireLoggedIn,
