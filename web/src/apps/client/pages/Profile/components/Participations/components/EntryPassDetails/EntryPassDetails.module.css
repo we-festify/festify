@@ -1,0 +1,43 @@
+.details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.details .title {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+  margin-top: 1rem;
+}
+
+.details .item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.details .item .key {
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.details .item .value {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.item.imp .value {
+  color: var(--color-secondary-500);
+}
+
+.extra {
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin: 0;
+  color: var(--color-text-light);
+}

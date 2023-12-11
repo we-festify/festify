@@ -16,6 +16,7 @@ import Button from "../../../../atoms/Button";
 import Timeline from "../../../../components/Timeline/Timeline";
 import DetailsSkeleton from "./DetailsSkeleton";
 import PurchaseEntryPass from "../PurchaseEntryPass/PurchaseEntryPass";
+import { useGetEntryPassesBySelfQuery } from "../../../../../../state/redux/entryPass/entryPassApi";
 
 const Details = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -36,6 +37,11 @@ const Details = () => {
   const { data: { participations } = {} } = useGetParticipationsBySelfQuery();
   const isRegistered = participations?.some(
     (participation) => participation.event?._id === eventId
+  );
+  const { data: { entryPasses } = {} } = useGetEntryPassesBySelfQuery();
+  const hasEntryPass = entryPasses?.some(
+    (entryPass) =>
+      entryPass.event === eventId || entryPass.event?._id === eventId
   );
 
   const handleRegister = (e) => {
@@ -222,9 +228,9 @@ const Details = () => {
               <Button variant="secondary" onClick={handleNavigateToProfile}>
                 Verify Email
               </Button>
-            ) : isRegistered ? (
+            ) : hasEntryPass ? (
               <Button variant="success" disabled>
-                View Pass
+                Entry Pass Purchased
               </Button>
             ) : new Date(event?.entryPassDistributionStart) >
               today ? null : new Date(event?.entryPassDistributionEnd) <
@@ -246,6 +252,16 @@ const Details = () => {
           <p className={styles.note}>
             You have already registered for this event. You can view your
             participation details in the{" "}
+            <Link to="/profile" className={styles.link}>
+              Profile
+            </Link>{" "}
+            section.
+          </p>
+        )}
+        {hasEntryPass && (
+          <p className={styles.note}>
+            You have already purchased an entry pass for this event. You can
+            view your entry pass details in the{" "}
             <Link to="/profile" className={styles.link}>
               Profile
             </Link>{" "}

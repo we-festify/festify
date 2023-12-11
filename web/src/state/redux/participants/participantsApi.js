@@ -3,11 +3,12 @@ import api from "../api";
 const participantsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     createParticipant: builder.mutation({
-      query: (participant) => ({
+      query: ({ participant, promoCode }) => ({
         url: "/participants",
         method: "POST",
         body: {
           participant,
+          promoCode,
         },
       }),
       invalidatesTags: ["Participants"],

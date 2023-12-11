@@ -152,7 +152,7 @@ const Avatar = ({
       style={{ width: size, height: size }}
     />
   ) : (
-    <span
+    <div
       className={styles.avatar + " " + className}
       style={{ width: size, height: size, fontSize: getFontSize(size) }}
     >
@@ -160,7 +160,7 @@ const Avatar = ({
         .split(" ")
         .map((name) => name.charAt(0).toUpperCase())
         .slice(0, 2)}
-    </span>
+    </div>
   );
 };
 

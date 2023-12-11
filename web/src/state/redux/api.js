@@ -41,6 +41,7 @@ const api = createApi({
     "Announcements",
     "WebPushSubscription",
     "NotificationPermission", // for user notification permission
+    "Payments", // for user payments
   ],
 });
 

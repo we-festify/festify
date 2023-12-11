@@ -24,6 +24,7 @@
 
 .tab {
   display: flex;
+  flex: 1;
 }
 
 .tab button {

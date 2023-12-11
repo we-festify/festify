@@ -2,8 +2,8 @@ import api from "./../api";
 
 const entryPassApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getEntryPassesOfSelf: builder.query({
-      query: () => `/entry-passes`,
+    getEntryPassesBySelf: builder.query({
+      query: () => `/entry-passes/me`,
     }),
     purchaseEntryPass: builder.mutation({
       query: ({ eventId, promoCode }) => ({
@@ -17,5 +17,5 @@ const entryPassApi = api.injectEndpoints({
   }),
 });
 
-export const { useGetEntryPassesOfSelfQuery, usePurchaseEntryPassMutation } =
+export const { useGetEntryPassesBySelfQuery, usePurchaseEntryPassMutation } =
   entryPassApi;

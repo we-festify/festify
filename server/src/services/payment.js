@@ -23,6 +23,7 @@ class PaymentService {
     reference,
     amount,
     status,
+    description,
   }) {
     try {
       return await RazorpayPaymentRepository.create({
@@ -34,13 +35,14 @@ class PaymentService {
         reference,
         amount,
         status,
+        description,
       });
     } catch (err) {
       throw err;
     }
   }
 
-  static async verifyAndPersistPayment({ body, headers }) {
+  static async verifyPayment({ body, headers }) {
     try {
       const isValid = await RazorpayService.verifyWebhookSignature({
         body,
@@ -49,30 +51,14 @@ class PaymentService {
       if (!isValid) {
         throw new Error("Invalid signature");
       }
-      const razorpaySignature = headers["x-razorpay-signature"];
-      const {
-        payload: {
-          payment: {
-            entity: {
-              id: razorpayPaymentId,
-              order_id: razorpayOrderId,
-              notes: { type, user, reference },
-              amount,
-              status,
-            },
-          },
-        },
-      } = body;
-      return await PaymentService.createPayment({
-        razorpayOrderId,
-        razorpayPaymentId,
-        razorpaySignature,
-        user,
-        type,
-        reference,
-        amount,
-        status,
-      });
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async getPaymentsByUser(user) {
+    try {
+      return await RazorpayPaymentRepository.getByUser(user);
     } catch (err) {
       throw err;
     }

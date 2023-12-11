@@ -9,5 +9,11 @@ router.post(
   AuthMiddleware.requireVerified,
   EntryPassController.purchase
 );
+router.get(
+  "/me", // get all entry passes of self
+  AuthMiddleware.requireLoggedIn,
+  AuthMiddleware.requireVerified,
+  EntryPassController.getAllBySelf
+);
 
 module.exports = router;

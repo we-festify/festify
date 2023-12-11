@@ -7,6 +7,14 @@
   gap: 1rem;
 }
 
+h2.title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 0.03rem;
+  color: var(--color-text);
+}
+
 .participations {
   width: 100%;
   display: grid;

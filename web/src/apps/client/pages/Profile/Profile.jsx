@@ -11,6 +11,7 @@ import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { AiFillHome } from "react-icons/ai";
 import { FaUserEdit } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
+import { MdOutlineCurrencyRupee } from "react-icons/md";
 import { useSendVerificationEmailMutation } from "../../../../state/redux/auth/authApi";
 import { toast } from "react-toastify";
 import Participations from "./components/Participations/Participations";
@@ -21,6 +22,7 @@ import { useMediaQuery } from "../../../../hooks/useMediaQuery";
 import BottomNavigationBar from "../../components/BottomNavigationBar/BottomNavigationBar";
 import Settings from "./components/Settings/Settings";
 import { viewTransition } from "../../../../utils/view_transition";
+import Payments from "./components/Payments/Payments";
 
 const Profile = () => {
   const isPortrait = useMediaQuery("(orientation: portrait)");
@@ -39,7 +41,7 @@ const Profile = () => {
       component: <Participations />,
     },
     {
-      label: "Update Profile",
+      label: "Update",
       icon: <FaUserEdit />,
       component: <UpdateInfo />,
     },
@@ -47,6 +49,11 @@ const Profile = () => {
       label: "Settings",
       icon: <IoMdSettings />,
       component: <Settings />,
+    },
+    {
+      label: "Payments",
+      icon: <MdOutlineCurrencyRupee />,
+      component: <Payments />,
     },
   ];
 
@@ -61,11 +68,13 @@ const Profile = () => {
           <div className={styles.right}>
             {!isPortrait ? (
               <>
-                <Tabs
-                  tabs={tabs}
-                  activeIndex={activeTabIndex}
-                  onTabChange={handleTabChange}
-                />
+                <div className={styles.tabs}>
+                  <Tabs
+                    tabs={tabs}
+                    activeIndex={activeTabIndex}
+                    onTabChange={handleTabChange}
+                  />
+                </div>
                 {tabs[activeTabIndex].component}
               </>
             ) : (

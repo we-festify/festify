@@ -1,6 +1,7 @@
 .tabsContainer {
   display: flex;
   overflow-x: auto; /* Enable horizontal scrolling */
+  flex-shrink: 0; /* Prevent shrinking when content is smaller than the container */
 }
 
 .tabs {

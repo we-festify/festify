@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./DetailsModal.module.css";
 import { useSelector } from "react-redux";
-import { selectUser } from "./../../../../../../../../state/redux/auth/authSlice";
+import { selectUser } from "../../../../../../../../state/redux/auth/authSlice";
 import Avatar from "../../../../../../components/Avatar/Avatar";
 import Modal from "../../../../../../components/Modal/Modal";
 import ListTile from "../../../../../../components/ListTile/ListTile";

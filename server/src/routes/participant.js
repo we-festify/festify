@@ -7,7 +7,7 @@ router.post(
   "/",
   AuthMiddleware.requireLoggedIn,
   AuthMiddleware.requireVerified,
-  ParticipantController.create
+  ParticipantController.register
 );
 router.get(
   "/me",

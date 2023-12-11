@@ -25,6 +25,12 @@
   margin: 0;
 }
 
+.participantDetails .item.price .value {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--color-secondary-500);
+}
+
 .form {
   display: flex;
   flex-direction: column;

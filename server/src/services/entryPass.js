@@ -36,15 +36,24 @@ class EntryPassService {
       const order = await PaymentService.createOrder({
         amountInINR: event.entryPassPriceInINR,
         notes: {
-          type: "Event",
+          type: "EntryPass",
           user: user._id,
-          reference: event._id,
+          event: event._id,
         },
       });
       return {
         order,
         type: "order",
       };
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async getByUser(user) {
+    try {
+      const entryPasses = await EntryPassRepository.getByUser(user);
+      return entryPasses;
     } catch (err) {
       throw err;
     }

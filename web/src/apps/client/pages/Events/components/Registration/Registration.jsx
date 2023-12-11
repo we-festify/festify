@@ -6,6 +6,7 @@ import { selectUser } from "../../../../../../state/redux/auth/authSlice";
 import { toast } from "react-toastify";
 import Button from "../../../../atoms/Button";
 import Modal from "../../../../components/Modal/Modal";
+import PaymentService from "../../../../../../services/payment";
 
 const Registration = ({ event = {}, close }) => {
   const user = useSelector(selectUser);
@@ -18,6 +19,7 @@ const Registration = ({ event = {}, close }) => {
   const [error, setError] = useState(null);
   const [membersInput, setMembersInput] = useState("");
   const [createParticipant] = useCreateParticipantMutation();
+  const [promoCode, setPromoCode] = useState("");
 
   const handleChange = (e) => {
     setParticipant({
@@ -61,10 +63,24 @@ const Registration = ({ event = {}, close }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
     try {
-      await createParticipant(participant).unwrap();
-      toast.success("Registered successfully");
-      close();
+      const { type, order } = await createParticipant({
+        participant,
+        promoCode,
+      }).unwrap();
+      if (type === "participant") {
+        toast.success("Registered successfully");
+        close();
+      }
+      if (type === "order" && order) {
+        close();
+        await PaymentService.displayPaymentPopup({
+          user,
+          order,
+          description: `Registration for ${event.name}`,
+        });
+      }
     } catch (err) {
       setError(err.data?.message);
       toast.error(
@@ -94,6 +110,14 @@ const Registration = ({ event = {}, close }) => {
         <div className={styles.item}>
           <p className={styles.key}>Contact Email</p>
           <p className={styles.value}>{user.email}</p>
+        </div>
+        <div className={styles.item + " " + styles.price}>
+          <p className={styles.key}>Price</p>
+          <p className={styles.value}>
+            {event.registrationFeesInINR > 0
+              ? `₹ ${event.registrationFeesInINR}`
+              : "Free"}
+          </p>
         </div>
       </div>
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -145,7 +169,7 @@ const Registration = ({ event = {}, close }) => {
               name="promoCode"
               id="promoCode"
               className={styles.input}
-              onChange={handleChange}
+              onChange={(e) => setPromoCode(e.target.value)}
             />
           </div>
         )}

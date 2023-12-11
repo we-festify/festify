@@ -26,6 +26,15 @@ class RazorpayPaymentRepository {
       throw err;
     }
   }
+
+  static async getByUser(user) {
+    try {
+      return await RazorpayPayment.find({ user })
+        .sort({ createdAt: -1 });
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 module.exports = RazorpayPaymentRepository;

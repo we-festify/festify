@@ -16,6 +16,14 @@ class EntryPassRepository {
       throw err;
     }
   }
+
+  static async getByUser(user) {
+    try {
+      return await EntryPass.find({ user }).populate("event");
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 module.exports = EntryPassRepository;

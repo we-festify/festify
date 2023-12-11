@@ -18,6 +18,18 @@ class EntryPassController {
       next(err);
     }
   }
+
+  static async getAllBySelf(req, res, next) {
+    try {
+      const { user } = req;
+      const entryPasses = await EntryPassService.getByUser(user);
+      return res.status(200).json({
+        entryPasses,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 module.exports = EntryPassController;
