@@ -27,6 +27,8 @@
     "handlebars": "^4.7.8",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.5.3",
-    "nodemailer": "^6.9.6"
+    "nodemailer": "^6.9.6",
+    "razorpay": "^2.9.2",
+    "web-push": "^3.6.6"
   }
 }

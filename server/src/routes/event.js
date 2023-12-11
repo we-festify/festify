@@ -43,4 +43,23 @@ router.delete(
   EventController.deleteById
 );
 
+// Announcements
+router.post(
+  "/:eventId/announcements",
+  AuthMiddleware.requireLoggedIn,
+  RBACMiddleware.requirePermission("announcement", "create"),
+  EventController.createAnnouncement
+);
+router.get(
+  "/:eventId/announcements",
+  RBACMiddleware.requirePermission("announcement", "read"),
+  EventController.getAllAnnouncementsByEventId
+);
+router.delete(
+  "/:eventId/announcements/:id",
+  AuthMiddleware.requireLoggedIn,
+  RBACMiddleware.requirePermission("announcement", "delete"),
+  EventController.deleteAnnouncementById
+);
+
 module.exports = router;

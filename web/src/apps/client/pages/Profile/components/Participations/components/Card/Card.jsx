@@ -1,20 +1,25 @@
 import React from "react";
 import styles from "./Card.module.css";
-import { Link, useNavigate } from "react-router-dom";
-import { formatDate, formatDateTime } from "../../../../../../../../utils/time";
+import { useNavigate } from "react-router-dom";
 import { IoMdShare } from "react-icons/io";
+import { AiOutlineQrcode } from "react-icons/ai";
 import { toast } from "react-toastify";
-import { useMediaQuery } from "./../../../../../../../../hooks/useMediaQuery";
 import { viewTransition } from "../../../../../../../../utils/view_transition";
 import useModal from "../../../../../../../../hooks/useModal/useModal";
-import DetailsModal from "../DetailsModal/DetailsModal";
+import ParticipationDetails from "../ParticipationDetails/ParticipationDetails";
+import EntryPassDetails from "../EntryPassDetails/EntryPassDetails";
 
-const Card = ({ participation }) => {
-  const { event, members } = participation;
-  const leader = members.find((member) => member._id === participation.leader);
-  const isPortrait = useMediaQuery("(orientation: portrait)");
+const Card = ({ participation, entryPass }) => {
   const navigate = useNavigate();
-  const [ParticipationDetailsModal, { open }] = useModal(DetailsModal);
+  const [ParticipationDetailsModal, { open: openParticipationDetails }] =
+    useModal(ParticipationDetails);
+  const [EntryPassDetailsModal, { open: openEntryPassDetails }] =
+    useModal(EntryPassDetails);
+
+  let event = participation?.event;
+  if (!event) event = entryPass?.event;
+
+  if (!event) return null;
 
   const handleShareEvent = () => {
     if (navigator.share) {
@@ -35,8 +40,12 @@ const Card = ({ participation }) => {
     }
   };
 
-  const handleViewDetails = () => {
-    open();
+  const handleViewParticipationDetails = () => {
+    openParticipationDetails();
+  };
+
+  const handleViewEntryPassDetails = () => {
+    openEntryPassDetails();
   };
 
   const handleNavigateToEventDetails = () => {
@@ -50,6 +59,7 @@ const Card = ({ participation }) => {
   return (
     <div className={styles.container}>
       <ParticipationDetailsModal participation={participation} />
+      <EntryPassDetailsModal entryPass={entryPass} />
       <div
         className={styles.imageCard}
         onClick={handleNavigateToEventDetails}
@@ -62,7 +72,7 @@ const Card = ({ participation }) => {
           <img src={event.image} alt={event.name} />
         </div>
         <div className={styles.top}>
-          {participation.isTeam && (
+          {participation?.isTeam && (
             <div className={styles.badge + " " + styles.team}>team</div>
           )}
         </div>
@@ -80,9 +90,19 @@ const Card = ({ participation }) => {
           <div className={styles.action} onClick={handleShareEvent}>
             <IoMdShare />
           </div>
-          <div className={styles.action} onClick={handleViewDetails}>
-            View participation details
-          </div>
+          {participation && (
+            <div
+              className={styles.action}
+              onClick={handleViewParticipationDetails}
+            >
+              Participation details
+            </div>
+          )}
+          {entryPass && (
+            <div className={styles.action} onClick={handleViewEntryPassDetails}>
+              <AiOutlineQrcode />
+            </div>
+          )}
         </div>
       </div>
     </div>

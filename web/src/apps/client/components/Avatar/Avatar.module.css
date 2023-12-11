@@ -5,7 +5,8 @@
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
-  background-color: hsla(var(--color-primary-500-hsl-values), 0.1);
+  color: var(--color-text);
+  background-color: hsla(var(--color-white-hsl-values), 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,6 +15,8 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   position: relative;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .face,

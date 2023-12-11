@@ -32,7 +32,17 @@ const api = createApi({
   endpoints: (builder) => ({
     // ...endpoints
   }),
-  tagTypes: ["Events", "Organisations", "Users", "Participants", "Sponsors"],
+  tagTypes: [
+    "Events",
+    "Organisations",
+    "Users",
+    "Participants",
+    "Sponsors",
+    "Announcements",
+    "WebPushSubscription",
+    "NotificationPermission", // for user notification permission
+    "Payments", // for user payments
+  ],
 });
 
 export default api;

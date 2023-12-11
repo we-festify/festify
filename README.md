@@ -12,6 +12,26 @@
 
 Festify is a free and open-source framework for building fest management websites for colleges and universities. It is a one-stop solution for all the fests related activities. It is built with the MERN stack and is highly scalable and customizable.
 
+## Features
+
+`*` - Upcoming
+
+- Event Registrations
+- Event Management (Create, Update, Delete)
+- Entry Management (QR Code based Check-in)
+- API Query Caching (Redux Toolkit Query)
+- Payment Gateway Integration (Razorpay)
+- User Management (Admin, Organizers, Participants)
+- User Authentication (JWT)
+- Email Verification
+- `*` Notifications (Email, Push, in-app)
+- `*` Marketing Campaigns (Email, Push)
+- `*` Real-time Updates (WebSockets)
+- Dashboard (Admin, Organizers)
+- Customizable
+- `*` Scalable (Horizontal Scaling)
+- Responsive and modern Design (Mobile, Desktop)
+
 ## Tech Stack
 
 - **Frontend**
@@ -19,17 +39,35 @@ Festify is a free and open-source framework for building fest management website
   - React (CRA)
   - Redux
   - Redux Toolkit
+  - RTK Query
   - Modular CSS
 
 - **Backend**
 
   - Node.js
   - Express
-  - MongoDB
   - Mongoose
+  - JWT and cookies
+
+- **Communication Protocol**
+
+  - REST API
+  - WebSockets
+
+- **Pub/Sub**
+
+  - Redis
 
 - **Package Manager**
+
   - npm
+
+- **Database**
+
+  - MongoDB Atlas
+
+- **Version Control**
+  - GitHub
 
 ## Getting Started
 
@@ -38,6 +76,7 @@ Festify is a free and open-source framework for building fest management website
 - Node.js
 - npm
 - MongoDB
+- Redis (Optional, for pub/sub during horizontal scaling)
 
 ### Installation
 

@@ -9,6 +9,7 @@ import {
   backgroundColors,
 } from "../../../components/Avatar/Avatar";
 import Button from "../../Button";
+import Modal from "../../../components/Modal/Modal";
 
 const AvatarInputModalContent = ({ onChange, close }) => {
   const [page, setPage] = useState(0);
@@ -39,19 +40,7 @@ const AvatarInputModalContent = ({ onChange, close }) => {
   };
 
   return (
-    <div className={styles.modalContainer}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>Change Avatar</h2>
-        <button
-          className={styles.close}
-          onClick={(e) => {
-            e.preventDefault();
-            close();
-          }}
-        >
-          &times;
-        </button>
-      </div>
+    <Modal title="Change Avatar" close={close}>
       <div className={styles.body}>
         {page === 0 && (
           <>
@@ -193,7 +182,7 @@ const AvatarInputModalContent = ({ onChange, close }) => {
           </>
         )}
       </div>
-    </div>
+    </Modal>
   );
 };
 

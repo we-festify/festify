@@ -64,7 +64,7 @@ class EventRepository {
 
   static async deleteById(id) {
     try {
-      return await Event.findByIdAndDelete(id).select("description timeline");
+      return await Event.findByIdAndDelete(id);
     } catch (err) {
       throw err;
     }

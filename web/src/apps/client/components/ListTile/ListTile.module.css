@@ -1,0 +1,46 @@
+.listTile {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border-light);
+}
+
+.listTile:hover {
+  background-color: var(--color-border-light);
+}
+
+.listTile p {
+  margin: 0;
+}
+
+.listTile .left {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.left .info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.listTile .title {
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin: 0;
+  color: var(--color-text);
+  text-transform: capitalize;
+}
+
+.listTile .subtitle {
+  font-size: 0.7rem;
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: 0.03rem;
+  color: var(--color-text-light);
+}

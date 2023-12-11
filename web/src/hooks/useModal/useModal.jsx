@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./useModal.module.css";
 import { viewTransition } from "../../utils/view_transition";
 
@@ -20,11 +20,13 @@ const useModal = (Component) => {
   };
 
   return [
-    (props) => (
-      <dialog ref={modalRef} className={styles.dialog}>
-        <Component {...props} close={close} />
-      </dialog>
-    ),
+    (props) => {
+      return (
+        <dialog ref={modalRef} className={styles.dialog}>
+          <Component {...props} close={close} />
+        </dialog>
+      );
+    },
     {
       open,
       close,

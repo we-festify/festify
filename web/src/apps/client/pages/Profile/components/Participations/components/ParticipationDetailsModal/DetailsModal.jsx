@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "./DetailsModal.module.css";
 import { useSelector } from "react-redux";
-import { selectUser } from "./../../../../../../../../state/redux/auth/authSlice";
+import { selectUser } from "../../../../../../../../state/redux/auth/authSlice";
 import Avatar from "../../../../../../components/Avatar/Avatar";
+import Modal from "../../../../../../components/Modal/Modal";
+import ListTile from "../../../../../../components/ListTile/ListTile";
 
 const DetailsModal = ({ close, participation }) => {
   const user = useSelector(selectUser);
@@ -10,13 +12,7 @@ const DetailsModal = ({ close, participation }) => {
   const leader = members.find((member) => member._id === participation.leader);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>{event.name}</h2>
-        <button className={styles.close} onClick={close}>
-          &times;
-        </button>
-      </div>
+    <Modal title={event.name} close={close}>
       <div className={styles.details}>
         <h2 className={styles.title}>Details</h2>
         <div className={styles.item}>
@@ -31,26 +27,30 @@ const DetailsModal = ({ close, participation }) => {
       <div className={styles.details}>
         <h2 className={styles.title}>Team Members</h2>
         {members.map((member) => (
-          <div key={member._id} className={styles.listTile}>
-            <div className={styles.left}>
-              <Avatar image={member.image} name={member.name} size={40} />
-              <div className={styles.info}>
-                <h3 className={styles.name}>{member.name}</h3>
-                <p className={styles.email}>{member.email}</p>
-              </div>
-            </div>
-            <div className={styles.right}>
-              {member._id === leader._id && (
-                <span className={styles.extra}>Leader</span>
-              )}
-              {member._id === user._id && (
+          <ListTile
+            key={member._id}
+            leading={
+              <Avatar
+                image={member.image}
+                avatarCode={member.avatarCode}
+                name={member.name}
+                size={40}
+              />
+            }
+            title={member.name}
+            subtitle={member.email}
+            trailing={
+              (member._id === leader._id && (
+                <span className={styles.extra}>(Leader)</span>
+              )) ||
+              (member._id === user._id && (
                 <span className={styles.extra}>(You)</span>
-              )}
-            </div>
-          </div>
+              ))
+            }
+          />
         ))}
       </div>
-    </div>
+    </Modal>
   );
 };
 

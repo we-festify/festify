@@ -3,7 +3,6 @@ import styles from "./Details.module.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useGetEventByIdQuery } from "../../../../../../state/redux/events/eventsApi";
 import { formatDateTime } from "../../../../../../utils/time";
-import { MdChevronLeft } from "react-icons/md";
 import { viewTransition } from "../../../../../../utils/view_transition";
 import useModal from "../../../../../../hooks/useModal/useModal";
 import Registration from "../Registration/Registration";
@@ -16,6 +15,8 @@ import { useGetParticipationsBySelfQuery } from "../../../../../../state/redux/p
 import Button from "../../../../atoms/Button";
 import Timeline from "../../../../components/Timeline/Timeline";
 import DetailsSkeleton from "./DetailsSkeleton";
+import PurchaseEntryPass from "../PurchaseEntryPass/PurchaseEntryPass";
+import { useGetEntryPassesBySelfQuery } from "../../../../../../state/redux/entryPass/entryPassApi";
 
 const Details = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -29,15 +30,28 @@ const Details = () => {
   } = useGetEventByIdQuery(eventId);
   const navigate = useNavigate();
   const today = new Date();
-  const [RegistrationModal, { open }] = useModal(Registration);
+  const [RegistrationModal, { open: openRegistrationModal }] =
+    useModal(Registration);
+  const [PurchaseEntryPassModal, { open: openPurchaseEntryPassModal }] =
+    useModal(PurchaseEntryPass);
   const { data: { participations } = {} } = useGetParticipationsBySelfQuery();
   const isRegistered = participations?.some(
     (participation) => participation.event?._id === eventId
   );
+  const { data: { entryPasses } = {} } = useGetEntryPassesBySelfQuery();
+  const hasEntryPass = entryPasses?.some(
+    (entryPass) =>
+      entryPass.event === eventId || entryPass.event?._id === eventId
+  );
 
   const handleRegister = (e) => {
     e.preventDefault();
-    open();
+    openRegistrationModal();
+  };
+
+  const handlePurchaseEntryPass = (e) => {
+    e.preventDefault();
+    openPurchaseEntryPassModal();
   };
 
   const handleNavigateToRulebook = (e) => {
@@ -45,13 +59,6 @@ const Details = () => {
     if (event?.rulebook) {
       window.open(event?.rulebook, "_blank");
     }
-  };
-
-  const handleGoBack = () => {
-    viewTransition(() => {
-      const from = location.state?.from;
-      navigate(from || "/events", { replace: true });
-    });
   };
 
   const handleNavigateToLogin = () => {
@@ -81,9 +88,7 @@ const Details = () => {
       }}
     >
       <RegistrationModal event={event} />
-      <div className={styles.back} onClick={handleGoBack}>
-        <MdChevronLeft /> Back
-      </div>
+      <PurchaseEntryPassModal event={event} />
       <div className={styles.image}>
         <img src={event?.image} alt={event?.name} />
         <div className={styles.info}>
@@ -93,14 +98,30 @@ const Details = () => {
       <div className={styles.details}>
         <h2 className={styles.heading}>About</h2>
         <p className={styles.text}>{event?.summary}</p>
-        <h2 className={styles.heading}>Registration date & time</h2>
-        <p className={styles.text}>
-          <span>Starts: </span>
-          {formatDateTime(event?.registrationsStart)}
-          <br />
-          <span>Ends: </span>
-          {formatDateTime(event?.registrationsEnd)}
-        </p>
+        {event?.isRegistrationRequired && (
+          <>
+            <h2 className={styles.heading}>Registration date & time</h2>
+            <p className={styles.text}>
+              <span>Starts: </span>
+              {formatDateTime(event?.registrationsStart)}
+              <br />
+              <span>Ends: </span>
+              {formatDateTime(event?.registrationsEnd)}
+            </p>
+          </>
+        )}
+        {event?.isEntryPassRequired && (
+          <>
+            <h2 className={styles.heading}>Entry Pass Distribution</h2>
+            <p className={styles.text}>
+              <span>Starts: </span>
+              {formatDateTime(event?.entryPassDistributionStart)}
+              <br />
+              <span>Ends: </span>
+              {formatDateTime(event?.entryPassDistributionEnd)}
+            </p>
+          </>
+        )}
         <h2 className={styles.heading}>Details</h2>
         <p className={styles.text}>{event?.description}</p>
         <h2 className={styles.heading}>Timeline</h2>
@@ -113,22 +134,51 @@ const Details = () => {
         />
         <h2 className={styles.heading}>Other Details</h2>
         <div className={styles.other}>
-          <div className={styles.item}>
-            <p className={styles.key}>Min Team Size</p>
-            <p className={styles.value}>{event?.minTeamSize}</p>
-          </div>
-          <div className={styles.item}>
-            <p className={styles.key}>Max Team Size</p>
-            <p className={styles.value}>{event?.maxTeamSize}</p>
-          </div>
-          <div className={styles.item + " " + styles.price}>
-            <p className={styles.key}>
-              Entry Charges {event?.feesInINR > 0 ? "(in INR)" : ""}
-            </p>
-            <p className={styles.value}>
-              {event?.feesInINR > 0 ? `₹ ${event?.feesInINR}` : "Free"}
-            </p>
-          </div>
+          {event?.isRegistrationRequired && (
+            <>
+              <div className={styles.item}>
+                <p className={styles.key}>Min Team Size</p>
+                <p className={styles.value}>{event?.minTeamSize}</p>
+              </div>
+              <div className={styles.item}>
+                <p className={styles.key}>Max Team Size</p>
+                <p className={styles.value}>{event?.maxTeamSize}</p>
+              </div>
+              <div className={styles.item + " " + styles.price}>
+                <p className={styles.key}>
+                  Registration Fees{" "}
+                  {event?.registrationFeesInINR > 0 ? "(in INR)" : ""}
+                </p>
+                <p className={styles.value}>
+                  {event?.registrationFeesInINR > 0
+                    ? `₹ ${event?.registrationFeesInINR}`
+                    : "Free"}
+                </p>
+              </div>
+            </>
+          )}
+          {event?.isEntryPassRequired && (
+            <>
+              <div className={styles.item}>
+                <p className={styles.key}>Total Entry Passes</p>
+                <p className={styles.value}>
+                  {event?.totalEntryPasses === 0
+                    ? "Enough"
+                    : event?.totalEntryPasses}
+                </p>
+              </div>
+              <div className={styles.item + " " + styles.price}>
+                <p className={styles.key}>
+                  Entry Fees {event?.entryPassPriceInINR > 0 ? "(in INR)" : ""}
+                </p>
+                <p className={styles.value}>
+                  {event?.entryPassPriceInINR > 0
+                    ? `₹ ${event?.entryPassPriceInINR}`
+                    : "Free"}
+                </p>
+              </div>
+            </>
+          )}
           <div className={styles.item}>
             <p className={styles.key}>Venue</p>
             <p className={styles.value}>{event?.venue}</p>
@@ -143,31 +193,52 @@ const Details = () => {
           ))}
         </div>
         <div className={styles.actions}>
-          {!isLoggedIn ? (
-            <Button variant="secondary" onClick={handleNavigateToLogin}>
-              Login to Register
-            </Button>
-          ) : !isVerified ? (
-            <Button variant="secondary" onClick={handleNavigateToProfile}>
-              Verify Email to Register
-            </Button>
-          ) : isRegistered ? (
-            <Button variant="success" disabled>
-              Registered
-            </Button>
-          ) : new Date(event?.registrationsStart) > today ? (
-            <Button variant="secondary" disabled>
-              Registration Not Started
-            </Button>
-          ) : new Date(event?.registrationsEnd) < today ? (
-            <Button variant="secondary" disabled>
-              Registration Closed
-            </Button>
-          ) : (
-            <Button variant="secondary" onClick={handleRegister}>
-              Register
-            </Button>
-          )}
+          {event?.isRegistrationRequired &&
+            (!isLoggedIn ? (
+              <Button variant="secondary" onClick={handleNavigateToLogin}>
+                Login to Register
+              </Button>
+            ) : !isVerified ? (
+              <Button variant="secondary" onClick={handleNavigateToProfile}>
+                Verify Email
+              </Button>
+            ) : isRegistered ? (
+              <Button variant="success" disabled>
+                Registered
+              </Button>
+            ) : new Date(event?.registrationsStart) > today ? (
+              <Button variant="secondary" disabled>
+                Registration Not Started
+              </Button>
+            ) : new Date(event?.registrationsEnd) < today ? (
+              <Button variant="secondary" disabled>
+                Registration Ended
+              </Button>
+            ) : (
+              <Button variant="secondary" onClick={handleRegister}>
+                Register
+              </Button>
+            ))}
+          {event?.isEntryPassRequired &&
+            (!isLoggedIn ? (
+              <Button variant="secondary" onClick={handleNavigateToLogin}>
+                Login to Get Pass
+              </Button>
+            ) : !isVerified ? (
+              <Button variant="secondary" onClick={handleNavigateToProfile}>
+                Verify Email
+              </Button>
+            ) : hasEntryPass ? (
+              <Button variant="success" disabled>
+                Entry Pass Purchased
+              </Button>
+            ) : new Date(event?.entryPassDistributionStart) >
+              today ? null : new Date(event?.entryPassDistributionEnd) <
+              today ? null : (
+              <Button variant="secondary" onClick={handlePurchaseEntryPass}>
+                Get Entry Pass
+              </Button>
+            ))}
           {event?.rulebook && (
             <Button
               variant="outline-secondary"
@@ -181,6 +252,16 @@ const Details = () => {
           <p className={styles.note}>
             You have already registered for this event. You can view your
             participation details in the{" "}
+            <Link to="/profile" className={styles.link}>
+              Profile
+            </Link>{" "}
+            section.
+          </p>
+        )}
+        {hasEntryPass && (
+          <p className={styles.note}>
+            You have already purchased an entry pass for this event. You can
+            view your entry pass details in the{" "}
             <Link to="/profile" className={styles.link}>
               Profile
             </Link>{" "}

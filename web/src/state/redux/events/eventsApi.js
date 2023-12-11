@@ -41,6 +41,30 @@ const eventsApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Events"],
     }),
+
+    // Announcements
+    createAnnouncement: builder.mutation({
+      query: (announcement) => ({
+        url: `/events/${announcement.event}/announcements`,
+        method: "POST",
+        body: {
+          announcement,
+        },
+      }),
+      invalidatesTags: ["Announcements"],
+    }),
+    getAnnouncementsByEventId: builder.query({
+      query: ({ eventId, page = 1, limit = 10 }) =>
+        `/events/${eventId}/announcements?page=${page}&limit=${limit}`,
+      providesTags: ["Announcements"],
+    }),
+    deleteAnnouncement: builder.mutation({
+      query: (announcement) => ({
+        url: `/events/${announcement.event}/announcements/${announcement._id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Announcements"],
+    }),
   }),
 });
 
@@ -51,6 +75,10 @@ export const {
   useCreateEventMutation,
   useUpdateEventMutation,
   useDeleteEventMutation,
+
+  useCreateAnnouncementMutation,
+  useGetAnnouncementsByEventIdQuery,
+  useDeleteAnnouncementMutation,
 } = eventsApi;
 
 export default eventsApi;

@@ -57,6 +57,11 @@ class AuthService {
       user.email = email;
       if (!validateEmail(email)) throw new BadRequestError("Invalid email");
 
+      user.role = "user";
+      user.isVerified = false;
+      user.organisation = null;
+      user.resetPasswordToken = null;
+
       const newUser = await UserRepository.create(user);
 
       this.trySendVerificationEmail(newUser._id);
@@ -104,7 +109,7 @@ class AuthService {
         role: user.role,
         isVerified: user.isVerified,
       };
-      if (user.role === "organiser") {
+      if (user.role === "organiser" && user.organisation) {
         payload.organisation = user.organisation;
       }
       const accessToken = generateAccessToken(payload);
@@ -185,7 +190,7 @@ class AuthService {
       if (!email) throw new BadRequestError("Email is required");
       email = email.trim().toLowerCase();
       if (!validateEmail(email)) throw new BadRequestError("Invalid email");
-      const user = await UserRepository.getByEmail(email);
+      const user = await UserRepository.getByEmail(email, true);
       if (!user) throw new BadRequestError("User not found");
       const userPayload = {
         _id: user._id,

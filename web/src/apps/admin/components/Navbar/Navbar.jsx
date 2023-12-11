@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import Logo from "./../../../../components/Logo/Logo";
 import { useAdminSidebar } from "../../../../state/context/AdminSidebar";
 import { MdChevronLeft } from "react-icons/md";
-import { viewTransition } from "../../../../utils/view_transition";
 
 const Navbar = () => {
   const location = useLocation();
@@ -39,7 +38,7 @@ const Navbar = () => {
       <div className={styles.navbar}>
         <div className={styles.left}>
           {isPortrait ? (
-            location.pathname.split("/").length > 2 ? (
+            location.pathname.split("/").length > 3 ? (
               <MdChevronLeft
                 className={styles.back}
                 size={32}

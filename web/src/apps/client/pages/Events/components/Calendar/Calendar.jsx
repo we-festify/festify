@@ -3,7 +3,6 @@ import styles from "./Calendar.module.css";
 import { useEventsPage } from "../../../../../../state/context/ClientEventsPage";
 import {
   formatDate,
-  formatTime,
   ceilHour,
   floorHour,
 } from "../../../../../../utils/time";
@@ -22,8 +21,6 @@ const groupBy = (array, key) => {
 const Calendar = () => {
   const { eventsList } = useEventsPage();
   const [eventsGroupedByDay, setEventsGroupedByDay] = useState([]);
-  const [minStartTimesEveryDay, setMinStartTimesEveryDay] = useState([]);
-  const [maxEndTimesEveryDay, setMaxEndTimesEveryDay] = useState([]);
   const [totalBlocksEveryDay, setTotalBlocksEveryDay] = useState([]);
   const [blocksEveryDay, setBlocksEveryDay] = useState([]);
 
@@ -53,14 +50,14 @@ const Calendar = () => {
         day.events[0].startTime
       )
     );
-    setMinStartTimesEveryDay(minStartTimes);
+
     const maxEndTimes = eventsGroupedByDay?.map((day) =>
       day.events.reduce(
         (max, event) => (event.endTime > max ? event.endTime : max),
         day.events[0].endTime
       )
     );
-    setMaxEndTimesEveryDay(maxEndTimes);
+
     const totalBlocks = minStartTimes?.map((min, index) => {
       const max = maxEndTimes[index];
       const minNextFullHour = ceilHour(min);
@@ -75,6 +72,7 @@ const Calendar = () => {
       return Math.min(Math.max(blocks, 0), 24);
     });
     setTotalBlocksEveryDay(totalBlocks);
+
     const blocks = minStartTimes?.map((min, index) => {
       const max = maxEndTimes[index];
       const minPrevFullHour = floorHour(min);
@@ -103,7 +101,6 @@ const Calendar = () => {
     if (new Date(time).getMinutes() !== 0) {
       index += new Date(time).getMinutes() / 60;
     }
-    // console.log(formatTime(time), prevDaysBlocks, fullPrevHour, index);
     return prevDaysBlocks + index;
   };
 
@@ -129,13 +126,13 @@ const Calendar = () => {
       <div className={styles.right}>
         <div className={styles.timeline}>
           {blocksEveryDay?.map((blocks, index) => (
-            <div className={styles.day}>
+            <div className={styles.day} key={`${blocks.length}-${index}`}>
               <div className={styles.date}>
                 {formatDate(eventsGroupedByDay[index].day)}
               </div>
               <div className={styles.blocks}>
-                {blocks?.map((block) => (
-                  <span className={styles.block}>
+                {blocks?.map((block, blockIndex) => (
+                  <span className={styles.block} key={`${block}-${index}`}>
                     {block === 0 || block === 24
                       ? "12 am"
                       : block === 12

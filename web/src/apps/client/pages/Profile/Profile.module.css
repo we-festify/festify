@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   z-index: 1;
+  position: relative;
 }
 
 .container {
@@ -16,7 +17,6 @@
   height: 100%;
   gap: 1rem;
   color: var(--color-text);
-  overflow-y: auto;
 }
 
 .left {
@@ -30,6 +30,16 @@
   backdrop-filter: contrast(0.9);
   border-radius: 0.5rem;
   padding: 1rem;
+  position: sticky;
+  top: calc(1rem + var(--navbar-height));
+  height: 100%;
+  overflow-y: auto;
+}
+
+.right .tabs {
+  position: sticky;
+  top: calc(1rem + var(--navbar-height));
+  z-index: 1;
 }
 
 .profile {
@@ -159,5 +169,11 @@ h2.name {
   .left {
     width: 100%;
     max-width: 100%;
+    position: relative;
+    top: 0;
+  }
+
+  .right {
+    padding-bottom: var(--bottom-navigation-bar-height);
   }
 }

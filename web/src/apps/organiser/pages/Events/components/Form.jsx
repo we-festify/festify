@@ -20,16 +20,25 @@ const Form = ({ onSubmit, defaultValue, onChange }) => {
       description: "",
       image: "",
       organisation: organisationId,
+      startTime: "",
+      endTime: "",
       timeline: [],
       category: "other",
+      tags: [],
+      rulebookUrl: "",
+
+      isRegistrationRequired: false,
+      registrationFeesInINR: 0,
       minTeamSize: 1,
       maxTeamSize: 1,
-      tags: [],
-      feesInINR: 0,
       registrationsStart: "",
       registrationsEnd: "",
-      isTicketed: false,
-      rulebookUrl: "",
+
+      isEntryPassRequired: false,
+      entryPassPriceInINR: 0,
+      totalEntryPasses: 0, // 0 means unlimited
+      entryPassDistributionStart: "",
+      entryPassDistributionEnd: "",
     }
   );
 
@@ -128,33 +137,6 @@ const Form = ({ onSubmit, defaultValue, onChange }) => {
           />
         </GridItem>
         <GridItem sm={12} md={4} lg={4}>
-          <Input.Radio
-            label="Is this a ticketed event?"
-            entries={["Yes", "No"]}
-            validations={{ required: true }}
-            onChange={(value) => handleChange("isTicketed", value === "Yes")}
-            defaultValue={event.isTicketed ? "Yes" : "No"}
-          />
-        </GridItem>
-        <GridItem sm={12} md={4} lg={4}>
-          <Input.DateTime
-            label="Registrations Start Time"
-            validations={{ required: true }}
-            onValidation={handleCanSubmit}
-            onChange={(value) => handleChange("registrationsStart", value)}
-            defaultValue={event.registrationsStart}
-          />
-        </GridItem>
-        <GridItem sm={12} md={4} lg={4}>
-          <Input.DateTime
-            label="Registrations End Time"
-            validations={{ required: true }}
-            onValidation={handleCanSubmit}
-            onChange={(value) => handleChange("registrationsEnd", value)}
-            defaultValue={event.registrationsEnd}
-          />
-        </GridItem>
-        <GridItem sm={12} md={4} lg={4}>
           <Input.Dropdown
             label="Category"
             entries={[
@@ -185,36 +167,6 @@ const Form = ({ onSubmit, defaultValue, onChange }) => {
             onValidation={handleCanSubmit}
             onChange={(value) => handleChange("tags", value)}
             defaultValue={event.tags}
-          />
-        </GridItem>
-        <GridItem sm={12} md={4} lg={4}>
-          <Input.Text
-            type="number"
-            label="Fee (in INR)"
-            validations={{ required: true }}
-            onValidation={handleCanSubmit}
-            onChange={(value) => handleChange("feesInINR", value)}
-            defaultValue={event.fee || 0}
-          />
-        </GridItem>
-        <GridItem sm={12} md={4} lg={4}>
-          <Input.Text
-            type="number"
-            label="Minimum Team Size"
-            validations={{ required: true }}
-            onValidation={handleCanSubmit}
-            onChange={(value) => handleChange("minTeamSize", value)}
-            defaultValue={event.minTeamSize || 1}
-          />
-        </GridItem>
-        <GridItem sm={12} md={4} lg={4}>
-          <Input.Text
-            type="number"
-            label="Maximum Team Size"
-            validations={{ required: true }}
-            onValidation={handleCanSubmit}
-            onChange={(value) => handleChange("maxTeamSize", value)}
-            defaultValue={event.maxTeamSize || 1}
           />
         </GridItem>
         <GridItem sm={12} md={6} lg={4}>
@@ -260,6 +212,118 @@ const Form = ({ onSubmit, defaultValue, onChange }) => {
               validations={{ required: true }}
             />
           </ListInput>
+        </GridItem>
+
+        <GridItem sm={12} md={4} lg={4}>
+          <Input.Radio
+            label="Is Registration Required?"
+            entries={["Yes", "No"]}
+            onChange={(value) =>
+              handleChange("isRegistrationRequired", value === "Yes")
+            }
+            defaultValue={event.isRegistrationRequired ? "Yes" : "No"}
+          />
+        </GridItem>
+        <GridItem sm={12} md={4} lg={4}>
+          <Input.DateTime
+            label="Registrations Start Time"
+            validations={{ required: event.isRegistrationRequired }}
+            onValidation={handleCanSubmit}
+            onChange={(value) => handleChange("registrationsStart", value)}
+            defaultValue={event.registrationsStart}
+          />
+        </GridItem>
+        <GridItem sm={12} md={4} lg={4}>
+          <Input.DateTime
+            label="Registrations End Time"
+            validations={{ required: event.isRegistrationRequired }}
+            onValidation={handleCanSubmit}
+            onChange={(value) => handleChange("registrationsEnd", value)}
+            defaultValue={event.registrationsEnd}
+          />
+        </GridItem>
+        <GridItem sm={12} md={4} lg={4}>
+          <Input.Text
+            type="number"
+            label="Registration Fees (in INR)"
+            validations={{ required: event.isRegistrationRequired }}
+            onValidation={handleCanSubmit}
+            onChange={(value) => handleChange("registrationFeesInINR", value)}
+            defaultValue={event.fee || 0}
+          />
+        </GridItem>
+        <GridItem sm={12} md={4} lg={4}>
+          <Input.Text
+            type="number"
+            label="Minimum Team Size"
+            validations={{ required: event.isRegistrationRequired }}
+            onValidation={handleCanSubmit}
+            onChange={(value) => handleChange("minTeamSize", value)}
+            defaultValue={event.minTeamSize || 1}
+          />
+        </GridItem>
+        <GridItem sm={12} md={4} lg={4}>
+          <Input.Text
+            type="number"
+            label="Maximum Team Size"
+            validations={{ required: event.isRegistrationRequired }}
+            onValidation={handleCanSubmit}
+            onChange={(value) => handleChange("maxTeamSize", value)}
+            defaultValue={event.maxTeamSize || 1}
+          />
+        </GridItem>
+
+        <GridItem sm={12} md={4} lg={4}>
+          <Input.Radio
+            label="Is Entry Pass Required?"
+            entries={["Yes", "No"]}
+            onChange={(value) =>
+              handleChange("isEntryPassRequired", value === "Yes")
+            }
+            defaultValue={event.isEntryPassRequired ? "Yes" : "No"}
+          />
+        </GridItem>
+        <GridItem sm={12} md={4} lg={4}>
+          <Input.DateTime
+            label="Entry Pass Distribution Start"
+            validations={{ required: event.isEntryPassRequired }}
+            onValidation={handleCanSubmit}
+            onChange={(value) =>
+              handleChange("entryPassDistributionStart", value)
+            }
+            defaultValue={event.entryPassDistributionStart}
+          />
+        </GridItem>
+        <GridItem sm={12} md={4} lg={4}>
+          <Input.DateTime
+            label="Entry Pass Distribution End"
+            validations={{ required: event.isEntryPassRequired }}
+            onValidation={handleCanSubmit}
+            onChange={(value) =>
+              handleChange("entryPassDistributionEnd", value)
+            }
+            defaultValue={event.entryPassDistributionEnd}
+          />
+        </GridItem>
+        <GridItem sm={12} md={4} lg={4}>
+          <Input.Text
+            type="number"
+            label="Entry Pass Price (in INR)"
+            validations={{ required: event.isEntryPassRequired }}
+            onValidation={handleCanSubmit}
+            onChange={(value) => handleChange("entryPassPriceInINR", value)}
+            defaultValue={event.entryPassPriceInINR || 0}
+          />
+        </GridItem>
+        <GridItem sm={12} md={4} lg={4}>
+          <Input.Text
+            type="number"
+            label="Total Entry Passes"
+            validations={{ required: event.isEntryPassRequired }}
+            onValidation={handleCanSubmit}
+            onChange={(value) => handleChange("totalEntryPasses", value)}
+            defaultValue={event.totalEntryPasses || 0}
+          />
         </GridItem>
         <GridItem sm={12} md={12} lg={12}>
           <button className={styles.submit} type="submit">

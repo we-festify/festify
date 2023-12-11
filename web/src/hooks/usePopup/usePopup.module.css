@@ -1,0 +1,35 @@
+.dialog {
+  outline: 0;
+  border: none;
+  padding: 0;
+  width: 100%;
+  max-width: 500px;
+  max-height: 80%;
+  background-color: transparent;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  animation: fade-in 0.25s ease-out;
+  view-timeline-name: dialog;
+}
+
+.dialog::backdrop {
+  background-color: hsla(0, 0%, 0%, 0.5);
+}
+
+@media screen and (max-width: 768px) {
+  .dialog {
+    width: 100%;
+    max-width: calc(100% - 2rem);
+    max-height: 80%;
+    margin: auto;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

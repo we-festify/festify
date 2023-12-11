@@ -2,6 +2,7 @@ const EventRepository = require("../repositories/event");
 const ParticipantRepository = require("../repositories/participant");
 const UserRepository = require("../repositories/user");
 const { BadRequestError } = require("../utils/errors");
+const PaymentService = require("./payment");
 
 class ParticipantService {
   static checkRequiredFields(participant) {
@@ -67,8 +68,23 @@ class ParticipantService {
   static async create(participant) {
     try {
       this.checkRequiredFields(participant);
+      return await ParticipantRepository.create(participant);
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async register(participant) {
+    try {
+      this.checkRequiredFields(participant);
       const event = await EventRepository.getById(participant.event);
       if (!event) throw new BadRequestError("Invalid event");
+
+      if (!event.isRegistrationRequired) {
+        throw new BadRequestError(
+          "Registrations are not required for this event"
+        );
+      }
 
       participant.members = [
         ...new Set([participant.leader, ...(participant.members || [])]),
@@ -85,7 +101,26 @@ class ParticipantService {
       }
       await this.#checkValidParticipation(event, participant);
 
-      return await ParticipantRepository.create(participant);
+      // everything is fine, its payment time
+      if (event.registrationFeesInINR === 0) {
+        const participant = await ParticipantRepository.create(participant);
+        return {
+          participant,
+          type: "participant",
+        };
+      }
+      const order = await PaymentService.createOrder({
+        amountInINR: event.registrationFeesInINR,
+        notes: {
+          type: "Participant",
+          user: participant.leader,
+          participant: JSON.stringify(participant),
+        },
+      });
+      return {
+        order,
+        type: "order",
+      };
     } catch (err) {
       throw err;
     }

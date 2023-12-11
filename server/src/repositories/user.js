@@ -60,7 +60,7 @@ class UserRepository {
 
   static async getByResetPasswordToken(resetPasswordToken) {
     try {
-      return await User.findOne({ resetPasswordToken }).populate(
+      return await User.findOne({ resetPasswordToken }).select(
         "+passwordHash +resetPasswordToken"
       );
     } catch (err) {

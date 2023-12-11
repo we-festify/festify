@@ -12,15 +12,17 @@
   --color-white-hsl-values: 0, 0%, 100%;
   --color-primary-500-hsl-values: 260, 84%, 51%;
   --color-secondary-500-hsl-values: 326, 62%, 51%;
-  --color-error-500: hsl(346, 62%, 51%);
-  --color-error-500-hsl-values: 346, 62%, 51%;
-  --color-success-500: hsl(141, 100%, 38%);
+  --color-error-500: hsl(4, 74%, 47%);
+  --color-error-500-hsl-values: 4, 74%, 47%;
+  --color-success-500: hsl(150, 100%, 33%);
 
   /* client */
   --navbar-height: 3.5rem;
+  --bottom-navigation-bar-height: 4rem;
   --color-background-dark: hsl(0, 0%, 0%);
   --color-navbar: hsla(0, 0%, 100%, 0.05);
   --color-navbar-drawer: hsla(0, 0%, 0%, 0.7);
+  --color-bottom-navigation-bar: hsla(0, 0%, 100%, 0.05);
   --color-text: hsl(0, 0%, 100%);
   --color-text-light: hsl(0, 0%, 100%, 0.7);
   --color-border: hsl(0, 0%, 100%, 0.1);

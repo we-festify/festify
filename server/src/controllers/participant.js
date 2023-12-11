@@ -1,13 +1,18 @@
 const ParticipantService = require("../services/participant");
 
 class ParticipantController {
-  static async create(req, res, next) {
+  static async register(req, res, next) {
     try {
       const { participant } = req.body;
-      const participantPayload = await ParticipantService.create(participant);
-      res.status(201).json({
-        message: "Participant created successfully",
+      const {
+        type,
         participant: participantPayload,
+        order,
+      } = await ParticipantService.register(participant);
+      res.status(201).json({
+        participant: participantPayload,
+        order,
+        type,
       });
     } catch (error) {
       next(error);
@@ -20,7 +25,6 @@ class ParticipantController {
       const participations =
         await ParticipantService.getAllParticipationsBySelf(user._id);
       res.status(200).json({
-        message: "Participations fetched successfully",
         participations,
       });
     } catch (error) {
@@ -33,7 +37,6 @@ class ParticipantController {
       const { userId } = req.params;
       const participations = await ParticipantService.getAllByUserId(userId);
       res.status(200).json({
-        message: "Participations fetched successfully",
         participations,
       });
     } catch (error) {
@@ -46,7 +49,6 @@ class ParticipantController {
       const { eventId } = req.params;
       const participations = await ParticipantService.getAllByEventId(eventId);
       res.status(200).json({
-        message: "Participations fetched successfully",
         participations,
       });
     } catch (error) {

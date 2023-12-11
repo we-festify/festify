@@ -104,7 +104,13 @@ const extractNumber = (str) => {
   return num ? num[0] : null;
 };
 
-const Avatar = ({ avatarCode, image, name, size }) => {
+const Avatar = ({
+  avatarCode,
+  image,
+  name = "Avatar",
+  size = 40,
+  className,
+}) => {
   const getFontSize = (size) => {
     if (!size) return null;
     if (typeof size === "number") return size / 2;
@@ -116,7 +122,7 @@ const Avatar = ({ avatarCode, image, name, size }) => {
     const { Face, Cloth, faceColor, clothColor, backgroundColor } =
       decodeAvatarCode(avatarCode);
     return (
-      <span
+      <div
         className={styles.avatar}
         style={{
           width: size,
@@ -128,13 +134,13 @@ const Avatar = ({ avatarCode, image, name, size }) => {
           backgroundColor: backgroundColor || "#bdf0c6",
         }}
       >
-        <span className={styles.face}>
+        <div className={styles.face}>
           <Face />
-        </span>
-        <span className={styles.cloth}>
+        </div>
+        <div className={styles.cloth}>
           <Cloth />
-        </span>
-      </span>
+        </div>
+      </div>
     );
   }
 
@@ -146,15 +152,15 @@ const Avatar = ({ avatarCode, image, name, size }) => {
       style={{ width: size, height: size }}
     />
   ) : (
-    <span
-      className={styles.avatar}
+    <div
+      className={styles.avatar + " " + className}
       style={{ width: size, height: size, fontSize: getFontSize(size) }}
     >
       {name
         .split(" ")
         .map((name) => name.charAt(0).toUpperCase())
         .slice(0, 2)}
-    </span>
+    </div>
   );
 };
 

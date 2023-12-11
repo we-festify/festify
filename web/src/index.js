@@ -6,6 +6,7 @@ import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./state/redux/store";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -17,3 +18,7 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
+
+serviceWorkerRegistration.register({
+  bypassNodeEnvProduction: true,
+});

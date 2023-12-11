@@ -6,12 +6,12 @@ const Timeline = ({ timeline }) => {
   const today = new Date();
   return (
     <div className={styles.timeline}>
-      {timeline?.map((item) => (
+      {timeline?.map((item, index) => (
         <div
           className={
             styles.item + " " + (new Date(item.time) < today ? styles.past : "")
           }
-          key={item._id}
+          key={`${item.time}-${index}`}
         >
           <p className={styles.title}>{item.title}</p>
           <p className={styles.time}>

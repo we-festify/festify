@@ -8,14 +8,11 @@ node_modules
 # env
 .env
 
-# package-lock.json is automatically generated for npm >= 5
-package-lock.json
-
 # testing
 /coverage
 
 # production
-/build
+build
 
 # misc
 .DS_Store
