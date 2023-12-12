@@ -5,8 +5,7 @@ import { selectUser } from "./../../../../state/redux/auth/authSlice";
 import { useSelector } from "react-redux";
 import Logo from "./../../../../components/Logo/Logo";
 import { useOrganiserSidebar } from "../../../../state/context/OrganiserSidebar";
-import { viewTransition } from "../../../../utils/view_transition";
-import { MdChevronLeft } from "react-icons/md";
+import { IoChevronBack } from "react-icons/io5";
 
 const Navbar = () => {
   const location = useLocation();
@@ -40,11 +39,11 @@ const Navbar = () => {
         <div className={styles.left}>
           {isPortrait ? (
             location.pathname.split("/").length > 3 ? (
-              <MdChevronLeft
+              <IoChevronBack
                 className={styles.back}
-                size={32}
+                size={24}
                 onClick={handleGoBack}
-                style={{ marginLeft: "-0.7rem" }}
+                style={{ marginLeft: "-0.5rem" }}
               />
             ) : (
               <div
@@ -89,7 +88,7 @@ const Navbar = () => {
                       {link.text}
                     </Link>
                   </li>
-                  {link.sublinks && (
+                  {link.active && link.sublinks && (
                     <ul className={styles.sublinks}>
                       {link.sublinks.map((sublink) => (
                         <li key={sublink.text}>

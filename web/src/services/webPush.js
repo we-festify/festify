@@ -8,14 +8,14 @@ class WebPushService {
   }
 
   static async getSubscription() {
-    return await navigator.serviceWorker.ready.then(async (registration) => {
+    return await navigator.serviceWorker?.ready?.then(async (registration) => {
       return await registration.pushManager.getSubscription();
     });
   }
 
   static async subscribe() {
-    const registration = await navigator.serviceWorker.ready;
-    const subscription = await registration.pushManager.subscribe({
+    const registration = await navigator.serviceWorker?.ready;
+    const subscription = await registration?.pushManager?.subscribe({
       userVisibleOnly: true,
       applicationServerKey: process.env.REACT_APP_VAPID_PUBLIC_KEY,
     });

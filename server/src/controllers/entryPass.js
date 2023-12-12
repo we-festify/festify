@@ -30,6 +30,30 @@ class EntryPassController {
       next(err);
     }
   }
+
+  static async getById(req, res, next) {
+    try {
+      const { entryPassId } = req.params;
+      const entryPass = await EntryPassService.getById(entryPassId);
+      return res.status(200).json({
+        entryPass,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async checkIn(req, res, next) {
+    try {
+      const { entryPassId } = req.params;
+      const entryPass = await EntryPassService.checkIn(entryPassId);
+      return res.status(200).json({
+        entryPass,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 module.exports = EntryPassController;

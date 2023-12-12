@@ -7,6 +7,7 @@ import Modal from "../../../../../../components/Modal/Modal";
 import ListTile from "../../../../../../components/ListTile/ListTile";
 import QRCode from "../../../../../../components/QRCode/QRCode";
 import { formatDateTime } from "../../../../../../../../utils/time";
+import { getQRDataFromEntryPass } from "../../../../../../../../utils/qr-code";
 
 const EntryPassDetails = ({ close, entryPass = {} }) => {
   const user = useSelector(selectUser);
@@ -19,7 +20,7 @@ const EntryPassDetails = ({ close, entryPass = {} }) => {
   return (
     <Modal title={event.name} close={close}>
       <div className={styles.details}>
-        <QRCode data={entryPass._id} />
+        <QRCode data={getQRDataFromEntryPass(entryPass)} />
         <h2 className={styles.title}>Details</h2>
         <div className={styles.item}>
           <ListTile

@@ -6,8 +6,8 @@ import logo from "./../../../../assets/images/core/logo.png";
 const QRCode = ({ data, height, width }) => {
   const containerRef = React.useRef(null);
   const qrCode = new QRCodeStyling({
-    width: width || 200,
-    height: height || 200,
+    width: width || 250,
+    height: height || 250,
     data: data,
     margin: 0,
     image: logo,

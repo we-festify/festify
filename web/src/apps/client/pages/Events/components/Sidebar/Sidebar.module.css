@@ -33,6 +33,8 @@ h2.title {
   cursor: pointer;
   transition: background-color 0.2s ease;
   text-transform: capitalize;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .categories li:hover {

@@ -1,0 +1,198 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  max-height: calc(100dvh - var(--navbar-height));
+  position: relative;
+}
+
+.scanner {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-background-dark-admin);
+  position: relative;
+  overflow: hidden;
+}
+
+.scanner .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(38, 38, 40, 0.3);
+}
+
+.scanner .overlay .corners {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  max-width: 300px;
+  max-height: 300px;
+  aspect-ratio: 1/1;
+
+  --b: 0.1rem; /* thickness of the border */
+  --c: white; /* color of the border */
+  --w: 2rem; /* width of border */
+
+  transform: translate(calc(-50% - var(--b)), calc(-50% - var(--b)));
+
+  border: var(--b) solid #0000; /* space for the border */
+  --_g: #0000 90deg, var(--c) 0;
+  --_p: var(--w) var(--w) border-box no-repeat;
+  background: conic-gradient(
+        from 90deg at top var(--b) left var(--b),
+        var(--_g)
+      )
+      0 0 / var(--_p),
+    conic-gradient(from 180deg at top var(--b) right var(--b), var(--_g)) 100% 0 /
+      var(--_p),
+    conic-gradient(from 0deg at bottom var(--b) left var(--b), var(--_g)) 0 100% /
+      var(--_p),
+    conic-gradient(from -90deg at bottom var(--b) right var(--b), var(--_g))
+      100% 100% / var(--_p);
+}
+
+.scanner video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.scanner .result {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: 90%;
+  max-width: 300px;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-background-dark-admin);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.details .used {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-error-500);
+  margin-bottom: 0.5rem;
+}
+
+.details .item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.details .item .key {
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.details .item .value {
+  font-size: 0.8rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.result > .actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.result > .actions button {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: 0;
+  background-color: var(--color-primary-500);
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.result > .actions button:disabled {
+  background-color: var(--color-text-light-admin);
+  cursor: not-allowed;
+}
+
+.result > .actions button:hover {
+  background-color: var(--color-primary-600);
+}
+
+.result .error {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-error-500);
+  margin-bottom: 0.5rem;
+}
+
+.container > .actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.cameras {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: 0;
+  background-color: var(--color-background-dark-admin);
+  color: var(--color-text-light-admin);
+  cursor: pointer;
+  font-size: 1rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0.5rem;
+}
+
+.cameras:hover {
+  color: var(--color-text-admin);
+}
+
+.container > .actions button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  outline: 0;
+  background-color: var(--color-background-dark-admin);
+  color: var(--color-text-admin);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.container > .actions button:hover {
+  background-color: var(--color-secondary-500);
+  color: var(--color-white);
+}
+
+@media screen and (max-width: 768px) {
+  .scanner .overlay .corners {
+    top: 40%;
+  }
+}

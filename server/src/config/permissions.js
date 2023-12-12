@@ -30,6 +30,12 @@ const permissions = {
       update: true,
       delete: true,
     },
+    entryPass: {
+      read: true,
+      create: true,
+      update: true,
+      delete: true,
+    },
   },
   organiser: {
     user: {
@@ -61,6 +67,13 @@ const permissions = {
       create: true,
       update: true,
       delete: true,
+    },
+    entryPass: {
+      read: true,
+      create: true,
+      update: true,
+      delete: true,
+      checkIn: true,
     },
   },
   user: {
@@ -94,6 +107,12 @@ const permissions = {
       update: false,
       delete: false,
     },
+    entryPass: {
+      read: true,
+      create: true,
+      update: false,
+      delete: false,
+    },
   },
   guest: {
     user: {
@@ -121,6 +140,12 @@ const permissions = {
       delete: false,
     },
     announcement: {
+      read: false,
+      create: false,
+      update: false,
+      delete: false,
+    },
+    entryPass: {
       read: false,
       create: false,
       update: false,
