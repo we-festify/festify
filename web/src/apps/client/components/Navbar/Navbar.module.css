@@ -8,7 +8,7 @@
 }
 
 .wrapper .navbar {
-  padding: 0.6rem 1.5rem;
+  padding: 0.6rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -172,7 +172,7 @@
   align-items: flex-start;
   list-style: none;
   padding: 0;
-  margin: 2rem;
+  margin: 0.5rem 1.5rem;
 }
 
 .drawer .navlinks .icon svg {

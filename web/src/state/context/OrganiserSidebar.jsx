@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { MdHotelClass } from "react-icons/md";
+import { BsQrCodeScan } from "react-icons/bs";
 
 const OrganiserSidebarContext = createContext();
 
@@ -25,6 +26,11 @@ const OrganiserSidebarProvider = ({ children }) => {
           path: "/organiser/events/create",
         },
       ],
+    },
+    {
+      text: "QR Scanner",
+      path: "/organiser/scanner",
+      icon: <BsQrCodeScan />,
     },
   ]);
   const [activeLink, setActiveLink] = useState("/");

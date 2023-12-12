@@ -18,8 +18,8 @@ Festify is a free and open-source framework for building fest management website
 
 - Event Registrations
 - Event Management (Create, Update, Delete)
-- Entry Management (QR Code based Check-in)
-- API Query Caching (Redux Toolkit Query)
+- Entry Management (Blazing fast QR Code based Check-in)
+- API Query Caching (RTK Query)
 - Payment Gateway Integration (Razorpay)
 - User Management (Admin, Organizers, Participants)
 - User Authentication (JWT)

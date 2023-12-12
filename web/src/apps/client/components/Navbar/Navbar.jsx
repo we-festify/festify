@@ -10,7 +10,7 @@ import {
 import { useSelector } from "react-redux";
 import Logo from "./../../../../components/Logo/Logo";
 import { SiAuth0 } from "react-icons/si";
-import { MdChevronLeft } from "react-icons/md";
+import { IoChevronBack } from "react-icons/io5";
 import { IoMdPerson } from "react-icons/io";
 import { useMediaQuery } from "../../../../hooks/useMediaQuery";
 import { useLocation } from "react-router-dom";
@@ -92,11 +92,11 @@ const Navbar = () => {
         <div className={styles.left}>
           {isPortrait ? (
             location.pathname.split("/").length > 2 ? (
-              <MdChevronLeft
+              <IoChevronBack
                 className={styles.back}
-                size={32}
+                size={24}
                 onClick={handleGoBack}
-                style={{ marginLeft: "-0.7rem" }}
+                style={{ marginLeft: "-0.5rem" }}
               />
             ) : (
               <div

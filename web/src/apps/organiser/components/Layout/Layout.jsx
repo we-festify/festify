@@ -5,6 +5,7 @@ import Navbar from "../Navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Dashboard from "../../pages/Dashboard/Dashboard";
 import EventsIndex from "../../pages/Events";
+import Scanner from "../../pages/Scanner/Scanner";
 
 const Layout = () => {
   return (
@@ -15,6 +16,7 @@ const Layout = () => {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/events/*" element={<EventsIndex />} />
+          <Route path="/scanner" element={<Scanner />} />
         </Routes>
       </div>
     </div>
