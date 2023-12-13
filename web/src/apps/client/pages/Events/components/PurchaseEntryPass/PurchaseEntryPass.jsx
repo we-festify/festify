@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import styles from "./PurchaseEntryPass.module.css";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../../../state/redux/auth/authSlice";
-import { toast } from "react-toastify";
 import Button from "../../../../atoms/Button";
 import Modal from "../../../../components/Modal/Modal";
 import { usePurchaseEntryPassMutation } from "../../../../../../state/redux/entryPass/entryPassApi";
 import PaymentService from "../../../../../../services/payment";
+import { toast } from "../../../../components/Toast";
 
 const PurchaseEntryPass = ({ event = {}, close }) => {
   const user = useSelector(selectUser);

@@ -8,7 +8,7 @@ import {
   useGetSponsorByIdQuery,
   useUpdateSponsorMutation,
 } from "../../../../state/redux/sponsor/sponsorsApi";
-import { toast } from "react-toastify";
+import { toast } from "../../components/Toast";
 
 const EditSponsor = () => {
   const location = useLocation();

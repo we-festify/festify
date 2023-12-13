@@ -13,7 +13,6 @@ import { FaUserEdit } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import { MdOutlineCurrencyRupee } from "react-icons/md";
 import { useSendVerificationEmailMutation } from "../../../../state/redux/auth/authApi";
-import { toast } from "react-toastify";
 import Participations from "./components/Participations/Participations";
 import Tabs from "../../components/Tabs/Tabs";
 import Avatar from "../../components/Avatar/Avatar";
@@ -23,6 +22,7 @@ import BottomNavigationBar from "../../components/BottomNavigationBar/BottomNavi
 import Settings from "./components/Settings/Settings";
 import { viewTransition } from "../../../../utils/view_transition";
 import Payments from "./components/Payments/Payments";
+import { toast } from "../../components/Toast";
 
 const Profile = () => {
   const isPortrait = useMediaQuery("(orientation: portrait)");
@@ -104,7 +104,6 @@ const UserDetails = () => {
   const handleGetEmailVerificationLink = async () => {
     try {
       const data = await getEmailVerificationLink().unwrap();
-      console.log(data);
       toast.success(data.message);
       setDisableEmailVerificationButton(true);
     } catch (error) {

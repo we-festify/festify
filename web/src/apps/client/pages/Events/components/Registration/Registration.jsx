@@ -3,10 +3,10 @@ import styles from "./Registration.module.css";
 import { useCreateParticipantMutation } from "../../../../../../state/redux/participants/participantsApi";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../../../state/redux/auth/authSlice";
-import { toast } from "react-toastify";
 import Button from "../../../../atoms/Button";
 import Modal from "../../../../components/Modal/Modal";
 import PaymentService from "../../../../../../services/payment";
+import { toast } from "../../../../components/Toast";
 
 const Registration = ({ event = {}, close }) => {
   const user = useSelector(selectUser);
