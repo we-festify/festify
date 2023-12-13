@@ -53,6 +53,10 @@ const EventSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  imageBlurHash: {
+    type: String,
+    required: false,
+  },
   organisation: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Organisation",

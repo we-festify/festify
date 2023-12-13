@@ -5,6 +5,7 @@ import Input from "../../../../../components/AdminCommons/Input";
 import ListInput from "../../../components/ListInput/ListInput";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../../state/redux/auth/authSlice";
+import ImagePreview from "./ImagePreview/ImagePreview";
 
 const Form = ({ onSubmit, defaultValue, onChange }) => {
   const user = useSelector(selectUser);
@@ -118,6 +119,11 @@ const Form = ({ onSubmit, defaultValue, onChange }) => {
             onValidation={handleCanSubmit}
             onChange={(value) => handleChange("image", value)}
             defaultValue={event.image}
+          />
+          <ImagePreview
+            src={event.image}
+            blurHash={event.imageBlurHash}
+            onHashChange={(hash) => handleChange("imageBlurHash", hash)}
           />
         </GridItem>
         <GridItem sm={12} md={6} lg={4}>
