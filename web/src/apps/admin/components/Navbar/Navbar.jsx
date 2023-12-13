@@ -6,27 +6,15 @@ import { useSelector } from "react-redux";
 import Logo from "./../../../../components/Logo/Logo";
 import { useAdminSidebar } from "../../../../state/context/AdminSidebar";
 import { IoChevronBack } from "react-icons/io5";
+import { useMediaQuery } from "../../../../hooks/useMediaQuery";
 
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [isPortrait, setIsPortrait] = useState(
-    window.matchMedia("(orientation: portrait)").matches
-  );
+  const isPortrait = useMediaQuery("(orientation: portrait)");
   const [openDrawer, setOpenDrawer] = useState(false);
   const { links } = useAdminSidebar();
   const user = useSelector(selectUser);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(orientation: portrait)");
-    const listener = (e) => {
-      setIsPortrait(e.matches);
-    };
-    mediaQuery.addEventListener("change", listener);
-    return () => {
-      mediaQuery.removeEventListener("change", listener);
-    };
-  }, []);
 
   const handleGoBack = (e) => {
     e.preventDefault();
@@ -43,7 +31,7 @@ const Navbar = () => {
                 className={styles.back}
                 size={24}
                 onClick={handleGoBack}
-                style={{ marginLeft: "-0.5rem" }}
+                style={{ marginLeft: "-0.5rem", marginRight: "1rem" }}
               />
             ) : (
               <div
@@ -81,6 +69,7 @@ const Navbar = () => {
                         " " +
                         (link.active ? styles.active : "")
                       }
+                      onClick={() => setOpenDrawer(false)}
                     >
                       {isPortrait && (
                         <span className={styles.icon}>{link.icon}</span>
@@ -99,6 +88,7 @@ const Navbar = () => {
                               " " +
                               (sublink.active ? styles.active : "")
                             }
+                            onClick={() => setOpenDrawer(false)}
                           >
                             {isPortrait && (
                               <span className={styles.icon}>

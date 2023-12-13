@@ -8,9 +8,14 @@ const ParticipationTable = ({ eventId }) => {
     useGetParticipationsByEventIdQuery(eventId);
   const columns = [
     {
-      label: "Registered",
+      label: "Registered At",
       key: "createdAt",
       modifier: (value) => formatDateTime(value),
+    },
+    {
+      label: "Leader",
+      key: "leader",
+      modifier: (value) => value.name,
     },
     {
       label: "Contact Email",
@@ -18,9 +23,9 @@ const ParticipationTable = ({ eventId }) => {
       modifier: (value) => value.email,
     },
     {
-      label: "Members",
+      label: "Members Count",
       key: "members",
-      modifier: (value) => value.map(({ name }) => name).join(","),
+      modifier: (value) => value.length,
     },
   ];
   return (

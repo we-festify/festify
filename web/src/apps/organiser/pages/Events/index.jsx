@@ -11,7 +11,9 @@ const EventsIndex = () => {
       <Route path="/" element={<EventsList />} />
       <Route path="/create" element={<CreateEvent />} />
       <Route path="/edit/:id" element={<EditEvent />} />
-      <Route path="/details/:id" element={<EventDetails />} />
+      <Route path="/details" element={<EventDetails />}>
+        <Route path=":eventId" element={<EventDetails />} />
+      </Route>
     </Routes>
   );
 };

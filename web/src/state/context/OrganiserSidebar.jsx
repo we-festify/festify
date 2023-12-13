@@ -25,6 +25,10 @@ const OrganiserSidebarProvider = ({ children }) => {
           text: "Add Event",
           path: "/organiser/events/create",
         },
+        {
+          text: "Event Details",
+          path: "/organiser/events/details",
+        },
       ],
     },
     {

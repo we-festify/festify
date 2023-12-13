@@ -44,7 +44,7 @@
 
 .sublinks {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   list-style: none;
   margin: 0;
 }

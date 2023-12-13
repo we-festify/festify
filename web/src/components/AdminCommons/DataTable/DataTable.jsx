@@ -16,6 +16,7 @@ const DataTable = ({
   data,
   getRowId = (row) => row._id,
   actions,
+  selectedColumns: initialSelectedColumns,
 }) => {
   const {
     rows: searchResultRows,
@@ -34,7 +35,7 @@ const DataTable = ({
   } = usePagination({ defaultPageLimit: 10, data: searchResultRows });
   const [selectedRowIds, setSelectedRowIds] = useState([]);
   const [selectedColumns, setSelectedColumns] = useState(
-    columns.map(({ key }) => key)
+    initialSelectedColumns || columns.map(({ key }) => key)
   );
 
   const toggleSelectRow = (id) => {
@@ -177,8 +178,8 @@ const DataTableHead = () => {
         <DataTableRow id="DATA_TABLE_HEADER">
           {columns
             .filter(({ key }) => selectedColumns.includes(key))
-            .map(({ label, key }) => (
-              <DataTableHeader key={key}>{label}</DataTableHeader>
+            .map(({ label, key }, index) => (
+              <DataTableHeader key={`${key}-${index}`}>{label}</DataTableHeader>
             ))}
           {actions && <DataTableHeader></DataTableHeader>}
         </DataTableRow>
@@ -197,8 +198,8 @@ const DataTableBody = () => {
             <DataTableRow key={getRowId(row)} id={getRowId(row)}>
               {columns
                 .filter(({ key }) => selectedColumns.includes(key))
-                .map(({ modifier, key }) => (
-                  <DataTableCell key={key}>
+                .map(({ modifier, key }, index) => (
+                  <DataTableCell key={`${key}-${index}`}>
                     {modifier ? modifier(row[key]) : row[key]}
                   </DataTableCell>
                 ))}
@@ -284,7 +285,7 @@ const DataTableRow = ({ children, id }) => {
                 </li>
               )}
               {Object.keys(actions)
-                .filter((k) => k !== "delete")
+                .filter((k) => k !== "delete" && k !== "click")
                 .map((key) => {
                   if (typeof actions[key] === "object")
                     return (
