@@ -3,7 +3,6 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const APPLICATION_MONGO_URI = process.env.APPLICATION_MONGO_URI;
-const ANALYTICS_MONGO_URI = process.env.ANALYTICS_MONGO_URI;
 
 const applicationDB = mongoose.createConnection(APPLICATION_MONGO_URI, {
   useNewUrlParser: true,
