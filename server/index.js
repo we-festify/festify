@@ -10,8 +10,7 @@ app.get("/", async (req, res) => {
 });
 
 // connect to database
-const { connectDB } = require("./database");
-connectDB();
+require("./database");
 
 // cors
 const corsOptions = {

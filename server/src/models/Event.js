@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { applicationDB } = require("../../database");
 
 const EventSchema = new mongoose.Schema({
   name: {
@@ -136,4 +137,4 @@ const EventSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Event", EventSchema);
+module.exports = applicationDB.model("Event", EventSchema);

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { applicationDB } = require("../../database");
 
 const WebPushSubscriptionSchema = new mongoose.Schema({
   user: {
@@ -18,7 +19,7 @@ const WebPushSubscriptionSchema = new mongoose.Schema({
   ],
 });
 
-module.exports = mongoose.model(
+module.exports = applicationDB.model(
   "WebPushSubscription",
   WebPushSubscriptionSchema
 );

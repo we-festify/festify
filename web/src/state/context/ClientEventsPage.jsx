@@ -26,10 +26,7 @@ const EventsPageProvider = ({ children }) => {
       startTime,
       endTime,
       minTeamSize,
-      imageBlurHash,
-      user {
-        name
-      }
+      imageBlurHash
     }]
   }
 `);

@@ -56,7 +56,6 @@ return example:
 const parseQuery = (query, result) => {
   try {
     query = decodeQuery(query);
-    console.log(query);
     query = query.replace(/\s/g, ""); // {event{name,summary,timeline[{name}]}}
     query = query.replace(/(\w+){/g, '"$1":{'); // {"event":{name,summary,timeline[{name}]}}
     query = query.replace(/(\w+)[\[]/g, '"$1":['); // {"event":{"name","summary","timeline":[{"name"}]}}
@@ -82,7 +81,7 @@ const getEmptyData = (query) => {
 
 const mapQueryToData = (query, data) => {
   if (Array.isArray(query)) {
-    return data.map((item) => mapQueryToData(query[0], item));
+    return data?.map((item) => mapQueryToData(query[0], item));
   } else if (typeof query === "object") {
     const result = {};
     for (const key in query) {

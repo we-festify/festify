@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { applicationDB } = require('../../database');
 
 const AnnouncementSchema = new mongoose.Schema({
     title: {
@@ -25,4 +26,4 @@ const AnnouncementSchema = new mongoose.Schema({
     },
 }, { timestamps: true });
 
-module.exports = mongoose.model('Announcement', AnnouncementSchema);
+module.exports = applicationDB.model('Announcement', AnnouncementSchema);

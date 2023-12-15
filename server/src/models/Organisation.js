@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { applicationDB } = require("../../database");
 
 const organisationSchema = mongoose.Schema({
   name: {
@@ -7,4 +8,4 @@ const organisationSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Organisation", organisationSchema);
+module.exports = applicationDB.model("Organisation", organisationSchema);

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { applicationDB } = require("../../database");
 
 const EntryPassSchema = new mongoose.Schema({
   user: {
@@ -20,4 +21,4 @@ const EntryPassSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("EntryPass", EntryPassSchema);
+module.exports = applicationDB.model("EntryPass", EntryPassSchema);

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { applicationDB } = require("../../database");
 
 const ParticipantSchema = new mongoose.Schema(
   {
@@ -34,5 +35,5 @@ const ParticipantSchema = new mongoose.Schema(
   }
 );
 
-const Participant = mongoose.model("Participant", ParticipantSchema);
+const Participant = applicationDB.model("Participant", ParticipantSchema);
 module.exports = Participant;
