@@ -1,9 +1,10 @@
+import { encodeQuery } from "../../../services/json-query";
 import api from "../api";
 
 const eventsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getAllEvents: builder.query({
-      query: () => "/events",
+      query: (q) => `/events?q=${encodeQuery(q)}`,
       providesTags: ["Events"],
     }),
     getEventById: builder.query({
