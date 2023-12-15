@@ -14,13 +14,4 @@ applicationDB.once("open", () => {
   console.log("Connected to application database");
 });
 
-const analyticsDB = mongoose.createConnection(ANALYTICS_MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-analyticsDB.on("error", console.error.bind(console, "connection error:"));
-analyticsDB.once("open", () => {
-  console.log("Connected to analytics database");
-});
-
-module.exports = { applicationDB, analyticsDB };
+module.exports = { applicationDB };
