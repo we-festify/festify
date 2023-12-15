@@ -31,6 +31,10 @@ app.use((req, res, next) => {
   next();
 });
 
+// JSON query middleware
+const JSONQueryMiddleware = require("./src/middlewares/json-query");
+app.use(JSONQueryMiddleware("q"));
+
 // routes
 app.use("/api", require("./src/routes/index.js"));
 
