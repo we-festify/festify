@@ -1,7 +1,10 @@
 const express = require("express");
+const http = require("http");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const socketio = require("socket.io");
 require("dotenv").config();
+
 const app = express();
 
 // home route
@@ -24,7 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// logger
+// request logger
 app.use((req, res, next) => {
   console.log("Request:", req.method, req.url);
   next();
@@ -41,10 +44,17 @@ app.use("/api", require("./src/routes/index.js"));
 const { handleErrors } = require("./src/utils/errors");
 app.use(handleErrors);
 
+// create server and socket
+const server = http.createServer(app);
+const io = socketio(server);
+
+// socket init
+require("./src/sockets")(io);
+
 // server port
 const PORT = process.env.PORT || 5000;
 
 // listen on port
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log("Server is listening on port", PORT);
 });
