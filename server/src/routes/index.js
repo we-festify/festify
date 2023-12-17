@@ -18,5 +18,6 @@ router.use("/sponsors", require("./sponsor"));
 router.use("/notifications", require("./notification"));
 router.use("/entry-passes", require("./entryPass"));
 router.use("/payments", require("./payment"));
+router.use("/map", require("./map"));
 
 module.exports = router;

@@ -53,7 +53,6 @@ const EditSponsor = () => {
             defaultValue={sponsor}
             onChange={setSponsor}
             onSubmit={handleSubmit}
-            mode="edit"
           />
         </div>
       </Card>

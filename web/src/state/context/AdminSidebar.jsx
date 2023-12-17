@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { RiOrganizationChart } from "react-icons/ri";
 import { FaUsers, FaRegHandshake } from "react-icons/fa";
+import { MdLocationPin } from "react-icons/md";
 
 const AdminSidebarContext = createContext();
 
@@ -46,6 +47,17 @@ const AdminSidebarProvider = ({ children }) => {
         {
           text: "Create",
           path: "/admin/sponsors/create",
+        },
+      ],
+    },
+    {
+      text: "Location",
+      path: "/admin/location",
+      icon: <MdLocationPin />,
+      sublinks: [
+        {
+          text: "Create",
+          path: "/admin/location/markers/create",
         },
       ],
     },

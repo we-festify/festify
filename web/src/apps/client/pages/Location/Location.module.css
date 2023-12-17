@@ -1,0 +1,65 @@
+.container {
+  width: 100%;
+  height: calc(100dvh - var(--navbar-height));
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  right: 0;
+}
+
+.map {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+/* Location Actions */
+.locationActions {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: var(--color-white);
+  color: var(--color-primary-500);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.actionButton:hover {
+  background-color: var(--color-background-admin);
+}
+
+.directionsButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: var(--color-background-dark-admin);
+  color: var(--color-primary-500);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.directionsButton:hover {
+  background-color: var(--color-background-admin);
+}

@@ -9,6 +9,7 @@ import Profile from "./pages/Profile/Profile";
 import RequireLoggedIn from "../../routes/custom/RequireLoggedIn";
 import SponsorsIndex from "./pages/Sponsors";
 import ToastProvider from "./components/Toast";
+import Location from "./pages/Location/Location";
 
 const ClientIndex = () => {
   return (
@@ -18,6 +19,7 @@ const ClientIndex = () => {
           <Route path="" element={<Home />} />
           <Route path="events/*" element={<EventsIndex />} />
           <Route path="sponsors/*" element={<SponsorsIndex />} />
+          <Route path="location/*" element={<Location />} />
           <Route path="profile/*" element={<RequireLoggedIn />}>
             <Route path="" element={<Profile />} />
           </Route>

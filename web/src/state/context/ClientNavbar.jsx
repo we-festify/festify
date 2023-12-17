@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { MdHotelClass } from "react-icons/md";
 import { FaHandshake } from "react-icons/fa";
+import { MdLocationPin } from "react-icons/md";
 
 const ClientNavbarContext = createContext();
 
@@ -25,6 +26,11 @@ export const ClientNavbarProvider = ({ children }) => {
       text: "Sponsors",
       path: "/sponsors",
       icon: <FaHandshake />,
+    },
+    {
+      text: "Location",
+      path: "/location",
+      icon: <MdLocationPin />,
     },
   ]);
   const [activeLink, setActiveLink] = useState("/");

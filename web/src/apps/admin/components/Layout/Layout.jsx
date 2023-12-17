@@ -7,6 +7,7 @@ import Dashboard from "../../pages/Dashboard/Dashboard";
 import UsersIndex from "../../pages/Users";
 import OrganisationsIndex from "../../pages/Organisations";
 import SponsorsIndex from "../../pages/Sponsors";
+import LocationIndex from "../../pages/Location";
 
 const Layout = () => {
   return (
@@ -19,6 +20,7 @@ const Layout = () => {
           <Route path="/users/*" element={<UsersIndex />} />
           <Route path="/organisations/*" element={<OrganisationsIndex />} />
           <Route path="/sponsors/*" element={<SponsorsIndex />} />
+          <Route path="/location/*" element={<LocationIndex />} />
         </Routes>
       </div>
     </div>
