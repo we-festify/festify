@@ -175,6 +175,11 @@
   margin: 0.5rem 1.5rem;
 }
 
+.drawer .navlinks .icon {
+  display: flex;
+  align-items: center;
+}
+
 .drawer .navlinks .icon svg {
   width: 1.2rem;
   height: 1.2rem;

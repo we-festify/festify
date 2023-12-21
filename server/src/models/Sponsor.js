@@ -27,4 +27,7 @@ const SponsorSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Sponsor", SponsorSchema);
+/**
+ * @param {mongoose.Connection} db
+ */
+module.exports = (db) => db.model("Sponsor", SponsorSchema);

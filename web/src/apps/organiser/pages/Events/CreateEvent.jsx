@@ -6,7 +6,7 @@ import { selectUser } from "../../../../state/redux/auth/authSlice";
 import { useCreateEventMutation } from "../../../../state/redux/events/eventsApi";
 import Form from "./components/Form";
 import LoadingSpinner from "../../../../components/LoadingSpinner/LoadingSpinner";
-import { toast } from "react-toastify";
+import { toast } from "../../components/Toast";
 
 const CreateEvent = () => {
   const user = useSelector(selectUser);

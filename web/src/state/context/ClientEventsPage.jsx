@@ -14,7 +14,22 @@ const EventsPageProvider = ({ children }) => {
     data: { events } = {},
     isSuccess: eventsSuccess,
     isLoading: eventsLoading,
-  } = useGetAllEventsQuery();
+  } = useGetAllEventsQuery(`
+  {
+    events [{
+      _id,
+      name,
+      image,
+      summary,
+      type,
+      category,
+      startTime,
+      endTime,
+      minTeamSize,
+      imageBlurHash
+    }]
+  }
+`);
   const [eventsList, setEventsList] = useState([]);
   const [types, setTypes] = useState([]);
   const [categories, setCategories] = useState([]);

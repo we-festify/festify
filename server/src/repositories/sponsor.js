@@ -1,4 +1,6 @@
-const Sponsor = require("../models/Sponsor");
+const { applicationDB } = require("../../database");
+
+const Sponsor = require("../models/Sponsor")(applicationDB);
 
 class SponsorRepository {
   static async create(sponsor) {

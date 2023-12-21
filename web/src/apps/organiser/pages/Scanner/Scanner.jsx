@@ -7,7 +7,7 @@ import {
 } from "../../../../state/redux/entryPass/entryPassApi";
 import { getEntryPassFromQRData } from "../../../../utils/qr-code";
 import { formatDateTime } from "../../../../utils/time";
-import { toast } from "react-toastify";
+import { toast } from "../../components/Toast";
 
 const Scanner = () => {
   const videoRef = useRef(null);

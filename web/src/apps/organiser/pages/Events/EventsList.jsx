@@ -66,8 +66,9 @@ const EventsList = () => {
               key: "summary",
             },
           ]}
-          title="Events List"
+          title="Events"
           data={events}
+          selectedColumns={["name", "type", "venue", "summary"]}
           actions={{
             edit: handleEditEvent,
             delete: handleDeleteEvent,

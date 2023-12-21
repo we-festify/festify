@@ -24,12 +24,12 @@ Festify is a free and open-source framework for building fest management website
 - User Management (Admin, Organizers, Participants)
 - User Authentication (JWT)
 - Email Verification
-- `*` Notifications (Email, Push, in-app)
+- Notifications (Email, Push, in-app `*`)
 - `*` Marketing Campaigns (Email, Push)
 - `*` Real-time Updates (WebSockets)
 - Dashboard (Admin, Organizers)
 - Customizable
-- `*` Scalable (Horizontal Scaling)
+- `*` Scalable (Horizontal Scaling, Redis Pub/Sub)
 - Responsive and modern Design (Mobile, Desktop)
 
 ## Tech Stack
@@ -82,29 +82,58 @@ Festify is a free and open-source framework for building fest management website
 
 1. Clone the repo
 
-```bash
-git clone https://github.com/we-festify/festify.git
-```
+   ```bash
+   git clone https://github.com/we-festify/festify.git
+   ```
 
 2. Install NPM packages
 
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
 3. Create `.env` files in the directories and add the fields mentioned in the `.env.example` files.
 
-4. Run the client and server simultaneously in different terminals
+4. For the Razorpay payment gateway to work, you need to create a Razorpay account and add the credentials in the `.env` files. You can create a test account [here](https://dashboard.razorpay.com/app/dashboard).
 
-```bash
-cd web
-npm start
-```
+   Also, you need to add a webhook inside the Razorpay dashboard. The webhook URL should be `https://<your-domain>/api/payment/verify`. You can use [ngrok](https://ngrok.com/) to create a temporary domain for testing.
 
-```bash
-cd server
-npm start
-```
+   ```bash
+   ngrok http 5000
+
+   # Output
+   Forwarding                    https://<random-string>.ngrok.io -> http://localhost:5000
+
+   # Add the webhook URL as https://<random-string>.ngrok.io/api/payments/verify
+   ```
+
+   The webhook should be of type `Payment` and should be triggered only on `Payment Captured` and `Payment Failed` events.
+
+5. Run the client and server simultaneously in different terminals
+
+   ```bash
+   cd web
+   npm start
+   ```
+
+   ```bash
+   cd server
+
+   # For testing data
+   # To seed the database with mongoDB url from .env
+   node seed
+   # To seed the database with a custom mongoDB url
+   node seed --url <mongoDB-url>
+   # To clear the database before seeding
+   node seed --clear --url <mongoDB-url>
+
+   # For development
+   npm run dev
+
+   # For production
+   npm run build
+   npm start
+   ```
 
 ## Contributing
 

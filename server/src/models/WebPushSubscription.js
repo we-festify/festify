@@ -18,7 +18,8 @@ const WebPushSubscriptionSchema = new mongoose.Schema({
   ],
 });
 
-module.exports = mongoose.model(
-  "WebPushSubscription",
-  WebPushSubscriptionSchema
-);
+/**
+ * @param {mongoose.Connection} db
+ */
+module.exports = (db) =>
+  db.model("WebPushSubscription", WebPushSubscriptionSchema);

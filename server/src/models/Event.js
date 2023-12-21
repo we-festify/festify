@@ -53,6 +53,10 @@ const EventSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  imageBlurHash: {
+    type: String,
+    required: false,
+  },
   organisation: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Organisation",
@@ -132,4 +136,7 @@ const EventSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Event", EventSchema);
+/**
+ * @param {mongoose.Connection} db
+ */
+module.exports = (db) => db.model("Event", EventSchema);

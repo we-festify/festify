@@ -17,6 +17,7 @@ import Timeline from "../../../../components/Timeline/Timeline";
 import DetailsSkeleton from "./DetailsSkeleton";
 import PurchaseEntryPass from "../PurchaseEntryPass/PurchaseEntryPass";
 import { useGetEntryPassesBySelfQuery } from "../../../../../../state/redux/entryPass/entryPassApi";
+import Image from "../../../../../../components/Image";
 
 const Details = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -90,7 +91,11 @@ const Details = () => {
       <RegistrationModal event={event} />
       <PurchaseEntryPassModal event={event} />
       <div className={styles.image}>
-        <img src={event?.image} alt={event?.name} />
+        <Image
+          src={event?.image}
+          alt={event?.name}
+          blurHash={event?.imageBlurHash}
+        />
         <div className={styles.info}>
           <h2 className={styles.name}>{event?.name}</h2>
         </div>

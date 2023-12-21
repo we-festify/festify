@@ -55,4 +55,7 @@ const RazorpayPayment = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("RazorpayPayment", RazorpayPayment);
+/**
+ * @param {mongoose.Connection} db
+ */
+module.exports = (db) => db.model("RazorpayPayment", RazorpayPayment);

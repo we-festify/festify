@@ -1,0 +1,36 @@
+[{
+  "name": "MongoDB",
+  "websiteUrl": "https://www.mongodb.com/",
+  "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/MongoDB_Logo.svg/2560px-MongoDB_Logo.svg.png",
+  "description": "You don't need a separate database to support transactions, rich search, or genAI. The world's most popular document database is now the world's most versatile developer data platform.",
+  "type": "Title Sponsor",
+  "priority": 1
+},{
+  "name": "Hero MotoCorp",
+  "websiteUrl": "https://www.heromotocorp.com",
+  "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Hero_MotoCorp_Logo.svg/2560px-Hero_MotoCorp_Logo.svg.png",
+  "description": "With the immense credibility of a global brand and the trust of more than 110 million customers, Hero MotoCorp is riding into the future to address the personal mobility needs – traditional and electric – of a bold new world.",
+  "type": "Co-Title Sponsor",
+  "priority": 2
+},{
+  "name": "Pepsi",
+  "websiteUrl": "https://www.pepsi.com/",
+  "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Pepsi_logo_2014.svg/1200px-Pepsi_logo_2014.svg.png",
+  "description": "Pepsi has been bringing fun and refreshment to consumers for over 100 years. Learn more about our flagship brand and the broad spectrum of beverages it offers worldwide.",
+  "type": "Beverage Partner",
+  "priority": 3
+},{
+  "name": "State Bank of India",
+  "websiteUrl": "https://www.onlinesbi.sbi/",
+  "logoUrl": "https://1000logos.net/wp-content/uploads/2018/03/SBI-Logo.png",
+  "description": "State Bank of India (SBI) is an Indian multinational public sector bank and financial services statutory body headquartered in Mumbai, Maharashtra. SBI is the 48th largest bank in the world by total assets and ranked 221st in the Fortune Global 500 list of the world's biggest corporations of 2020, being the only Indian bank on the list.",
+  "type": "Banking Partner",
+  "priority": 3
+},{
+  "name": "Tata Chemicals",
+  "websiteUrl": "https://www.tatachemicals.com",
+  "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Tata_Chemicals_Logo.svg/2560px-Tata_Chemicals_Logo.svg.png",
+  "description": "Tata Chemicals Limited is an Indian multinational corporation with interests in chemicals, crop protection and specialty chemistry products. The company is headquartered in Mumbai and has operations across India, Europe, North America and Africa.",
+  "type": "Gold Sponsor",
+  "priority": 3
+}]

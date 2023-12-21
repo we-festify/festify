@@ -8,7 +8,7 @@ import {
 import Card from "../../components/Card/Card";
 import Form from "./components/Form";
 import LoadingSpinner from "../../../../components/LoadingSpinner/LoadingSpinner";
-import { toast } from "react-toastify";
+import { toast } from "../../components/Toast";
 
 const EditUser = () => {
   const location = useLocation();

@@ -8,7 +8,7 @@ import {
 import Form from "./components/Form";
 import LoadingSpinner from "../../../../components/LoadingSpinner/LoadingSpinner";
 import { useLocation } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast } from "../../components/Toast";
 
 const EditEvent = () => {
   const location = useLocation();

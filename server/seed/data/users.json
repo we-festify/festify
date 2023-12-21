@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Admin",
+    "email": "admin@festify.com",
+    "password": "admin123",
+    "gender": "male",
+    "college": "IIT Dhanbad",
+    "zipCode": "826004",
+    "degree": "B.Tech",
+    "yearOfGraduation": "2025",
+    "role": "admin",
+    "isVerified": true
+  },
+  {
+    "name": "Organiser",
+    "email": "organiser@festify.com",
+    "password": "organiser",
+    "gender": "male",
+    "college": "IIT Dhanbad",
+    "zipCode": "826004",
+    "degree": "B.Tech",
+    "yearOfGraduation": "2025",
+    "role": "organiser",
+    "isVerified": true
+  },
+  {
+    "name": "User",
+    "email": "user@festify.com",
+    "password": "user@123",
+    "gender": "female",
+    "college": "IIT Dhanbad",
+    "zipCode": "826004",
+    "degree": "B.Tech",
+    "yearOfGraduation": "2025",
+    "role": "user",
+    "isVerified": true
+  }
+]

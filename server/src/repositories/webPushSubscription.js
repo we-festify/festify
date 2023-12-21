@@ -1,4 +1,8 @@
-const WebPushSubscription = require("../models/WebPushSubscription");
+const { applicationDB } = require("../../database");
+
+const WebPushSubscription = require("../models/WebPushSubscription")(
+  applicationDB
+);
 
 class WebPushSubscriptionRepository {
   static async create(user, subscription) {

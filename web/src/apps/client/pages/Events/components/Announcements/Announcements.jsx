@@ -6,9 +6,9 @@ import {
   useGetAnnouncementsByEventIdQuery,
 } from "../../../../../../state/redux/events/eventsApi";
 import { formatDateTimePassed } from "../../../../../../utils/time";
-import { toast } from "react-toastify";
 import { useLocation } from "react-router-dom";
 import Permit from "../../../../../../components/rbac/Permit";
+import { toast } from "../../../../components/Toast";
 
 const Announcements = () => {
   const location = useLocation();

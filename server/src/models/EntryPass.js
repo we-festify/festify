@@ -20,4 +20,7 @@ const EntryPassSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("EntryPass", EntryPassSchema);
+/**
+ * @param {mongoose.Connection} db
+ */
+module.exports = (db) => db.model("EntryPass", EntryPassSchema);

@@ -3,11 +3,11 @@ import styles from "./Card.module.css";
 import { useNavigate } from "react-router-dom";
 import { IoMdShare } from "react-icons/io";
 import { AiOutlineQrcode } from "react-icons/ai";
-import { toast } from "react-toastify";
 import { viewTransition } from "../../../../../../../../utils/view_transition";
 import useModal from "../../../../../../../../hooks/useModal/useModal";
 import ParticipationDetails from "../ParticipationDetails/ParticipationDetails";
 import EntryPassDetails from "../EntryPassDetails/EntryPassDetails";
+import { toast } from "../../../../../../components/Toast";
 
 const Card = ({ participation, entryPass }) => {
   const navigate = useNavigate();

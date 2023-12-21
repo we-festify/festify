@@ -34,5 +34,7 @@ const ParticipantSchema = new mongoose.Schema(
   }
 );
 
-const Participant = mongoose.model("Participant", ParticipantSchema);
-module.exports = Participant;
+/**
+ * @param {mongoose.Connection} db
+ */
+module.exports = (db) => db.model("Participant", ParticipantSchema);

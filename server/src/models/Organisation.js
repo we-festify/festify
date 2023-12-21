@@ -1,10 +1,13 @@
 const mongoose = require("mongoose");
 
-const organisationSchema = mongoose.Schema({
+const organisationSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "Name is required"],
   },
 });
 
-module.exports = mongoose.model("Organisation", organisationSchema);
+/**
+ * @param {mongoose.Connection} db
+ */
+module.exports = (db) => db.model("Organisation", organisationSchema);

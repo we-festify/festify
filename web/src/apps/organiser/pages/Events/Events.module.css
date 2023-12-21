@@ -3,6 +3,12 @@
   overflow: auto;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 /* Events List */
 .actions {
   width: 100%;
@@ -79,6 +85,24 @@ button.submit:hover {
 }
 
 /* event details */
+select.selectEvent {
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  outline: 0;
+  border: none;
+  background-color: var(--color-background-dark-admin);
+  color: var(--color-text-light-admin);
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0 0.5rem;
+  cursor: pointer;
+}
+
+select.selectEvent:focus {
+  outline: 0;
+}
+
 .details {
   display: flex;
   flex-direction: column;

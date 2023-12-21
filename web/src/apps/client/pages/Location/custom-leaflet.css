@@ -1,0 +1,82 @@
+.leaflet-control-zoom {
+  top: 0.5rem;
+  left: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+a.leaflet-control-zoom-out,
+a.leaflet-control-zoom-in {
+  border-radius: 0.5rem !important;
+  background-color: var(--color-white);
+  color: var(--color-primary-500);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+a.leaflet-control-zoom-out:hover,
+a.leaflet-control-zoom-in:hover {
+  background-color: var(--color-background-admin);
+}
+
+.leaflet-bar,
+.leaflet-touch {
+  border: none !important;
+}
+
+.leaflet-right:has(.leaflet-routing-container) {
+  right: unset !important;
+  left: 0.5rem !important;
+}
+
+.leaflet-top:has(.leaflet-routing-container) {
+  top: unset !important;
+  bottom: 0.5rem !important;
+  z-index: 2000 !important;
+}
+
+.leaflet-routing-container {
+  width: 100%;
+  border-radius: 0.5rem !important;
+  background-color: var(--color-white);
+  color: var(--color-text-admin);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+  max-width: calc(100dvw - 1rem);
+}
+
+.leaflet-routing-alt {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.8rem !important;
+}
+
+.leaflet-routing-collapse-btn {
+  right: 1rem !important;
+}
+
+.leaflet-routing-alt h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.leaflet-routing-alt h3 {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-text-light-admin);
+  margin: 0;
+}
+
+.leaflet-routing-alt table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.leaflet-routing-alt table tr td {
+  padding: 0.5rem 0.3rem;
+}

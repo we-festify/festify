@@ -16,7 +16,7 @@ import {
 } from "../../../../../../state/redux/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useLogoutMutation } from "../../../../../../state/redux/auth/authApi";
-import { toast } from "react-toastify";
+import { toast } from "../../../../components/Toast";
 
 const Settings = () => {
   const dispatch = useDispatch();

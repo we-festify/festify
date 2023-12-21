@@ -4,7 +4,7 @@ import { useCreateSponsorMutation } from "../../../../state/redux/sponsor/sponso
 import Card from "../../components/Card/Card";
 import LoadingSpinner from "../../../../components/LoadingSpinner/LoadingSpinner";
 import Form from "./components/Form";
-import { toast } from "react-toastify";
+import { toast } from "../../components/Toast";
 
 const CreateSponsor = () => {
   const [sponsor, setSponsor] = useState({});

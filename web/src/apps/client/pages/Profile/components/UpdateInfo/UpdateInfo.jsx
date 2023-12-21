@@ -9,7 +9,7 @@ import {
   setUser,
 } from "../../../../../../state/redux/auth/authSlice";
 import { useUpdateUserMutation } from "../../../../../../state/redux/users/usersApi";
-import { toast } from "react-toastify";
+import { toast } from "../../../../components/Toast";
 
 const UpdateInfo = () => {
   const user = useSelector(selectUser);

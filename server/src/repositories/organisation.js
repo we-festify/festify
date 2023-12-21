@@ -1,4 +1,6 @@
-const Organisation = require("../models/Organisation");
+const { applicationDB } = require("../../database");
+
+const Organisation = require("../models/Organisation")(applicationDB);
 
 class OrganisationRepository {
   static async create(organisation) {

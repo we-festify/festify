@@ -103,7 +103,7 @@
   transform: translateX(-50%);
   border-radius: 0.5rem;
   z-index: -1;
-  animation: glow 
+  animation: glow;
 }
 
 .sponsor:hover .popover {
@@ -150,7 +150,7 @@
 
 @media screen and (max-width: 840px) {
   .title {
-    margin: 3rem 0 2rem 0;
+    margin: 3rem auto 2rem auto;
   }
 
   .group {
