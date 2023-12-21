@@ -1,4 +1,6 @@
-const MapMarker = require("../models/MapMarker");
+const { applicationDB } = require("../../database");
+
+const MapMarker = require("../models/MapMarker")(applicationDB);
 
 class MapMarkerRepository {
   static async create(marker) {

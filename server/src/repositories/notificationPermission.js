@@ -1,4 +1,8 @@
-const NotificationPermission = require("../models/NotificationPermission");
+const { applicationDB } = require("../../database");
+
+const NotificationPermission = require("../models/NotificationPermission")(
+  applicationDB
+);
 
 class NotificationPermissionRepository {
   static async create(userId, notificationPermission) {

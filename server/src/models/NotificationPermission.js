@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { applicationDB } = require("../../database");
 
 const NotificationPermissionSchema = new mongoose.Schema(
   {
@@ -29,7 +28,8 @@ const NotificationPermissionSchema = new mongoose.Schema(
   }
 );
 
-module.exports = applicationDB.model(
-  "NotificationPermission",
-  NotificationPermissionSchema
-);
+/**
+ * @param {mongoose.Connection} db
+ */
+module.exports = (db) =>
+  db.model("NotificationPermission", NotificationPermissionSchema);

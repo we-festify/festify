@@ -1,4 +1,6 @@
-const Participant = require("../models/Participant");
+const { applicationDB } = require("../../database");
+
+const Participant = require("../models/Participant")(applicationDB);
 
 class ParticipantRepository {
   static async create(participant) {

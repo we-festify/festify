@@ -1,4 +1,6 @@
-const EntryPass = require("../models/EntryPass");
+const { applicationDB } = require("../../database");
+
+const EntryPass = require("../models/EntryPass")(applicationDB);
 
 class EntryPassRepository {
   static async getById(entryPassId) {

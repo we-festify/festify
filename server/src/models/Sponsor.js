@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { applicationDB } = require("../../database");
 
 const SponsorSchema = new mongoose.Schema({
   name: {
@@ -28,4 +27,7 @@ const SponsorSchema = new mongoose.Schema({
   },
 });
 
-module.exports = applicationDB.model("Sponsor", SponsorSchema);
+/**
+ * @param {mongoose.Connection} db
+ */
+module.exports = (db) => db.model("Sponsor", SponsorSchema);

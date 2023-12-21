@@ -1,4 +1,6 @@
-const Announcement = require("../models/Announcement");
+const { applicationDB } = require("../../database");
+
+const Announcement = require("../models/Announcement")(applicationDB);
 
 class AnnouncementRepository {
   static async create(announcement) {

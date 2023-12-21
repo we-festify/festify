@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { applicationDB } = require("../../database");
 
 const RazorpayPayment = new mongoose.Schema(
   {
@@ -56,4 +55,7 @@ const RazorpayPayment = new mongoose.Schema(
   }
 );
 
-module.exports = applicationDB.model("RazorpayPayment", RazorpayPayment);
+/**
+ * @param {mongoose.Connection} db
+ */
+module.exports = (db) => db.model("RazorpayPayment", RazorpayPayment);

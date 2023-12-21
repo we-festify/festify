@@ -18,7 +18,7 @@ require("./database");
 // cors
 const corsOptions = {
   credentials: true,
-  origin: process.env.ALLOWED_CLIENTS.split(","),
+  origin: process.env.ALLOWED_ORIGINS.split(","),
 };
 app.use(cors(corsOptions));
 

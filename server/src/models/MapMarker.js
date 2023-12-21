@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { applicationDB } = require("../../database");
 
 const MapMarkerSchema = new mongoose.Schema({
   name: {
@@ -29,4 +28,7 @@ const MapMarkerSchema = new mongoose.Schema({
   },
 });
 
-module.exports = applicationDB.model("MapMarker", MapMarkerSchema);
+/**
+ * @param {mongoose.Connection} db
+ */
+module.exports = (db) => db.model("MapMarker", MapMarkerSchema);

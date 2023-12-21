@@ -1,4 +1,6 @@
-const User = require("../models/User");
+const { applicationDB } = require("../../database");
+
+const User = require("../models/User")(applicationDB);
 
 class UserRepository {
   static removeUnauthorizedFields(user) {

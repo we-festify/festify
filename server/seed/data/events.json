@@ -1,0 +1,122 @@
+[
+  {
+    "name": "EDM Night",
+    "type": "event",
+    "summary": "The night promises to make you loose yourself into the world of music & dance till we shake the clouds",
+    "description": "The night promises to make you loose yourself into the world of music & dance till we shake the clouds, with an EDM night featuring none other than the very skillfull and fulgurant DJ Carnivore.",
+    "venue": "Gymkhana Ground",
+    "timeline": [
+      {
+        "time": "2023-11-21T13:30:00.000Z",
+        "venue": "Gymkhana Ground",
+        "description": "Start",
+        "_id": "65536448f936d7ccaa6ae65c"
+      },
+      {
+        "time": "2023-12-30T18:00:00.000Z",
+        "venue": "Amber Ground",
+        "description": "End",
+        "_id": "655a318963200e7fef1c0f63"
+      }
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Electric_Love_2013.jpg",
+    "organisation": "65407e13b5502f2c3595644c",
+    "isTicketed": false,
+    "minTeamSize": 1,
+    "maxTeamSize": 1,
+    "registrationsOpen": false,
+    "rulebookUrl": "",
+    "category": "other",
+    "feesInINR": 0,
+    "registrationsEnd": "2023-11-30T15:55:00.000Z",
+    "registrationsStart": "2023-11-19T15:55:00.000Z",
+    "tags": ["dance", "edm", "dj"],
+    "endTime": "2023-12-29T18:00:00.000Z",
+    "startTime": "2023-12-29T14:30:00.000Z",
+    "entryPassDistributionEnd": "2023-12-30T11:05:00.000Z",
+    "entryPassDistributionStart": "2023-12-06T11:05:00.000Z",
+    "entryPassPriceInINR": 500,
+    "isEntryPassRequired": true,
+    "isRegistrationRequired": false,
+    "registrationFeesInINR": 0,
+    "totalEntryPasses": 0,
+    "imageBlurHash": "|fCG1GIUM^s+Shs:Rjt7WBCAr;vzR*s:j]WBbcjs%OaeM{oIodW=jFkCayt8S3sSjFWUs:R*ofayNGs:WXWBs,WXjYj]bHwIbIX7oKR*oJWBj[flRkbHs:a#n$affij]bIjIoeW:bHWCjYkBa#kBW=WVs,oLaxaya}j[a#"
+  },
+  {
+    "name": "War Of DJs",
+    "type": "event",
+    "summary": "The War of DJs event is an electrifying showdown where skilled disc jockeys battle for musical supremacy.",
+    "description": "The War of DJs event is an electrifying showdown where skilled disc jockeys battle for musical supremacy, captivating the audience with their beats and mixes.\n\nNote:\nThe prize money is subjected to the amount of participation in the event and will solely be decided by managing team of Festify.",
+    "venue": "Amber Ground",
+    "timeline": [
+      {
+        "time": "2023-11-30T14:00:00.000Z",
+        "venue": "Amber Ground",
+        "description": "DJs will start the journey of electrifying your night",
+        "_id": "656057b9e2d8455477bae145"
+      },
+      {
+        "time": "2023-11-30T17:30:00.000Z",
+        "venue": "Amber Ground",
+        "description": "We need to say bye to the electric eels",
+        "_id": "656057b9e2d8455477bae146"
+      }
+    ],
+    "image": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-75680,resizemode-75,msid-98665246/tech/technology/ai-comes-for-the-dj-london-partygoers-rave-to-robot-beats.jpg",
+    "organisation": "65407e13b5502f2c3595644c",
+    "isTicketed": false,
+    "minTeamSize": 1,
+    "maxTeamSize": 1,
+    "registrationsStart": "2023-11-23T08:00:00.000Z",
+    "registrationsEnd": "2023-12-30T08:00:00.000Z",
+    "feesInINR": 0,
+    "category": "dance",
+    "tags": ["dance", "music"],
+    "endTime": "2023-12-29T15:30:00.000Z",
+    "startTime": "2023-12-29T12:30:00.000Z",
+    "entryPassPriceInINR": 0,
+    "isEntryPassRequired": false,
+    "isRegistrationRequired": true,
+    "registrationFeesInINR": 100,
+    "totalEntryPasses": 0
+  },
+  {
+    "name": "FootLoose",
+    "type": "competition",
+    "summary": "Prepare, perfect, perform and if you stumble then make it a part of the dance.",
+    "description": "Are you passionate about dancing? Do you have tingling sensations run down your feet when you hear music? Then come let yourself loose and dance to express. Prepare, perfect, perform and if you stumble then make it a part of the dance.\n\nNote:\nThe prize money is subjected to the amount of participation in the event and will solely be decided by managing team of Festify.",
+    "venue": "Penman Auditorium",
+    "timeline": [
+      {
+        "time": "2023-12-29T14:00:00.000Z",
+        "venue": "Penman Auditorium",
+        "description": "Start",
+        "_id": "656059d2e2d8455477bae14a"
+      },
+      {
+        "time": "2023-12-29T16:00:00.000Z",
+        "venue": "Penman Auditorium",
+        "description": "End",
+        "_id": "656059d2e2d8455477bae14b"
+      }
+    ],
+    "image": "https://utsav.gov.in/public/event_category_banner/1656592649.png",
+    "organisation": "65407e13b5502f2c3595644c",
+    "isTicketed": false,
+    "minTeamSize": 3,
+    "maxTeamSize": 5,
+    "registrationsStart": "2023-11-23T08:03:00.000Z",
+    "registrationsEnd": "2023-11-30T08:04:00.000Z",
+    "feesInINR": 0,
+    "category": "dance",
+    "tags": ["dance", "team"],
+    "endTime": "2023-12-29T12:00:00.000Z",
+    "startTime": "2023-12-29T09:30:00.000Z",
+    "entryPassPriceInINR": 0,
+    "isEntryPassRequired": false,
+    "isRegistrationRequired": true,
+    "registrationFeesInINR": 0,
+    "totalEntryPasses": 0,
+    "imageBlurHash": "|6BCDJxZ03NcE1jYR+I;}@6*WVixWX=xs.oej?Ei0gWC}rWVS~t6WBsAV[Myj[%KoJNbS3M}Rl$$kBa#j@s.WCNHo2soWVEhfk$%j[WBWBkVs.NI$ffiJBWEr?sToeSgWVwcaya#j[ODoKsoofs9SOf6xDkBR*jsWVf8f*"
+  }
+]

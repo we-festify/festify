@@ -1,4 +1,6 @@
-const RazorpayPayment = require("../models/RazorpayPayment");
+const { applicationDB } = require("../../database");
+
+const RazorpayPayment = require("../models/RazorpayPayment")(applicationDB);
 
 class RazorpayPaymentRepository {
   static async create({
@@ -29,8 +31,7 @@ class RazorpayPaymentRepository {
 
   static async getByUser(user) {
     try {
-      return await RazorpayPayment.find({ user })
-        .sort({ createdAt: -1 });
+      return await RazorpayPayment.find({ user }).sort({ createdAt: -1 });
     } catch (err) {
       throw err;
     }
