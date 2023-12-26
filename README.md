@@ -24,12 +24,12 @@ Festify is a free and open-source framework for building fest management website
 - User Management (Admin, Organizers, Participants)
 - User Authentication (JWT)
 - Email Verification
-- Notifications (Email, Push, in-app `*`)
+- Notifications (Email, Push, in-app)
 - `*` Marketing Campaigns (Email, Push)
 - `*` Real-time Updates (WebSockets)
 - Dashboard (Admin, Organizers)
 - Customizable
-- `*` Scalable (Horizontal Scaling, Redis Pub/Sub)
+- `*` Scalable (Horizontal Scaling)
 - Responsive and modern Design (Mobile, Desktop)
 
 ## Tech Stack
@@ -54,7 +54,7 @@ Festify is a free and open-source framework for building fest management website
   - REST API
   - WebSockets
 
-- **Pub/Sub**
+- **Message Broker**
 
   - Redis
 
@@ -67,6 +67,7 @@ Festify is a free and open-source framework for building fest management website
   - MongoDB Atlas
 
 - **Version Control**
+
   - GitHub
 
 ## Getting Started
@@ -94,20 +95,7 @@ Festify is a free and open-source framework for building fest management website
 
 3. Create `.env` files in the directories and add the fields mentioned in the `.env.example` files.
 
-4. For the Razorpay payment gateway to work, you need to create a Razorpay account and add the credentials in the `.env` files. You can create a test account [here](https://dashboard.razorpay.com/app/dashboard).
-
-   Also, you need to add a webhook inside the Razorpay dashboard. The webhook URL should be `https://<your-domain>/api/payment/verify`. You can use [ngrok](https://ngrok.com/) to create a temporary domain for testing.
-
-   ```bash
-   ngrok http 5000
-
-   # Output
-   Forwarding                    https://<random-string>.ngrok.io -> http://localhost:5000
-
-   # Add the webhook URL as https://<random-string>.ngrok.io/api/payments/verify
-   ```
-
-   The webhook should be of type `Payment` and should be triggered only on `Payment Captured` and `Payment Failed` events.
+4. Complete the configuration steps mentioned [here](#configuration) as per your requirements.
 
 5. Run the client and server simultaneously in different terminals
 
@@ -134,6 +122,33 @@ Festify is a free and open-source framework for building fest management website
    npm run build
    npm start
    ```
+
+## Configuration
+
+### Razorpay
+
+For the Razorpay payment gateway to work, you need to create a Razorpay account and add the credentials in the `.env` files. You can create a test account [here](https://dashboard.razorpay.com/app/dashboard).
+
+Also, you need to add a webhook inside the Razorpay dashboard. The webhook URL should be `https://<your-domain>/api/payment/verify`. You can use [ngrok](https://ngrok.com/) to create a temporary domain for testing.
+
+```bash
+ngrok http 5000
+
+# Output
+Forwarding                    https://<random-string>.ngrok.io -> http://localhost:5000
+
+# Add the webhook URL as https://<random-string>.ngrok.io/api/payments/verify
+```
+
+The webhook should be of type `Payment` and should be triggered only on `Payment Captured` and `Payment Failed` events.
+
+### Redis
+
+For the Redis to work, you need to create a Redis account and add the credentials in the `.env` files. You can run a Redis server locally using Docker.
+
+```bash
+docker run --name redis -p 6379:6379 -d redis
+```
 
 ## Contributing
 

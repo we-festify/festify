@@ -16,6 +16,7 @@ import { useMediaQuery } from "../../../../hooks/useMediaQuery";
 import { useLocation } from "react-router-dom";
 import { viewTransition } from "../../../../utils/view_transition";
 import Avatar from "../Avatar/Avatar";
+import NotificationBell from "./components/NotificationBell/NotificationBell";
 
 const Navbar = () => {
   const isPortrait = useMediaQuery("(orientation: portrait)");
@@ -155,6 +156,7 @@ const Navbar = () => {
               </ul>
             </div>
           )}
+          <NotificationBell />
           {user ? (
             <Link to="/profile">
               <Avatar name={user.name} avatarCode={user.avatarCode} size={30} />

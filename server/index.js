@@ -2,7 +2,7 @@ const express = require("express");
 const http = require("http");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const socketio = require("socket.io");
+const { WebSocketServer } = require("ws");
 require("dotenv").config();
 
 const app = express();
@@ -46,10 +46,13 @@ app.use(handleErrors);
 
 // create server and socket
 const server = http.createServer(app);
-const io = socketio(server);
+const wss = new WebSocketServer({ server });
 
 // socket init
-require("./src/sockets")(io);
+require("./src/sockets")(wss);
+
+// worker init
+require("./src/workers");
 
 // server port
 const PORT = process.env.PORT || 5000;
@@ -58,3 +61,6 @@ const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
   console.log("Server is listening on port", PORT);
 });
+
+// export wss for global socket usage
+module.exports = { wss };
