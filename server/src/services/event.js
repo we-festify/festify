@@ -1,5 +1,7 @@
 const EventRepository = require("../repositories/event");
 const { BadRequestError } = require("../utils/errors");
+const { createUpdateEventNotification } = require("../utils/notification");
+const NotificationService = require("./notification");
 
 class EventService {
   static checkRequiredFields(event) {
@@ -77,7 +79,13 @@ class EventService {
     try {
       if (!id) throw new BadRequestError("Missing id");
       this.checkRequiredFields(event);
-      return await EventRepository.updateById(id, event);
+      const updatedEvent = await EventRepository.updateById(id, event);
+
+      // send notification
+      const notification = createUpdateEventNotification(updatedEvent);
+      await NotificationService.sendInAppNotification(notification);
+
+      return updatedEvent;
     } catch (err) {
       throw err;
     }

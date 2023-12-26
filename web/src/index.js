@@ -7,14 +7,20 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./state/redux/store";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import WebSocketProvider from "./state/context/WebSocket";
+import InAppNotificationsProvider from "./state/context/InAppNotifications";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router>
-        <App />
-      </Router>
+      <WebSocketProvider>
+        <InAppNotificationsProvider>
+          <Router>
+            <App />
+          </Router>
+        </InAppNotificationsProvider>
+      </WebSocketProvider>
     </Provider>
   </React.StrictMode>
 );

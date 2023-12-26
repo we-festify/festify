@@ -1,0 +1,1 @@
+const InAppNotificationWorker = require("./inAppNotification");
