@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../../../../state/redux/auth/authSlice";
 import ImagePreview from "./ImagePreview/ImagePreview";
 
-const Form = ({ onSubmit, defaultValue, onChange }) => {
+const EventForm = ({ onSubmit, defaultValue, onChange }) => {
   const user = useSelector(selectUser);
   const organisationId = user.organisation;
   const [canSubmit, setCanSubmit] = useState(false);
@@ -341,4 +341,4 @@ const Form = ({ onSubmit, defaultValue, onChange }) => {
   );
 };
 
-export default Form;
+export default EventForm;
