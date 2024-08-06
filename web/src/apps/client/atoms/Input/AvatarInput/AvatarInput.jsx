@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./AvatarInput.module.css";
 import Avatar from "../../../components/Avatar/Avatar";
 import { MdEdit } from "react-icons/md";

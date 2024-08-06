@@ -5,31 +5,31 @@ const RBACMiddleware = require("../middlewares/rbac");
 
 router.get(
   "/",
-  RBACMiddleware.requireAdmin,
-  RBACMiddleware.requirePermission("user", "read"),
+  RBACMiddleware.requirePermissions("user:read"),
   UserController.getAll
 );
 router.get(
   "/:userId",
-  RBACMiddleware.requireAdmin,
-  RBACMiddleware.requirePermission("user", "read"),
+  RBACMiddleware.requirePermissions("user:read"),
   UserController.getById
 );
 router.post(
   "/",
-  RBACMiddleware.requireAdmin,
-  RBACMiddleware.requirePermission("user", "create"),
+  RBACMiddleware.requirePermissions("user:create"),
   UserController.create
 );
+// Update if user is self or has user:update(SUDO) permission
 router.patch(
   "/:userId",
-  RBACMiddleware.requirePermission("user", "update"),
+  RBACMiddleware.requirePermissions("user:update", [
+    "user:updateSelf",
+    UserController.selfValidator,
+  ]),
   UserController.update
 );
 router.delete(
   "/:userId",
-  RBACMiddleware.requireAdmin,
-  RBACMiddleware.requirePermission("user", "delete"),
+  RBACMiddleware.requirePermissions("user:delete"),
   UserController.delete
 );
 

@@ -7,30 +7,30 @@ const RBACMiddleware = require("../middlewares/rbac");
 router.post(
   "/",
   AuthMiddleware.requireLoggedIn,
-  RBACMiddleware.requirePermission("sponsor", "create"),
+  RBACMiddleware.requirePermissions("sponsor:create"),
   SponsorController.create
 );
 router.get(
   "/:id",
   AuthMiddleware.requireLoggedIn,
-  RBACMiddleware.requirePermission("sponsor", "read"),
+  RBACMiddleware.requirePermissions("sponsor:read"),
   SponsorController.getById
 );
 router.get(
   "/",
-  RBACMiddleware.requirePermission("sponsor", "read"),
+  RBACMiddleware.requirePermissions("sponsor:read"),
   SponsorController.getAll
 );
 router.patch(
   "/:id",
   AuthMiddleware.requireLoggedIn,
-  RBACMiddleware.requirePermission("sponsor", "update"),
+  RBACMiddleware.requirePermissions("sponsor:update"),
   SponsorController.updateById
 );
 router.delete(
   "/:id",
   AuthMiddleware.requireLoggedIn,
-  RBACMiddleware.requirePermission("sponsor", "delete"),
+  RBACMiddleware.requirePermissions("sponsor:delete"),
   SponsorController.deleteById
 );
 

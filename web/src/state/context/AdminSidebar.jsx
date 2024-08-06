@@ -1,9 +1,9 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { RiOrganizationChart } from "react-icons/ri";
 import { FaUsers, FaRegHandshake } from "react-icons/fa";
-import { MdLocationPin } from "react-icons/md";
+import { MdKey, MdLocationPin } from "react-icons/md";
 
 const AdminSidebarContext = createContext();
 
@@ -60,6 +60,11 @@ const AdminSidebarProvider = ({ children }) => {
           path: "/admin/location/markers/create",
         },
       ],
+    },
+    {
+      text: "Permissions",
+      path: "/admin/permissions",
+      icon: <MdKey />,
     },
   ]);
   const [activeLink, setActiveLink] = useState("/");

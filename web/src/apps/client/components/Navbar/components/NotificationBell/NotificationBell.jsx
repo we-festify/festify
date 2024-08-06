@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./NotificationBell.module.css";
 import { IoNotifications } from "react-icons/io5";
 import Dropdown from "../../../../components/Dropdown/Dropdown";

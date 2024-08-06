@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useGetAllEventsQuery } from "../redux/events/eventsApi";
 import { useLocation, useNavigate } from "react-router-dom";
 import { viewTransition } from "../../utils/view_transition";
@@ -14,6 +14,7 @@ const EventsPageProvider = ({ children }) => {
     data: { events } = {},
     isSuccess: eventsSuccess,
     isLoading: eventsLoading,
+    error: eventsError,
   } = useGetAllEventsQuery(`
   {
     events [{
@@ -83,6 +84,7 @@ const EventsPageProvider = ({ children }) => {
     categories,
     eventsList,
     eventsLoading,
+    eventsError,
     suggestions: suggestedEvents.map((event) => ({
       id: event._id,
       name: event.name,

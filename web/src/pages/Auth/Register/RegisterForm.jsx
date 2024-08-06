@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./../common.module.css";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../../state/redux/auth/authSlice";

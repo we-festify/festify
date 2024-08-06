@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import OrganisationsList from "./OrganisationsList";
 import CreateOrganisation from "./CreateOrganisation";

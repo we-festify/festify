@@ -17,7 +17,7 @@ class WebPushService {
     const registration = await navigator.serviceWorker?.ready;
     const subscription = await registration?.pushManager?.subscribe({
       userVisibleOnly: true,
-      applicationServerKey: process.env.REACT_APP_VAPID_PUBLIC_KEY,
+      applicationServerKey: import.meta.env.VITE_VAPID_PUBLIC_KEY,
     });
     return subscription;
   }

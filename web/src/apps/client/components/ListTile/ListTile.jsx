@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./ListTile.module.css";
 
 const ListTile = ({ leading, trailing, title, subtitle }) => {

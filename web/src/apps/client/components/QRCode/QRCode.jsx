@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import styles from "./QRCode.module.css";
 import QRCodeStyling from "qr-code-styling";
 import logo from "./../../../../assets/images/core/logo.png";
 
 const QRCode = ({ data, height, width }) => {
-  const containerRef = React.useRef(null);
+  const containerRef = useRef(null);
   const qrCode = new QRCodeStyling({
     width: width || 250,
     height: height || 250,

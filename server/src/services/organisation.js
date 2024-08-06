@@ -41,26 +41,6 @@ class OrganisationService {
     }
   }
 
-  static async getAllByType(type, { extended = false }) {
-    try {
-      if (!type) throw new BadRequestError("Missing type");
-      return await OrganisationRepository.getAllByType(type, { extended });
-    } catch (err) {
-      throw err;
-    }
-  }
-
-  static async getAllByOrganisation(organisationId, { extended = false }) {
-    try {
-      if (!organisationId) throw new BadRequestError("Missing organisationId");
-      return await OrganisationRepository.getAllByOrganisation(organisationId, {
-        extended,
-      });
-    } catch (err) {
-      throw err;
-    }
-  }
-
   static async updateById(id, organisation) {
     try {
       if (!id) throw new BadRequestError("Missing id");

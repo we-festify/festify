@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Grid.module.css";
 import CardSkeleton from "../Card/CardSkeleton";
 

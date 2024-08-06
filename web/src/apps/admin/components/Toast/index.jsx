@@ -1,4 +1,3 @@
-import React from "react";
 import {
   ToastContainer as ReactToastifyToastContainer,
   toast as reactToastifyToast,

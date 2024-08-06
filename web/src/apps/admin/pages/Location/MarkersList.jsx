@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Location.module.css";
 import Card from "../../components/Card/Card";
 import DataTable from "../../../../components/AdminCommons/DataTable/DataTable";

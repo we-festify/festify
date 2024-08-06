@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef } from "react";
 import styles from "./useModal.module.css";
 import { viewTransition } from "../../utils/view_transition";
 

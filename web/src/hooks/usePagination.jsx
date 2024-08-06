@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const usePagination = ({ defaultPageLimit = 10, data }) => {
   const [currentPage, setCurrentPage] = useState(0);

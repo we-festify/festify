@@ -11,6 +11,14 @@ class AnnouncementRepository {
     }
   }
 
+  static async getById(id) {
+    try {
+      return await Announcement.findById(id);
+    } catch (err) {
+      throw err;
+    }
+  }
+
   static async getAllByEventId(eventId, { page, limit }) {
     try {
       return await Announcement.find({ event: eventId })

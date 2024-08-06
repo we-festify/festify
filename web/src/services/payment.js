@@ -3,7 +3,7 @@ class PaymentService {
     try {
       const { amount, currency, id: orderId, notes } = order;
       const options = {
-        key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
         amount: amount.toString(),
         currency,
         name: "Festify",
@@ -24,4 +24,4 @@ class PaymentService {
   }
 }
 
-module.exports = PaymentService;
+export default PaymentService;

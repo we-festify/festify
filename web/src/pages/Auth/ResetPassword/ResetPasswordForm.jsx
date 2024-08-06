@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./../common.module.css";
 import Logo from "../../../components/Logo/Logo";
 import { Link, useLocation } from "react-router-dom";

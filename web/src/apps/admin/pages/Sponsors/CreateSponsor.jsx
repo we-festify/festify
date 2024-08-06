@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./Sponsor.module.css";
 import { useCreateSponsorMutation } from "../../../../state/redux/sponsor/sponsorsApi";
 import Card from "../../components/Card/Card";

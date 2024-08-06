@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Card.module.css";
 import Skeleton from "../../../../../../components/Skeleton/Skeleton";
 

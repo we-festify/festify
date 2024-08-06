@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Sponsors.module.css";
 import { useGetSponsorsQuery } from "../../../../state/redux/sponsor/sponsorsApi";
 
@@ -50,7 +50,11 @@ const Sponsors = () => {
                       <p className={styles.description}>
                         {sponsor.description}
                       </p>
-                      <a href={sponsor.websiteUrl} target="_blank" className={styles.link}>
+                      <a
+                        href={sponsor.websiteUrl}
+                        target="_blank"
+                        className={styles.link}
+                      >
                         Visit Website
                       </a>
                     </div>

@@ -6,6 +6,11 @@ const key = "not-so-important-key";
 const JSONQueryMiddleware = (queryKey) => (req, res, next) => {
   const originalJSON = res.json;
   res.json = (data) => {
+    // for error responses, return the original data
+    if ([500, 400, 401, 403, 404].includes(res.statusCode)) {
+      return originalJSON.call(res, data);
+    }
+
     const { query } = req;
     const q = query?.[queryKey];
     if (q) {
@@ -97,7 +102,7 @@ const mapQueryToData = (query, data) => {
 
 const encodeQuery = (query = "") => {
   query = query.replace(/\s/g, ""); // {event{name,summary,timeline[{name}]}}
-  const encoded = cryptoJS.AES.encrypt(query, key, {
+  let encoded = cryptoJS.AES.encrypt(query, key, {
     mode: cryptoJS.mode.ECB,
   }).toString();
   encoded = encodeURIComponent(encoded);

@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { createContext, useContext, useRef, useState } from "react";
 
 import L from "leaflet";
 import "leaflet-routing-machine";

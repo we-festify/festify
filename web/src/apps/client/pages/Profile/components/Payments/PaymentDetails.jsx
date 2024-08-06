@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Payments.module.css";
 import Modal from "../../../../components/Modal/Modal";
 

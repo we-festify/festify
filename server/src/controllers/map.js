@@ -61,6 +61,19 @@ class MapController {
       next(err);
     }
   }
+
+  static async selfValidator(req) {
+    try {
+      const { id } = req.params;
+      const { user } = req;
+      const marker = await MapMarkerService.getById(id);
+      if (!marker) return false;
+      if (marker.createdBy.toString() !== user._id.toString()) return false;
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
 }
 
 module.exports = MapController;

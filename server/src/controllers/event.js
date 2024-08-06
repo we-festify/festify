@@ -78,6 +78,22 @@ class EventController {
     }
   }
 
+  static async creatorValidator(req) {
+    try {
+      const { id: eventId } = req.params;
+      const { user } = req;
+      // check if the user is a member of the organisation
+      // that the event belongs to
+      const event = await EventService.getById(eventId);
+      if (!event) return false;
+      if (event.organisation.toString() !== user.organisation.toString())
+        return false;
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+
   static async createAnnouncement(req, res, next) {
     try {
       const { announcement } = req.body;
@@ -88,7 +104,7 @@ class EventController {
       const createdAnnouncement = await AnnouncementService.create({
         ...announcement,
         createdBy: user._id,
-        event: req.params.eventId,
+        event: eventId,
       });
       return res.status(201).json({
         announcement: createdAnnouncement,
@@ -123,6 +139,21 @@ class EventController {
       });
     } catch (err) {
       next(err);
+    }
+  }
+
+  static async announcementSelfValidator(req) {
+    try {
+      const { id: announcementId } = req.params;
+      const { user } = req;
+      // check if the user is the creator of the announcement
+      const announcement = await AnnouncementService.getById(announcementId);
+      if (!announcement) return false;
+      if (announcement.createdBy.toString() !== user._id.toString())
+        return false;
+      return true;
+    } catch (err) {
+      return false;
     }
   }
 }

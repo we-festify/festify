@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import EventsPageProvider from "../../../../state/context/ClientEventsPage";
 import { Route, Routes } from "react-router-dom";

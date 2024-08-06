@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./Profile.module.css";
 import Navbar from "../../components/Navbar/Navbar";
 import FixedBackdrop from "../../../../components/FixedBackdrop/FixedBackdrop";

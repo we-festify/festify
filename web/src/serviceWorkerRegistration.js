@@ -24,12 +24,12 @@ function nodeEnvProductionCheck(config) {
   if (config && config.bypassNodeEnvProduction) {
     return config.bypassNodeEnvProduction;
   }
-  return process.env.NODE_ENV === "production";
+  return import.meta.env.NODE_ENV === "production";
 }
 
 function getServiceWorkerUrl() {
-  if (process.env.NODE_ENV === "production") {
-    return `${process.env.PUBLIC_URL}/service-worker.js`;
+  if (import.meta.env.NODE_ENV === "production") {
+    return `${import.meta.env.PUBLIC_URL}/service-worker.js`;
   }
   return `/service-worker-dev.js`;
 }
@@ -37,7 +37,7 @@ function getServiceWorkerUrl() {
 export function register(config) {
   if (nodeEnvProductionCheck(config) && "serviceWorker" in navigator) {
     // The URL constructor is available in all browsers that support SW.
-    const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
+    const publicUrl = new URL(import.meta.env.PUBLIC_URL, window.location.href);
     if (publicUrl.origin !== window.location.origin) {
       // Our service worker won't work if PUBLIC_URL is on a different origin
       // from what our page is served on. This might happen if a CDN is used to

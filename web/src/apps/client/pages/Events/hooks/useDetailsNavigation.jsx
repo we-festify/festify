@@ -1,4 +1,3 @@
-import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { MdHotelClass } from "react-icons/md";
 import { AiFillNotification } from "react-icons/ai";

@@ -19,3 +19,11 @@
     gap: 2rem;
   }
 }
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  color: var(--color-error-500);
+}

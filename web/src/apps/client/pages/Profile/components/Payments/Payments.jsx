@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./Payments.module.css";
 import { useGetPaymentsBySelfQuery } from "../../../../../../state/redux/payments/paymentsApi";
 import { formatDateTime } from "../../../../../../utils/time";

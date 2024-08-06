@@ -3,7 +3,7 @@ import axios from "axios";
 class ConfigService {
   constructor() {
     this.axios = axios.create({
-      baseURL: process.env.REACT_APP_API_URL + "/config",
+      baseURL: import.meta.env.VITE_API_URL + "/config",
     });
   }
 

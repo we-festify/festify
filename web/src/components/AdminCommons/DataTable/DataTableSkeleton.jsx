@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./DataTableSkeleton.module.css";
 import Skeleton from "../../Skeleton/Skeleton";
 

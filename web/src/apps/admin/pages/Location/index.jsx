@@ -1,4 +1,3 @@
-import React from "react";
 import MarkersList from "./MarkersList";
 import CreateMarker from "./CreateMarker";
 import EditMarker from "./EditMarker";

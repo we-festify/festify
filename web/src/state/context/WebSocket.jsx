@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useRef } from "react";
+import { createContext, useContext, useEffect, useRef } from "react";
 import { selectAccessToken } from "../redux/auth/authSlice";
 import { useSelector } from "react-redux";
 
@@ -36,7 +36,7 @@ const WebSocketProvider = ({ children }) => {
     if (!token) return;
     if (webSocket.current) webSocket.current.close();
     console.log("Connecting to socket...");
-    webSocket.current = new WebSocket(process.env.REACT_APP_API_SOCKET_URL);
+    webSocket.current = new WebSocket(import.meta.env.VITE_API_SOCKET_URL);
     webSocket.current.onopen = () => {
       console.log("Connected to socket.");
       webSocket.current.send(JSON.stringify(["auth:connect", { token }]));

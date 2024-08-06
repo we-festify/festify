@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./EventDetailsLayout.module.css";
 import EventsGrid from "../Grid/Grid";
 import { useLocation, useNavigate } from "react-router-dom";

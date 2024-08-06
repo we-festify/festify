@@ -1,4 +1,3 @@
-import React from "react";
 import { Outlet, Navigate } from "react-router-dom";
 import {
   selectIsLoggedIn,
@@ -12,7 +11,9 @@ const RequireAdmin = () => {
   const isAdmin = useSelector(selectIsAdmin);
 
   if (!isLoggedIn) {
-    return <Navigate to="/a/login" state={{ from: window.location.pathname }} />;
+    return (
+      <Navigate to="/a/login" state={{ from: window.location.pathname }} />
+    );
   }
 
   if (!isAdmin) {

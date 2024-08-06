@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Settings.module.css";
 import WebPushService from "./../../../../../../services/webPush";
 import {
