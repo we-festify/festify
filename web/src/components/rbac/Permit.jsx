@@ -1,23 +1,12 @@
-import {
-  selectConfigLoading,
-  selectPermissions,
-} from "../../state/redux/config/configSlice";
-import { selectUser } from "../../state/redux/auth/authSlice";
-import { useSelector } from "react-redux";
+import { useGetMyPermissionsQuery } from "../../state/redux/config/configApi";
 
-const Permit = ({ children, type, action }) => {
-  const permissions = useSelector(selectPermissions);
-  const user = useSelector(selectUser);
-  const configLoading = useSelector(selectConfigLoading);
-
-  if (configLoading) return null;
+const Permit = ({ children, action }) => {
+  const { data: { permissions } = {} } = useGetMyPermissionsQuery();
 
   if (!permissions) return null;
-  if (!type || !action) return null;
+  if (!action) return null;
 
-  const { role } = user || {};
-  const permissionGranted = permissions[role]?.[type]?.[action];
-  if (!permissionGranted) return null;
+  if (!permissions.includes(action)) return null;
 
   return <>{children}</>;
 };

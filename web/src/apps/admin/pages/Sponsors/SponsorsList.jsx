@@ -18,10 +18,6 @@ const SponsorsList = () => {
         <DataTable
           columns={[
             {
-              label: "ID",
-              key: "_id",
-            },
-            {
               label: "Name",
               key: "name",
             },

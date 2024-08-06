@@ -52,9 +52,38 @@ class UserRepository {
     }
   }
 
-  static async getAll() {
+  static async getAll({ limit = 10, page = 1, search = "" }) {
     try {
-      return await User.find();
+      return await User.find({
+        $or: [
+          { name: { $regex: search, $options: "i" } },
+          { email: { $regex: search, $options: "i" } },
+          { college: { $regex: search, $options: "i" } },
+          { degree: { $regex: search, $options: "i" } },
+          { role: { $regex: search, $options: "i" } },
+          { gender: { $regex: search, $options: "i" } },
+        ],
+      })
+        .sort({ _id: 1 })
+        .limit(limit)
+        .skip(limit * (page - 1));
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async getTotalCount({ search }) {
+    try {
+      return await User.countDocuments({
+        $or: [
+          { name: { $regex: search, $options: "i" } },
+          { email: { $regex: search, $options: "i" } },
+          { college: { $regex: search, $options: "i" } },
+          { degree: { $regex: search, $options: "i" } },
+          { role: { $regex: search, $options: "i" } },
+          { gender: { $regex: search, $options: "i" } },
+        ],
+      });
     } catch (err) {
       throw err;
     }

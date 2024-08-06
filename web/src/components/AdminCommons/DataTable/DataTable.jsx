@@ -17,6 +17,16 @@ const DataTable = ({
   getRowId = (row) => row._id,
   actions,
   selectedColumns: initialSelectedColumns,
+  controlled = {
+    // onSearchQueryChange,
+    // showLoading,
+    // currentPage,
+    // onPageLimitChange,
+    // onPageChange,
+    // totalPages,
+    // pageLimit,
+    // totalCount,
+  },
 }) => {
   const {
     rows: searchResultRows,
@@ -86,6 +96,7 @@ const DataTable = ({
     selectedColumns,
     setSelectedColumns,
     actions,
+    controlled,
   };
   return (
     <dataTableContext.Provider value={value}>
@@ -111,6 +122,7 @@ const DataTableTop = () => {
     setSearchQuery,
     selectedColumns,
     setSelectedColumns,
+    controlled,
   } = useDataTable();
 
   return (
@@ -124,7 +136,10 @@ const DataTableTop = () => {
           min={1}
           value={pageLimit}
           onChange={(e) => {
-            if (e.target.value > 0) setPageLimit(e.target.value);
+            if (e.target.value < 1) return;
+            if (controlled.onPageLimitChange instanceof Function)
+              controlled.onPageLimitChange(e.target.value);
+            setPageLimit(e.target.value);
           }}
         />
         <input
@@ -133,7 +148,11 @@ const DataTableTop = () => {
           className={styles.searchInput}
           placeholder="Search (regex)"
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e) => {
+            if (controlled.onSearchQueryChange instanceof Function)
+              controlled.onSearchQueryChange(e.target.value);
+            setSearchQuery(e.target.value);
+          }}
         />
         <Dropdown
           button={
@@ -189,7 +208,8 @@ const DataTableHead = () => {
 };
 
 const DataTableBody = () => {
-  const { columns, paginatedRows, getRowId, selectedColumns } = useDataTable();
+  const { columns, paginatedRows, getRowId, selectedColumns, controlled } =
+    useDataTable();
 
   return (
     <tbody>
@@ -210,6 +230,11 @@ const DataTableBody = () => {
               <td colSpan={columns.length + 1}>No rows to show</td>
             </tr>,
           ]}
+      {controlled.showLoading && (
+        <tr className={styles.bodyLoading}>
+          <td colSpan={columns.length + 1}>Loading...</td>
+        </tr>
+      )}
     </tbody>
   );
 };
@@ -223,24 +248,43 @@ const DataTableFooter = () => {
     movePageLeft,
     movePageRight,
     totalRows,
+    controlled,
   } = useDataTable();
+  const page = controlled ? controlled.currentPage : currentPage;
+  const pages = controlled ? controlled.totalPages : totalPages;
+  const rows = controlled ? controlled.totalCount : totalRows;
+  const limit = controlled ? controlled.pageLimit : pageLimit;
+  const count = controlled ? controlled.count : paginatedRows?.length;
 
   return (
     <div className={styles.footer}>
       <span>
         Showing{" "}
         <b>
-          {currentPage * pageLimit + 1}-
-          {currentPage * pageLimit + (paginatedRows?.length || 0)}
+          {page * limit + 1}-{page * limit + (count || 0)}
         </b>{" "}
-        of <b>{totalRows}</b> rows
+        of <b>{rows}</b> rows
       </span>
-      <button onClick={movePageLeft} disabled={currentPage === 0}>
+      <button
+        onClick={() => {
+          if (controlled.onPageChange instanceof Function)
+            return controlled.onPageChange(Math.max(0, page - 1));
+          else movePageLeft();
+        }}
+        disabled={page === 0}
+      >
         prev
       </button>
+      <span>
+        Page <b>{page + 1}</b> of <b>{pages}</b>
+      </span>
       <button
-        onClick={movePageRight}
-        disabled={currentPage === totalPages - 1 || totalPages === 0}
+        onClick={() => {
+          if (controlled.onPageChange instanceof Function)
+            return controlled.onPageChange(Math.min(pages - 1, page + 1));
+          else movePageRight();
+        }}
+        disabled={page === pages - 1 || pages === 0}
       >
         next
       </button>
