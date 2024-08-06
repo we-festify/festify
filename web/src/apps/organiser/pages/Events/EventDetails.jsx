@@ -9,6 +9,7 @@ import { useGetEventsByOrganisationIdQuery } from "../../../../state/redux/event
 import { selectUser } from "../../../../state/redux/auth/authSlice";
 import { useSelector } from "react-redux";
 import { viewTransition } from "../../../../utils/view_transition";
+import AnnouncementForm from "./components/AnnouncementForm";
 
 const EventDetails = () => {
   const { eventId } = useParams();
@@ -55,6 +56,25 @@ const EventDetails = () => {
             <p className={styles.subtitle}>
               Here you can see the statistics of the event.
             </p>
+          </div>
+        </Card>
+      ),
+    },
+    {
+      label: "Announcements",
+      component: (
+        <Card>
+          <div className={styles.eventCard}>
+            <h4 className={styles.title}>Announcements</h4>
+            <p className={styles.subtitle}>
+              Here you can post announcements regarding the event.
+            </p>
+            <AnnouncementForm
+              defaultValue={{
+                title: "",
+                description: "",
+              }}
+            />
           </div>
         </Card>
       ),

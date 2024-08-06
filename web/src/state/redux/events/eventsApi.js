@@ -45,8 +45,8 @@ const eventsApi = api.injectEndpoints({
 
     // Announcements
     createAnnouncement: builder.mutation({
-      query: (announcement) => ({
-        url: `/events/${announcement.event}/announcements`,
+      query: ({ announcement, eventId }) => ({
+        url: `/events/${eventId}/announcements`,
         method: "POST",
         body: {
           announcement,

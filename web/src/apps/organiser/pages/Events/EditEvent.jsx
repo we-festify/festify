@@ -5,7 +5,7 @@ import {
   useGetEventByIdQuery,
   useUpdateEventMutation,
 } from "../../../../state/redux/events/eventsApi";
-import Form from "./components/Form";
+import EventForm from "./components/EventForm";
 import LoadingSpinner from "../../../../components/LoadingSpinner/LoadingSpinner";
 import { useLocation } from "react-router-dom";
 import { toast } from "../../components/Toast";
@@ -44,7 +44,7 @@ const EditEvent = () => {
             Enter the details of the event you want to edit.
             {error && <p className={styles.error}>{error?.data?.message}</p>}
           </p>
-          <Form
+          <EventForm
             key={event?._id}
             defaultValue={event}
             onChange={setEvent}

@@ -4,7 +4,7 @@ import Card from "../../components/Card/Card";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../state/redux/auth/authSlice";
 import { useCreateEventMutation } from "../../../../state/redux/events/eventsApi";
-import Form from "./components/Form";
+import EventForm from "./components/EventForm";
 import LoadingSpinner from "../../../../components/LoadingSpinner/LoadingSpinner";
 import { toast } from "../../components/Toast";
 
@@ -44,7 +44,7 @@ const CreateEvent = () => {
             Enter the details of the event you want to create.
             {error && <p className={styles.error}>{error?.data?.message}</p>}
           </p>
-          <Form
+          <EventForm
             defaultValue={event}
             onSubmit={handleSubmit}
             onChange={(event) => setEvent(event)}
