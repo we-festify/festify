@@ -3,7 +3,8 @@ import api from "../api";
 const userApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getAllUsers: builder.query({
-      query: () => "/users",
+      query: ({ limit = 10, page = 1, search = "" } = {}) =>
+        encodeURI(`/users?limit=${limit}&page=${page}&search=${search}`),
       providesTags: ["Users"],
     }),
     getUserById: builder.query({

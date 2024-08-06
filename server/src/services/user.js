@@ -39,11 +39,25 @@ class UserService {
     }
   }
 
-  static async getAll() {
+  static async getAll({ limit = 10, page = 1, search = "" }) {
     try {
-      return (await UserRepository.getAll()).map((user) => {
+      return (
+        await UserRepository.getAll({
+          limit,
+          page,
+          search,
+        })
+      ).map((user) => {
         return UserRepository.excludeSensitiveFields(user);
       });
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async getTotalCount({ search = "" }) {
+    try {
+      return await UserRepository.getTotalCount({ search });
     } catch (err) {
       throw err;
     }

@@ -18,10 +18,6 @@ const MarkersList = () => {
         <DataTable
           columns={[
             {
-              label: "ID",
-              key: "_id",
-            },
-            {
               label: "Name",
               key: "name",
             },

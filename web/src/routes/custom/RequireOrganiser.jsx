@@ -5,24 +5,32 @@ import {
 } from "../../state/redux/auth/authSlice";
 import { useSelector } from "react-redux";
 import Forbidden from "../../pages/Forbidden/Forbidden";
+import { useAuth } from "../../state/context/Auth";
+import FullPageLoading from "../../components/FullPageLoading";
 
 const RequireOrganiser = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isOrganiser = useSelector(selectIsOrganiser);
+  const { isLoading } = useAuth();
 
-  if (!isLoggedIn) {
+  if (!isLoggedIn && !isLoading) {
     return (
       <Navigate to="/a/login" state={{ from: window.location.pathname }} />
     );
   }
 
-  if (!isOrganiser) {
+  if (!isOrganiser && !isLoading) {
     return (
       <Forbidden message="You must be an organiser to access this page." />
     );
   }
 
-  return <Outlet />;
+  return (
+    <>
+      {isLoading && <FullPageLoading />}
+      <Outlet />
+    </>
+  );
 };
 
 export default RequireOrganiser;

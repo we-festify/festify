@@ -4,8 +4,17 @@ const { BadRequestError } = require("../utils/errors");
 class UserController {
   static async getAll(req, res, next) {
     try {
-      const users = await UserService.getAll();
-      res.status(200).json({ users });
+      const { limit = 10, page = 1, search = "" } = req.query;
+      const users = await UserService.getAll({
+        limit: Number(limit),
+        page: Number(page),
+        search: search.toString(),
+      });
+      const totalCount = await UserService.getTotalCount({ search });
+      res.status(200).json({
+        users,
+        pagination: { total: totalCount, count: users.length },
+      });
     } catch (err) {
       next(err);
     }

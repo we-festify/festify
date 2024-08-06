@@ -9,17 +9,20 @@ import store from "./state/redux/store";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import WebSocketProvider from "./state/context/WebSocket";
 import InAppNotificationsProvider from "./state/context/InAppNotifications";
+import AuthProvider from "./state/context/Auth";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <WebSocketProvider>
-        <InAppNotificationsProvider>
-          <Router>
-            <App />
-          </Router>
-        </InAppNotificationsProvider>
-      </WebSocketProvider>
+      <AuthProvider>
+        <WebSocketProvider>
+          <InAppNotificationsProvider>
+            <Router>
+              <App />
+            </Router>
+          </InAppNotificationsProvider>
+        </WebSocketProvider>
+      </AuthProvider>
     </Provider>
   </React.StrictMode>
 );

@@ -6,7 +6,7 @@ import {
 } from "../../../../state/redux/config/configApi";
 import Card from "../../components/Card/Card";
 import styles from "./Permissions.module.css";
-import { toast } from "react-toastify";
+import { toast } from "../../components/Toast";
 
 const reduceActionsToMap = (actions, accumulatorType = "array") => {
   return actions?.reduce((acc, action) => {
