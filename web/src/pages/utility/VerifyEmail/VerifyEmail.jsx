@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./VerifyEmail.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useVerifyEmailMutation } from "../../../state/redux/auth/authApi";

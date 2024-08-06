@@ -8,25 +8,28 @@ router.post(
   "/:eventId/purchase",
   AuthMiddleware.requireLoggedIn,
   AuthMiddleware.requireVerified,
+  RBACMiddleware.requirePermissions("entryPass:purchase"),
   EntryPassController.purchase
 );
 router.get(
   "/me", // get all entry passes of self
   AuthMiddleware.requireLoggedIn,
   AuthMiddleware.requireVerified,
+  RBACMiddleware.requirePermissions("entryPass:read"),
   EntryPassController.getAllBySelf
 );
 router.get(
   "/:entryPassId",
   AuthMiddleware.requireLoggedIn,
   AuthMiddleware.requireVerified,
+  RBACMiddleware.requirePermissions("entryPass:read"),
   EntryPassController.getById
 );
 router.post(
   "/:entryPassId/check-in",
   AuthMiddleware.requireLoggedIn,
   AuthMiddleware.requireVerified,
-  RBACMiddleware.requirePermission("entryPass", "checkIn"),
+  RBACMiddleware.requirePermissions("entryPass:checkIn"),
   EntryPassController.checkIn
 );
 

@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import styles from "./NotificationsList.module.css";
 import { useNavigate } from "react-router-dom";
 import { useInAppNotifications } from "../../../../../../state/context/InAppNotifications";
@@ -9,7 +9,7 @@ const NotificationsList = () => {
   const { unreadNotifications, allNotifications, markAsRead, markAllAsRead } =
     useInAppNotifications();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = React.useState(0);
+  const [activeTab, setActiveTab] = useState(0);
 
   const handleNotificationClick = (notification) => {
     if (!notification.read) {

@@ -15,6 +15,12 @@ app.get("/", async (req, res) => {
 // connect to database
 require("./database");
 
+// init permissions
+const RBACService = require("./src/services/rbac");
+RBACService.initPermissions(() => {
+  console.log("Permissions initialised");
+});
+
 // cors
 const corsOptions = {
   credentials: true,

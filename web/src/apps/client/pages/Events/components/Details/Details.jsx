@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Details.module.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useGetEventByIdQuery } from "../../../../../../state/redux/events/eventsApi";

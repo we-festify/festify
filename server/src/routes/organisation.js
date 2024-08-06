@@ -7,31 +7,34 @@ const RBACMiddleware = require("../middlewares/rbac");
 router.post(
   "/",
   AuthMiddleware.requireLoggedIn,
-  RBACMiddleware.requirePermission("organisation", "create"),
+  RBACMiddleware.requirePermissions("organisation:create"),
   OrganisationController.create
 );
 router.get(
   "/:id",
   AuthMiddleware.requireLoggedIn,
-  RBACMiddleware.requirePermission("organisation", "read"),
+  RBACMiddleware.requirePermissions("organisation:read"),
   OrganisationController.getById
 );
 router.get(
   "/",
   AuthMiddleware.requireLoggedIn,
-  RBACMiddleware.requirePermission("organisation", "read"),
+  RBACMiddleware.requirePermissions("organisation:read"),
   OrganisationController.getAll
 );
 router.patch(
   "/:id",
   AuthMiddleware.requireLoggedIn,
-  RBACMiddleware.requirePermission("organisation", "update"),
+  RBACMiddleware.requirePermissions("organisation:update", [
+    "organisation:updateSelf",
+    OrganisationController.organisationMemberValidator,
+  ]),
   OrganisationController.updateById
 );
 router.delete(
   "/:id",
   AuthMiddleware.requireLoggedIn,
-  RBACMiddleware.requirePermission("organisation", "delete"),
+  RBACMiddleware.requirePermissions("organisation:delete"),
   OrganisationController.deleteById
 );
 

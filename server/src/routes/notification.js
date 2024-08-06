@@ -32,10 +32,6 @@ router.get(
   AuthMiddleware.requireLoggedIn,
   NotificationController.getSubscriptionsByUser
 );
-router.post(
-  "/webpush/test",
-  RBACMiddleware.requireAdmin,
-  NotificationController.testWebPush
-);
+router.post("/webpush/test", NotificationController.testWebPush);
 
 module.exports = router;

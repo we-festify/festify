@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./Location.module.css";
 import { useCreateMarkerMutation } from "../../../../state/redux/map/mapApi";
 import { toast } from "../../components/Toast";

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import styles from "./usePopup.module.css";
 import { viewTransition } from "../../utils/view_transition";
 

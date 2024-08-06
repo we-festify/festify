@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./Location.module.css";
 import "leaflet/dist/leaflet.css";
 import "./custom-leaflet.css";

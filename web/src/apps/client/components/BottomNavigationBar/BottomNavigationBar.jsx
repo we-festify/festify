@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./BottomNavigationBar.module.css";
 
 const BottomNavigationBar = ({ tabs, activeTabIndex, onTabChange }) => {

@@ -58,6 +58,17 @@ class UserController {
       next(err);
     }
   }
+
+  static async selfValidator(req) {
+    try {
+      const { userId } = req.params;
+      const { user } = req;
+      if (!userId !== user._id) return false;
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
 }
 
 module.exports = UserController;

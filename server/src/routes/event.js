@@ -7,39 +7,45 @@ const RBACMiddleware = require("../middlewares/rbac");
 router.post(
   "/",
   AuthMiddleware.requireLoggedIn,
-  RBACMiddleware.requirePermission("event", "create"),
+  RBACMiddleware.requirePermissions("event:create"),
   EventController.create
 );
 router.get(
   "/:id",
-  RBACMiddleware.requirePermission("event", "read"),
+  RBACMiddleware.requirePermissions("event:read"),
   EventController.getById
 );
 router.get(
   "/",
-  RBACMiddleware.requirePermission("event", "read"),
+  RBACMiddleware.requirePermissions("event:read"),
   EventController.getAll
 );
 router.get(
   "/type/:type",
-  RBACMiddleware.requirePermission("event", "read"),
+  RBACMiddleware.requirePermissions("event:read"),
   EventController.getAllByType
 );
 router.get(
   "/organisation/:organisationId",
-  RBACMiddleware.requirePermission("event", "read"),
+  RBACMiddleware.requirePermissions("event:read"),
   EventController.getAllByOrganisation
 );
 router.put(
   "/:id",
   AuthMiddleware.requireLoggedIn,
-  RBACMiddleware.requirePermission("event", "update"),
+  RBACMiddleware.requirePermissions("event:update", [
+    "event:updateSelf",
+    EventController.creatorValidator,
+  ]),
   EventController.updateById
 );
 router.delete(
   "/:id",
   AuthMiddleware.requireLoggedIn,
-  RBACMiddleware.requirePermission("event", "delete"),
+  RBACMiddleware.requirePermissions("event:delete", [
+    "event:deleteSelf",
+    EventController.creatorValidator,
+  ]),
   EventController.deleteById
 );
 
@@ -47,18 +53,21 @@ router.delete(
 router.post(
   "/:eventId/announcements",
   AuthMiddleware.requireLoggedIn,
-  RBACMiddleware.requirePermission("announcement", "create"),
+  RBACMiddleware.requirePermissions("announcement:create"),
   EventController.createAnnouncement
 );
 router.get(
   "/:eventId/announcements",
-  RBACMiddleware.requirePermission("announcement", "read"),
+  RBACMiddleware.requirePermissions("announcement:read"),
   EventController.getAllAnnouncementsByEventId
 );
 router.delete(
   "/:eventId/announcements/:id",
   AuthMiddleware.requireLoggedIn,
-  RBACMiddleware.requirePermission("announcement", "delete"),
+  RBACMiddleware.requirePermissions("announcement:delete", [
+    "announcement:deleteSelf",
+    EventController.announcementSelfValidator,
+  ]),
   EventController.deleteAnnouncementById
 );
 

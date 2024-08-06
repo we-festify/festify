@@ -9,6 +9,14 @@ class AnnouncementService {
     }
   }
 
+  static async getById(id) {
+    try {
+      return await AnnouncementRepository.getById(id);
+    } catch (err) {
+      throw err;
+    }
+  }
+
   static async getAllByEventId(eventId, { page, limit }) {
     try {
       return await AnnouncementRepository.getAllByEventId(eventId, {

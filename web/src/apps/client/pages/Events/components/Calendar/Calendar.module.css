@@ -119,6 +119,15 @@
   animation: widthSlideIn 0.5s ease-in-out;
 }
 
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-weight: 500;
+  color: var(--color-error-500);
+}
+
 @keyframes widthSlideIn {
   from {
     width: 0;

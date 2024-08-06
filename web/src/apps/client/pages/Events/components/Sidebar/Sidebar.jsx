@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Sidebar.module.css";
 import { useEventsPage } from "../../../../../../state/context/ClientEventsPage";
 

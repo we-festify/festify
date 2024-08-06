@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Participations.module.css";
 import { useGetParticipationsBySelfQuery } from "../../../../../../state/redux/participants/participantsApi";
 import Card from "./components/Card/Card";

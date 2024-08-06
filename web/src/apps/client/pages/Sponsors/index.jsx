@@ -1,4 +1,3 @@
-import React from "react";
 import FixedBackdrop from "../../../../components/FixedBackdrop/FixedBackdrop";
 import Navbar from "../../components/Navbar/Navbar";
 import { Route, Routes } from "react-router-dom";

@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Layout.module.css";
 import Sidebar from "../Sidebar/Sidebar";
 import Navbar from "../Navbar/Navbar";
@@ -8,6 +7,7 @@ import UsersIndex from "../../pages/Users";
 import OrganisationsIndex from "../../pages/Organisations";
 import SponsorsIndex from "../../pages/Sponsors";
 import LocationIndex from "../../pages/Location";
+import PermissionsIndex from "../../pages/Permissions";
 
 const Layout = () => {
   return (
@@ -21,6 +21,7 @@ const Layout = () => {
           <Route path="/organisations/*" element={<OrganisationsIndex />} />
           <Route path="/sponsors/*" element={<SponsorsIndex />} />
           <Route path="/location/*" element={<LocationIndex />} />
+          <Route path="/permissions/*" element={<PermissionsIndex />} />
         </Routes>
       </div>
     </div>

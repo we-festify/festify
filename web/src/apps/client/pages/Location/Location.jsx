@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Location.module.css";
 import Navbar from "../../components/Navbar/Navbar";
 import FixedBackdrop from "../../../../components/FixedBackdrop/FixedBackdrop";

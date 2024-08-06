@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useRef, useState } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 
 import L from "leaflet";
 import "leaflet-routing-machine";
@@ -11,7 +11,7 @@ const MapContext = createContext();
 
 export const useMap = () => useContext(MapContext);
 
-const DEFAULT_CENTER = [23.814533785116048, 86.44127580721457];
+const DEFAULT_CENTER = [23.814533785116048, 86.44127580721457]; // IIT(ISM) Dhanbad
 
 const MapProvider = ({ children }) => {
   const { data: { markers } = {}, isLoading } = useGetAllMarkersQuery();

@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./FixedBackdrop.module.css";
 
 const FixedBackdrop = ({ children }) => {
@@ -6,9 +5,7 @@ const FixedBackdrop = ({ children }) => {
     <div className={styles.background}>
       <div className={styles.bubble} />
       <div className={styles.bubble} />
-      <div className={styles.content}>
-        {children}
-      </div>
+      <div className={styles.content}>{children}</div>
     </div>
   );
 };

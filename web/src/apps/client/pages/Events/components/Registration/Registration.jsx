@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./Registration.module.css";
 import { useCreateParticipantMutation } from "../../../../../../state/redux/participants/participantsApi";
 import { useSelector } from "react-redux";

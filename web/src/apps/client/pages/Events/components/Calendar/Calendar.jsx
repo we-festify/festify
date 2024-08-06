@@ -1,11 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Calendar.module.css";
 import { useEventsPage } from "../../../../../../state/context/ClientEventsPage";
-import {
-  formatDate,
-  ceilHour,
-  floorHour,
-} from "../../../../../../utils/time";
+import { formatDate, ceilHour, floorHour } from "../../../../../../utils/time";
 
 const groupBy = (array, key) => {
   return array.reduce((acc, obj) => {
@@ -19,7 +15,7 @@ const groupBy = (array, key) => {
 };
 
 const Calendar = () => {
-  const { eventsList } = useEventsPage();
+  const { eventsList, eventsError } = useEventsPage();
   const [eventsGroupedByDay, setEventsGroupedByDay] = useState([]);
   const [totalBlocksEveryDay, setTotalBlocksEveryDay] = useState([]);
   const [blocksEveryDay, setBlocksEveryDay] = useState([]);
@@ -108,6 +104,18 @@ const Calendar = () => {
     const oneHour = 60 * 60 * 1000;
     return (new Date(endTime) - new Date(startTime)) / oneHour;
   };
+
+  if (eventsError) {
+    return (
+      <div className={styles.calendar}>
+        <div className={styles.error}>
+          {eventsError.data?.message ||
+            eventsError.message ||
+            "Error loading events"}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.calendar}>

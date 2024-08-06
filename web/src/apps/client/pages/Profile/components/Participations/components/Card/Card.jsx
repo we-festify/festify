@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Card.module.css";
 import { useNavigate } from "react-router-dom";
 import { IoMdShare } from "react-icons/io";

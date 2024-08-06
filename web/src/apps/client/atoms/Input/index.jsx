@@ -1,4 +1,3 @@
-import React from "react";
 import Text from "./Text";
 import Radio from "./Radio";
 import AvatarInput from "./AvatarInput/AvatarInput";

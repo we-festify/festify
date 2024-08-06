@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./UpdateInfo.module.css";
 import Grid, { GridItem } from "../../../../../../components/Grid/Grid";
 import Input from "../../../../atoms/Input";

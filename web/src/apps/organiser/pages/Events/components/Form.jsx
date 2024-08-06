@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "../Events.module.css";
 import Grid, { GridItem } from "../../../../../components/Grid/Grid";
 import Input from "../../../../../components/AdminCommons/Input";

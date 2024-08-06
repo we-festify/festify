@@ -5,7 +5,7 @@ const AuthController = require("../controllers/auth");
 
 const rateLimiter = require("express-rate-limit");
 const emailRateLimiter = rateLimiter({
-  windowMs: 60 * 60 * 1000,
+  windowMs: 60 * 60 * 1000, // 1 hour
   max: 3,
   message: "Too many requests, please try again in an hour",
 });

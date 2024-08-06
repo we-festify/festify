@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Header.module.css";
 import { IoIosSearch } from "react-icons/io";
 import { useEventsPage } from "../../../../../../state/context/ClientEventsPage";

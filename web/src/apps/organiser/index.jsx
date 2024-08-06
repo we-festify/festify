@@ -1,4 +1,3 @@
-import React from "react";
 import OrganiserSidebarProvider from "../../state/context/OrganiserSidebar";
 import Layout from "./components/Layout/Layout";
 import ToastProvider from "./components/Toast";

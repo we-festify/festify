@@ -1,4 +1,3 @@
-import React from "react";
 import { Outlet, Navigate } from "react-router-dom";
 import { selectIsLoggedIn } from "../../state/redux/auth/authSlice";
 import { useSelector } from "react-redux";

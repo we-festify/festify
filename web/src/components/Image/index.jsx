@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./Image.module.css";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import { Blurhash } from "react-blurhash";

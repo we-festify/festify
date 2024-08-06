@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./../Events.module.css";
 import { useGetEventByIdQuery } from "../../../../../state/redux/events/eventsApi";
 

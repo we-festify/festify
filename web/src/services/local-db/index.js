@@ -8,11 +8,12 @@ const InAppNotification = db.Model(
   InAppNotificationSchema
 );
 
-try {
-  await db.connect();
-  console.log("Connected to database");
-} catch (err) {
-  console.error(err);
-}
+db.connect()
+  .then(() => {
+    console.log("Connected to local database");
+  })
+  .catch((err) => {
+    console.error("Error connecting to local database:", err);
+  });
 
 export { InAppNotification };

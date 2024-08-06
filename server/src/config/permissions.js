@@ -1,157 +1,72 @@
+const actions = [
+  // User
+  "user:read",
+  "user:create",
+  "user:update",
+  "user:updateSelf",
+  "user:delete",
+  "user:deleteSelf",
+
+  // Organisation
+  "organisation:read",
+  "organisation:create",
+  "organisation:update",
+  "organisation:updateSelf",
+  "organisation:delete",
+
+  // Event
+  "event:read",
+  "event:create",
+  "event:update",
+  "event:updateSelf",
+  "event:delete",
+  "event:deleteSelf",
+
+  // Sponsor
+  "sponsor:read",
+  "sponsor:create",
+  "sponsor:update",
+  "sponsor:delete",
+
+  // Announcement
+  "announcement:read",
+  "announcement:create",
+  "announcement:delete",
+  "announcement:deleteSelf",
+
+  // Entry Pass
+  "entryPass:read",
+  "entryPass:purchase",
+  "entryPass:checkIn",
+
+  // Location
+  "marker:create",
+  "marker:read",
+  "marker:update",
+  "marker:updateSelf",
+  "marker:delete",
+  "marker:deleteSelf",
+
+  // Payment
+  "payment:read",
+
+  // Other
+  "permissions:read",
+  "permissions:update",
+];
+
+const defaultAdminPerms = actions; // Admin has all permissions
+
+// will be populated by the database
+// at the start of the application
 const permissions = {
-  admin: {
-    user: {
-      read: true,
-      create: true,
-      update: true,
-      delete: true,
-    },
-    organisation: {
-      read: true,
-      create: true,
-      update: true,
-      delete: true,
-    },
-    event: {
-      read: true,
-      create: true,
-      update: true,
-      delete: true,
-    },
-    sponsor: {
-      read: true,
-      create: true,
-      update: true,
-      delete: true,
-    },
-    announcement: {
-      read: true,
-      create: true,
-      update: true,
-      delete: true,
-    },
-    entryPass: {
-      read: true,
-      create: true,
-      update: true,
-      delete: true,
-    },
-  },
-  organiser: {
-    user: {
-      read: true,
-      create: false,
-      update: true,
-      delete: false,
-    },
-    organisation: {
-      read: true,
-      create: false,
-      update: true,
-      delete: false,
-    },
-    event: {
-      read: true,
-      create: true,
-      update: true,
-      delete: true,
-    },
-    sponsor: {
-      read: true,
-      create: false,
-      update: false,
-      delete: false,
-    },
-    announcement: {
-      read: true,
-      create: true,
-      update: true,
-      delete: true,
-    },
-    entryPass: {
-      read: true,
-      create: true,
-      update: true,
-      delete: true,
-      checkIn: true,
-    },
-  },
-  user: {
-    user: {
-      read: true,
-      create: false,
-      update: false,
-      delete: false,
-    },
-    organisation: {
-      read: true,
-      create: false,
-      update: false,
-      delete: false,
-    },
-    event: {
-      read: true,
-      create: false,
-      update: false,
-      delete: false,
-    },
-    sponsor: {
-      read: true,
-      create: false,
-      update: false,
-      delete: false,
-    },
-    announcement: {
-      read: true,
-      create: false,
-      update: false,
-      delete: false,
-    },
-    entryPass: {
-      read: true,
-      create: true,
-      update: false,
-      delete: false,
-    },
-  },
-  guest: {
-    user: {
-      read: true,
-      create: false,
-      update: false,
-      delete: false,
-    },
-    organisation: {
-      read: true,
-      create: false,
-      update: false,
-      delete: false,
-    },
-    event: {
-      read: true,
-      create: false,
-      update: false,
-      delete: false,
-    },
-    sponsor: {
-      read: true,
-      create: false,
-      update: false,
-      delete: false,
-    },
-    announcement: {
-      read: false,
-      create: false,
-      update: false,
-      delete: false,
-    },
-    entryPass: {
-      read: false,
-      create: false,
-      update: false,
-      delete: false,
-    },
-  },
+  admin: defaultAdminPerms,
+  organiser: [],
+  user: [],
+  guest: [],
 };
 
-module.exports = permissions;
+module.exports = {
+  actions,
+  permissions,
+};

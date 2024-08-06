@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { clearCredentials, setCredentials } from "./auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: process.env.REACT_APP_API_URL,
+  baseUrl: import.meta.env.VITE_API_URL,
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = getState().auth.accessToken;
@@ -43,6 +43,8 @@ const api = createApi({
     "NotificationPermission", // for user notification permission
     "Payments", // for user payments
     "EntryPass", // for user entry passes
+    "Permissions", // for rbac permissions
+    "Actions", // for rbac actions
   ],
 });
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { useGetParticipationsByEventIdQuery } from "../../../../../state/redux/participants/participantsApi";
 import DataTable from "../../../../../components/AdminCommons/DataTable/DataTable";
 import { formatDateTime } from "../../../../../utils/time";

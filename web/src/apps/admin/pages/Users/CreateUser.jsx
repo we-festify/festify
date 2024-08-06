@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Users.module.css";
 import { useCreateUserMutation } from "../../../../state/redux/users/usersApi";
 import Card from "../../../organiser/components/Card/Card";

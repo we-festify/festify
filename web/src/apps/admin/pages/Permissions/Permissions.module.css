@@ -1,0 +1,95 @@
+.page {
+  padding: 1rem;
+  overflow: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-admin);
+  margin-top: 0;
+}
+
+button.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2rem;
+  min-width: 120px;
+  border-radius: 0.4rem;
+  border: none;
+  background-color: var(--color-primary-500);
+  color: var(--color-background-admin);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button.button:hover {
+  background-color: var(--color-primary-600);
+}
+
+table.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 
+  Hover effect on the table row that has a td element in the second column
+  i.e. the row that has some data in the second column
+*/
+.table tr:has(td:nth-child(2)):hover {
+  background-color: var(--color-background-admin);
+}
+
+.table > thead > tr > th {
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--color-border-light);
+  color: var(--color-text-light-admin);
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.table > thead > tr > th:first-child {
+  text-align: left;
+}
+
+.table > tbody > tr > td {
+  padding: 0.5rem;
+}
+
+.headerRow {
+  background-color: var(--color-background-admin);
+}
+
+.headerRow > td {
+  font-weight: 500;
+  color: var(--color-text-light-admin);
+  text-transform: capitalize;
+  padding: 0.5rem;
+}
+
+.checkbox {
+  text-align: center;
+  color: var(--color-text-light-admin);
+}
+
+.input[type="checkbox"] {
+  width: 0.9rem;
+  height: 0.9rem;
+  margin: 0;
+  margin-right: 0.5rem;
+  accent-color: var(--color-primary-500);
+  cursor: pointer;
+}

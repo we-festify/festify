@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./EntryPassDetails.module.css";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../../../../../state/redux/auth/authSlice";

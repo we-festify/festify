@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useWebSocket } from "./WebSocket";
 import { InAppNotification } from "../../services/local-db";
 

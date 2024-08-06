@@ -56,6 +56,17 @@ class OrganisationController {
       next(err);
     }
   }
+
+  static async organisationMemberValidator(req) {
+    try {
+      const { id } = req.params;
+      const { user } = req;
+      if (id !== user.organisation) return false;
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
 }
 
 module.exports = OrganisationController;

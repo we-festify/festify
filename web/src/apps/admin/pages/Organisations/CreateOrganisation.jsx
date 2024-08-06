@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Organisations.module.css";
 import Card from "../../components/Card/Card";
 import OrganisationForm from "./components/OrganisationForm";
@@ -35,7 +35,9 @@ const CreateOrganisation = () => {
             onChange={(organisation) => setOrganisation(organisation)}
           />
           {isSuccess && (
-            <p className={styles.subtitle}>Organisation created successfully!</p>
+            <p className={styles.subtitle}>
+              Organisation created successfully!
+            </p>
           )}
         </div>
       </Card>

@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./NotFound.module.css";
 import { useNavigate } from "react-router-dom";
 import FixedBackdrop from "../../components/FixedBackdrop/FixedBackdrop";

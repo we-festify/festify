@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./Card.module.css";
 import { useNavigate } from "react-router-dom";
 import { viewTransition } from "../../../../../../utils/view_transition";

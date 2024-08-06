@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Events.module.css";
 import Header from "./components/Header/Header";
 import CategoriesSidebar from "./components/Sidebar/Sidebar";
