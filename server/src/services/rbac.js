@@ -6,34 +6,38 @@ const RBACPerms = require("../models/RBACPerms")(applicationDB);
 
 class RBACService {
   static async initPermissions(callback) {
-    const perms = await RBACPerms.find();
+    try {
+      const perms = await RBACPerms.find();
 
-    // If no permissions are found, insert default permissions
-    if (!perms || perms.length === 0) {
-      const defaultPerms = [
-        { role: "admin", permissions: permissions.admin },
-        { role: "organiser", permissions: permissions.organiser },
-        { role: "user", permissions: permissions.user },
-        { role: "guest", permissions: permissions.guest },
-      ];
-      await RBACPerms.insertMany(defaultPerms);
+      // If no permissions are found, insert default permissions
+      if (!perms || perms.length === 0) {
+        const defaultPerms = [
+          { role: "admin", permissions: permissions.admin },
+          { role: "organiser", permissions: permissions.organiser },
+          { role: "user", permissions: permissions.user },
+          { role: "guest", permissions: permissions.guest },
+        ];
+        await RBACPerms.insertMany(defaultPerms);
+      }
+      perms.forEach((perm) => {
+        permissions[perm.role] = perm.permissions;
+      });
+
+      // add permissions:read and permissions:update to admin
+      permissions.admin.push("permissions:read");
+      permissions.admin.push("permissions:update");
+      permissions.admin = [...new Set(permissions.admin)]; // Remove duplicates
+
+      // save permissions to db
+      await RBACPermsRepository.updatePermissionsForRole(
+        "admin",
+        permissions.admin
+      );
+
+      if (callback instanceof Function) callback();
+    } catch (err) {
+      throw err;
     }
-    perms.forEach((perm) => {
-      permissions[perm.role] = perm.permissions;
-    });
-
-    // add permissions:read and permissions:update to admin
-    permissions.admin.push("permissions:read");
-    permissions.admin.push("permissions:update");
-    permissions.admin = [...new Set(permissions.admin)]; // Remove duplicates
-
-    // save permissions to db
-    await RBACPermsRepository.updatePermissionsForRole(
-      "admin",
-      permissions.admin
-    );
-
-    if (callback instanceof Function) callback();
   }
 
   static async updatePermissions(role, permissions) {

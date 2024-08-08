@@ -50,9 +50,13 @@ const actions = [
   // Payment
   "payment:read",
 
-  // Other
+  // Permissions
   "permissions:read",
   "permissions:update",
+
+  // Feature Flags
+  "features:read",
+  "features:toggle",
 ];
 
 const defaultAdminPerms = actions; // Admin has all permissions

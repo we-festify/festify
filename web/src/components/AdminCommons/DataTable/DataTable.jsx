@@ -220,7 +220,7 @@ const DataTableBody = () => {
                 .filter(({ key }) => selectedColumns.includes(key))
                 .map(({ modifier, key }, index) => (
                   <DataTableCell key={`${key}-${index}`}>
-                    {modifier ? modifier(row[key]) : row[key]}
+                    {modifier ? modifier(row[key], row) : row[key]}
                   </DataTableCell>
                 ))}
             </DataTableRow>

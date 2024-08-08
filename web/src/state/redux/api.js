@@ -45,6 +45,7 @@ const api = createApi({
     "EntryPass", // for user entry passes
     "Permissions", // for rbac permissions
     "Actions", // for rbac actions
+    "Features", // for feature flags
   ],
 });
 

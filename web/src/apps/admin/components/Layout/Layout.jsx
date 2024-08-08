@@ -8,6 +8,7 @@ import OrganisationsIndex from "../../pages/Organisations";
 import SponsorsIndex from "../../pages/Sponsors";
 import LocationIndex from "../../pages/Location";
 import PermissionsIndex from "../../pages/Permissions";
+import FeatureFlagsIndex from "../../pages/FeatureFlags";
 
 const Layout = () => {
   return (
@@ -22,6 +23,7 @@ const Layout = () => {
           <Route path="/sponsors/*" element={<SponsorsIndex />} />
           <Route path="/location/*" element={<LocationIndex />} />
           <Route path="/permissions/*" element={<PermissionsIndex />} />
+          <Route path="/features/*" element={<FeatureFlagsIndex />} />
         </Routes>
       </div>
     </div>

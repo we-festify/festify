@@ -17,6 +17,7 @@ import { useLocation } from "react-router-dom";
 import { viewTransition } from "../../../../utils/view_transition";
 import Avatar from "../Avatar/Avatar";
 import NotificationBell from "./components/NotificationBell/NotificationBell";
+import RequireFeatureFlag from "../../../../components/features/FeatureFlag";
 
 const Navbar = () => {
   const isPortrait = useMediaQuery("(orientation: portrait)");
@@ -48,15 +49,7 @@ const Navbar = () => {
         <div className={styles.drawer + " " + (openDrawer ? styles.open : "")}>
           <ul className={styles.navlinks}>
             {links?.map((link) => (
-              <li key={link.text} className={styles.navlink}>
-                {isPortrait && <span className={styles.icon}>{link.icon}</span>}
-                <Link
-                  to={link.path}
-                  className={link.active ? styles.active : ""}
-                >
-                  {link.text}
-                </Link>
-              </li>
+              <NavbarLink link={link} />
             ))}
             <li className={styles.navlink}>
               {isPortrait && (
@@ -121,17 +114,7 @@ const Navbar = () => {
             <div>
               <ul className={styles.navlinks}>
                 {links?.map((link) => (
-                  <li key={link.text} className={styles.navlink}>
-                    {isPortrait && (
-                      <span className={styles.icon}>{link.icon}</span>
-                    )}
-                    <Link
-                      to={link.path}
-                      className={link.active ? styles.active : ""}
-                    >
-                      {link.text}
-                    </Link>
-                  </li>
+                  <NavbarLink link={link} />
                 ))}
                 {isAdmin && (
                   <li className={styles.navlink}>
@@ -169,6 +152,21 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+const NavbarLink = ({ link }) => {
+  const isPortrait = useMediaQuery("(orientation: portrait)");
+
+  return (
+    <RequireFeatureFlag name={link.featureFlag}>
+      <li key={link.text} className={styles.navlink}>
+        {isPortrait && <span className={styles.icon}>{link.icon}</span>}
+        <Link to={link.path} className={link.active ? styles.active : ""}>
+          {link.text}
+        </Link>
+      </li>
+    </RequireFeatureFlag>
   );
 };
 

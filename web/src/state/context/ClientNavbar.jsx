@@ -21,16 +21,19 @@ export const ClientNavbarProvider = ({ children }) => {
       text: "Events",
       path: "/events",
       icon: <MdHotelClass />,
+      featureFlag: "EVENTS_PAGE",
     },
     {
       text: "Sponsors",
       path: "/sponsors",
       icon: <FaHandshake />,
+      featureFlag: "SPONSORS_PAGE",
     },
     {
       text: "Location",
       path: "/location",
       icon: <MdLocationPin />,
+      featureFlag: "LOCATION_PAGE",
     },
   ]);
   const [activeLink, setActiveLink] = useState("/");

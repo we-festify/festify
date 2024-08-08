@@ -21,6 +21,12 @@ RBACService.initPermissions(() => {
   console.log("Permissions initialised");
 });
 
+// init feature flags
+const FeatureFlagService = require("./src/services/featureFlag");
+FeatureFlagService.initFeatureFlags(() => {
+  console.log("Feature flags initialised");
+});
+
 // cors
 const corsOptions = {
   credentials: true,
