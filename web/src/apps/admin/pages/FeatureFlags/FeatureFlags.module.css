@@ -1,0 +1,18 @@
+.page {
+  padding: 1rem;
+  overflow: auto;
+}
+
+.checkbox {
+  text-align: center;
+  color: var(--color-text-light-admin);
+}
+
+.input[type="checkbox"] {
+  width: 0.9rem;
+  height: 0.9rem;
+  margin: 0;
+  margin-right: 0.5rem;
+  accent-color: var(--color-primary-500);
+  cursor: pointer;
+}

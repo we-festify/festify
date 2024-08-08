@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import {
   useGetAllActionsQuery,
   useGetAllPermissionsQuery,
@@ -64,22 +64,23 @@ const PermissionsIndex = () => {
   } = useGetAllPermissionsQuery();
   const [updatePermissions, { isLoading }] = useUpdatePermissionsMutation();
   const actionsMap = reduceActionsToMap(actions);
-  const permissionsMap = useRef(
-    Object.entries(permissions)?.reduce((acc, [role, _actions]) => {
+  const permissionsMap = Object.entries(permissions)?.reduce(
+    (acc, [role, _actions]) => {
       acc[role] = reduceActionsToMap(_actions, "object");
       return acc;
-    }, {})
+    },
+    {}
   );
-  const roles = Object.keys(permissionsMap.current);
+  const roles = Object.keys(permissionsMap);
 
   const handleChange = (role, resource, actionName, value) => {
-    if (!permissionsMap.current[role]) {
-      permissionsMap.current[role] = {};
+    if (!permissionsMap[role]) {
+      permissionsMap[role] = {};
     }
-    if (!permissionsMap.current[role][resource]) {
-      permissionsMap.current[role][resource] = {};
+    if (!permissionsMap[role][resource]) {
+      permissionsMap[role][resource] = {};
     }
-    permissionsMap.current[role][resource][actionName] = value;
+    permissionsMap[role][resource][actionName] = value;
     console.log("changed", { role, resource, actionName, value });
   };
 
@@ -87,7 +88,7 @@ const PermissionsIndex = () => {
     e.preventDefault();
 
     try {
-      const _permissionsMap = reduceToArrays(permissionsMap.current);
+      const _permissionsMap = reduceToArrays(permissionsMap);
       const payload = await updatePermissions(_permissionsMap).unwrap();
       toast.success(payload.message);
     } catch (err) {
@@ -132,9 +133,8 @@ const PermissionsIndex = () => {
                           className={styles.input}
                           type="checkbox"
                           defaultChecked={
-                            permissionsMap.current?.[role]?.[resource]?.[
-                              actionName
-                            ] || false
+                            permissionsMap?.[role]?.[resource]?.[actionName] ||
+                            false
                           }
                           onChange={(e) =>
                             handleChange(

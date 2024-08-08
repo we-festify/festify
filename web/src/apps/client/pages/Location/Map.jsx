@@ -12,8 +12,8 @@ import {
   Circle,
 } from "react-leaflet";
 import { Icon } from "leaflet";
-import locationPin from "./../../../../assets/images/icons/location-pin.svg";
-import liveLocationCircle from "./../../../../assets/images/icons/live-location-circle.svg";
+import locationPin from "./../../../../assets/images/icons/location-pin.svg?url";
+import liveLocationCircle from "./../../../../assets/images/icons/live-location-circle.svg?url";
 import { useMap } from "./MapProvider";
 
 // custom icons

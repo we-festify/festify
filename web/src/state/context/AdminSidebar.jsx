@@ -4,6 +4,7 @@ import { AiFillHome } from "react-icons/ai";
 import { RiOrganizationChart } from "react-icons/ri";
 import { FaUsers, FaRegHandshake } from "react-icons/fa";
 import { MdKey, MdLocationPin } from "react-icons/md";
+import { ImLab } from "react-icons/im";
 
 const AdminSidebarContext = createContext();
 
@@ -65,6 +66,11 @@ const AdminSidebarProvider = ({ children }) => {
       text: "Permissions",
       path: "/admin/permissions",
       icon: <MdKey />,
+    },
+    {
+      text: "Feature Flags",
+      path: "/admin/features",
+      icon: <ImLab />,
     },
   ]);
   const [activeLink, setActiveLink] = useState("/");

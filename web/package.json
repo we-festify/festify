@@ -65,6 +65,7 @@
     ]
   },
   "devDependencies": {
+    "@types/leaflet": "^1.9.12",
     "@types/react-dom": "^18.3.0",
     "@vitest/coverage-v8": "^2.0.5",
     "jsdom": "^24.1.1",
