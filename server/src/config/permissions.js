@@ -57,6 +57,12 @@ const actions = [
   // Feature Flags
   "features:read",
   "features:toggle",
+
+  // Banners
+  "banners:read",
+  "banners:create",
+  "banners:update",
+  "banners:delete",
 ];
 
 const defaultAdminPerms = actions; // Admin has all permissions

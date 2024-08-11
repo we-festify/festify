@@ -107,10 +107,7 @@ const Navbar = () => {
           </div>
           {user && (
             <Link to="/profile">
-              <span>
-                {user.name}
-                {/* <img className={styles.avatar} src={user.avatar} alt="avatar" /> */}
-              </span>
+              <span>{user.name}</span>
             </Link>
           )}
         </div>

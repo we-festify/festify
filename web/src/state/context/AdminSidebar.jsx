@@ -5,6 +5,7 @@ import { RiOrganizationChart } from "react-icons/ri";
 import { FaUsers, FaRegHandshake } from "react-icons/fa";
 import { MdKey, MdLocationPin } from "react-icons/md";
 import { ImLab } from "react-icons/im";
+import { PiFlagBannerFill } from "react-icons/pi";
 
 const AdminSidebarContext = createContext();
 
@@ -71,6 +72,17 @@ const AdminSidebarProvider = ({ children }) => {
       text: "Feature Flags",
       path: "/admin/features",
       icon: <ImLab />,
+    },
+    {
+      text: "Banners",
+      path: "/admin/banners",
+      icon: <PiFlagBannerFill />,
+      sublinks: [
+        {
+          text: "Create",
+          path: "/admin/banners/create",
+        },
+      ],
     },
   ]);
   const [activeLink, setActiveLink] = useState("/");
