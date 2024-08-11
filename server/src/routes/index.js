@@ -20,5 +20,6 @@ router.use("/entry-passes", require("./entryPass"));
 router.use("/payments", require("./payment"));
 router.use("/map", require("./map"));
 router.use("/features", require("./featureFlag"));
+router.use("/banners", require("./banner"));
 
 module.exports = router;

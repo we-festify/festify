@@ -10,7 +10,6 @@ class RBACMiddleware {
 
     const { user } = req;
     const role = user?.role || "guest";
-    console.log(role, action);
     const permissionGranted = permissions[role].includes(action);
 
     if (!permissionGranted) return false;

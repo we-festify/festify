@@ -1,0 +1,5 @@
+.bannerContainer {
+  position: sticky;
+  top: var(--navbar-height);
+  z-index: 1000;
+}

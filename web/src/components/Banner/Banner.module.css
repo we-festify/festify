@@ -1,0 +1,40 @@
+.banner {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  padding-right: 2rem;
+}
+
+.bannerContent {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.banner.warning {
+  background-color: #ffb700;
+  color: #000;
+}
+
+.banner.error {
+  background-color: #ff4c00;
+  color: #fff;
+}
+
+.banner.success {
+  background-color: #00a86b;
+  color: #fff;
+}
+
+.banner.info {
+  background-color: #5069c3;
+  color: #fff;
+}
+
+.close {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}

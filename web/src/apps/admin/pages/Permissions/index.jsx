@@ -81,7 +81,6 @@ const PermissionsIndex = () => {
       permissionsMap[role][resource] = {};
     }
     permissionsMap[role][resource][actionName] = value;
-    console.log("changed", { role, resource, actionName, value });
   };
 
   const handleSave = async (e) => {
