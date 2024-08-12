@@ -1,0 +1,58 @@
+.page {
+  padding: 1rem;
+  overflow: auto;
+}
+
+/* Create User styles */
+h4.title {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+p.subtitle {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-text-light-admin);
+  margin: -0.5rem 0 0.5rem 0;
+}
+
+p.error {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-error-500);
+  margin: 0;
+}
+
+p.loading {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-text-light-admin);
+  margin: 0;
+}
+
+.createPromotionCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+button.submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: var(--color-primary-500);
+  color: var(--color-background-admin);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button.submit:hover {
+  background-color: var(--color-primary-600);
+}

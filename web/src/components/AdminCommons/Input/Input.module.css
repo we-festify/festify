@@ -46,11 +46,10 @@
   padding: 0 0.3rem;
   color: var(--color-text-admin);
   background-color: var(--color-white);
-  pointer-events: none;
   letter-spacing: 0.03rem;
 }
 
-.label span {
+.label > span {
   font-size: 0.65rem;
   color: var(--color-gray-500);
 }
@@ -61,7 +60,7 @@
 
 p.error {
   position: absolute;
-  bottom: -1.8rem;
+  bottom: -1.2rem;
   left: 1rem;
   font-size: 0.75rem;
   font-weight: 500;

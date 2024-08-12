@@ -10,10 +10,12 @@ import { useSelector } from "react-redux";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { AiFillHome } from "react-icons/ai";
 import { FaUserEdit } from "react-icons/fa";
+import { BiSolidOffer } from "react-icons/bi";
 import { IoMdSettings } from "react-icons/io";
 import { MdOutlineCurrencyRupee } from "react-icons/md";
 import { useSendVerificationEmailMutation } from "../../../../state/redux/auth/authApi";
 import Participations from "./components/Participations/Participations";
+import Offers from "./components/Offers/Offers";
 import Tabs from "../../components/Tabs/Tabs";
 import Avatar from "../../components/Avatar/Avatar";
 import UpdateInfo from "./components/UpdateInfo/UpdateInfo";
@@ -39,6 +41,11 @@ const Profile = () => {
       label: "Participations",
       icon: <AiFillHome />,
       component: <Participations />,
+    },
+    {
+      label: "Offers",
+      icon: <BiSolidOffer />,
+      component: <Offers />,
     },
     {
       label: "Update",

@@ -6,6 +6,7 @@ import Dashboard from "../../pages/Dashboard/Dashboard";
 import UsersIndex from "../../pages/Users";
 import OrganisationsIndex from "../../pages/Organisations";
 import SponsorsIndex from "../../pages/Sponsors";
+import PromotionsIndex from "../../pages/Promotions";
 import LocationIndex from "../../pages/Location";
 import PermissionsIndex from "../../pages/Permissions";
 import FeatureFlagsIndex from "../../pages/FeatureFlags";
@@ -22,6 +23,7 @@ const Layout = () => {
           <Route path="/users/*" element={<UsersIndex />} />
           <Route path="/organisations/*" element={<OrganisationsIndex />} />
           <Route path="/sponsors/*" element={<SponsorsIndex />} />
+          <Route path="/promotions/*" element={<PromotionsIndex />} />
           <Route path="/location/*" element={<LocationIndex />} />
           <Route path="/permissions/*" element={<PermissionsIndex />} />
           <Route path="/features/*" element={<FeatureFlagsIndex />} />

@@ -7,6 +7,7 @@ import Modal from "../../../../components/Modal/Modal";
 import { usePurchaseEntryPassMutation } from "../../../../../../state/redux/entryPass/entryPassApi";
 import PaymentService from "../../../../../../services/payment";
 import { toast } from "../../../../components/Toast";
+import ApplyPromoCode from "../../../../components/ApplyPromoCode/ApplyPromoCode";
 
 const PurchaseEntryPass = ({ event = {}, close }) => {
   const user = useSelector(selectUser);
@@ -79,16 +80,23 @@ const PurchaseEntryPass = ({ event = {}, close }) => {
       </div>
       <form className={styles.form} onSubmit={handleSubmit}>
         {event.entryPassPriceInINR > 0 && (
-          <div className={styles.formGroup}>
-            <label htmlFor="promoCode">Promo Code</label>
-            <input
-              type="text"
-              name="promoCode"
-              id="promoCode"
-              className={styles.input}
-              onChange={handleChange}
-            />
-          </div>
+          // <div className={styles.formGroup}>
+          //   <label htmlFor="promoCode">Promo Code</label>
+          //   <div className="flex justify-between gap-2">
+          //     <input
+          //       type="text"
+          //       name="promoCode"
+          //       id="promoCode"
+          //       className={styles.input + " flex-1"}
+          //       value={promoCode}
+          //       onChange={handleChange}
+          //     />
+          //     <Button variant="outline-secondary" className="!max-w-24">
+          //       Apply
+          //     </Button>
+          //   </div>
+          // </div>
+          <ApplyPromoCode onChange={handleChange} defaultValue={promoCode} />
         )}
         {error && <p className={styles.error}>{error}</p>}
         <Button variant="secondary" type="submit" className={styles.submit}>
