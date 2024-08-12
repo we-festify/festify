@@ -3,15 +3,22 @@ const {
   validateWebhookSignature,
 } = require("razorpay/dist/utils/razorpay-utils");
 
-const razorpay = new Razorpay({
-  key_id: process.env.RAZORPAY_KEY_ID,
-  key_secret: process.env.RAZORPAY_KEY_SECRET,
-});
-
 class RazorpayService {
-  static async createOrder({ amountInINR, receipt, notes }) {
+  constructor() {
     try {
-      const order = await razorpay.orders.create({
+      this.razorpay = new Razorpay({
+        key_id: process.env.RAZORPAY_KEY_ID,
+        key_secret: process.env.RAZORPAY_KEY_SECRET,
+      });
+      console.log("Razorpay initialized");
+    } catch (err) {
+      console.error("Razorpay initialization failed:", err);
+    }
+  }
+
+  async createOrder({ amountInINR, receipt, notes }) {
+    try {
+      const order = await this.razorpay.orders.create({
         amount: amountInINR * 100,
         currency: "INR",
         receipt,
@@ -23,7 +30,7 @@ class RazorpayService {
     }
   }
 
-  static async verifyWebhookSignature({ body, headers }) {
+  async verifyWebhookSignature({ body, headers }) {
     try {
       const signature = headers["x-razorpay-signature"];
       const isValid = validateWebhookSignature(
@@ -38,4 +45,4 @@ class RazorpayService {
   }
 }
 
-module.exports = RazorpayService;
+module.exports = new RazorpayService();

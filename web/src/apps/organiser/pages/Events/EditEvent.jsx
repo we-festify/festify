@@ -13,27 +13,17 @@ import { toast } from "../../components/Toast";
 const EditEvent = () => {
   const location = useLocation();
   const eventId = location.pathname.split("/").pop();
-  const {
-    data: { event: initialEvent } = {},
-    isLoading: initialEventLoading,
-    isSuccess: initialEventSuccess,
-  } = useGetEventByIdQuery(eventId);
+  const { data: { event: initialEvent } = {}, isLoading: initialEventLoading } =
+    useGetEventByIdQuery(eventId);
   const [updateEvent, { error }] = useUpdateEventMutation();
-  const [event, setEvent] = useState(initialEvent);
 
-  const handleSubmit = () => {
-    toast.promise(updateEvent(event), {
+  const handleSubmit = (event) => {
+    toast.promise(updateEvent(event).unwrap(), {
       pending: "Updating event...",
       success: "Event updated successfully!",
-      error: "Error updating event.",
+      error: error?.data?.message || error?.message || "Something went wrong",
     });
   };
-
-  useEffect(() => {
-    if (initialEventSuccess) {
-      setEvent(initialEvent);
-    }
-  }, [initialEventSuccess, initialEvent]);
 
   return (
     <div className={styles.page}>
@@ -45,9 +35,8 @@ const EditEvent = () => {
             {error && <p className={styles.error}>{error?.data?.message}</p>}
           </p>
           <EventForm
-            key={event?._id}
-            defaultValue={event}
-            onChange={setEvent}
+            key={initialEvent?._id}
+            defaultValue={initialEvent}
             onSubmit={handleSubmit}
           />
         </div>

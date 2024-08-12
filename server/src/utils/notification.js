@@ -1,16 +1,21 @@
-const createUpdateEventNotification = (event) => {
-  const { name } = event;
-  const message = `Event ${name} details has been updated by the organiser`;
-  const payload = {
-    title: "Event updated",
-    body: message,
-    url: `/events/${event._id}`,
-    to: "all",
-    timestamp: Date.now(),
+const createNotificationPayload = ({ title, body, redirectUrl, imageUrl }) => {
+  const notification = {
+    title,
+    body,
   };
-  return payload;
+  const options = {
+    webpush: {
+      fcm_options: {
+        link: redirectUrl,
+      },
+      headers: {
+        image: imageUrl,
+      },
+    },
+  };
+  return [notification, options];
 };
 
 module.exports = {
-  createUpdateEventNotification,
+  createNotificationPayload,
 };

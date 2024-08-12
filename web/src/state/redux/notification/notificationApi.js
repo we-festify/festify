@@ -44,6 +44,35 @@ const webPushApi = api.injectEndpoints({
         body: { notification },
       }),
     }),
+
+    // FCM
+    getFCM: builder.query({
+      query: () => "/notifications/fcm",
+      providesTags: ["FCM"],
+    }),
+    subscribeFCM: builder.mutation({
+      query: (token) => ({
+        url: "/notifications/fcm/subscribe",
+        method: "POST",
+        body: { token },
+      }),
+      invalidatesTags: ["FCM"],
+    }),
+    unsubscribeFCM: builder.mutation({
+      query: (token) => ({
+        url: "/notifications/fcm/subscribe",
+        method: "DELETE",
+        body: { token },
+      }),
+      invalidatesTags: ["FCM"],
+    }),
+    testFCM: builder.mutation({
+      query: (notification) => ({
+        url: "/notifications/fcm/test",
+        method: "POST",
+        body: { notification },
+      }),
+    }),
   }),
 });
 
@@ -55,4 +84,9 @@ export const {
   useSubscribeWebPushMutation,
   useUnsubscribeWebPushMutation,
   useTestWebPushMutation,
+
+  useGetFCMQuery,
+  useSubscribeFCMMutation,
+  useUnsubscribeFCMMutation,
+  useTestFCMMutation,
 } = webPushApi;

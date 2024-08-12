@@ -9,6 +9,7 @@
     "axios": "^1.5.1",
     "blurhash": "^2.0.5",
     "crypto-js": "^4.2.0",
+    "firebase": "^10.12.5",
     "leaflet": "^1.9.4",
     "leaflet-routing-machine": "^3.2.12",
     "leafstore-db": "^1.1.4",

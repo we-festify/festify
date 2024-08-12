@@ -30,8 +30,31 @@ router.delete(
 router.get(
   "/webpush/subscription",
   AuthMiddleware.requireLoggedIn,
-  NotificationController.getSubscriptionsByUser
+  NotificationController.getWebPushSubscriptionsByUser
 );
 router.post("/webpush/test", NotificationController.testWebPush);
+
+// FCM
+router.get(
+  "/fcm",
+  AuthMiddleware.requireLoggedIn,
+  NotificationController.getFCMByUser
+);
+router.post(
+  "/fcm/subscribe",
+  AuthMiddleware.requireLoggedIn,
+  NotificationController.subscribeFCM
+);
+router.delete(
+  "/fcm/subscribe",
+  AuthMiddleware.requireLoggedIn,
+  NotificationController.unsubscribeFCM
+);
+router.post(
+  "/fcm/test",
+  AuthMiddleware.requireLoggedIn,
+  RBACMiddleware.requirePermissions("notification:send"),
+  NotificationController.testFCM
+);
 
 module.exports = router;

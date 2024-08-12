@@ -9,7 +9,7 @@ const NotificationsList = () => {
   const { unreadNotifications, allNotifications, markAsRead, markAllAsRead } =
     useInAppNotifications();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTabIndex, setActiveTab] = useState(0);
 
   const handleNotificationClick = (notification) => {
     if (!notification.read) {
@@ -35,7 +35,7 @@ const NotificationsList = () => {
     <div className={styles.container}>
       <Tabs
         tabs={tabs}
-        activeIndex={activeTab}
+        activeIndex={activeTabIndex}
         onTabChange={(index) => setActiveTab(index)}
       />
       <div className={styles.actions}>
@@ -43,10 +43,10 @@ const NotificationsList = () => {
           Mark all as read
         </div>
       </div>
-      <div className={styles.notifications}>
-        {tabs[activeTab].notifications.map((notification) => (
+      <div key={activeTabIndex} className={styles.notifications}>
+        {tabs[activeTabIndex].notifications.map((notification, index) => (
           <div
-            key={notification.id}
+            key={notification.title + index}
             className={styles.notification}
             onClick={() => handleNotificationClick(notification)}
           >
@@ -60,9 +60,9 @@ const NotificationsList = () => {
             </div>
           </div>
         ))}
-        {tabs[activeTab].notifications.length < 1 && (
+        {tabs[activeTabIndex].notifications.length < 1 && (
           <div className={styles.empty}>
-            {activeTab === 0
+            {activeTabIndex === 0
               ? "You have no new notifications"
               : "You have no notifications"}
           </div>

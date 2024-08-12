@@ -40,6 +40,7 @@ const api = createApi({
     "Sponsors",
     "Announcements",
     "WebPushSubscription",
+    "FCM", // for firebase cloud messaging
     "NotificationPermission", // for user notification permission
     "Payments", // for user payments
     "EntryPass", // for user entry passes

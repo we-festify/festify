@@ -27,13 +27,24 @@ function nodeEnvProductionCheck(config) {
   return import.meta.env.NODE_ENV === "production";
 }
 
-function getServiceWorkerUrl() {
+function getServiceWorkerUrl(config) {
+  if (config && config.serviceWorkerUrl) {
+    return config.serviceWorkerUrl;
+  }
   if (import.meta.env.NODE_ENV === "production") {
     return `${import.meta.env.PUBLIC_URL}/service-worker.js`;
   }
   return `/service-worker-dev.js`;
 }
 
+/**
+ *
+ * @param {{
+ *   bypassNodeEnvProduction: boolean,
+ *   serviceWorkerUrl: string,
+ * }} config
+ * @returns
+ */
 export function register(config) {
   if (nodeEnvProductionCheck(config) && "serviceWorker" in navigator) {
     // The URL constructor is available in all browsers that support SW.
@@ -46,7 +57,7 @@ export function register(config) {
     }
 
     window.addEventListener("load", () => {
-      const swUrl = getServiceWorkerUrl();
+      const swUrl = getServiceWorkerUrl(config);
       console.log("swUrl", swUrl);
 
       if (isLocalhost) {

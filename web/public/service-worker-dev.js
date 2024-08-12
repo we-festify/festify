@@ -73,12 +73,12 @@ self.addEventListener("message", (event) => {
 // Any other custom service worker logic can go here.
 
 // push notifications
-self.addEventListener("push", (event) => {
-  let { title, body, icon } = event.data.json();
-  if (!title) title = "New Notification";
-  if (!body) return;
-  self.registration.showNotification(title, {
-    body,
-    icon: icon || `logo192.png`,
-  });
-});
+// self.addEventListener("push", (event) => {
+//   let { title, body, icon } = event.data.json();
+//   if (!title) title = "New Notification";
+//   if (!body) return;
+//   self.registration.showNotification(title, {
+//     body,
+//     icon: icon || `logo192.png`,
+//   });
+// });

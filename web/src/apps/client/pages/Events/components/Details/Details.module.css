@@ -42,6 +42,13 @@
   view-transition-name: var(--hero-title-transition-name);
 }
 
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
 .details {
   display: flex;
   flex-direction: column;
@@ -79,15 +86,11 @@ p.text span {
 }
 
 .tags .tag {
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 300;
   letter-spacing: 0.03rem;
   color: var(--color-text-light);
-  background-color: hsla(var(--color-white-hsl-values), 0.1);
-  cursor: pointer;
-  text-transform: uppercase;
+  font-style: italic;
 }
 
 .other {
@@ -111,17 +114,19 @@ p.text span {
 }
 
 .other .item.price .value {
+  font-size: 1rem;
   font-weight: 600;
   color: var(--color-secondary-500);
 }
 
 .other .item .value {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: lighter;
   letter-spacing: 0.03rem;
   color: var(--color-text);
   line-height: 1.6;
   margin: 0;
+  text-transform: capitalize;
 }
 
 .actions {
@@ -149,6 +154,11 @@ p.text span {
     display: none;
   }
 
+  .image {
+    top: calc(-1 * var(--navbar-height));
+    margin-bottom: calc(-1 * var(--navbar-height));
+  }
+
   .image img {
     aspect-ratio: 1 / 1;
     max-height: 400px;
@@ -156,11 +166,5 @@ p.text span {
 
   .image .info .name {
     font-size: 2rem;
-  }
-
-  .actions {
-    position: sticky;
-    bottom: calc(var(--bottom-navigation-bar-height) - 0.1rem);
-    padding-bottom: 1rem;
   }
 }

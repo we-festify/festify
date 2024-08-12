@@ -49,7 +49,7 @@ const Navbar = () => {
         <div className={styles.drawer + " " + (openDrawer ? styles.open : "")}>
           <ul className={styles.navlinks}>
             {links?.map((link) => (
-              <NavbarLink link={link} />
+              <NavbarLink link={link} key={link.text} />
             ))}
             <li className={styles.navlink}>
               {isPortrait && (
@@ -114,7 +114,7 @@ const Navbar = () => {
             <div>
               <ul className={styles.navlinks}>
                 {links?.map((link) => (
-                  <NavbarLink link={link} />
+                  <NavbarLink link={link} key={link.text} />
                 ))}
                 {isAdmin && (
                   <li className={styles.navlink}>

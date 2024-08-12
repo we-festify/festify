@@ -22,21 +22,21 @@ export const formatTime = (timestamp) => {
   }
 };
 
-export const formatDate = (timestamp) => {
+export const formatDate = (timestamp, options = {}) => {
   try {
     const date = new Date(timestamp);
     return Intl.DateTimeFormat("en-US", {
       month: "short",
       day: "numeric",
-      year: "numeric",
+      year: options.skipYear ? undefined : "numeric",
     }).format(date);
   } catch (error) {
     return "";
   }
 };
 
-export const formatDateTime = (date) => {
-  return `${formatDate(date)} - ${formatTime(date)}`;
+export const formatDateTime = (date, options = {}) => {
+  return `${formatDate(date, options)} - ${formatTime(date)}`;
 };
 
 export const ceilHour = (timestamp) => {

@@ -63,6 +63,9 @@ const actions = [
   "banners:create",
   "banners:update",
   "banners:delete",
+
+  // Notification
+  "notification:send",
 ];
 
 const defaultAdminPerms = actions; // Admin has all permissions

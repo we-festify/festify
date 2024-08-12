@@ -75,6 +75,15 @@
   cursor: default;
 }
 
+.button.link {
+  color: var(--color-primary-500);
+  background-color: transparent;
+}
+
+.button.link:hover {
+  text-decoration: underline;
+}
+
 @media screen and (max-width: 768px) {
   .button {
     max-width: 100%;
