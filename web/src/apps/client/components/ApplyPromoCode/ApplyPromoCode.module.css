@@ -1,0 +1,32 @@
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroup label {
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.formGroup input,
+.formGroup textarea {
+  width: 100%;
+  outline: 0;
+  border: 1px solid var(--color-text-light);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: inherit;
+  background-color: transparent;
+  color: var(--color-text);
+  caret-color: var(--color-text);
+  resize: none;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  outline: 1px solid var(--color-secondary-500);
+  border-color: var(--color-secondary-500);
+}

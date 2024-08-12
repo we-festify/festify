@@ -1,5 +1,12 @@
 import { useState } from "react";
 import styles from "./Input.module.css";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 const Dropdown = ({
   label,
@@ -10,6 +17,7 @@ const Dropdown = ({
   onChange,
   defaultValue,
   readOnly,
+  ...props
 }) => {
   const [error, setError] = useState("");
   const [value, setValue] = useState(defaultValue);
@@ -28,27 +36,29 @@ const Dropdown = ({
   return (
     <div className={styles.group}>
       <label className={styles.label}>{label}</label>
-      <select
-        className={styles.input + " " + (error ? styles.error : "")}
+      <Select
+        {...props}
+        className={error ? styles.error : ""}
         defaultValue={defaultValue}
-        onChange={(e) => {
-          setValue(e.target.value);
-          if (onChange) onChange(e.target.value);
+        onValueChange={(value) => {
+          setValue(value);
+          if (onChange) onChange(value);
         }}
         required={validations?.required}
-        readOnly={readOnly}
         onBlur={validate}
         name={name}
       >
-        <option value="" disabled>
-          Select {label}
-        </option>
-        {entries?.map((value) => (
-          <option className={styles.option} key={value}>
-            {value}
-          </option>
-        ))}
-      </select>
+        <SelectTrigger>
+          <SelectValue placeholder={`Select ${label}`} />
+        </SelectTrigger>
+        <SelectContent>
+          {entries?.map((value) => (
+            <SelectItem key={value} value={value}>
+              {value}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
       {error && <p className={styles.error}>{error}</p>}
     </div>
   );

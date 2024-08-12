@@ -21,4 +21,5 @@ const Input = {
   Dropdown: Dropdown,
   Tags: Tags,
 };
+
 export default Input;

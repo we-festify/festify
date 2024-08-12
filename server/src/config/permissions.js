@@ -63,6 +63,11 @@ const actions = [
   "banners:create",
   "banners:update",
   "banners:delete",
+
+  // Promotion Campaigns
+  "promotionCampaign:read",
+  "promotionCampaign:create",
+  "promotionCampaign:update",
 ];
 
 const defaultAdminPerms = actions; // Admin has all permissions

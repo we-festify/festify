@@ -42,12 +42,13 @@ const CheckBoxes = ({
             <input
               type="checkbox"
               name={name}
-              defaultChecked={defaultValues?.includes(value)}
+              defaultChecked={defaultValues[value]}
               onChange={(e) => {
                 const newValues = { ...values };
                 if (e.target.checked) newValues[value] = true;
                 else delete newValues[value];
                 setValues(newValues);
+                console.log(newValues);
                 if (onChange) onChange(Object.keys(newValues));
               }}
               required={validations?.required}

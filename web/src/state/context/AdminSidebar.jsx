@@ -6,6 +6,7 @@ import { FaUsers, FaRegHandshake } from "react-icons/fa";
 import { MdKey, MdLocationPin } from "react-icons/md";
 import { ImLab } from "react-icons/im";
 import { PiFlagBannerFill } from "react-icons/pi";
+import { BsFillGiftFill } from "react-icons/bs";
 
 const AdminSidebarContext = createContext();
 
@@ -49,6 +50,17 @@ const AdminSidebarProvider = ({ children }) => {
         {
           text: "Create",
           path: "/admin/sponsors/create",
+        },
+      ],
+    },
+    {
+      text: "Promotions",
+      path: "/admin/promotions",
+      icon: <BsFillGiftFill size={16} />,
+      sublinks: [
+        {
+          text: "Create",
+          path: "/admin/promotions/create",
         },
       ],
     },

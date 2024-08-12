@@ -21,5 +21,6 @@ router.use("/payments", require("./payment"));
 router.use("/map", require("./map"));
 router.use("/features", require("./featureFlag"));
 router.use("/banners", require("./banner"));
+router.use("/promotions", require("./promotionCampaign"));
 
 module.exports = router;

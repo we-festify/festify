@@ -1,0 +1,144 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+h2.title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 0.03rem;
+  color: var(--color-text);
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Offer Card Styles */
+.offerCard {
+  display: flex;
+  height: 140px;
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+}
+
+.left {
+  background-color: var(--color-border);
+  aspect-ratio: 1/1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.left .offerValue {
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--color-primary-500);
+  filter: brightness(1.2);
+}
+
+.left .offerText {
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.borderDotted {
+  position: relative;
+  top: 10%;
+  height: 80%;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    var(--color-border) 50%,
+    var(--color-border) 100%
+  );
+  background-size: 2px 16px;
+}
+
+.right {
+  flex: 1;
+  background-color: var(--color-border);
+  padding: 1rem;
+}
+
+.promoCode {
+  padding-left: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  overflow: hidden;
+}
+
+.promoCode p {
+  margin: 0;
+}
+
+.offerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.2rem;
+}
+
+.offerHeader .name {
+  font-size: 0.8rem;
+}
+
+.offerHeader .expiry {
+  font-size: 0.6rem;
+  padding: 0.2rem 0.5rem;
+  background-color: var(--color-border);
+  border-radius: 8px;
+}
+
+.promoCode .promo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.promo:hover {
+  background-color: var(--color-border);
+}
+
+.promo .code {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.promo .icon {
+  color: var(--color-text-light);
+}
+
+.promoCode .description {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--color-text-light);
+}
+
+.readMore {
+  color: var(--color-secondary-500);
+  font-style: italic;
+  cursor: pointer;
+}
+
+.readMore:hover {
+  text-decoration: underline;
+}

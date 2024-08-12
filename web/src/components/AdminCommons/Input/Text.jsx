@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styles from "./Input.module.css";
+import { Input } from "./../ui/input";
+import Help from "../Help/Help";
 
 const Text = ({
   type,
@@ -10,6 +12,8 @@ const Text = ({
   onValidation,
   defaultValue,
   readOnly,
+  help,
+  ...props
 }) => {
   const [error, setError] = useState("");
   const [value, setValue] = useState(defaultValue || "");
@@ -47,8 +51,11 @@ const Text = ({
 
   return (
     <div className={styles.group}>
-      <label className={styles.label}>{label}</label>
-      <input
+      <label className={styles.label}>
+        {label} {help && <Help size={14}>{help}</Help>}
+      </label>
+      <Input
+        {...props}
         type={type}
         defaultValue={defaultValue}
         onChange={(e) => {
@@ -60,10 +67,8 @@ const Text = ({
         max={validations?.maxValue}
         minLength={validations?.minLength}
         maxLength={validations?.maxLength}
-        pattern={validations?.pattern}
         readOnly={readOnly}
         onBlur={validate}
-        className={styles.input + " " + (error ? styles.error : "")}
         name={name}
       />
       {error && <p className={styles.error}>{error}</p>}

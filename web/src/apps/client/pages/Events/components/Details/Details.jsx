@@ -56,8 +56,8 @@ const Details = () => {
 
   const handleNavigateToRulebook = (e) => {
     e.preventDefault();
-    if (event?.rulebook) {
-      window.open(event?.rulebook, "_blank");
+    if (event?.rulebookUrl) {
+      window.open(event?.rulebookUrl, "_blank");
     }
   };
 
@@ -243,7 +243,7 @@ const Details = () => {
                 Get Entry Pass
               </Button>
             ))}
-          {event?.rulebook && (
+          {event?.rulebookUrl && (
             <Button
               variant="outline-secondary"
               onClick={handleNavigateToRulebook}

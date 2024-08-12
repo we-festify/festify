@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./Input.module.css";
+import { Input } from "../ui/input";
 
 const DateTime = ({
   label,
@@ -35,7 +36,7 @@ const DateTime = ({
   return (
     <div className={styles.group}>
       <label className={styles.label}>{label}</label>
-      <input
+      <Input
         type="datetime-local"
         name={name}
         defaultValue={defaultValue}
@@ -46,7 +47,6 @@ const DateTime = ({
         onBlur={validate}
         required={validations?.required}
         readOnly={readOnly}
-        className={styles.input + " " + (error ? styles.error : "")}
       />
       {error && <p className={styles.error}>{error}</p>}
     </div>
