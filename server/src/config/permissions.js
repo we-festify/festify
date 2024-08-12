@@ -66,6 +66,11 @@ const actions = [
 
   // Notification
   "notification:send",
+
+  // Promotion Campaigns
+  "promotionCampaign:read",
+  "promotionCampaign:create",
+  "promotionCampaign:update",
 ];
 
 const defaultAdminPerms = actions; // Admin has all permissions

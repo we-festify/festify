@@ -35,6 +35,7 @@
   flex-direction: column;
   gap: 0.3rem;
   list-style: none;
+  padding-left: 2rem;
 }
 
 .navlink {

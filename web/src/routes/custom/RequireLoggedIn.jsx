@@ -9,6 +9,7 @@ const RequireLoggedIn = () => {
   const { isLoading } = useAuth();
 
   if (!isLoggedIn && !isLoading) {
+    console.log("You are not logged in", isLoading);
     return (
       <Navigate to="/a/login" state={{ from: window.location.pathname }} />
     );

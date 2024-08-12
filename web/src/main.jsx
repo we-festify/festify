@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import "./assets/styles/variables.css";
+import "./assets/styles/clip-paths.css";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -14,15 +15,15 @@ import AuthProvider from "./state/context/Auth";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
-      <AuthProvider>
-        <WebSocketProvider>
-          <InAppNotificationsProvider>
-            <Router>
+      <Router>
+        <AuthProvider>
+          <WebSocketProvider>
+            <InAppNotificationsProvider>
               <App />
-            </Router>
-          </InAppNotificationsProvider>
-        </WebSocketProvider>
-      </AuthProvider>
+            </InAppNotificationsProvider>
+          </WebSocketProvider>
+        </AuthProvider>
+      </Router>
     </Provider>
   </React.StrictMode>
 );

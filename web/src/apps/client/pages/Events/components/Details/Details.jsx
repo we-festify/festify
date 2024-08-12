@@ -36,8 +36,8 @@ const Details = () => {
 
   const handleNavigateToRulebook = (e) => {
     e.preventDefault();
-    if (event?.rulebook) {
-      window.open(event?.rulebook, "_blank");
+    if (event?.rulebookUrl) {
+      window.open(event?.rulebookUrl, "_blank");
     }
   };
 

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import styles from "./DataTable.module.css";
 import usePagination from "../../../hooks/usePagination";
 import useSearchQuery from "./hooks/useSearchQuery";
@@ -250,11 +250,11 @@ const DataTableFooter = () => {
     totalRows,
     controlled,
   } = useDataTable();
-  const page = controlled ? controlled.currentPage : currentPage;
-  const pages = controlled ? controlled.totalPages : totalPages;
-  const rows = controlled ? controlled.totalCount : totalRows;
-  const limit = controlled ? controlled.pageLimit : pageLimit;
-  const count = controlled ? controlled.count : paginatedRows?.length;
+  const page = controlled?.currentPage ? controlled.currentPage : currentPage || 0;
+  const pages = controlled?.totalPages ? controlled.totalPages : totalPages;
+  const rows = controlled?.totalCount ? controlled.totalCount : totalRows;
+  const limit = controlled?.pageLimit ? controlled.pageLimit : pageLimit;
+  const count = controlled?.count ? controlled.count : paginatedRows?.length;
 
   return (
     <div className={styles.footer}>
