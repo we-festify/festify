@@ -13,6 +13,26 @@ export const toast = {
     reactToastifyToast.error(message, {
       theme: "dark",
     }),
+  warning: (message) =>
+    reactToastifyToast.warning(message, {
+      theme: "dark",
+    }),
+  info: (message) =>
+    reactToastifyToast.info(message, {
+      theme: "dark",
+    }),
+  promise: (promise, { loading, success, error }) =>
+    reactToastifyToast.promise(
+      promise,
+      {
+        loading,
+        success,
+        error,
+      },
+      {
+        theme: "dark",
+      }
+    ),
 };
 
 const ToastProvider = ({ children }) => {

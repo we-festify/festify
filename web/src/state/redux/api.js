@@ -48,6 +48,8 @@ const api = createApi({
     "Permissions", // for rbac permissions
     "Actions", // for rbac actions
     "Features", // for feature flags
+    "Promotions", // for promotion campaigns
+    "Rewards", // for user rewards
   ],
 });
 

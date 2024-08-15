@@ -24,6 +24,16 @@ class PromotionCampaignController {
     }
   }
 
+  static async getByCode(req, res, next) {
+    try {
+      const { code } = req.params;
+      const promotionCampaign = await PromotionCampaignService.getByCode(code);
+      res.status(200).json({ promotion: promotionCampaign });
+    } catch (err) {
+      next(err);
+    }
+  }
+
   static async getAll(req, res, next) {
     try {
       const { extended } = req.query;
@@ -31,6 +41,39 @@ class PromotionCampaignController {
         extended,
       });
       res.status(200).json({ promotions: promotionCampaigns });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async getAllValidByUserEmail(req, res, next) {
+    try {
+      const { email, _id: userId } = req.user;
+      const promotionCampaigns =
+        await PromotionCampaignService.getAllValidByUserEmail(userId, email);
+
+      res.status(200).json({ promotions: promotionCampaigns });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async getBestApplicable(req, res, next) {
+    try {
+      let { orderType, orderAmount } = req.query;
+      const { email, _id: userId } = req.user;
+      orderType = orderType.toString().trim();
+      orderAmount = parseFloat(orderAmount);
+      console.log({ email, orderType, orderAmount });
+      const promotion = await PromotionCampaignService.getBestApplicable(
+        userId,
+        {
+          email,
+          orderType,
+          orderAmount,
+        }
+      );
+      res.status(200).json({ promotion });
     } catch (err) {
       next(err);
     }

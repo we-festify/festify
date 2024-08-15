@@ -1,7 +1,6 @@
 const FCMService = require("./fcm");
 const NotificationPermissionRepository = require("../repositories/notificationPermission");
 const { createNotificationPayload } = require("../utils/notification");
-// const Redis = require("ioredis");
 
 class NotificationService {
   constructor() {}

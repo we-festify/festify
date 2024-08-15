@@ -26,10 +26,13 @@
   left: 0;
   width: 100%;
   padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background: linear-gradient(
     to bottom,
-    hsla(0, 0%, 0%, 0) 0%,
-    hsla(0, 0%, 0%, 0.6) 50%
+    transparent 0%,
+    hsla(0, 0%, 0%, 0.7) 60%
   );
   z-index: 1;
 }
@@ -157,6 +160,9 @@ p.text span {
   .image {
     top: calc(-1 * var(--navbar-height));
     margin-bottom: calc(-1 * var(--navbar-height));
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    box-shadow: 0 4px 10px 0 hsla(0, 0%, 0%, 0.8);
   }
 
   .image img {

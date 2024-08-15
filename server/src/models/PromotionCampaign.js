@@ -42,13 +42,12 @@ const PromotionCampaignSchema = new mongoose.Schema({
       validator: (v) => {
         if (!v) return true;
         const patterns = [
-          "email:^[w-.]+@([w-]+.)+[w-]{2,4}$",
-          "domain:^([w-]+.)+[w-]{2,4}$",
+          /^email:[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+          /^domain:([\w-]+\.)+[\w-]{2,4}$/,
         ];
-        let passed = true;
-        if (!Array.isArray(v)) return false;
-        for (let i = 0; i < v.length; i++) {}
+        return v.every((pattern) => patterns.some((p) => p.test(pattern)));
       },
+      message: "Invalid value for pattern",
     },
   },
   expiry: {
@@ -82,7 +81,9 @@ const PromotionCampaignSchema = new mongoose.Schema({
           /^merchandise:.+$/,
         ];
 
-        return patterns.some((pattern) => pattern.test(v));
+        return v.every((applicableOn) =>
+          patterns.some((pattern) => pattern.test(applicableOn))
+        );
       },
       message: "Invalid value for applicableOn",
     },

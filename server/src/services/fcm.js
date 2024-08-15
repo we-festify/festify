@@ -77,6 +77,36 @@ class FCMService {
       throw err;
     }
   }
+
+  static async subscribeToTopics(userId, topics, token) {
+    try {
+      let tokens = [token];
+      console.log(userId, topics, token);
+      if (!token) tokens = await FCMRepository.getByUserId(userId).tokens;
+      if (tokens.length > 0) {
+        topics.forEach(async (topic) => {
+          await firebaseAdmin.messaging().subscribeToTopic(tokens, topic);
+        });
+      }
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async unsubscribeFromTopics(userId, topics, token) {
+    try {
+      let tokens = [token];
+      console.log(userId, topics, token);
+      if (!token) tokens = await FCMRepository.getByUserId(userId).tokens;
+      if (tokens.length > 0) {
+        topics.forEach(async (topic) => {
+          await firebaseAdmin.messaging().unsubscribeFromTopic(tokens, topic);
+        });
+      }
+    } catch (err) {
+      throw err;
+    }
+  }
 }
 
 module.exports = FCMService;

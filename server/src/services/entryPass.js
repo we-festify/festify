@@ -2,6 +2,8 @@ const EntryPassRepository = require("../repositories/entryPass");
 const EventRepository = require("../repositories/event");
 const { BadRequestError } = require("../utils/errors");
 const PaymentService = require("./payment");
+const PromotionCampaignService = require("./promotionCampaign");
+const RewardService = require("./rewards");
 
 class EntryPassService {
   static #checkRequiredFields(entryPass) {
@@ -47,7 +49,7 @@ class EntryPassService {
     }
   }
 
-  static async purchase({ user, eventId }) {
+  static async purchase({ user, eventId }, promoCode) {
     try {
       const event = await EventRepository.getById(eventId);
       if (!event) {
@@ -61,19 +63,77 @@ class EntryPassService {
         throw new Error("Entry pass already purchased");
       }
 
-      if (event.entryPassPriceInINR === 0) {
+      let promotion,
+        amountToPay = event.entryPassPriceInINR;
+      if (promoCode) {
+        promotion = await PromotionCampaignService.getByCode(promoCode);
+        if (!promotion) throw new BadRequestError("Invalid promo code");
+
+        // check user eligibility
+        let isEligible = false;
+        if (promotion.type === "general") isEligible = true;
+        else if (promotion.type === "targeted") {
+          const userPatterns = [
+            `email:${user.email}`,
+            `domain:${user.email.split("@")[1]}`,
+          ];
+          isEligible = promotion.pattern.some((pattern) =>
+            userPatterns.some((userPattern) =>
+              new RegExp(pattern).test(userPattern)
+            )
+          );
+
+          if (!isEligible) {
+            throw new BadRequestError("User not eligible for this promotion");
+          }
+        }
+
+        // check applicable on validity
+        const validApplicableOn = ["event:*", `event:${event._id.toString()}`];
+        console.log(promotion.applicableOn, validApplicableOn);
+        let isApplicable = false;
+        validApplicableOn.forEach((applicableOn) => {
+          if (promotion.applicableOn.includes(applicableOn)) {
+            isApplicable = true;
+          }
+        });
+        if (!isApplicable) {
+          throw new BadRequestError("Promotion not applicable on this event");
+        }
+
+        const discount = await PromotionCampaignService.calculateDiscount(
+          promotion,
+          event.entryPassPriceInINR
+        );
+        amountToPay = event.entryPassPriceInINR - discount;
+      }
+
+      if (amountToPay === 0) {
         const entryPass = await EntryPassService.create(user, event);
+
+        // create used reward for the promotion
+        const reward = {
+          user: user._id,
+          type: "PromotionCampaign",
+          reference: promotion._id,
+          status: "used",
+          usedBy: user._id,
+        };
+        await RewardService.create(reward);
+
         return {
           entryPass,
           type: "entry-pass",
         };
       }
+
       const order = await PaymentService.createOrder({
-        amountInINR: event.entryPassPriceInINR,
+        amountInINR: amountToPay,
         notes: {
           type: "EntryPass",
           user: user._id,
           event: event._id,
+          appliedPromotionId: promotion._id,
         },
       });
       return {
@@ -125,10 +185,13 @@ class EntryPassService {
       if (entryPass.isUsed) {
         throw new Error("Entry pass already used once");
       }
-      const updatedEntryPass = await EntryPassRepository.updateById(entryPassId, {
-        isUsed: true,
-        usedAt: new Date(),
-      });
+      const updatedEntryPass = await EntryPassRepository.updateById(
+        entryPassId,
+        {
+          isUsed: true,
+          usedAt: new Date(),
+        }
+      );
       return updatedEntryPass;
     } catch (err) {
       throw err;

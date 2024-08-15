@@ -3,12 +3,24 @@ import api from "../api";
 const promotionApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getAllPromotions: builder.query({
-      query: ({ limit = 10, page = 1, search = "" } = {}) =>
-        encodeURI(`/promotions?limit=${limit}&page=${page}&search=${search}`),
+      query: () => `/promotions`,
       providesTags: ["Promotions"],
     }),
     getPromotionById: builder.query({
       query: (id) => `/promotions/${id}`,
+      providesTags: ["Promotions"],
+    }),
+    getPromotionByPromoCode: builder.query({
+      query: (code) => `/promotions/code/${code}`,
+      providesTags: ["Promotions"],
+    }),
+    getBestApplicablePromotion: builder.query({
+      query: ({ orderType, orderAmount }) =>
+        `/promotions/best?orderType=${orderType}&orderAmount=${orderAmount}`,
+      providesTags: ["Promotions"],
+    }),
+    getAllMyPromotions: builder.query({
+      query: () => `/promotions/me`,
       providesTags: ["Promotions"],
     }),
     createPromotion: builder.mutation({
@@ -39,6 +51,9 @@ export const {
   useGetPromotionByIdQuery,
   useCreatePromotionMutation,
   useUpdatePromotionMutation,
+  useGetBestApplicablePromotionQuery,
+  useGetAllMyPromotionsQuery,
+  useGetPromotionByPromoCodeQuery,
 } = promotionApi;
 
 export default promotionApi;

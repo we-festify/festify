@@ -11,5 +11,11 @@ router.get(
   RBACMiddleware.requirePermissions("payment:read"),
   PaymentController.getPaymentsBySelf
 );
+router.get(
+  "/:id",
+  AuthMiddleware.requireLoggedIn,
+  RBACMiddleware.requirePermissions("payment:read"),
+  PaymentController.getPaymentById
+);
 
 module.exports = router;

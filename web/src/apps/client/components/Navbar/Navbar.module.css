@@ -9,6 +9,7 @@
 
 .wrapper .navbar {
   padding: 0.6rem 1rem;
+  max-height: var(--navbar-height);
   display: flex;
   justify-content: space-between;
   align-items: center;

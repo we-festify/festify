@@ -49,6 +49,10 @@ const PurchaseEntryPass = ({ event = {}, close }) => {
     }
   };
 
+  const handleApplyPromoCode = (promotion) => {
+    setPromoCode(promotion?.promoCode || "");
+  };
+
   if (!event || !user) {
     return (
       <Modal
@@ -69,37 +73,24 @@ const PurchaseEntryPass = ({ event = {}, close }) => {
           <p className={styles.key}>Contact Email</p>
           <p className={styles.value}>{user.email}</p>
         </div>
-        <div className={styles.item + " " + styles.price}>
-          <p className={styles.key}>Price</p>
-          <p className={styles.value}>
-            {event.entryPassPriceInINR > 0
-              ? `₹ ${event.entryPassPriceInINR}`
-              : "Free"}
-          </p>
-        </div>
       </div>
       <form className={styles.form} onSubmit={handleSubmit}>
         {event.entryPassPriceInINR > 0 && (
-          // <div className={styles.formGroup}>
-          //   <label htmlFor="promoCode">Promo Code</label>
-          //   <div className="flex justify-between gap-2">
-          //     <input
-          //       type="text"
-          //       name="promoCode"
-          //       id="promoCode"
-          //       className={styles.input + " flex-1"}
-          //       value={promoCode}
-          //       onChange={handleChange}
-          //     />
-          //     <Button variant="outline-secondary" className="!max-w-24">
-          //       Apply
-          //     </Button>
-          //   </div>
-          // </div>
-          <ApplyPromoCode onChange={handleChange} defaultValue={promoCode} />
+          <ApplyPromoCode
+            onChange={handleChange}
+            defaultValue={promoCode}
+            orderType={`event:${event._id}`}
+            orderAmount={event.entryPassPriceInINR}
+            onApply={handleApplyPromoCode}
+          />
         )}
         {error && <p className={styles.error}>{error}</p>}
-        <Button variant="secondary" type="submit" className={styles.submit}>
+        <Button
+          variant="secondary"
+          type="submit"
+          className={styles.submit}
+          disabled={isLoading}
+        >
           {event.entryPassPriceInINR > 0 ? "Pay and Get Pass" : "Get Pass"}
         </Button>
       </form>

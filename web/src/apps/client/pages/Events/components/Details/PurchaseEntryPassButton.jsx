@@ -57,11 +57,13 @@ const PurchaseEntryPassButton = ({ onClick }) => {
             Entry Pass Purchased
           </Button>
         ) : new Date(event?.entryPassDistributionStart) > today ? (
-          <span className="text-muted">
+          <span className="text-muted-foreground">
             Entry Pass Distribution Not Started
           </span>
         ) : new Date(event?.entryPassDistributionEnd) < today ? (
-          <span className="text-muted">Entry Pass Distribution Ended</span>
+          <span className="text-muted-foreground">
+            Entry Pass Distribution Ended
+          </span>
         ) : (
           <Button variant="secondary" onClick={handlePurchaseEntryPass}>
             Get Entry Pass

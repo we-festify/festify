@@ -63,6 +63,14 @@ module.exports = {
         width: "width",
         height: "height",
       },
+      backgroundImage: (theme) => ({
+        grid: `linear-gradient(90deg, transparent 98%, hsla(var(--muted)) 2%), linear-gradient(180deg, transparent 98%, hsla(var(--muted)) 2%)`,
+      }),
+      backgroundSize: {
+        "grid-sm": "20px 20px",
+        "grid-md": "40px 40px",
+        "grid-lg": "80px 80px",
+      },
     },
   },
   plugins: [],

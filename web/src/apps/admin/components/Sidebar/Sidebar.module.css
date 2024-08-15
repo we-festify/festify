@@ -41,7 +41,7 @@
 .navlink {
   width: 100%;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   gap: 1rem;
   color: var(--color-text-light-admin);
   padding: 0.5rem 0.8rem;

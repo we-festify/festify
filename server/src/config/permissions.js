@@ -49,6 +49,7 @@ const actions = [
 
   // Payment
   "payment:read",
+  "payment:readSelf",
 
   // Permissions
   "permissions:read",
@@ -71,6 +72,9 @@ const actions = [
   "promotionCampaign:read",
   "promotionCampaign:create",
   "promotionCampaign:update",
+
+  // Rewards
+  "reward:read",
 ];
 
 const defaultAdminPerms = actions; // Admin has all permissions

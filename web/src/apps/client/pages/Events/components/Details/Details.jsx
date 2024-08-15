@@ -14,6 +14,7 @@ import Image from "../../../../../../components/Image";
 import EventRegistrationButton from "./EventRegistrationButton";
 import PurchaseEntryPassButton from "./PurchaseEntryPassButton";
 import { useMediaQuery } from "../../../../../../hooks/useMediaQuery";
+import SubscribeEventNotificationsButton from "./SubscribeEventNotificationsButton";
 
 const Details = () => {
   const isPortrait = useMediaQuery("(orientation: portrait)");
@@ -65,6 +66,7 @@ const Details = () => {
           />
           <div className={styles.info}>
             <h2 className={styles.name}>{event?.name}</h2>
+            <SubscribeEventNotificationsButton key={eventId} />
           </div>
         </div>
       </div>

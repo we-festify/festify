@@ -19,7 +19,8 @@ h2.title {
   gap: 1rem;
   padding: 1rem;
   border-radius: 0.5rem;
-  background-color: var(--color-navbar);
+  backdrop-filter: contrast(0.9) blur(0.5rem);
+  -webkit-backdrop-filter: contrast(0.9) blur(0.5rem);
 }
 
 .group .item {

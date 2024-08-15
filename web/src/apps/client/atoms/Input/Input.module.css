@@ -21,9 +21,7 @@
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--color-text);
-  -webkit-backdrop-filter: contrast(0.9);
-  backdrop-filter: contrast(0.9);
-  background-color: transparent;
+  background-color: var(--color-navbar);
   box-shadow: none;
 }
 

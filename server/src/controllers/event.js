@@ -69,8 +69,8 @@ class EventController {
       // send notification
       try {
         const notificationPayload = {
-          title: `Event Update: ${existingEvent.title} Changed`,
-          body: `The event ${existingEvent.title} has been updated. Check the details for the latest information!`,
+          title: `Event Update: ${existingEvent.name} Changed`,
+          body: `The event ${existingEvent.name} has been updated. Check the details for the latest information!`,
           redirectUrl: `/events/${updatedEvent._id}`,
           imageUrl: updatedEvent.image,
         };

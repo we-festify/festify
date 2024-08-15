@@ -27,8 +27,9 @@ const Form = ({ onSubmit, defaultValue, onChange }) => {
 
   const handleChange = (name, value) => {
     if (name === "pattern") handlePatternChange(value);
-    if (name == "applicableOn") handleApplicableOnChange(value);
+    else if (name == "applicableOn") handleApplicableOnChange(value);
     else setPromotion({ ...promotion, [name]: value });
+
     if (onChange) onChange({ ...promotion, [name]: value });
   };
 

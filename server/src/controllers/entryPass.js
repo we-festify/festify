@@ -5,10 +5,14 @@ class EntryPassController {
     try {
       const { user } = req;
       const { eventId } = req.params;
-      const { entryPass, order, type } = await EntryPassService.purchase({
-        user,
-        eventId,
-      });
+      const { promoCode } = req.body;
+      const { entryPass, order, type } = await EntryPassService.purchase(
+        {
+          user,
+          eventId,
+        },
+        promoCode
+      );
       return res.status(200).json({
         order,
         entryPass,

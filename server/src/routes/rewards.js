@@ -4,24 +4,17 @@ const RewardController = require("../controllers/reward");
 const AuthMiddleware = require("../middlewares/auth");
 const RBACMiddleware = require("../middlewares/rbac");
 
-router.post(
-  "/",
+router.get(
+  "/me",
   AuthMiddleware.requireLoggedIn,
-  RBACMiddleware.requirePermissions("reward", "create"),
-  RewardController.create
+  RBACMiddleware.requirePermissions("reward:read"),
+  RewardController.getAllBySelf
 );
-
 router.get(
   "/:id",
-  RBACMiddleware.requirePermissions("reward", "read"),
+  AuthMiddleware.requireLoggedIn,
+  RBACMiddleware.requirePermissions("reward:read"),
   RewardController.getById
 );
-
-router.get(
-  "/user/:userId",
-  RBACMiddleware.requirePermissions("reward", "read"),
-  RewardController.getAllByUser
-);
-
 
 module.exports = router;

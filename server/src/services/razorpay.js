@@ -2,6 +2,7 @@ const Razorpay = require("razorpay");
 const {
   validateWebhookSignature,
 } = require("razorpay/dist/utils/razorpay-utils");
+const { BadRequestError } = require("../utils/errors");
 
 class RazorpayService {
   constructor() {
@@ -18,6 +19,9 @@ class RazorpayService {
 
   async createOrder({ amountInINR, receipt, notes }) {
     try {
+      if (!amountInINR)
+        throw new BadRequestError("Missing amountInINR for order");
+
       const order = await this.razorpay.orders.create({
         amount: amountInINR * 100,
         currency: "INR",

@@ -35,22 +35,6 @@ class FCMService {
     }
   }
 
-  static async subscribeToTopic(tokens, topic) {
-    try {
-      await messaging.subscribeToTopic(tokens, topic);
-    } catch (err) {
-      throw err;
-    }
-  }
-
-  static async unsubscribeFromTopic(tokens, topic) {
-    try {
-      await messaging.unsubscribeFromTopic(tokens, topic);
-    } catch (err) {
-      throw err;
-    }
-  }
-
   static async refreshToken() {
     try {
       const token = await this.subscribe();

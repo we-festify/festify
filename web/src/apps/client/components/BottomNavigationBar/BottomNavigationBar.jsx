@@ -1,6 +1,11 @@
 import styles from "./BottomNavigationBar.module.css";
 
-const BottomNavigationBar = ({ tabs, activeTabIndex, onTabChange }) => {
+const BottomNavigationBar = ({
+  tabs,
+  activeTabIndex,
+  onTabChange,
+  showLabels = true,
+}) => {
   return (
     <div className={styles.container}>
       <div className={styles.tabs}>
@@ -13,7 +18,9 @@ const BottomNavigationBar = ({ tabs, activeTabIndex, onTabChange }) => {
             >
               <button onClick={() => onTabChange(index)}>
                 {isActive ? tab.activeIcon || tab.icon : tab.icon}
-                <span className={styles.name}>{tab.name || tab.label}</span>
+                {showLabels && (
+                  <span className={styles.name}>{tab.name || tab.label}</span>
+                )}
               </button>
             </div>
           );

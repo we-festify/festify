@@ -91,6 +91,7 @@ const Profile = () => {
                   tabs={tabs}
                   activeTabIndex={activeTabIndex}
                   onTabChange={handleTabChange}
+                  showLabels={false}
                 />
               </>
             )}

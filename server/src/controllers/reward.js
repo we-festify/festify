@@ -1,17 +1,6 @@
-const RewardService = require("../services/reward");
-const { BadRequestError } = require("../utils/errors");
+const RewardService = require("../services/rewards");
 
 class RewardController {
-  static async create(req, res, next) {
-    try {
-      const { reward } = req.body;
-      const createdReward = await RewardService.create(reward);
-      res.status(201).json({ reward: createdReward });
-    } catch (err) {
-      next(err);
-    }
-  }
-
   static async getById(req, res, next) {
     try {
       const { id } = req.params;
@@ -22,17 +11,16 @@ class RewardController {
     }
   }
 
-  static async getAllByUser(req, res, next) {
+  static async getAllBySelf(req, res, next) {
     try {
-      const { userId } = req.params;
+      const { user } = req;
       const { extended } = req.query;
-      const rewards = await RewardService.getAllByUser(userId, { extended });
+      const rewards = await RewardService.getAllByUser(user._id, { extended });
       res.status(200).json({ rewards });
     } catch (err) {
       next(err);
     }
   }
-
 }
 
 module.exports = RewardController;
