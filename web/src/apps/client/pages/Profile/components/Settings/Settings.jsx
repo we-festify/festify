@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import styles from "./Settings.module.css";
-import WebPushService from "./../../../../../../services/webPush";
 import {
+  useGetFCMQuery,
   useGetNotificationPermissionQuery,
-  useGetWebPushSubscriptionQuery,
-  useSubscribeWebPushMutation,
-  useTestWebPushMutation,
-  useUnsubscribeWebPushMutation,
+  useSubscribeFCMMutation,
+  useSubscribeToTopicsMutation,
+  useTestFCMMutation,
+  useUnsubscribeFCMMutation,
+  useUnsubscribeFromTopicsMutation,
   useUpdateNotificationPermissionMutation,
 } from "../../../../../../state/redux/notification/notificationApi";
 import Button from "../../../../atoms/Button";
@@ -17,6 +18,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useLogoutMutation } from "../../../../../../state/redux/auth/authApi";
 import { toast } from "../../../../components/Toast";
+import FCMService from "../../../../../../services/fcm";
 
 const Settings = () => {
   const dispatch = useDispatch();
@@ -46,11 +48,11 @@ const Settings = () => {
 const NotificationSettingsGroup = () => {
   const { data: { notificationPermission } = {} } =
     useGetNotificationPermissionQuery();
-  const [testWebPush, {}] = useTestWebPushMutation();
+  const [testFCMNotification, {}] = useTestFCMMutation();
   const isAdmin = useSelector(selectIsAdmin);
 
   const handleTestWebPush = async () => {
-    testWebPush({
+    testFCMNotification({
       title: "Test Web Push",
       body: "This is a test notification",
     });
@@ -64,17 +66,17 @@ const NotificationSettingsGroup = () => {
         <input
           type="checkbox"
           className={styles.value}
-          checked={notificationPermission?.email || false}
+          defaultChecked={notificationPermission?.email || false}
           disabled
         />
       </div>
-      <WebPushToggleItem />
+      <FCMToggleItem />
       <div className={styles.item}>
         <p className={styles.key}>In-App</p>
         <input
           type="checkbox"
           className={styles.value}
-          checked={notificationPermission?.inApp || false}
+          defaultChecked={notificationPermission?.inApp || true}
           disabled
         />
       </div>
@@ -84,74 +86,79 @@ const NotificationSettingsGroup = () => {
           style={{ marginTop: "1rem" }}
           onClick={handleTestWebPush}
         >
-          Test Web Push
+          Test Notification
         </Button>
       )}
     </div>
   );
 };
 
-const WebPushToggleItem = () => {
-  const { data: { notificationPermission } = {} } =
-    useGetNotificationPermissionQuery();
+const FCMToggleItem = () => {
+  const {
+    data: { notificationPermission } = {},
+    isLoading: arePermissionsLoading,
+  } = useGetNotificationPermissionQuery();
+  const { data: { fcm } = {}, isLoading: isFCMLoading } = useGetFCMQuery();
   const [updatePermission, {}] = useUpdateNotificationPermissionMutation();
-  const { data: { subscription } = {}, isLoading } =
-    useGetWebPushSubscriptionQuery();
-  const [subscribeToWebPush, {}] = useSubscribeWebPushMutation();
-  const [unsubscribeFromWebPush, {}] = useUnsubscribeWebPushMutation();
+  const [subscribeToFCM, {}] = useSubscribeFCMMutation();
+  const [unsubscribeFromFCM, {}] = useUnsubscribeFCMMutation();
+  const [subscribeToTopics, {}] = useSubscribeToTopicsMutation();
+  const [unsubscribeFromTopics, {}] = useUnsubscribeFromTopicsMutation();
   const [push, setPush] = useState(false);
 
   useEffect(() => {
-    WebPushService.getSubscription().then((sub) => {
-      if (sub) {
-        let found = false;
-        subscription?.subscriptions?.forEach((s) => {
-          if (s.endpoint === sub.endpoint) {
-            setPush(true);
-            found = true;
-            updatePermission({ push: true });
-          }
-        });
-        if (!found) {
-          // If the subscription is not found in the database, try to subscribe again
-          // if the user has given permission
-          if (notificationPermission?.push) {
-            subscribeToWebPush(sub);
+    const initialise = async () => {
+      try {
+        if (
+          notificationPermission?.push &&
+          FCMService.hasGivenNotificationPermission()
+        ) {
+          const token = await FCMService.getToken();
+          if (token && fcm?.tokens?.includes(token)) {
+            // If the user has given permission and the token is found in the database
             setPush(true);
           } else {
-            setPush(false);
+            // If the user has given permission but the token is not found in the database
+            await subscribeToFCM(token).unwrap();
+            setPush(true);
           }
         }
-      } else {
-        setPush(false);
+      } catch {
+        // If there is an error
+        // Do nothing
       }
-    });
-  }, [subscription]);
+    };
+
+    initialise();
+  }, [notificationPermission, fcm]);
 
   // This function can have inconsistent behavior
   const handlePushChange = async (e) => {
     const { checked } = e.target;
     setPush(checked);
     try {
-      if (!checked) {
-        const payload = await WebPushService.unsubscribe();
-        if (payload) {
-          unsubscribeFromWebPush(payload);
-          updatePermission({ push: false });
-        }
-        console.log("Unsubscribed from web push");
-        return;
+      if (checked) {
+        const token = await FCMService.requestPermission();
+        const { updatedPermission } = await updatePermission({
+          push: true,
+        }).unwrap();
+        await subscribeToFCM(token).unwrap();
+
+        // Subscribe to all topics
+        subscribeToTopics({ topics: updatedPermission?.topics || [], token });
+      } else {
+        const token = await FCMService.getToken();
+        const { updatedPermission } = await updatePermission({
+          push: false,
+        }).unwrap();
+        await unsubscribeFromFCM(token).unwrap();
+
+        // Unsubscribe from all topics
+        unsubscribeFromTopics({
+          topics: updatedPermission?.topics || [],
+          token,
+        });
       }
-      if (!WebPushService.hasPermission()) {
-        await WebPushService.requestPermission();
-      }
-      let subscription = await WebPushService.getSubscription();
-      if (!subscription) {
-        subscription = await WebPushService.subscribe();
-      }
-      subscribeToWebPush(subscription);
-      updatePermission({ push: true });
-      console.log("Subscribed to web push");
     } catch (error) {
       setPush(!checked);
       console.error(error);
@@ -159,9 +166,9 @@ const WebPushToggleItem = () => {
   };
 
   return (
-    <div key={subscription?._id} className={styles.item}>
-      <p className={styles.key}>Web Push</p>
-      {isLoading ? (
+    <div key={fcm?._id + notificationPermission?._id} className={styles.item}>
+      <p className={styles.key}>Web Notifications</p>
+      {arePermissionsLoading || isFCMLoading ? (
         <p className={styles.value}>Loading...</p>
       ) : (
         <input

@@ -22,13 +22,14 @@ h2.title {
 .offerCard {
   display: flex;
   height: 140px;
-  overflow: hidden;
   border-radius: 8px;
   position: relative;
 }
 
 .left {
   background-color: var(--color-border);
+  backdrop-filter: contrast(0.9) blur(0.9rem);
+  -webkit-backdrop-filter: contrast(0.9) blur(0.9rem);
   aspect-ratio: 1/1;
   display: flex;
   align-items: center;
@@ -68,7 +69,9 @@ h2.title {
 
 .right {
   flex: 1;
-  background-color: var(--color-border);
+  background-color: var(--color-navbar);
+  backdrop-filter: contrast(0.9) blur(0.5rem);
+  -webkit-backdrop-filter: contrast(0.9) blur(0.5rem);
   padding: 1rem;
 }
 

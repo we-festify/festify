@@ -1,5 +1,6 @@
 const EventService = require("../services/event");
 const AnnouncementService = require("../services/announcement");
+const NotificationService = require("../services/notification");
 const { BadRequestError } = require("../utils/errors");
 
 class EventController {
@@ -61,7 +62,26 @@ class EventController {
     try {
       const { id } = req.params;
       const { event } = req.body;
+
+      const existingEvent = await EventService.getById(id);
       const updatedEvent = await EventService.updateById(id, event);
+
+      // send notification
+      try {
+        const notificationPayload = {
+          title: `Event Update: ${existingEvent.name} Changed`,
+          body: `The event ${existingEvent.name} has been updated. Check the details for the latest information!`,
+          redirectUrl: `/events/${updatedEvent._id}`,
+          imageUrl: updatedEvent.image,
+        };
+        NotificationService.sendNotificationToTopic(
+          updatedEvent._id.toString(),
+          notificationPayload
+        );
+      } catch (err) {
+        console.error(err);
+      }
+
       res.status(200).json({ event: updatedEvent });
     } catch (err) {
       next(err);

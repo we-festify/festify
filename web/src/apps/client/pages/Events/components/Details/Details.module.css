@@ -26,10 +26,13 @@
   left: 0;
   width: 100%;
   padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background: linear-gradient(
     to bottom,
-    hsla(0, 0%, 0%, 0) 0%,
-    hsla(0, 0%, 0%, 0.6) 50%
+    transparent 0%,
+    hsla(0, 0%, 0%, 0.7) 60%
   );
   z-index: 1;
 }
@@ -40,6 +43,13 @@
   color: var(--color-text);
   margin: 0;
   view-transition-name: var(--hero-title-transition-name);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 1rem;
 }
 
 .details {
@@ -79,15 +89,11 @@ p.text span {
 }
 
 .tags .tag {
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 300;
   letter-spacing: 0.03rem;
   color: var(--color-text-light);
-  background-color: hsla(var(--color-white-hsl-values), 0.1);
-  cursor: pointer;
-  text-transform: uppercase;
+  font-style: italic;
 }
 
 .other {
@@ -111,17 +117,19 @@ p.text span {
 }
 
 .other .item.price .value {
+  font-size: 1rem;
   font-weight: 600;
   color: var(--color-secondary-500);
 }
 
 .other .item .value {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: lighter;
   letter-spacing: 0.03rem;
   color: var(--color-text);
   line-height: 1.6;
   margin: 0;
+  text-transform: capitalize;
 }
 
 .actions {
@@ -149,6 +157,14 @@ p.text span {
     display: none;
   }
 
+  .image {
+    top: calc(-1 * var(--navbar-height));
+    margin-bottom: calc(-1 * var(--navbar-height));
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    box-shadow: 0 4px 10px 0 hsla(0, 0%, 0%, 0.8);
+  }
+
   .image img {
     aspect-ratio: 1 / 1;
     max-height: 400px;
@@ -156,11 +172,5 @@ p.text span {
 
   .image .info .name {
     font-size: 2rem;
-  }
-
-  .actions {
-    position: sticky;
-    bottom: calc(var(--bottom-navigation-bar-height) - 0.1rem);
-    padding-bottom: 1rem;
   }
 }

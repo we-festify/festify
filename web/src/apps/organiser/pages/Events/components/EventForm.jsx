@@ -12,36 +12,36 @@ const EventForm = ({ onSubmit, defaultValue, onChange }) => {
   const organisationId = user.organisation;
   const [canSubmit, setCanSubmit] = useState(false);
 
-  const [event, setEvent] = useState(
-    defaultValue || {
-      name: "",
-      type: "",
-      venue: "",
-      summary: "",
-      description: "",
-      image: "",
-      organisation: organisationId,
-      startTime: "",
-      endTime: "",
-      timeline: [],
-      category: "other",
-      tags: [],
-      rulebookUrl: "",
+  const [event, setEvent] = useState({
+    name: "",
+    type: "",
+    venue: "",
+    summary: "",
+    description: "",
+    image: "",
+    organisation: organisationId,
+    startTime: "",
+    endTime: "",
+    timeline: [],
+    category: "other",
+    tags: [],
+    rulebookUrl: "",
 
-      isRegistrationRequired: false,
-      registrationFeesInINR: 0,
-      minTeamSize: 1,
-      maxTeamSize: 1,
-      registrationsStart: "",
-      registrationsEnd: "",
+    isRegistrationRequired: false,
+    registrationFeesInINR: 0,
+    minTeamSize: 1,
+    maxTeamSize: 1,
+    registrationsStart: "",
+    registrationsEnd: "",
 
-      isEntryPassRequired: false,
-      entryPassPriceInINR: 0,
-      totalEntryPasses: 0, // 0 means unlimited
-      entryPassDistributionStart: "",
-      entryPassDistributionEnd: "",
-    }
-  );
+    isEntryPassRequired: false,
+    entryPassPriceInINR: 0,
+    totalEntryPasses: 0, // 0 means unlimited
+    entryPassDistributionStart: "",
+    entryPassDistributionEnd: "",
+
+    ...(defaultValue || {}),
+  });
 
   const handleChange = (name, value) => {
     setEvent({ ...event, [name]: value });
@@ -54,6 +54,7 @@ const EventForm = ({ onSubmit, defaultValue, onChange }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(event);
     if (canSubmit) onSubmit(event);
   };
 

@@ -3,17 +3,19 @@ import InAppNotificationSchema from "./schemas/InAppNotification";
 
 const db = new leafstore("festify-db");
 
-const InAppNotification = db.Model(
-  "InAppNotification",
-  InAppNotificationSchema
-);
+// models
+let InAppNotification;
 
-db.connect()
-  .then(() => {
-    console.log("Connected to local database");
-  })
-  .catch((err) => {
-    console.error("Error connecting to local database:", err);
-  });
+const init = async () => {
+  try {
+    await db.connect();
+    console.log("Local Database connected");
+    InAppNotification = db.Model("InAppNotification", InAppNotificationSchema);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+init();
 
 export { InAppNotification };

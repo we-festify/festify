@@ -7,6 +7,7 @@ import Button from "../../../../atoms/Button";
 import Modal from "../../../../components/Modal/Modal";
 import PaymentService from "../../../../../../services/payment";
 import { toast } from "../../../../components/Toast";
+import ApplyPromoCode from "../../../../components/ApplyPromoCode/ApplyPromoCode";
 
 const Registration = ({ event = {}, close }) => {
   const user = useSelector(selectUser);
@@ -18,7 +19,7 @@ const Registration = ({ event = {}, close }) => {
   });
   const [error, setError] = useState(null);
   const [membersInput, setMembersInput] = useState("");
-  const [createParticipant] = useCreateParticipantMutation();
+  const [createParticipant, { isLoading }] = useCreateParticipantMutation();
   const [promoCode, setPromoCode] = useState("");
 
   const handleChange = (e) => {
@@ -89,6 +90,10 @@ const Registration = ({ event = {}, close }) => {
     }
   };
 
+  const handleApplyPromoCode = (promotion) => {
+    setPromoCode(promotion?.promoCode || "");
+  };
+
   if (!event || !user) {
     return (
       <Modal
@@ -110,14 +115,6 @@ const Registration = ({ event = {}, close }) => {
         <div className={styles.item}>
           <p className={styles.key}>Contact Email</p>
           <p className={styles.value}>{user.email}</p>
-        </div>
-        <div className={styles.item + " " + styles.price}>
-          <p className={styles.key}>Price</p>
-          <p className={styles.value}>
-            {event.registrationFeesInINR > 0
-              ? `₹ ${event.registrationFeesInINR}`
-              : "Free"}
-          </p>
         </div>
       </div>
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -162,19 +159,27 @@ const Registration = ({ event = {}, close }) => {
           </div>
         )}
         {event.registrationFeesInINR > 0 && (
-          <div className={styles.formGroup}>
-            <label htmlFor="promoCode">Promo Code</label>
-            <input
-              type="text"
-              name="promoCode"
-              id="promoCode"
-              className={styles.input}
-              onChange={(e) => setPromoCode(e.target.value)}
-            />
-          </div>
+          <ApplyPromoCode
+            onChange={(p) => setPromoCode(p)}
+            defaultValue={promoCode}
+            orderType={`event:${event._id}`}
+            orderAmount={event.registrationFeesInINR}
+            onApply={handleApplyPromoCode}
+          />
         )}
         {error && <p className={styles.error}>{error}</p>}
-        <Button variant="secondary" type="submit" className={styles.submit}>
+        <Button
+          variant="secondary"
+          type="submit"
+          className={styles.submit}
+          disabled={
+            (event.minTeamSize > 1 &&
+              participant.members.length < event.minTeamSize) ||
+            (event.minTeamSize > 1 &&
+              participant.members.length >= event.maxTeamSize) ||
+            isLoading
+          }
+        >
           {event.registrationFeesInINR > 0 ? "Pay and Confirm" : "Confirm"}
         </Button>
       </form>

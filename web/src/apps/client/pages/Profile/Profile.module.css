@@ -26,8 +26,8 @@
   gap: 1rem;
   width: 25%;
   max-width: 300px;
-  -webkit-backdrop-filter: contrast(0.9);
-  backdrop-filter: contrast(0.9);
+  -webkit-backdrop-filter: contrast(0.9) blur(1rem);
+  backdrop-filter: contrast(0.9) blur(1rem);
   border-radius: 0.5rem;
   padding: 1rem;
   position: sticky;
@@ -167,10 +167,7 @@ h2.name {
   }
 
   .left {
-    width: 100%;
-    max-width: 100%;
-    position: relative;
-    top: 0;
+    display: none;
   }
 
   .right {

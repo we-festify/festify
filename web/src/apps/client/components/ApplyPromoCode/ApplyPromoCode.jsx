@@ -1,12 +1,73 @@
 import { FaCheckCircle } from "react-icons/fa";
-import Button from "../../atoms/Button";
 import styles from "./ApplyPromoCode.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "../../../../utils/tailwind";
+import {
+  useGetBestApplicablePromotionQuery,
+  useGetPromotionByPromoCodeQuery,
+} from "../../../../state/redux/promotions/promotionsApi";
 
-const ApplyPromoCode = ({ onChange, defaultValue }) => {
+const ApplyPromoCode = ({
+  onChange,
+  defaultValue,
+  orderType,
+  orderAmount,
+  onApply,
+}) => {
+  const { data: { promotion: bestPromotion } = {} } =
+    useGetBestApplicablePromotionQuery({
+      orderType,
+      orderAmount,
+    });
   const [promoCode, setPromoCode] = useState(defaultValue);
-  const [isApplied, setIsApplied] = useState(false);
+  const { data: { promotion } = {} } = useGetPromotionByPromoCodeQuery(
+    promoCode,
+    {
+      skip: !promoCode,
+    }
+  );
+  const [appliedPromotion, setAppliedPromotion] = useState(null);
+  const [discount, setDiscount] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(orderAmount);
+
+  useEffect(() => {
+    if (promotion && promotion.isActive) {
+      setAppliedPromotion(promotion);
+    } else {
+      setAppliedPromotion(null);
+    }
+  }, [promotion]);
+
+  useEffect(() => {
+    handleApplyPromoCode(appliedPromotion);
+    if (onApply instanceof Function) {
+      onApply(appliedPromotion);
+    }
+  }, [appliedPromotion]);
+
+  const handleApplyPromoCode = (promotion) => {
+    if (promotion) {
+      if (promotion.discountType === "percentage") {
+        const discountValue = Math.min(
+          (promotion.discountValue * orderAmount) / 100,
+          orderAmount
+        );
+        setDiscount(discountValue);
+        setTotalAmount(orderAmount - discountValue);
+      } else {
+        const discountValue = Math.min(
+          promotion.discountValue,
+          orderAmount,
+          promotion.maxDiscountInINR
+        );
+        setDiscount(discountValue);
+        setTotalAmount(orderAmount - discountValue);
+      }
+    } else {
+      setDiscount(0);
+      setTotalAmount(orderAmount);
+    }
+  };
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -17,14 +78,32 @@ const ApplyPromoCode = ({ onChange, defaultValue }) => {
     }
   };
 
-  const handleClick = (e) => {
+  const handleClickPromo = (e) => {
     e.preventDefault();
-    setIsApplied((p) => !p);
+    if (promoCode) {
+      setPromoCode(null);
+      setTimeout(() => {
+        setPromoCode(promoCode);
+      }, 0);
+    }
+  };
+
+  const handleClickBestPromo = (e) => {
+    e.preventDefault();
+    if (appliedPromotion) {
+      setAppliedPromotion(null);
+    } else {
+      setAppliedPromotion(bestPromotion);
+
+      if (onChange instanceof Function) {
+        onChange(bestPromotion.promoCode);
+      }
+    }
   };
 
   return (
     <div className="space-y-2">
-      {!isApplied && (
+      {!appliedPromotion && (
         <div className={styles.formGroup}>
           <label htmlFor="promoCode">Promo Code</label>
           <div className="relative">
@@ -40,6 +119,7 @@ const ApplyPromoCode = ({ onChange, defaultValue }) => {
               <div
                 className="text-secondary absolute top-2 right-4"
                 role="button"
+                onClick={handleClickPromo}
               >
                 Apply
               </div>
@@ -48,13 +128,47 @@ const ApplyPromoCode = ({ onChange, defaultValue }) => {
         </div>
       )}
       <p className="text-xs font-medium">Best Offer</p>
-      <PromoCard isApplied={isApplied} handleClick={handleClick} />
+      <PromoCard
+        promotion={bestPromotion}
+        isApplied={appliedPromotion ? true : false}
+        handleClick={handleClickBestPromo}
+      />
+      <div className="flex flex-col gap-4 mt-8">
+        <div className="flex justify-between gap-4">
+          <p className="text-sm text-muted-foreground">Subtotal</p>
+          <p className="text-right">₹ {orderAmount}</p>
+        </div>
+        <div className="flex justify-between gap-4">
+          <p className="text-muted-foreground">Discount</p>
+          <p
+            className={cn(
+              "text-sm text-right",
+              discount > 0 && "text-green-500"
+            )}
+          >
+            ₹ {discount}
+          </p>
+        </div>
+        <div className="flex items-center justify-between gap-4 border-t-2 border-t-muted pt-4">
+          <p className="text-sm text-muted-foreground">Total</p>
+          <p className="text-xl text-right text-secondary">
+            {totalAmount > 0 ? `₹ ${totalAmount}` : "Free"}
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default ApplyPromoCode;
-function PromoCard({ isApplied, handleClick }) {
+
+const PromoCard = ({ isApplied, handleClick, promotion }) => {
+  if (!promotion) {
+    return (
+      <div className="text-sm text-muted-foreground">No offers available</div>
+    );
+  }
+
   return (
     <div
       className={cn(
@@ -66,8 +180,15 @@ function PromoCard({ isApplied, handleClick }) {
         <FaCheckCircle />
       </div>
       <div className="flex-1 text-sm">
-        <p>EDMFORISM{isApplied ? " applied" : ""}</p>
-        <p className="text-xs">20% discount</p>
+        <p>
+          {promotion.name}
+          {isApplied ? " applied" : ""}
+        </p>
+        <p className="text-xs">
+          {promotion.discountType === "fixed" && "₹"}
+          {promotion.discountValue}
+          {promotion.discountType === "percentage" && "%"} discount
+        </p>
       </div>
       <div>
         <span className="text-secondary cursor-pointer" onClick={handleClick}>
@@ -76,4 +197,4 @@ function PromoCard({ isApplied, handleClick }) {
       </div>
     </div>
   );
-}
+};

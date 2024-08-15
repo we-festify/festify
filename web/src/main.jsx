@@ -28,6 +28,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   </React.StrictMode>
 );
 
+// register service worker
 serviceWorkerRegistration.register({
   bypassNodeEnvProduction: true,
+});
+// register firebase messaging service worker
+serviceWorkerRegistration.register({
+  bypassNodeEnvProduction: true,
+  serviceWorkerUrl: "/firebase-messaging-sw.js",
 });

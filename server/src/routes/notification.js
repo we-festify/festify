@@ -16,22 +16,24 @@ router.get(
   NotificationController.getPermissions
 );
 
-// Web Push
-router.post(
-  "/webpush/subscription",
-  AuthMiddleware.requireLoggedIn,
-  NotificationController.subscribeWebPush
-);
+// FCM
+router.get("/fcm", NotificationController.getFCMByUser);
+router.post("/fcm/subscribe", NotificationController.subscribeFCM);
 router.delete(
-  "/webpush/subscription",
+  "/fcm/subscribe",
   AuthMiddleware.requireLoggedIn,
-  NotificationController.unsubscribeWebPush
+  NotificationController.unsubscribeFCM
 );
-router.get(
-  "/webpush/subscription",
+router.post(
+  "/fcm/test",
   AuthMiddleware.requireLoggedIn,
-  NotificationController.getSubscriptionsByUser
+  RBACMiddleware.requirePermissions("notification:send"),
+  NotificationController.testFCM
 );
-router.post("/webpush/test", NotificationController.testWebPush);
+router.post("/fcm/subscribe/topics", NotificationController.subscribeToTopics);
+router.delete(
+  "/fcm/subscribe/topics",
+  NotificationController.unsubscribeFromTopics
+);
 
 module.exports = router;

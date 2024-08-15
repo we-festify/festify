@@ -3,27 +3,25 @@ const { applicationDB } = require("../../database");
 const RazorpayPayment = require("../models/RazorpayPayment")(applicationDB);
 
 class RazorpayPaymentRepository {
-  static async create({
-    razorpayOrderId,
-    razorpayPaymentId,
-    razorpaySignature,
-    user,
-    type,
-    reference,
-    amount,
-    status,
-  }) {
+  static async create(payment) {
     try {
-      return await RazorpayPayment.create({
-        razorpayOrderId,
-        razorpayPaymentId,
-        razorpaySignature,
-        user,
-        type,
-        reference,
-        amount,
-        status,
-      });
+      return await RazorpayPayment.create(payment);
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async getById(id, { extended = false }) {
+    try {
+      if (extended) {
+        return await RazorpayPayment.findById(id).populate({
+          path: "appliedReward",
+          populate: {
+            path: "reference",
+          },
+        });
+      }
+      return await RazorpayPayment.findById(id);
     } catch (err) {
       throw err;
     }

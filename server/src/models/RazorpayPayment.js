@@ -49,6 +49,10 @@ const RazorpayPayment = new mongoose.Schema(
       required: true,
       default: "No description provided",
     },
+    appliedReward: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Reward",
+    },
   },
   {
     timestamps: true,

@@ -32,18 +32,22 @@ class RBACMiddleware {
   static requirePermissions =
     (...rules) =>
     async (req, res, next) => {
+      let isExecuted = false;
       for (const rule of rules) {
         const result = await this.#executeRule(rule, req);
         if (result) {
-          return next();
+          isExecuted = true;
+          next();
         }
       }
 
-      return sendError(
-        res,
-        403,
-        "You do not have permission to perform this action"
-      );
+      if (!isExecuted) {
+        return sendError(
+          res,
+          403,
+          "You do not have permission to perform this action"
+        );
+      }
     };
 }
 

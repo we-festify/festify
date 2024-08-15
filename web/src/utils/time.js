@@ -22,21 +22,21 @@ export const formatTime = (timestamp) => {
   }
 };
 
-export const formatDate = (timestamp) => {
+export const formatDate = (timestamp, options = {}) => {
   try {
     const date = new Date(timestamp);
     return Intl.DateTimeFormat("en-US", {
       month: "short",
       day: "numeric",
-      year: "numeric",
+      year: options.skipYear ? undefined : "numeric",
     }).format(date);
   } catch (error) {
     return "";
   }
 };
 
-export const formatDateTime = (date) => {
-  return `${formatDate(date)} - ${formatTime(date)}`;
+export const formatDateTime = (date, options = {}) => {
+  return `${formatDate(date, options)} - ${formatTime(date)}`;
 };
 
 export const ceilHour = (timestamp) => {
@@ -75,4 +75,29 @@ export const formatDateTimePassed = (timestamp) => {
     return `${days} day${days > 1 ? "s" : ""} ago`;
   }
   return formatDate(timestamp);
+};
+
+export const formatDateTimeFromNow = (
+  timestamp,
+  { skipDate = false, prefix = "" } = {}
+) => {
+  const now = new Date().getTime();
+  const diff = timestamp - now;
+  const seconds = Math.floor(diff / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  if (seconds < 60) {
+    return prefix + `${seconds} second${seconds > 1 ? "s" : ""}`;
+  }
+  if (minutes < 60) {
+    return prefix + `${minutes} minute${minutes > 1 ? "s" : ""}`;
+  }
+  if (hours < 24) {
+    return prefix + `${hours} hour${hours > 1 ? "s" : ""}`;
+  }
+  if (days < 7) {
+    return prefix + `${days} day${days > 1 ? "s" : ""}`;
+  }
+  return skipDate ? "" : formatDate(timestamp);
 };

@@ -21,6 +21,7 @@ const RewardSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       required: false, // for failed payments, this will be null
       refPath: "type",
+      unique: true, // one reward can be used only once
     },
     status: {
       type: String,

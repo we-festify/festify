@@ -1,5 +1,5 @@
 const NotificationService = require("../services/notification");
-const WebPushService = require("../services/webPush");
+const FCMService = require("../services/fcm");
 
 class NotificationController {
   // Notification Permission
@@ -34,63 +34,83 @@ class NotificationController {
     }
   }
 
-  // Web Push
-  static async subscribeWebPush(req, res, next) {
+  // FCM
+  static async getFCMByUser(req, res, next) {
     try {
       const { user } = req;
-      const { subscription } = req.body;
-      const webPushSubscription = await WebPushService.subscribe(
+      const fcm = await FCMService.getByUserId(user);
+      res.status(200).json({
+        fcm,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async subscribeFCM(req, res, next) {
+    try {
+      const { user } = req;
+      const { token } = req.body;
+      const subscribedFCM = await FCMService.subscribeUserToken(user, token);
+      res.status(200).json({
+        fcm: subscribedFCM,
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async unsubscribeFCM(req, res, next) {
+    try {
+      const { user } = req;
+      const { token } = req.body;
+      const unsubscribedFCM = await FCMService.unsubscribeUserToken(
         user,
-        subscription
+        token
       );
       res.status(200).json({
-        subscription: webPushSubscription,
+        fcm: unsubscribedFCM,
       });
     } catch (err) {
       next(err);
     }
   }
 
-  static async unsubscribeWebPush(req, res, next) {
-    try {
-      const { user } = req;
-      const { subscription } = req.body;
-      const webPushSubscription = await WebPushService.unsubscribe(
-        user,
-        subscription
-      );
-      res.status(200).json({
-        subscription: webPushSubscription,
-      });
-    } catch (err) {
-      next(err);
-    }
-  }
-
-  static async getSubscriptionsByUser(req, res, next) {
-    try {
-      const { user } = req;
-      const webPushSubscriptions = await WebPushService.getSubscriptionByUser(
-        user
-      );
-      res.status(200).json({
-        subscription: webPushSubscriptions,
-      });
-    } catch (err) {
-      next(err);
-    }
-  }
-
-  static async testWebPush(req, res, next) {
+  static async testFCM(req, res, next) {
     try {
       const { notification } = req.body;
       const { user } = req;
-      await WebPushService.sendNotificationToUser(user, notification, {
-        topic: "test",
-        throwOnError: true,
-      });
+      await FCMService.sendNotificationToUser(user._id, notification);
       res.status(200).json({
         message: "Notification sent",
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async subscribeToTopics(req, res, next) {
+    try {
+      const { topics, token } = req.body;
+      const { user } = req;
+
+      await FCMService.subscribeToTopics(user._id, topics, token);
+      res.status(200).json({
+        message: "Subscribed to topic",
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async unsubscribeFromTopics(req, res, next) {
+    try {
+      const { topics, token } = req.body;
+      const { user } = req;
+
+      await FCMService.unsubscribeFromTopics(user._id, topics, token);
+      res.status(200).json({
+        message: "Unsubscribed from topic",
       });
     } catch (err) {
       next(err);

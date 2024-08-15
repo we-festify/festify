@@ -3,12 +3,16 @@ const ParticipantService = require("../services/participant");
 class ParticipantController {
   static async register(req, res, next) {
     try {
-      const { participant } = req.body;
+      const { participant, promoCode } = req.body;
+      const { user } = req;
       const {
         type,
         participant: participantPayload,
         order,
-      } = await ParticipantService.register(participant);
+      } = await ParticipantService.register(participant, {
+        promoCode,
+        email: user.email,
+      });
       res.status(201).json({
         participant: participantPayload,
         order,

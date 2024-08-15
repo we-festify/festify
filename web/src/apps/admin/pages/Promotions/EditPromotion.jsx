@@ -20,16 +20,14 @@ const EditPromotion = () => {
   const [updatePromotion, { error }] = useUpdatePromotionMutation();
 
   const handleSubmit = async (promotion) => {
-    console.log(promotion);
-    try {
-      await updatePromotion({
-        id: promotionId,
-        promotion,
-      }).unwrap();
-      toast.success("Promotion campaign updated successfully!");
-    } catch (err) {
-      toast.error("Error updating promotion campaign.");
-    }
+    toast.promise(updatePromotion({ id: promotionId, promotion }).unwrap(), {
+      loading: "Updating promotion campaign...",
+      success: "Promotion campaign updated successfully!",
+      error:
+        error?.data?.message ||
+        error?.message ||
+        "Failed to update promotion campaign",
+    });
   };
 
   return (

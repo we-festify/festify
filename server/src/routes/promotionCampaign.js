@@ -11,9 +11,25 @@ router.post(
   PromotionCampaignController.create
 );
 router.get(
+  "/best",
+  RBACMiddleware.requirePermissions("promotionCampaign:read"),
+  PromotionCampaignController.getBestApplicable
+);
+router.get(
+  "/me",
+  AuthMiddleware.requireLoggedIn,
+  RBACMiddleware.requirePermissions("promotionCampaign:read"),
+  PromotionCampaignController.getAllValidByUserEmail
+);
+router.get(
   "/:id",
   RBACMiddleware.requirePermissions("promotionCampaign:read"),
   PromotionCampaignController.getById
+);
+router.get(
+  "/code/:code",
+  RBACMiddleware.requirePermissions("promotionCampaign:read"),
+  PromotionCampaignController.getByCode
 );
 router.get(
   "/",

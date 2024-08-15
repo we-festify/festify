@@ -31,7 +31,5 @@ module.exports = function (wss) {
         socket.send(JSON.stringify(["error", err.message]));
       }
     });
-
-    socket.send("Hello from Festify Web Sockets API");
   });
 };

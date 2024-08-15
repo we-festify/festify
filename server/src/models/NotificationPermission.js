@@ -22,6 +22,11 @@ const NotificationPermissionSchema = new mongoose.Schema(
       required: true,
       default: false,
     },
+    topics: {
+      type: [String],
+      required: true,
+      default: [],
+    },
   },
   {
     timestamps: true,

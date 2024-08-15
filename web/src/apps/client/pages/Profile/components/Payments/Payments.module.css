@@ -26,8 +26,13 @@ h2.title {
   justify-content: space-between;
   padding: 1rem;
   border-radius: 0.5rem;
-  background-color: var(--color-navbar);
+  -webkit-backdrop-filter: contrast(0.9) blur(1rem);
+  backdrop-filter: contrast(0.9) blur(1rem);
   cursor: pointer;
+}
+
+.payment:hover {
+  background-color: var(--color-navbar);
 }
 
 .payment p {

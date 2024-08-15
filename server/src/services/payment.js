@@ -26,6 +26,7 @@ class PaymentService {
     description,
   }) {
     try {
+      console.log(description);
       return await RazorpayPaymentRepository.create({
         razorpayOrderId,
         razorpayPaymentId,
@@ -51,6 +52,14 @@ class PaymentService {
       if (!isValid) {
         throw new Error("Invalid signature");
       }
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  static async getPaymentById(id, { extended } = {}) {
+    try {
+      return await RazorpayPaymentRepository.getById(id, { extended });
     } catch (err) {
       throw err;
     }

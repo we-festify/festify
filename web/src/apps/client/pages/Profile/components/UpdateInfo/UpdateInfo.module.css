@@ -5,3 +5,11 @@
   margin-bottom: 1rem;
   margin-top: 1rem;
 }
+
+.mutedBg {
+  border-radius: 1rem;
+  padding: 1rem;
+  padding-bottom: 0;
+  backdrop-filter: contrast(0.9) blur(0.5rem);
+  -webkit-backdrop-filter: contrast(0.9) blur(0.5rem);
+}

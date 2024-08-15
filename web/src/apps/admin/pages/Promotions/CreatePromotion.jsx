@@ -12,11 +12,13 @@ const CreatePromotion = () => {
     useCreatePromotionMutation();
 
   const handleSubmit = () => {
-    console.log(promotion);
-    toast.promise(createPromotion(promotion), {
-      loading: "Creating event...",
-      success: "Event created successfully!",
-      error: "Error creating event.",
+    toast.promise(createPromotion(promotion).unwrap(), {
+      loading: "Creating promotion campaign...",
+      success: "Promotion campaign created successfully!",
+      error:
+        error?.data?.message ||
+        error?.message ||
+        "Failed to create promotion campaign",
     });
   };
 
@@ -36,6 +38,7 @@ const CreatePromotion = () => {
             {error && <p className={styles.error}>{error?.data?.message}</p>}
           </p>
           <Form
+            key={promotion?._id}
             defaultValue={promotion}
             onSubmit={handleSubmit}
             onChange={(promotion) => setPromotion(promotion)}

@@ -49,7 +49,7 @@ h2.title {
   .sidebar {
     width: 100%;
     max-width: 100%;
-    max-height: 100%;
+    height: unset;
     overflow-y: unset;
     position: relative;
   }
@@ -70,6 +70,7 @@ h2.title {
   .categories li {
     padding: 0.4rem 1.2rem;
     max-width: fit-content;
+    max-width: -moz-fit-content;
   }
 
   .categories li.active {

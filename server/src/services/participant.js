@@ -3,6 +3,8 @@ const ParticipantRepository = require("../repositories/participant");
 const UserRepository = require("../repositories/user");
 const { BadRequestError } = require("../utils/errors");
 const PaymentService = require("./payment");
+const PromotionCampaignService = require("./promotionCampaign");
+const RewardService = require("./rewards");
 
 class ParticipantService {
   static checkRequiredFields(participant) {
@@ -74,10 +76,10 @@ class ParticipantService {
     }
   }
 
-  static async register(participant) {
+  static async register(participantData, { promoCode, email }) {
     try {
-      this.checkRequiredFields(participant);
-      const event = await EventRepository.getById(participant.event);
+      this.checkRequiredFields(participantData);
+      const event = await EventRepository.getById(participantData.event);
       if (!event) throw new BadRequestError("Invalid event");
 
       if (!event.isRegistrationRequired) {
@@ -86,35 +88,98 @@ class ParticipantService {
         );
       }
 
-      participant.members = [
-        ...new Set([participant.leader, ...(participant.members || [])]),
+      participantData.members = [
+        ...new Set([
+          participantData.leader,
+          ...(participantData.members || []),
+        ]),
       ]; // add leader and remove duplicates
 
-      await this.#checkValidMembers(participant.members);
-      await this.#checkExistingParticipation(event, participant);
+      await this.#checkValidMembers(participantData.members);
+      await this.#checkExistingParticipation(event, participantData);
 
       if (event.minTeamSize > 1) {
-        participant.isTeam = true;
+        participantData.isTeam = true;
       } else {
-        participant.isTeam = false;
-        participant.teamName = null;
+        participantData.isTeam = false;
+        participantData.teamName = null;
       }
-      await this.#checkValidParticipation(event, participant);
+      await this.#checkValidParticipation(event, participantData);
+
+      let promotion,
+        amountToPay = event.registrationFeesInINR;
+      console.log("Amount to pay:", amountToPay);
+      if (promoCode) {
+        promotion = await PromotionCampaignService.getByCode(promoCode);
+        if (!promotion) throw new BadRequestError("Invalid promo code");
+
+        // check user eligibility
+        let isEligible = false;
+        if (promotion.type === "general") isEligible = true;
+        else if (promotion.type === "targeted") {
+          const userPatterns = [
+            `email:${email}`,
+            `domain:${email.split("@")[1]}`,
+          ];
+          isEligible = promotion.pattern.some((pattern) =>
+            userPatterns.some((userPattern) =>
+              new RegExp(pattern).test(userPattern)
+            )
+          );
+
+          if (!isEligible) {
+            throw new BadRequestError("User not eligible for this promotion");
+          }
+        }
+
+        // check applicable on validity
+        const validApplicableOn = ["event:*", `event:${event._id.toString()}`];
+        let isApplicable = false;
+        validApplicableOn.forEach((applicableOn) => {
+          if (promotion.applicableOn.includes(applicableOn)) {
+            isApplicable = true;
+          }
+        });
+        if (!isApplicable) {
+          throw new BadRequestError("Promotion not applicable on this event");
+        }
+
+        const discount = await PromotionCampaignService.calculateDiscount(
+          promotion,
+          event.registrationFeesInINR
+        );
+        console.log("Discount:", discount);
+        amountToPay = event.registrationFeesInINR - discount;
+      }
 
       // everything is fine, its payment time
-      if (event.registrationFeesInINR === 0) {
-        const participant = await ParticipantRepository.create(participant);
+      if (amountToPay === 0) {
+        const participant = await ParticipantRepository.create(participantData);
+
+        // create used reward for the promotion
+        const reward = {
+          user: participant.leader,
+          type: "PromotionCampaign",
+          reference: promotion._id,
+          status: "used",
+          usedBy: participant.leader,
+        };
+        await RewardService.create(reward);
+
         return {
           participant,
           type: "participant",
         };
       }
+
+      console.log("Amount to pay:", amountToPay);
       const order = await PaymentService.createOrder({
-        amountInINR: event.registrationFeesInINR,
+        amountInINR: amountToPay,
         notes: {
           type: "Participant",
-          user: participant.leader,
-          participant: JSON.stringify(participant),
+          user: participantData.leader,
+          participant: JSON.stringify(participantData),
+          appliedPromotionId: promotion._id,
         },
       });
       return {

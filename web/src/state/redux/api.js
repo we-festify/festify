@@ -41,12 +41,15 @@ const api = createApi({
     "Promotions",
     "Announcements",
     "WebPushSubscription",
+    "FCM", // for firebase cloud messaging
     "NotificationPermission", // for user notification permission
     "Payments", // for user payments
     "EntryPass", // for user entry passes
     "Permissions", // for rbac permissions
     "Actions", // for rbac actions
     "Features", // for feature flags
+    "Promotions", // for promotion campaigns
+    "Rewards", // for user rewards
   ],
 });
 

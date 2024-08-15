@@ -26,7 +26,7 @@ Festify is a free and open-source framework for building fest management website
 - Email Verification
 - Notifications (Email, Push, in-app)
 - `*` Marketing Campaigns (Email, Push)
-- `*` Real-time Updates (WebSockets)
+- Real-time Updates (FCM)
 - Dashboard (Admin, Organizers)
 - Customizable
 - `*` Scalable (Horizontal Scaling)
@@ -48,11 +48,13 @@ Festify is a free and open-source framework for building fest management website
   - Express
   - Mongoose
   - JWT and cookies
+  - Firebase Cloud Messaging
 
 - **Communication Protocol**
 
   - REST API
   - WebSockets
+  - Firebase Cloud Messaging
 
 - **Message Broker**
 
