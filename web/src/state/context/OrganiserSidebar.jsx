@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { MdHotelClass } from "react-icons/md";
 import { BsQrCodeScan } from "react-icons/bs";
+import { IoMdNotifications } from "react-icons/io";
 
 const OrganiserSidebarContext = createContext();
 
@@ -30,6 +31,11 @@ const OrganiserSidebarProvider = ({ children }) => {
           path: "/organiser/events/details",
         },
       ],
+    },
+    {
+      text: "Notifications",
+      path: "/organiser/notifications",
+      icon: <IoMdNotifications />,
     },
     {
       text: "QR Scanner",

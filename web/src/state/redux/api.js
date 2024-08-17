@@ -50,6 +50,7 @@ const api = createApi({
     "Features", // for feature flags
     "Promotions", // for promotion campaigns
     "Rewards", // for user rewards
+    "Banners", // for banners
   ],
 });
 

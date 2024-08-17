@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import Dashboard from "../../pages/Dashboard/Dashboard";
 import EventsIndex from "../../pages/Events";
 import Scanner from "../../pages/Scanner/Scanner";
+import NotificationsIndex from "../../pages/Notifications";
 
 const Layout = () => {
   return (
@@ -16,6 +17,7 @@ const Layout = () => {
           <Route path="/" element={<Dashboard />} />
           <Route path="/events/*" element={<EventsIndex />} />
           <Route path="/scanner" element={<Scanner />} />
+          <Route path="/notifications/*" element={<NotificationsIndex />} />
         </Routes>
       </div>
     </div>

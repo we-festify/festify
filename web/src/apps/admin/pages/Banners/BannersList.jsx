@@ -1,4 +1,3 @@
-import styles from "./Banners.module.css";
 import {
   useDeleteBannerByIdMutation,
   useGetBannersQuery,
@@ -13,7 +12,7 @@ const BannersList = () => {
   const navigate = useNavigate();
 
   return (
-    <div className={styles.page}>
+    <div className="p-4 overflow-auto">
       <Card>
         <DataTable
           title="Banners"

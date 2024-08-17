@@ -1,5 +1,6 @@
 const NotificationService = require("../services/notification");
 const FCMService = require("../services/fcm");
+const { BadRequestError } = require("../utils/errors");
 
 class NotificationController {
   // Notification Permission
@@ -81,6 +82,24 @@ class NotificationController {
       const { notification } = req.body;
       const { user } = req;
       await FCMService.sendNotificationToUser(user._id, notification);
+      res.status(200).json({
+        message: "Notification sent",
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async sendNotificationToTopics(req, res, next) {
+    try {
+      const { notification, topics } = req.body;
+      if (!topics || !topics.length) {
+        throw new BadRequestError("Topics are required");
+      }
+      if (!notification || !notification.title || !notification.body) {
+        throw new BadRequestError("Notification title and body are required");
+      }
+      await FCMService.sendNotificationToTopics(topics, notification);
       res.status(200).json({
         message: "Notification sent",
       });

@@ -73,6 +73,13 @@ const webPushApi = api.injectEndpoints({
         body: { notification },
       }),
     }),
+    sendNotificationToTopics: builder.mutation({
+      query: ({ topics, notification }) => ({
+        url: "/notifications/fcm/send",
+        method: "POST",
+        body: { topics, notification },
+      }),
+    }),
     subscribeToTopics: builder.mutation({
       query: ({ topics, token }) => ({
         url: "/notifications/fcm/subscribe/topics",
@@ -103,6 +110,7 @@ export const {
   useSubscribeFCMMutation,
   useUnsubscribeFCMMutation,
   useTestFCMMutation,
+  useSendNotificationToTopicsMutation,
   useSubscribeToTopicsMutation,
   useUnsubscribeFromTopicsMutation,
 } = webPushApi;
