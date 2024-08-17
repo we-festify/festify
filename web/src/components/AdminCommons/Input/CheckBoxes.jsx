@@ -16,15 +16,16 @@ const CheckBoxes = ({
 
   const validate = () => {
     let isValid = true;
-    if (validations?.required && values.length === 0) {
+    const selectedValues = Object.keys(values).filter((key) => values[key]);
+    if (validations?.required && selectedValues.length === 0) {
       setError(`${label} is required`);
       isValid = false;
     }
-    if (validations?.minCount && values.length < validations.minCount) {
+    if (validations?.minCount && selectedValues.length < validations.minCount) {
       setError(`${label} must have at least ${validations.minCount} entries`);
       isValid = false;
     }
-    if (validations?.maxCount && values.length > validations.maxCount) {
+    if (validations?.maxCount && selectedValues.length > validations.maxCount) {
       setError(`${label} must have at most ${validations.maxCount} entries`);
       isValid = false;
     }
@@ -42,7 +43,7 @@ const CheckBoxes = ({
             <input
               type="checkbox"
               name={name}
-              defaultChecked={defaultValues[value]}
+              defaultChecked={defaultValues?.[value] || false}
               onChange={(e) => {
                 const newValues = { ...values };
                 if (e.target.checked) newValues[value] = true;

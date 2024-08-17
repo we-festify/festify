@@ -6,6 +6,15 @@ import Dropdown from "../Dropdown/Dropdown";
 import { BiChevronDown } from "react-icons/bi";
 import { FiMoreHorizontal } from "react-icons/fi";
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
+
 const dataTableContext = createContext();
 
 const useDataTable = () => useContext(dataTableContext);
@@ -250,7 +259,9 @@ const DataTableFooter = () => {
     totalRows,
     controlled,
   } = useDataTable();
-  const page = controlled?.currentPage ? controlled.currentPage : currentPage || 0;
+  const page = controlled?.currentPage
+    ? controlled.currentPage
+    : currentPage || 0;
   const pages = controlled?.totalPages ? controlled.totalPages : totalPages;
   const rows = controlled?.totalCount ? controlled.totalCount : totalRows;
   const limit = controlled?.pageLimit ? controlled.pageLimit : pageLimit;
@@ -314,41 +325,49 @@ const DataTableRow = ({ children, id }) => {
       {children}
       {actions && id !== "DATA_TABLE_HEADER" && (
         <td className={styles.rowActions}>
-          <Dropdown button={<FiMoreHorizontal size={18} />}>
-            <ul>
-              <li className={styles.rowActionsHeader}>Actions</li>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <FiMoreHorizontal size={18} />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              {Object.keys(actions)
+                .filter((k) => k !== "delete" && k !== "click")
+                .map((key) => {
+                  if (typeof actions[key] === "object")
+                    return (
+                      <DropdownMenuItem
+                        key={key}
+                        onClick={() => actions[key].action(id)}
+                      >
+                        <span className="capitalize">{actions[key].label}</span>
+                      </DropdownMenuItem>
+                    );
+                  if (typeof actions[key] === "function")
+                    return (
+                      <DropdownMenuItem
+                        key={key}
+                        onClick={() => actions[key](id)}
+                      >
+                        <span className="capitalize">{key}</span>
+                      </DropdownMenuItem>
+                    );
+                  throw new Error(
+                    "Invalid action type. Action must be either a function or an object with an action function and a label string"
+                  );
+                })}
               {actions.delete && (
-                <li
-                  className={styles.delete}
+                <DropdownMenuItem
+                  className="focus:bg-red-100 text-red-500 focus:text-red-500"
                   onClick={() => {
                     if (typeof actions.delete === "function")
                       actions.delete(id);
                   }}
                 >
                   Delete
-                </li>
+                </DropdownMenuItem>
               )}
-              {Object.keys(actions)
-                .filter((k) => k !== "delete" && k !== "click")
-                .map((key) => {
-                  if (typeof actions[key] === "object")
-                    return (
-                      <li key={key} onClick={() => actions[key].action(id)}>
-                        {actions[key].label}
-                      </li>
-                    );
-                  if (typeof actions[key] === "function")
-                    return (
-                      <li key={key} onClick={() => actions[key](id)}>
-                        {key}
-                      </li>
-                    );
-                  throw new Error(
-                    "Invalid action type. Action must be either a function or an object with an action function and a label string"
-                  );
-                })}
-            </ul>
-          </Dropdown>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </td>
       )}
     </tr>

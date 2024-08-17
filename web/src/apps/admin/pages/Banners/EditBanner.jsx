@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import styles from "./Banners.module.css";
 import {
   useGetBannerByIdQuery,
   useUpdateBannerByIdMutation,
@@ -15,18 +13,16 @@ const EditBanner = () => {
   const {
     data: { banner: initialBanner } = {},
     isLoading: initialBannerLoading,
-    isSuccess: initialBannerSuccess,
   } = useGetBannerByIdQuery(bannerId);
-  const [banner, setBanner] = useState(initialBanner);
-  const [updateBanner, { error, isLoading }] = useUpdateBannerByIdMutation();
+  const [updateBanner, { error }] = useUpdateBannerByIdMutation();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (banner) => {
     try {
       await updateBanner({
         bannerId,
         banner,
       }).unwrap();
-      toast.success("Banner created successfully!");
+      toast.success("Banner updated successfully!");
     } catch (err) {
       toast.error(
         err?.data?.message || err?.message || "Something went wrong."
@@ -34,26 +30,23 @@ const EditBanner = () => {
     }
   };
 
-  useEffect(() => {
-    if (initialBannerSuccess) {
-      setBanner(initialBanner);
-    }
-  }, [initialBannerSuccess, initialBanner]);
-
   return (
-    <div className={styles.page}>
+    <div className="p-4 overflow-auto">
       <Card>
-        <div className={styles.createBannerCard}>
-          <h4 className={styles.title}>Edit Banner</h4>
-          <p className={styles.subtitle}>
-            Edit the details of the banner you want to create.
-            {error && <p className={styles.error}>{error?.data?.message}</p>}
-          </p>
+        <div className="flex flex-col gap-4">
+          <div className="space-y-2">
+            <h4 className="font-medium">Edit banner details</h4>
+            <p className="text-sm text-[var(--color-text-light-admin)]">
+              Enter the details of the banner you want to edit.
+              {error && (
+                <p className="text-sm text-red-500">{error?.data?.message}</p>
+              )}
+            </p>
+          </div>
           <BannerForm
-            key={banner?._id}
-            defaultValue={banner}
+            key={initialBanner?._id}
+            defaultValue={initialBanner}
             onSubmit={handleSubmit}
-            onChange={(banner) => setBanner(banner)}
           />
         </div>
       </Card>

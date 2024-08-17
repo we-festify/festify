@@ -94,6 +94,10 @@ textarea.input {
   color: var(--color-text-light-admin);
 }
 
+.checkbox > label {
+  flex-shrink: 0;
+}
+
 .input[type="checkbox"] {
   /* width: 1rem;
   height: 1rem; */

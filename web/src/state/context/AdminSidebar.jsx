@@ -7,6 +7,7 @@ import { MdKey, MdLocationPin } from "react-icons/md";
 import { ImLab } from "react-icons/im";
 import { PiFlagBannerFill } from "react-icons/pi";
 import { BsFillGiftFill } from "react-icons/bs";
+import { IoMdNotifications } from "react-icons/io";
 
 const AdminSidebarContext = createContext();
 
@@ -56,7 +57,7 @@ const AdminSidebarProvider = ({ children }) => {
     {
       text: "Promotions",
       path: "/admin/promotions",
-      icon: <BsFillGiftFill size={16} />,
+      icon: <BsFillGiftFill />,
       sublinks: [
         {
           text: "Create",
@@ -95,6 +96,11 @@ const AdminSidebarProvider = ({ children }) => {
           path: "/admin/banners/create",
         },
       ],
+    },
+    {
+      text: "Notifications",
+      path: "/admin/notifications",
+      icon: <IoMdNotifications />,
     },
   ]);
   const [activeLink, setActiveLink] = useState("/");

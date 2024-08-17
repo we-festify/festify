@@ -78,6 +78,32 @@ class FCMService {
     }
   }
 
+  static async sendNotificationToTopics(
+    topics,
+    notification = {},
+    options = {}
+  ) {
+    try {
+      const condition = topics
+        .reduce((acc, topic) => {
+          acc = `'${topic}' in topics || ${acc}`;
+          return acc;
+        }, "")
+        .slice(0, -4);
+      const message = {
+        notification: {
+          title: notification.title,
+          body: notification.body,
+        },
+        ...options,
+        condition,
+      };
+      await firebaseAdmin.messaging().send(message);
+    } catch (err) {
+      throw err;
+    }
+  }
+
   static async subscribeToTopics(userId, topics, token) {
     try {
       let tokens = [token];

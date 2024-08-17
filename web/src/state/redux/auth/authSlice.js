@@ -15,7 +15,6 @@ const authSlice = createSlice({
   reducers: {
     setCredentials(state, action) {
       const { accessToken, user } = action.payload;
-      localStorage.setItem("festify-access-token", accessToken);
       state.isOrganiser = user.role === "organiser" && user.organisation;
       state.isAdmin = user.role === "admin";
       state.user = user;

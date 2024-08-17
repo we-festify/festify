@@ -30,6 +30,12 @@ router.post(
   RBACMiddleware.requirePermissions("notification:send"),
   NotificationController.testFCM
 );
+router.post(
+  "/fcm/send",
+  AuthMiddleware.requireLoggedIn,
+  RBACMiddleware.requirePermissions("notification:send"),
+  NotificationController.sendNotificationToTopics
+);
 router.post("/fcm/subscribe/topics", NotificationController.subscribeToTopics);
 router.delete(
   "/fcm/subscribe/topics",
